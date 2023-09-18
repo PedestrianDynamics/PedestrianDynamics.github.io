@@ -146,17 +146,6 @@ The unit vector, denoted as $\textbf{e}_0$, is then calculated by pointing from 
 
 > **_NOTE:_**  Given that the target is always a polygon, the objective would be the polygon's center.
 
-The continuous definition of the model is proved to be collision-free in any situation.
-However the discretisation of the model, as often required for computational efficiency, can introduce potential collision problems.
-While the speed model has a fast and efficient implementation, it is crucial to select a sufficiently small time step when solving the ordinary differential equation with Euler scheme in order to ensure that the model remains collision-free.
-Therefore the model is collision-free in discrete time if 
-$$
-\delta t \le \min\left\{\frac T2,\frac{\ell(\sqrt2-1)}{v_0\sqrt2}\right\}.
-$$
-
-The condition for collision-free dynamics is determined solely by the parameters of the speed model. In this paper, we use parameter values of $T=1$ s, $v_0=1.2$ m/s and $\ell$, with a smallness condition on the time step approximate to $\delta t \le0.072$ s for explicit Euler schemes and circular pedestrian shape.
-
-
 ## The collision-free speed model in the literature
 
 The following map shows works from the literature connected to the collision-free speed model.
