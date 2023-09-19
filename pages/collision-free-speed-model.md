@@ -1,7 +1,7 @@
 # Collision-free speed model
 
 ## Introduction to collision-free speed model
-The collision-free speed model [1](#Tordeux2015) is a mathematical framework that prioritizes the avoidance of collisions in pedestrian dynamics. It achieves this by calculating the optimal velocity for each individual agent, taking into account factors such as agent size and maximum attainable speed. The direction in which an agent moves is determined through a combination of exponential repulsion from nearby agents, with the strength of repulsion influenced by proximity to others within their surroundings. The main idea behind the collision-free speed model is to replicate real-world phenomena in pedestrian dynamics using a simplified and computationally efficient approach.
+The collision-free speed model [1](#Tordeux2015) is a mathematical model that prioritizes the avoidance of collisions in pedestrian dynamics. It achieves this by calculating the optimal velocity for each individual agent, taking into account factors such as agent size and maximum attainable speed. The direction in which an agent moves is determined through a combination of exponential repulsion from nearby agents, with the strength of repulsion influenced by proximity to others within their surroundings. The main idea behind the collision-free speed model is to replicate real-world phenomena in pedestrian dynamics using a simplified and computationally efficient approach.
 
 ## Basic Principles of collision-free speed model
 
@@ -14,7 +14,7 @@ The collision-free speed model is mathematically represented as a derivative equ
 
 $$\dot{\mathbf{x}}_i=V_i\big(s_i(\mathbf{x}_i,\mathbf{x}_j,\ldots)\big)\times\mathbf e_i(\mathbf{x}_i,\mathbf{x}_j,\ldots)$$
 
-where $x_i$ represents the position of pedestrian $i$ and $V_i$ represents their position. 
+where $x_i$ represents the position of pedestrian $i$ and $V_i$ represents their speed. 
 
 The speed function $V_i$ regulates the overall speed of the pedestrian, while the direction function $\textbf{e}_i$ determines the direction in which the pedestrian moves.
 
@@ -153,7 +153,7 @@ The following map shows works from the literature connected to the collision-fre
     <img src="https://iffmd.fz-juelich.de/uploads/upload_443961e85c3dcdd69565bc8a5504c0c5.png" alt="crowd" width="600"/>
     <figcaption style="text-align: right;">
         <small>
-Das ist evtl. ueberfluessig
+Fancy graf, but maybe remove it
         </small>
     </figcaption>
 </figure>
