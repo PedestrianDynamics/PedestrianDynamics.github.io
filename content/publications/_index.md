@@ -1,6 +1,6 @@
 ---
 title: Publications
-layout: page
+weight: 2
 ---
 
 

@@ -1,0 +1,46 @@
+baseURL: https://PedestrianDynamics.github.io
+languageCode: en-us
+title: Pedestrian Dynamics
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+module:
+  imports:
+    - path: github.com/imfing/hextra
+
+menu:
+  main:
+    - name: Models
+      pageRef: /models
+      weight: 1
+    - name: About
+      pageRef: /about
+      weight: 3
+    - name: Search
+      weight: 4
+      params:
+        type: search
+    - name: GitHub
+      weight: 5
+      url: "https://github.com/PedestrianDynamics/PedestrianDynamics.github.io"
+      params:
+        icon: github
+
+params:
+  navbar:
+    displayTitle: true
+    displayLogo: false
+
+  page:
+    width: wide
+
+  footer:
+    displayCopyright: false
+    displayPoweredBy: false
+
+  displayUpdatedDate: true
+  dateFormat: "January 2, 2006"
+
