@@ -1,18 +1,55 @@
-# Generalized Centrifugal Force Model
+---
+title: Generalized Centrifugal Force Model
+math: true
+---
 
 ## Introduction to Generalized Centrifugal Force Model
-The Generalized Centrifugal Force Model [1](#Chraibi2010) is a force-based model that defines the movement of pedestrians through the combination of small-range forces. This model represents the spatial requirement of pedestrians, including their body asymmetry, in an elliptical shape with two axes dependent on speed. The semi-axis representing the dynamic space requirement in the direction of motion increases proportionally as speed increases. Conversely, the semi-axis along the shoulder direction decreases with higher velocities.
+
+The Generalized Centrifugal Force Model [1](#Chraibi2010) is a force-based
+model that defines the movement of pedestrians through the combination of
+small-range forces. This model represents the spatial requirement of
+pedestrians, including their body asymmetry, in an elliptical shape with two
+axes dependent on speed. The semi-axis representing the dynamic space
+requirement in the direction of motion increases proportionally as speed
+increases. Conversely, the semi-axis along the shoulder direction decreases
+with higher velocities.
 
 ## Basic Principles of Generalized Centrifugal Force Model
-GCFM belongs to the class of force-based pedestrian models, which view pedestrian movement as the result of forces acting on an individual at any given moment. These so-called acceleration-based models calculate the acceleration of agents by superposing the forces acting on them.
-The movement of pedestrians is influenced by three main forces in the Generalized Centrifugal Force Model: the destination driving force, the obstacle repulsive force, and the repulsive force between pedestrians. The destination driving force propels individuals towards their intended destinations, taking into account factors such as distance and desired walking speed. On the other hand, the obstacle-repulsive force pushes pedestrians away from obstacles to maintain a safe distance from walls or other objects. Lastly, the repulsive force between pedestrians prevents collisions among them  [1](#Chraibi2010).
 
-The model considers both the distance between pedestrians and their relative velocities. Using an elliptical volume exclusion instead of a circular one has several advantages. Circular symmetry is inconsistent with the asymmetric space requirements of pedestrians in terms of their motion direction and transverse to it. As a force-based model, GCFM describes the temporal changes in pedestrian movement through the combination of short-range forces acting on them simultaneously.
+GCFM belongs to the class of force-based pedestrian models, which view
+pedestrian movement as the result of forces acting on an individual at any
+given moment. These so-called acceleration-based models calculate the
+acceleration of agents by superposing the forces acting on them.
+
+The movement of pedestrians is influenced by three main forces in the
+Generalized Centrifugal Force Model: the destination driving force, the
+obstacle repulsive force, and the repulsive force between pedestrians. The
+destination driving force propels individuals towards their intended
+destinations, taking into account factors such as distance and desired walking
+speed. On the other hand, the obstacle-repulsive force pushes pedestrians away
+from obstacles to maintain a safe distance from walls or other objects. Lastly,
+the repulsive force between pedestrians prevents collisions among them
+[1](#Chraibi2010).
+
+The model considers both the distance between pedestrians and their relative
+velocities. Using an elliptical volume exclusion instead of a circular one has
+several advantages. Circular symmetry is inconsistent with the asymmetric space
+requirements of pedestrians in terms of their motion direction and transverse
+to it. As a force-based model, GCFM describes the temporal changes in
+pedestrian movement through the combination of short-range forces acting on
+them simultaneously.
 
 
 ## Mathematical description
+
 ### Elliptical volume exclusion of agents 
-The Generalized Centrifugal Force Model incorporates an elliptical volume exclusion of pedestrians. This means that pedestrians are represented as elliptical disks with two semi-axes, which depend on their speed. The semi-axis representing the dynamic space requirement in the direction of motion ($a$) increases proportionally as speed increases, while the semi-axis along the shoulder direction decreases with higher speed values ($b$).
+
+The Generalized Centrifugal Force Model incorporates an elliptical volume
+exclusion of pedestrians. This means that pedestrians are represented as
+elliptical disks with two semi-axes, which depend on their speed. The semi-axis
+representing the dynamic space requirement in the direction of motion ($a$)
+increases proportionally as speed increases, while the semi-axis along the
+shoulder direction decreases with higher speed values ($b$).
 
 <figure style="text-align: center;">
     <img src="https://iffmd.fz-juelich.de/uploads/upload_fd55f4dfb22ecffbd91167d46719cbaa.png" alt="crowd" width="400"/>
@@ -76,31 +113,6 @@ It is possible to reduce the amount of overlapping among agents, by increasing t
 ## Challenges in Implementing GCFM
 
 The computational cost of the GCFM is high, as it requires continuous calculations to determine the forces and interactions between pedestrians. This includes calculating distances between ellipses, such as the closest approach distance. Additionally, while the strength of repulsive force decreases with increasing distance between pedestrians, it currently has an infinite range, which is unrealistic for pedestrian interactions. To address this, we propose introducing a cutoff radius for the force to limit interactions only to adjacent pedestrians. However, implementing this cutoff radius requires a two-sided Hermite-interpolation of the repulsive force and further increases computational complexity. Furthermore, finding appropriate values for model parameters that are independent of neighborhood properties and reduce overlapping and oscillation is challenging.
-
-
-## Using GCFM with JuPedSim 
-
-The collision-free speed model has also been implemented and tested using the JuPedSim software platform (`GCFMModelBuilder`).
-Following table summarize the parameters of the model and their naming.
-
-| Parameter Description                          | Variable Name      |
-| ---------------------------------------------- | ------------------ |
-| Pedestrian repulsive force strength            | `nu_Ped`           |
-| Cut-off radius for pedestrian repulsive force  | `dist_eff_Ped`     |
-| Interpolation distance for pedestrian force    | `intp_width_Ped`   |
-| Maximum value of pedestrian repulsive force    | `maxf_Ped`         |
-| Wall repulsive force strength                  | `nu_Wall`          |
-| Cut-off radius for wall repulsive force        | `dist_eff_Wall`    |
-| Interpolation distance for wall force          | `intp_width_Wall`  |
-| Maximum value of wall repulsive force          | `maxf_Wall`        |
-| Desired speed                                  | `v0`               |
-| Time delay                                     | `tau`              |
-| Mass                                           | `m`                |
-| Minimum semi-axis $a$                          | `amin`             |
-| Speed dependence of the semi-axis $a$          | `a_v`              |
-| Minimum semi-axis $b$                          | `bmin`             |
-| Maximum semi-axis $b$                          | `bmax`             |
-
 
 ## References: 
 
