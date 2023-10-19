@@ -1,8 +1,13 @@
 ---
 title: Pedestrian Models
-weight: 1
+weight: 4
 toc: false
 ---
+
+If you want to present a different pedestrian model, feel free to open an issue
+on our
+[GitHub](https://github.com/PedestrianDynamics/PedestrianDynamics.github.io) or
+[contact us](mailto:m.chraibi@fz-juelich.de) directly!
 
 {{< cards >}}
   {{< card link="collision_free_speed_model" title="Collision Free Speed" icon="plus-circle" >}}

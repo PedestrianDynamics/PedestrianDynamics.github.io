@@ -13,9 +13,6 @@ module:
 
 menu:
   main:
-    - name: Models
-      pageRef: /models
-      weight: 1
     - name: About
       pageRef: /about
       weight: 3
