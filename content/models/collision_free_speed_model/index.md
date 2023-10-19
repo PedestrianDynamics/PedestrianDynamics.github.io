@@ -155,7 +155,7 @@ Therefore, the model is collision-free in discrete time if
 $$\delta t \le \min\left\\{\frac T2,\frac{l(\sqrt2-1)}{v_0\sqrt2}\right\\}$$
 
 The condition for collision-free dynamics is determined solely by the
-parameters of the speed model. For exampl, if we use parameter values of $T=1$
+parameters of the speed model. For example, if we use parameter values of $T=1$
 s, $v_0=1.2$ m/s and $l$, with a smallness condition on the time step
 approximate to $\delta t \le0.072$ s for explicit Euler schemes and circular
 pedestrian shape.
@@ -165,14 +165,6 @@ pedestrian shape.
 Additionally, accurately calibrating the repulsion rate and distance in the
 direction model can prove challenging due to variation based on specific
 environmental conditions and crowd dynamics.
-
-
-## The collision-free speed model in the literature
-
-The following map shows works from the literature connected to the
-collision-free speed model.
-
-{{< figure src="figure6.png" caption="Citation map of the Collision Free Speed Model">}}
 
 ## References
 
