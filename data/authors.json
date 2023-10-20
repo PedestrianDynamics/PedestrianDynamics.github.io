@@ -1,0 +1,166 @@
+[{
+    "name": "Mohcine Chraibi",
+    "bio": "Head of the division Pedestrian Dynamics - Modeling at the IAS-7. Research intrests include Modeling, Simulation, Wayfinding, Software Engineering, Validation, Verification",
+    "social": {
+        "linkedin": "https://www.linkedin.com/in/mohcine-chraibi/",
+        "github": "https://github.com/chraibi",
+        "orcid":"https://orcid.org/0000-0002-0999-6807",
+        "homepage": "https://www.fz-juelich.de/profile/chraibi_m",
+        "email": ""
+    },
+    "affiliation": {
+        "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
+        "url" : "https://www.fz-juelich.de/en/ias/ias-7"
+    }
+},
+{
+    "name": "Alessandro Corbetta",
+    "bio": "",
+    "social": {
+        "linkedin": "",
+        "github": "",
+        "orcid":"https://orcid.org/0000-0001-6979-3414",
+        "homepage": "",
+        "email": ""
+    },
+    "affiliation": {
+        "name": "",
+        "url" : ""
+    }
+},
+{
+    "name": "Claudio Feliciani",
+    "bio": "",
+    "social": {
+        "linkedin": "",
+        "github": "",
+        "orcid":"https://orcid.org/0000-0003-0718-8707",
+        "homepage": "",
+        "email": ""
+    },
+    "affiliation": {
+        "name": "",
+        "url" : ""
+    }
+},
+{
+    "name": "Milad Haghani",
+    "bio": "",
+    "social": {
+        "linkedin": "",
+        "github": "",
+        "orcid":"https://orcid.org/0000-0003-3904-5196",
+        "homepage": "",
+        "email": ""
+    },
+    "affiliation": {
+        "name": "",
+        "url" : ""
+    }
+},
+{
+    "name": "Kai Kratz",
+    "bio": "Software Engineer working primarily on JuPedSim",
+    "social": {
+        "linkedin": "https://www.linkedin.com/in/kaikratz/",
+        "github": "https://github.com/Ozaq",
+        "orcid":"",
+        "homepage": "",
+        "email" : "k.kratz@fz-juelich.de"
+    },
+    "affiliation": {
+        "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
+        "url" : "https://www.fz-juelich.de/en/ias/ias-7"
+    }
+},
+{
+    "name": "Enrico Ronchi",
+    "bio": "",
+    "social": {
+        "linkedin": "",
+        "github": "",
+        "orcid":"https://orcid.org/0000-0002-2789-6359",
+        "homepage": "",
+        "email": ""
+    },
+    "affiliation": {
+        "name": "",
+        "url" : ""
+    }
+},
+{
+    "name": "Tobias Schrödter",
+    "bio": "Research Software Engineer working on PedPy and JuPedSim",
+    "social": {
+        "linkedin": "https://www.linkedin.com/in/tobias-schroedter/",
+        "github": "https://github.com/schroedtert",
+        "orcid":"https://orcid.org/0000-0002-1071-060X",
+        "homepage": "",
+        "email": ""
+    },
+    "affiliation": {
+        "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
+        "url" : "https://www.fz-juelich.de/en/ias/ias-7"
+    }
+},
+{
+    "name": "Jette Schumann",
+    "bio": "Post-doctoral Researcher",
+    "social": {
+        "linkedin": "",
+        "github": "",
+        "orcid":"https://orcid.org/0000-0003-3668-999X",
+        "homepage": "",
+        "email": ""
+    },
+    "affiliation": {
+        "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
+        "url" : "https://www.fz-juelich.de/en/ias/ias-7"
+    }
+},
+{
+    "name": "Armin Seyfried",
+    "bio": "Head of the IAS-7",
+    "social": {
+        "linkedin": "",
+        "github": "",
+        "orcid":"https://orcid.org/0000-0001-8888-0978",
+        "homepage": "",
+        "email": ""
+    },
+    "affiliation": {
+        "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
+        "url" : "https://www.fz-juelich.de/en/ias/ias-7"
+    }
+},
+{
+    "name": "Antoine Tordeux",
+    "bio": "",
+    "social": {
+        "linkedin": "",
+        "github": "",
+        "orcid":"https://orcid.org/0000-0001-5077-0327",
+        "homepage": "",
+        "email": ""
+    },
+    "affiliation": {
+        "name": "",
+        "url" : ""
+    }
+},
+{
+    "name": "Ezel Üsten",
+    "bio": "",
+    "social": {
+        "linkedin": "",
+        "github": "",
+        "orcid":"https://orcid.org/0000-0003-2250-4245",
+        "homepage": "",
+        "email": ""
+    },
+    "affiliation": {
+        "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
+        "url" : "https://www.fz-juelich.de/en/ias/ias-7"
+    }
+}
+]

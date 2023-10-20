@@ -469,13 +469,13 @@ This article is a collaborative work, with contributions from various authors
 listed in alphabetical order:
 
 
-- [Mohcine Chraibi](https://orcid.org/0000-0002-0999-6807)
-- [Alessandro Corbetta](https://orcid.org/0000-0001-6979-3414)
-- [Claudio Feliciani](https://orcid.org/0000-0003-0718-8707)
-- [Milad Haghani](https://orcid.org/0000-0003-3904-5196)
-- [Enrico Ronchi](https://orcid.org/0000-0002-2789-6359)
-- [Jette Schumann](https://orcid.org/0000-0003-3668-999X)
-- [Armin Seyfried](https://orcid.org/0000-0001-8888-0978)
-- [Antoine Tordeux](https://orcid.org/0000-0001-5077-0327)
-- [Ezel Üsten](https://orcid.org/0000-0003-2250-4245)
+- [Mohcine Chraibi](/authors#MohcineChraibi)
+- [Alessandro Corbetta](/authors#AlessandroCorbetta)
+- [Claudio Feliciani](/authors#ClaudioFeliciani)
+- [Milad Haghani](/authors#MiladHaghani)
+- [Enrico Ronchi](/authors#EnricoRonchi)
+- [Jette Schumann](/authors#JetteSchumann)
+- [Armin Seyfried](/authors#ArminSeyfried)
+- [Antoine Tordeux](/authors#AntoineTordeux)
+- [Ezel Üsten](/authors#EzelÜsten)
 

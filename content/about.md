@@ -2,6 +2,7 @@
 layout: page
 title: About
 permalink: /about/
+weight: 999
 ---
 
 ## Why This Initiative?
@@ -40,7 +41,5 @@ pedestrian dynamics.
 
 ## Creators
 
-- Dr. Mohcine Chraibi
-- Kai Kratz
-- Tobias Schrödter
+[Dr. Mohcine Chraibi](/authors#MohcineChraibi), [Kai Kratz](/authors#KaiKratz), and [Tobias Schrödter](/authors#TobiasSchrödter)
 
