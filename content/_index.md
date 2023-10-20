@@ -290,7 +290,7 @@ experimental data in terms of graphs.
 
 {{<
     figure
-    src="/images/corbetta2.png"
+    src="/images/voronoi-moving.gif"
     caption="Identified silhouettes of individuals in transit and their associated Voronoi diagrams. [Source](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.98.062310)"
 >}}
 
