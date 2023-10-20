@@ -66,9 +66,17 @@ function calibrated by the coefficient $a>0$ and distance $D>0$.
 The velocity is calculated by multiplying two functions: A speed function $V_i$
 and a direction function $\textbf{e}_i$.
 
-In the following, the OV function is the piecewise linear
+Inspired from car-following models, the speed function only depends on the distance to the nearest pedestrian or obstacle in front through an Optimal Velocity (OV) function.
 
-$$V(s)=\min\\{v_0,\max\\{0,(s-l)/T\\}\\}$$
+The set $J_i$ of pedestrians and obstacles in front is given by
+
+$$J_i=\big\\{j,~\mathbf e_i\cdot \mathbf e_{ij}\le 0~\text{and}~|\mathbf e_i^\perp\cdot\mathbf e_{ij}|\le l/s_{ij}\big\\}.$$
+
+The distance to the nearest pedestrian or obstacle in front is then the minimum
+$$s_i=\min_{j\in J_i}s_{ij}.$$
+
+In the following, the OV function is the piecewise linear
+$$V(s)=\min\big\\{v_0,\max\{0,(s-l)/T\}\big\\},$$
 
 satisfies
 
@@ -86,10 +94,10 @@ picture:
 
 
 The collision-free speed model depends on five parameters:
-- Pedestrian diameter ($l$)
-- Desired speed ($v_0$)
-- Time gap ($T$)
-- Repulsion rate and distance ($a$ and $D$)
+- Pedestrian diameter ($l \ge 0$)
+- Desired speed ($v_0 > 0$)
+- Time gap ($T > 0$)
+- Repulsion rate and distance ($a>0$ and $D>0$)
 
 ## Limitations of the collision-free speed model
 
@@ -165,6 +173,8 @@ pedestrian shape.
 Additionally, accurately calibrating the repulsion rate and distance in the
 direction model can prove challenging due to variation based on specific
 environmental conditions and crowd dynamics.
+
+
 
 ## References
 
