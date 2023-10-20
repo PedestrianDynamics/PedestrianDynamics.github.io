@@ -15,6 +15,7 @@
                 {{ $icon | safeHTML }}
             </span>
         </a>
+        &nbsp;
     {{ end }}
     {{ if .social.email }}
         <a href="mailto:{{ .social.email }}" style="color: inherit; text-decoration: none">
@@ -24,6 +25,7 @@
                 {{ $icon | safeHTML }}
             </span>
         </a>
+        &nbsp;
     {{ end }}
     {{ if .social.orcid }}
         <a href="{{ .social.orcid }}" style="color: inherit; text-decoration: none">
@@ -33,6 +35,7 @@
                 {{ $icon | safeHTML }}
             </span>
         </a>
+        &nbsp;
     {{ end }}
     {{ if .social.github }}
         <a href="{{ .social.github }}" style="color: inherit; text-decoration: none">
@@ -42,6 +45,7 @@
                 {{ $icon | safeHTML }}
             </span>
         </a>
+        &nbsp;
     {{ end }}
     {{ if .social.linkedin }}
         <a href="{{ .social.linkedin }}" style="color: inherit; text-decoration: none">
@@ -51,6 +55,7 @@
                 {{ $icon | safeHTML }}
             </span>
         </a>
+        &nbsp;
     {{ end }}
     </p>
 {{ end }}
