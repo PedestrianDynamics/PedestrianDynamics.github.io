@@ -131,7 +131,7 @@ such as:
 
 {{<
     figure
-    src="/images/clogging.gif"
+    src="/images/clogging.webp"
     caption="Cloggging in a bottleneck"
 >}}
 
