@@ -475,7 +475,6 @@ listed in alphabetical order:
 - [Milad Haghani](/authors#MiladHaghani)
 - [Enrico Ronchi](/authors#EnricoRonchi)
 - [Jette Schumann](/authors#JetteSchumann)
-- [Armin Seyfried](/authors#ArminSeyfried)
 - [Antoine Tordeux](/authors#AntoineTordeux)
 - [Ezel Üsten](/authors#EzelÜsten)
 
