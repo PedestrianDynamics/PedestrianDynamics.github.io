@@ -29,7 +29,7 @@ destinations, taking into account factors such as distance and desired walking
 speed. On the other hand, the obstacle-repulsive force pushes pedestrians away
 from obstacles to maintain a safe distance from walls or other objects. Lastly,
 the repulsive force between pedestrians prevents collisions among them
-[1](#Chraibi2010).
+[[1]](#Chraibi2010).
 
 The model considers both the distance between pedestrians and their relative
 velocities. Using an elliptical volume exclusion instead of a circular one has
@@ -51,7 +51,7 @@ representing the dynamic space requirement in the direction of motion ($a$)
 increases proportionally as speed increases, while the semi-axis along the
 shoulder direction decreases with higher speed values ($b$).
 
-{{< figure src="figure1.png" caption="The distance between the borders of the ellipses along a line connecting their centers" >}}
+{{< figure src="figure1.png" caption="The distance between the borders of the ellipses along a line connecting their centers." >}}
 
 The mathematical description of the elliptical volume exclusion in GCFM is as follows
 
@@ -59,7 +59,7 @@ $$a=a_{\min }+\tau_a v_i$$
 
 and
 
-$$b=b_{\max }-\left(b_{\max }-b_{\min }\right) \frac{v_i}{v_i^0}$$
+$$b=b_{\max }-\left(b_{\max }-b_{\min }\right) \frac{v_i}{v_i^0},$$
 
 where $v_i$ is the speed and $v_i^0$ the desired speed of agent $i$.
 
@@ -70,7 +70,7 @@ causing them to deviate from a straight path. Drawing parallels to Newtonian
 mechanics, such deviations or accelerations are attributed to a force. Hence,
 the equation of motion can be written as:
 
-$$\vec{\ddot x}\_i=\overrightarrow{F\_i^{\mathrm{drv}}}+\sum\_{j \in \mathcal{N}\_{i}} \overrightarrow{F\_{i j}^{\mathrm{rep}}}+\sum\_{w \in \mathcal{W}\_{i}} \overrightarrow{F\_{i w}^{\mathrm{rep}}}$$
+$$\vec{\ddot x}\_i=\overrightarrow{F\_i^{\mathrm{drv}}}+\sum\_{j \in \mathcal{N}\_{i}} \overrightarrow{F\_{i j}^{\mathrm{rep}}}+\sum\_{w \in \mathcal{W}\_{i}} \overrightarrow{F\_{i w}^{\mathrm{rep}}}.$$
 
 
 #### Driving force
@@ -88,17 +88,17 @@ considering the repulsive force between pedestrians, the Generalized
 Centrifugal Force Model ensures that individuals maintain a safe distance from
 each other.
 
-$${\overrightarrow{F\_{i,j}}}\_{\text {rep }}=-m_i k\_{i j} \frac{\left(\eta\left\|\overrightarrow{v\_i^0}\right\|+v\_{i j}\right)^2}{d\_{i j}} \overrightarrow{e\_{i j}}$$
+$${\overrightarrow{F\_{i,j}}}\_{\text {rep }}=-m_i k\_{i j} \frac{\left(\eta\left\|\overrightarrow{v\_i^0}\right\|+v\_{i j}\right)^2}{d\_{i j}} \overrightarrow{e\_{i j}},$$
 
 with the relative speed
 
-$$v_{i j}=\frac{1}{2}\left[\left(\overrightarrow{v_i}-\overrightarrow{v_j}\right) \cdot \overrightarrow{e_{i j}}+\left|\left(\overrightarrow{v_i}-\overrightarrow{v_j}\right) \cdot \overrightarrow{e_{i j}}\right|\right]$$
+$$v_{i j}=\frac{1}{2}\left[\left(\overrightarrow{v_i}-\overrightarrow{v_j}\right) \cdot \overrightarrow{e_{i j}}+\left|\left(\overrightarrow{v_i}-\overrightarrow{v_j}\right) \cdot \overrightarrow{e_{i j}}\right|\right],$$
 
 and a reduction of the influence range to $180^\circ$ by:
 
-$$k_{i j}=\frac{1}{2} \frac{\overrightarrow{v_i} \cdot \overrightarrow{e_{i j}}+\left|\overrightarrow{v_i} \cdot \overrightarrow{e_{i j}}\right|}{v_i}$$
+$$k_{i j}=\frac{1}{2} \frac{\overrightarrow{v_i} \cdot \overrightarrow{e_{i j}}+\left|\overrightarrow{v_i} \cdot \overrightarrow{e_{i j}}\right|}{v_i}.$$
 
-{{< figure src="figure2.png" caption="The interpolation of the repulsive force between pedestrians" >}}
+{{< figure src="figure2.png" caption="The interpolation of the repulsive force between pedestrians." >}}
 
 #### Pedestrian-wall repulsive force
 
@@ -112,7 +112,7 @@ pedestrian's trajectory is nearly aligned with the wall.
 For this reason, we characterize in this model walls by three-point masses
 acting on pedestrians within a certain interaction range.
 
-{{< figure src="figure2.png" caption="Each wall is modeled as three static point masses acting on pedestrians" >}}
+{{< figure src="figure2.png" caption="Each wall is modeled as three static point masses acting on pedestrians." >}}
 
 ## Limitations of the GCFM
 
