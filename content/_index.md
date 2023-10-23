@@ -96,8 +96,8 @@ genuine sentiments of individuals.
 
 {{<
     figure
-    src="/images/trains.png"
-    caption="Sources: dpa und A. Schellnegger"
+    src="/images/crowd_station.jpg"
+    caption="[Photo](https://unsplash.com/photos/people-standing-and-walking-on-stairs-in-mall-mVhd5QVlDWw) by [Anna Dziubinska](https://unsplash.com/@annadziubinska) on [Unsplash](https://unsplash.com/photos/people-standing-and-walking-on-stairs-in-mall-mVhd5QVlDWw?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)"
 >}}
 
 ## Collective Phenomena: Where Individuals Converge to Form Communities
