@@ -75,6 +75,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: pages
+          path: ./public
       - run: ls -l
       # - name: Deploy 🚀
       #   uses: JamesIves/github-pages-deploy-action@v4
