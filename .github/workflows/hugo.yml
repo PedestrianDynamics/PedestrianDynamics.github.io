@@ -76,11 +76,10 @@ jobs:
         with:
           name: pages
           path: ./public
-      - run: ls -l
-      # - name: Deploy 🚀
-      #   uses: JamesIves/github-pages-deploy-action@v4
-      #   with:
-      #     folder: ./public # The folder the action should deploy.
-      #     branch: gh-pages
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ./public # The folder the action should deploy.
+          branch: gh-pages
 
           
