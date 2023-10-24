@@ -77,11 +77,10 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: pages
-      - run: ls -R
-      # - name: Deploy 🚀
-      #   uses: JamesIves/github-pages-deploy-action@v4
-      #   with:
-      #     folder: ./public # The folder the action should deploy.
-      #     branch: gh-pages
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: . # The folder the action should deploy.
+          branch: gh-pages
 
           
