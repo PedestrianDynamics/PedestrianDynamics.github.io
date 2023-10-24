@@ -17,7 +17,7 @@ crowd, which plays a pivotal role in unraveling the intricacies of pedestrian
 dynamics.
 
 {{< figure
-    src="/images/crowd.png"
+    src="./images/crowd.png"
     caption="Image design: Panar Ege Uesten."
 >}}
 
