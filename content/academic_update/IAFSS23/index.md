@@ -13,6 +13,10 @@ The talk gave a comprehensive overview on the research in the domain providing v
 On the Friday after the Symposium, a group of approximately 15 researchers interested in evacuation behaviour gathered in an informal meeting arranged at the University of Tokyo by [Claudio Feliciani](https://orcid.org/0000-0003-0718-8707). This was a valuable opportunity to discuss collaborative efforts in the field and share experiences concerning pedestrian and evacuation data collection and modelling activities.
 All in all, the IAFSS Symposium and its related activities have been a fantastic opportunity for the evacuation community to meet and learn from each other research efforts in the field.
 
-The [15th IAFSS](https://iafss.org/event/15th-iafss-international-symposium/) in 2026 will be held in La Rochelle, France.
+The [15th IAFSS](https://iafss.org/event/15th-iafss-international-symposium/) International Symposium is set to convene in 2026 at the scenic locale of La Rochelle, France. This event promises to continue the esteemed tradition of fostering dialogue and sharing groundbreaking research in the field of fire safety science.
 
-By Enrico Ronchi
+{{< icon "pencil-alt" >}} By: [Enrico Ronchi](https://portal.research.lu.se/en/persons/enrico-ronchi)
+
+{{< icon "annotation" >}} Edited by: [Mohcine Chraibi](https://www.fz-juelich.de/profile/chraibi_m)
+
+
