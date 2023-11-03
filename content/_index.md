@@ -49,7 +49,7 @@ studies.
 
 {{<
     figure
-    src="/images/fd.png"
+    src="images/fd.png"
     caption="The fundamental diagram describes the relationship of flow and density and helps to understand the formation of congestions."
 >}}
 
@@ -67,7 +67,7 @@ smooth and enjoyable experiences at various gatherings.
 
 {{<
     figure
-    src="/images/queue.jpg"
+    src="images/queue.jpg"
     caption="[Photo](https://unsplash.com/photos/aerial-photography-of-people-Nzb4LBsctyQ) by [Hal Gatewood](https://unsplash.com/@halacious) on [Unsplash](https://unsplash.com)"
 >}}
 
@@ -96,7 +96,7 @@ genuine sentiments of individuals.
 
 {{<
     figure
-    src="/images/crowd_station.jpg"
+    src="images/crowd_station.jpg"
     caption="[Photo](https://unsplash.com/photos/people-standing-and-walking-on-stairs-in-mall-mVhd5QVlDWw) by [Anna Dziubinska](https://unsplash.com/@annadziubinska) on [Unsplash](https://unsplash.com/)"
 >}}
 
@@ -119,7 +119,7 @@ such as:
 
 {{<
     figure
-    src="/images/lane-formation.gif"
+    src="images/lane-formation.gif"
     caption="Spontanous emergence of lane formation in a bi-directional flow"
 >}}
 
@@ -131,7 +131,7 @@ such as:
 
 {{<
     figure
-    src="/images/clogging.webp"
+    src="images/clogging.webp"
     caption="Cloggging in a bottleneck"
 >}}
 
@@ -141,7 +141,7 @@ such as:
 
 {{<
     figure
-    src="/images/stop-go.gif"
+    src="images/stop-go.gif"
     caption="Emergence of stop-and-go waves in a system with closed boundary conditions"
 >}}
 
@@ -168,7 +168,7 @@ heartbeats.
 
 {{<
     figure
-    src="/images/distance-modell.png"
+    src="images/distance-modell.png"
     caption="Edward T. Hall's interpersonal distances of man ([The Hidden Dimension](https://archive.org/details/hiddendimension000hall))"
 >}}
 
@@ -199,7 +199,7 @@ categories for study: phenomena, behavior, and action.
 
 {{<
     figure
-    src="/images/interaction.gif"
+    src="images/interaction.gif"
     caption="Experimental study on entrance to a bottleneck."
 >}}
 
@@ -256,7 +256,7 @@ benchmark for further studies in the field.
 
 {{<
     figure
-    src="/images/experiments.gif"
+    src="images/experiments.gif"
     caption="Experiments under laboratory conditions. See [IAS-7 Data Archive](https://ped.fz-juelich.de/db)"
 >}}
 
@@ -271,7 +271,7 @@ comparison of Pedestrian Dynamics in real and virtual worlds.
 
 {{<
     figure
-    src="/images/corbetta1.png"
+    src="images/corbetta1.png"
     caption="Real-life anonymous pedestrian tracking in the train station of Eindhoven (NL). [Source](https://research.tue.nl/en/publications/continuous-measurements-of-real-life-bidirectional-pedestrian-flo)"
 >}}
 
@@ -290,7 +290,7 @@ experimental data in terms of graphs.
 
 {{<
     figure
-    src="/images/voronoi-moving.gif"
+    src="images/voronoi-moving.gif"
     caption="Identified silhouettes of individuals in transit and their associated Voronoi diagrams. [Source](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.98.062310)"
 >}}
 
@@ -317,7 +317,7 @@ At the operational level, there are three primary types of models:
 
 {{<
     figure
-    src="/images/co140311.f1.jpeg"
+    src="images/co140311.f1.jpeg"
     caption="[Physics of Human Crowds](https://www.annualreviews.org/doi/abs/10.1146/annurev-conmatphys-031620-100450), Corbetta & Toschi. Annual Review of Condensed Matter Physics, vol. 14, 1, p.311-333, 2023"
 >}}
 
@@ -331,7 +331,7 @@ modeling approach, and fidelity. Other specific models include:
 
 {{<
     figure
-    src="/images/ca.png"
+    src="images/ca.png"
     caption="Potential movement paths on a grid, along with their associated transition probabilities, are outlined for the von Neumann neighborhood scenario"
 >}}
 
@@ -345,7 +345,7 @@ modeling approach, and fidelity. Other specific models include:
 
 {{<
     figure
-    src="/images/ellipses.png"
+    src="images/ellipses.png"
     caption="In continuous space models, whether force-based or velocity-based, pedestrians are depicted as two-dimensional figures (like ellipses, circles, etc.). The distance between these figures determines the repulsive interactions among them"
 >}}
 
@@ -383,7 +383,7 @@ offer extensive insights.
 
 {{<
     figure
-    src="/images/reading.jpg"
+    src="images/reading.jpg"
     caption="[Photo](https://unsplash.com/photos/people-inside-library-1mwPOXb_pB8) by [Benjamin Ashton](https://unsplash.com/@bashton) on [Unsplash](https://unsplash.com)"
 >}}
 
