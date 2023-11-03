@@ -18,7 +18,7 @@ The talk gave a comprehensive overview on the research in the domain providing v
 
 {{< figure
     src="iafss2.jpg"
-    caption="Sheldon Tieszen Student Awards (Foto by Pete Thompson)."
+    caption="Sheldon Tieszen Student Awards (Foto by [Peter Thompson](https://www.linkedin.com/in/drpathompson/))."
 >}}
 
 On the Friday after the Symposium, a group of approximately 15 researchers interested in evacuation behaviour gathered in an informal meeting arranged at the University of Tokyo by [Claudio Feliciani](https://orcid.org/0000-0003-0718-8707). This was a valuable opportunity to discuss collaborative efforts in the field and share experiences concerning pedestrian and evacuation data collection and modelling activities.
