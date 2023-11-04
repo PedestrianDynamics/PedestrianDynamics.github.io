@@ -26,8 +26,8 @@ All in all, the IAFSS Symposium and its related activities have been a fantastic
 
 The [15th IAFSS](https://iafss.org/event/15th-iafss-international-symposium/) International Symposium is set to convene in 2026 at the scenic locale of La Rochelle, France. This event promises to continue the esteemed tradition of fostering dialogue and sharing groundbreaking research in the field of fire safety science.
 
-{{< icon "pencil-alt" >}} By: [Enrico Ronchi](https://portal.research.lu.se/en/persons/enrico-ronchi)
+{{< icon "pencil-alt" >}} By: [Enrico Ronchi](/authors/#EnricoRonchi)
 
-{{< icon "annotation" >}} Edited by: [Mohcine Chraibi](https://www.fz-juelich.de/profile/chraibi_m)
+{{< icon "annotation" >}} Edited by: [Mohcine Chraibi](/authors/#MohcineChraibi)
 
 
