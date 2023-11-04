@@ -11,11 +11,11 @@ on our
 [contact us](mailto:m.chraibi@fz-juelich.de) directly!
 
 {{< cards >}}
-  {{< card link="https://pedpy.readthedocs.io" title="PedPy" icon="terminal" subtitle="A Python module to analyze real and simulated pedestrian trajectories.">}}
-  {{< card link="https://jupedsim.org" title="JuPedSim" icon="terminal" subtitle="A Python module to simulate pedestrian dynamics.">}}
-  {{< card link="https://www.vadere.org" title="VADERE" icon="terminal" subtitle="A Java framework for the simulation of microscopic pedestrian and crowd dynamics.">}}
-{{< card link="https://www.fz-juelich.de/en/ias/ias-7/services/software/petrack" title="PeTrack" icon="terminal" subtitle="Automatic Extraction of Pedestrian Trajectories from Video Recordings.">}}
-{{< card link="https://project.inria.fr/crowdscience/project/ocsr/umans/" title="UMANS" icon="terminal" subtitle="C++ crowd-simulation framework for experimentation and for honest comparisons between algorithms.">}}
+  {{< card link="https://pedpy.readthedocs.io" image="pedpy.svg" title="PedPy" icon="terminal" subtitle="A Python module to analyze real and simulated pedestrian trajectories.">}}
+  {{< card link="https://jupedsim.org" title="JuPedSim" image="jupedsim.svg" icon="terminal" subtitle="A Python module to simulate pedestrian dynamics.">}}
+  {{< card link="https://www.vadere.org" title="VADERE" image="vadere.png" icon="terminal" subtitle="A Java framework for the simulation of microscopic pedestrian and crowd dynamics.">}}
+{{< card link="https://www.fz-juelich.de/en/ias/ias-7/services/software/petrack" title="PeTrack" image="petrack.png" icon="terminal" subtitle="Automatic Extraction of Pedestrian Trajectories from Video Recordings.">}}
+{{< card link="https://project.inria.fr/crowdscience/project/ocsr/umans/" title="UMANS" image="umans.png" icon="terminal" subtitle="C++ crowd-simulation framework for experimentation and for honest comparisons between algorithms.">}}
 
 
 
