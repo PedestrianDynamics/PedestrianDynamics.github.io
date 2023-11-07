@@ -4,7 +4,7 @@ on:
   push:
     branches: ["master"]
 
-  pull_request:
+  pull_request_target:
     types:
       - opened
       - reopened
@@ -90,8 +90,8 @@ jobs:
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: ./public/
-          deploy-repository: PedestrianDynamics/pedestriandynamics-preview
-          token: ${{ secrets.PEDESTRIANDYNAMICS_PR_PREVIEW }}
+#          deploy-repository: PedestrianDynamics/pedestriandynamics-preview
+#          token: ${{ secrets.PEDESTRIANDYNAMICS_PR_PREVIEW }}
 
       - name: Deploy pedestriandynamics.org
         if: github.event_name == 'push'
