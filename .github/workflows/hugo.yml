@@ -9,6 +9,7 @@ on:
       - opened
       - reopened
       - synchronize
+      - edited
       - closed
 
   # Allows you to run this workflow manually from the Actions tab
@@ -78,20 +79,25 @@ jobs:
             --minify \
             --baseURL "${{ env.OUTPUT_URL }}"
 
-      - name: "check is PR_PREVIEW exists"
-        env:
-          super_secret: ${{ secrets.PR_PREVIEW }}
-        if: ${{ env.super_secret == '' }}
-        run:
-          echo "echo the secret \"PR_PREVIEW\" has not been made; echo please go to \"settings \> secrets \> actions\" to create it"
-
-      - name: Deploy preview
-        if: github.event_name == 'pull_request'
-        uses: rossjrw/pr-preview-action@v1
-        with:
-          source-dir: ./public/
+#      - name: Deploy preview
+#        if: github.event_name == 'pull_request'
+#        uses: rossjrw/pr-preview-action@v1
+#        with:
+#          source-dir: ./public/
 #          deploy-repository: PedestrianDynamics/pedestriandynamics-preview
 #          token: ${{ secrets.PEDESTRIANDYNAMICS_PR_PREVIEW }}
+
+      - name: Deploy preview directory
+        if: env.action == 'deploy'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.PEDESTRIANDYNAMICS_PR_PREVIEW }}
+          repository-name: PedestrianDynamics/pedestriandynamics-preview
+          branch: gh-pages
+          folder: ./public/
+          target-folder: pr-preview/pr-${{ github.event.number }}
+          commit-message: Deploy preview for PR ${{ github.event.number }} 🛫
+          force: false
 
       - name: Deploy pedestriandynamics.org
         if: github.event_name == 'push'
