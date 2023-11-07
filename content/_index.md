@@ -20,7 +20,7 @@ dynamics.
     src="images/crowd.png"
     caption="Image design: Panar Ege Uesten."
 >}}
-
+> 
 At first glance, the research in Pedestrian Dynamics may seem like the
 exploration of ordinary flows of people in crowded places. However, beneath the
 surface lies a fascinating and challenging science that addresses three
@@ -53,7 +53,7 @@ studies.
     caption="The fundamental diagram describes the relationship of flow and density and helps to understand the formation of congestions."
 >}}
 
-Further reading on the fundamental diagram is be found in this dissertation:
+Further reading on the fundamental diagram is found in this dissertation:
 [Pedestrian fundamental diagrams: Comparative analysis of experiments in
 different geometries](https://juser.fz-juelich.de/record/128157)
 
@@ -120,7 +120,7 @@ such as:
 {{<
     figure
     src="images/lane-formation.gif"
-    caption="Spontanous emergence of lane formation in a bi-directional flow"
+    caption="Spontaneous emergence of lane formation in a bi-directional flow"
 >}}
 
 - **Clogging at Bottlenecks**: Recognized by the jamming arch of multiple
@@ -132,7 +132,7 @@ such as:
 {{<
     figure
     src="images/clogging.webp"
-    caption="Cloggging in a bottleneck"
+    caption="Clogging in a bottleneck"
 >}}
 
 - **Stop-and-Go Waves**: A distinct behavior observed in congested systems,
@@ -469,12 +469,12 @@ This article is a collaborative work, with contributions from various authors
 listed in alphabetical order:
 
 
-- [Mohcine Chraibi](/authors#MohcineChraibi)
-- [Alessandro Corbetta](/authors#AlessandroCorbetta)
-- [Claudio Feliciani](/authors#ClaudioFeliciani)
-- [Milad Haghani](/authors#MiladHaghani)
-- [Enrico Ronchi](/authors#EnricoRonchi)
-- [Jette Schumann](/authors#JetteSchumann)
-- [Antoine Tordeux](/authors#AntoineTordeux)
-- [Ezel Üsten](/authors#EzelÜsten)
+- [Mohcine Chraibi]({{< relref "/authors#MohcineChraibi" >}})
+- [Alessandro Corbetta]({{< relref "/authors#AlessandroCorbetta" >}})
+- [Claudio Feliciani]({{< relref "/authors#ClaudioFeliciani" >}})
+- [Milad Haghani]({{< relref "/authors#MiladHaghani" >}})
+- [Enrico Ronchi]({{< relref "/authors#EnricoRonchi" >}})
+- [Jette Schumann]({{< relref "/authors#JetteSchumann" >}})
+- [Antoine Tordeux]({{< relref "/authors#AntoineTordeux" >}})
+- [Ezel Üsten]({{< relref "/authors#EzelÜsten" >}})
 
