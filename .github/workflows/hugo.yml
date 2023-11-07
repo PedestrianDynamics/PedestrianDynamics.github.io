@@ -78,12 +78,12 @@ jobs:
             --minify \
             --baseURL "${{ env.OUTPUT_URL }}"
 
-      - name: "check is PEDESTRIANDYNAMICS_PR_PREVIEW exists"
+      - name: "check is PR_PREVIEW exists"
         env:
-          super_secret: ${{ secrets.PEDESTRIANDYNAMICS_PR_PREVIEW }}
+          super_secret: ${{ secrets.PR_PREVIEW }}
         if: ${{ env.super_secret == '' }}
         run:
-          echo "echo the secret \"PEDESTRIANDYNAMICS_PR_PREVIEW\" has not been made; echo please go to \"settings \> secrets \> actions\" to create it"
+          echo "echo the secret \"PR_PREVIEW\" has not been made; echo please go to \"settings \> secrets \> actions\" to create it"
 
       - name: Deploy preview
         if: github.event_name == 'pull_request'
