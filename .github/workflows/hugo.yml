@@ -60,7 +60,7 @@ jobs:
       - name: Set base URL for PRs
         if: github.event_name == 'pull_request'
         run: |
-          echo "OUTPUT_URL=${{ steps.pages.outputs.base_url }}/pr-preview/pr-${{ github.event.number }}" >> "$GITHUB_ENV"
+          echo "OUTPUT_URL=pedestriandynamics.github.io/pedestriandynamics-preview/pr-preview/pr-${{ github.event.number }}" >> "$GITHUB_ENV"
 
       - name: Set base URL for Release
         if: github.event_name == 'push'
@@ -83,6 +83,8 @@ jobs:
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: ./public/
+          deploy-repository: PedestrianDynamics/pedestriandynamics-preview
+          token: ${{ secrets.PEDESTRIANDYNAMICS_PR_PREVIEW }}
 
       - name: Deploy pedestriandynamics.org
         if: github.event_name == 'push'
