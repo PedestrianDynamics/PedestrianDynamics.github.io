@@ -53,11 +53,13 @@ jobs:
           hugo \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+
+      - name: Deploy pedestriandynamics.org
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: ./public/ # The folder the action should deploy.
+          folder: ./public/
           branch: gh-pages
+          force: false
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
