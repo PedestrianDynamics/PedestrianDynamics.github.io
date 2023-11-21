@@ -25,10 +25,10 @@ In addition to presentation and discussion panels, the exhibition area offered t
     caption="New approach for modeling crowds at major events ;)"
 >}}
 
-In the side program, the topic "Knowledge transfer from research to practice and vice versa" was highlighted in an open discussion round. Barriers to transfer were collected, such as the lack of a common vocabulary, lack of detailed understanding of each other's activities and different time scales of research/practice. While the list of challenges grew longer and longer as the discussion progressed, there were only a few proposed solutions - such as the preparation of scientific publications for specific target groups from practice.
-The discussion showed that there is still a lot of work to do in terms of transfer. However, the conference with its established research track is already a good start for advancing the exchange between research and practice.
+In the side program, the topic "Knowledge transfer from research to practice and vice versa" was highlighted in an open discussion round. Barriers to transfer were collected, such as the lack of a common vocabulary, lack of detailed understanding of each other's activities and different time scales of research/practice. While the list of challenges grew longer as the discussion progressed, there were only a few proposed solutions - such as the preparation of scientific publications for specific target groups from practice.
+The discussion showed that there is still a lot of work to be done in terms of transfer. However, the conference with its established research track is already an effective platform for advancing the exchange between research and practice.
 
-The 10th IBIT conference will take place again next year. The exact date and location have not yet been set but will be announced [here](https://ibit.eu).
+The IBIT conference will take place again next year. The exact date and location have not yet been set but will be announced [here](https://ibit.eu).
 
 
 {{< icon "pencil-alt" >}} By: [Jette Schumann]({{< relref "/authors#JetteSchumann" >}})
