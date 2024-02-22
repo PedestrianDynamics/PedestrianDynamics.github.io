@@ -1,0 +1,76 @@
+---
+title: The Dynamics of Waiting
+math: true
+---
+
+In many daily situations, like e.g. in city centers or public transportation facilities, the dynamics of pedestrian crowds are dominated by the presence of standing or waiting pedestrians. However, pedestrian's waiting behaviour and interactions with moving persons has only rarely been studied. 
+For example in the fundamental diagram or in level of service concepts,  waiting pedestrians are solely included while standing in queues [Fruin]. However, standing in a queue with all surrounding pedestrians orienting in the same direction and probably sharing the same goal to reach, differs significantly from situations in which pedestrians can freely choose their waiting places, like for example at a train station platform.
+
+In order to increase the understanding of waiting pedestrians, we contributed a methodology and analysis to describe waiting passengers and their influence on the processes at railway platforms in the framework of the BMBF- founded Project "CroMa- Crowd Management in transportation infrastructures".  The detailed results can be found in publications [1-3] and will shortly be presented in the following sections.
+
+
+## Field studies
+In the first step this was done using trajectory data from real life railway platforms in Switzerland, which were kindly provided by Swiss Federal Railways (SBB AG). 
+Studying trajectory data from railway stations, it became clear that the variability of types of users is important when describing how the space at railway platforms is used. While alighting passengers mostly leave the platform directly, boarding passengers spend a significant amount of time waiting. Therewith their trajectories cover a larger area of the platform and exhibit certain waiting places which can be identified by 'knots' in the trajectories.
+
+{{< figure src="traj_einaus.png" caption="Trajectories of boarding (red) and alighting passengers (blue) at Zürich Hardbrücke, Switzerland" >}}
+Passengers mainly use the side of the platform where the train they intend to board is scheduled to arrive, even if the occupation and density on the other side are much lower. The arrival of trains structures the space usage at the platform in distinct phases, which can be described by waiting or boarding and alighting. At a two-sided platform these phases can also overlap. Passengers mainly use the side of the platform where the train they intend to board is scheduled to arrive, even if the occupation and density on the other side are much lower. Therefore the different phases should be observed for both platform sides separately. 
+
+Additionally, the presence of waiting passengers causes the distribution of mean speeds to show a double peak structure, one peak at lower speeds representing the boarding passengers, the second peak corresponding to alighting and moving passengers. 
+
+{{< figure src="meanspeed.png" caption="a) Mean speed of all passengers during afternoon peak hours in Bern, Switzerland; b) mean speed of boarders (red) and alighters (blue)" >}}
+
+In order to analyze the waiting places of passengers and their space occupancy, a passenger is considered as waiting with speeds less than 0.4 m/s. This threshold was determined through the mean speed distributions of boarding and alighting passengers.  
+Previous research in the field of pedestrian dynamics highlighted the importance to consider differences between social groups and individuals, and also introduced methods to detect those in trajectory data. In the context of train stations we found a lower passenger amount on weekends but a higher percentage of social group members than on working days. Independent of the day of the week, the most frequent group size were pairs. While individual passengers often wait at the sides of stairs and obstacles, social groups are more likely to wait if front of the platform's entrances. Social groups often position themselves in a way that ensures the groups communication, often in circles, which results in higher space requirements. 
+{{< figure src="groupsize.png" caption="Waiting places of social groups and individuals. a) individuals b) groups with 2-3 members c) groups with 4-5 members d) groups with 6 and more members" >}}
+Regardless of group membership, the total waiting time influences the choice of waiting places. Passengers with small waiting times position themselves close to the platform entrances, while passengers with longer waiting times prefer undisturbed spaces and also use the rearward sides of stairways and obstacles. 
+{{< figure src="waitingtime.png" caption="Waiting places depending on total waiting time a) up to 2 min b) 2-5 min c) 5-10 min d) 10 min and more" >}}
+
+
+## Experiments
+As the field studies revealed a large number of influencing factors, in the next step large scale laboratory experiments were conducted. These offer the possibility to study some influencing factors in a controlled environment and under reduced complexity. 
+As variations the setup the platform (no, small or large obstacle), the number of participants (40 or 100) and their waiting time (2 or 4 minutes) were chosen. The side of train arrival  was not varied and known to the participants. Hence, their attention is focused towards the corresponding side and an alignment of viewing directions can be observed.
+{{< figure src="exp_density" caption=" upper panel: Experiment setup and participant's positions at the end of the waiting time; middle: density profiles for waiting time and 40 Participants; lower panel: for 100 participants" >}}
+During analysis of density profiles, platforms without obstacles lead to uneven passenger distributions as the area close to the entrance is favored. Obstacles were found to have a two-sided effect: the side facing towards the train arrival in a preferred waiting spot while the opposite side has a repulsive effect. Possible reasons for these effects are the comfort provided by leaning against the obstacle and the reduction of the number of neighboring persons; the repulsive effects are likely caused by the blocked line of sight towards the goal. Narrow obstacles cause passengers to mainly wait at the side of expected train arrival, while wide obstacles, despite blocking passenger's view, lead to a more even distribution along the platform.  Even though the marked safety line at the platform's edges was not mentioned in the instructions, participants keep a distance to the edges and seldom cross the safety line.
+
+## Floor fields
+Based on the results from both field and experimental studies, pedestrians choose their waiting positions as a trade-off between different factors. These factors can be can be transferred into floor fields, cf [Ezaki].
+{{< figure src="floorfields.png" caption="Schematic illustration of influencing factors" >}}
+
+a) Distance to entrance: Passengers prefer places in the vicinity of the entrance and do not walk to the far side of the platform
+
+b) Distance to exit: Passengers stay at the side of expected train arrival.
+
+c) Hazard zones: Platform edges have a repulsive effect 
+
+d) Flow avoidance: Passengers avoid places were they often get in the way of others and are perceived as obstacle.
+
+e) Stationary obstacles: Obstacles have a two-sided effect: the side facing train arrival acts attractive, the opposite side as repulsive.
+
+
+Using a superposition of these factors, an estimate of attractiveness of waiting places can be generated. These do not reproduce the filling processes and dynamics but can be used as basis in simulation studies to determine pedestrian's positioning goals. 
+
+
+# Where to go from here?
+While the investigations were performed in the context of railway platforms, the results can be transferred to other situations in which waiting pedestrians are predominant. This is the case in many situations, e.g. during filling processes, in public spaces or during events. Even in queueing experiments pedestrians can often be observed to wait rather than actively trying to move towards the exit. Investigations on waiting pedestrians can therefore enhance the understanding of crowd dynamics and are a beneficial to include in simulation algorithms. However, there are still many open questions and potential for future works.
+
+
+References:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
