@@ -18,12 +18,16 @@ $$ \overrightarrow{F_i^{\mathrm{drv}}}=\frac{v_i^0\overrightarrow{e_i^0} - \over
 * $v_i$ is the currect velocity
 * $\tau$ is the reaction time
 
+{{< figure src="Driving_Force.png" width="500">}}
+
+In the figure above, the black dot represents an agent. Its radius is represented by the gray circle around it. The desired direction is towards the target, which is indicated by an X.
+
 ## Agent force
 The agents exert a repulsive force on each other, which increases exponentially with their proximity. When they collide the pushing forces are increased additionally. When colliding, a frictional force also occurs, which acts orthogonally to the repulsive force in the direction of the speed difference. 
 
 $$ \overrightarrow{F\_i^{\mathrm{ped}}} = \sum_{j} \overrightarrow{f_{ij}}$$
 
-$$\overrightarrow{f_{ij}} = [A_i exp[(r_{ij} - d_{ij})/B_i] + kg(r_{ij} - d_{ij})] \overrightarrow{n_{ij}} + \kappa g(r_{ij} - d_{ij}) \Delta \overrightarrow{v\_{ji}^t} \overrightarrow{t_{ij}}$$
+$$\overrightarrow{f_{ij}} = [A_i exp[(r_{ij} - d_{ij})/B_i] + kg(r_{ij} - d_{ij})] \overrightarrow{n_{ij}} + \kappa g(r_{ij} - d_{ij}) \Delta v\_{ji}^t \overrightarrow{t_{ij}}$$
 
 $$\phantom{......}\fbox{\phantom{...................} pushing \phantom{...................}} \fbox{\phantom{......} sliding \phantom{......}}$$
 
@@ -43,6 +47,13 @@ $$\phantom{......}\fbox{\phantom{...................} pushing \phantom{.........
 * $ \overrightarrow{t_{ij}} = (- n\_{ij}^2, n\_{ij}^1)$ is the tangent of $\overrightarrow{n_{ij}}$ which is perpendicular to it, rotated counterclockwise
 * $\Delta v\_{ji}^t = (\overrightarrow{v\_j} - \overrightarrow{v\_i}) \cdot \overrightarrow{t_{ij}}$ is the tangential velocity difference of $i$ and $j$
 
+{{< figure src="Pushing_Agents.png" caption="Direction of repulsive forces acting on an agent" width="500">}}
+
+The repulsive force of the agents acts from the originating agent towards the agent on which the forces act. When their distance greater than their combined radius no other forces apply
+
+{{< figure src="Sliding_Agent_Forces.png" caption="Direction of the pushing and frictional forces acting on colliding agents">}}
+
+If the distance between two agents is smaller than their combined radius, the agents collide and a frictional force also occurs. This frictional force acts orthogonally to the repulsive force in the direction of the velocity difference of the two agents.
 
 ## Obstacle force
 Obstacles exert a force on the agent similar to a static agent.
@@ -70,6 +81,14 @@ $$\phantom{.........}\fbox{\phantom{.....................} pushing \phantom{....
                                       \text{ else } 0
                                   \end{cases}$
 
+
+{{< figure src="Pushing_Obstacle_Force.png" caption="Direction of repulsive forces acting on an agent" width="650">}}
+
+the repulsive force originating from a wall segment acts from the point on the wall segment that is closest to the agent. This point is marked in magenta in the illustration above.
+
+{{< figure src="Sliding_Obstacle_Force.png" caption="Direction of the pushing and frictional forces acting on agents colliding with a wall"  width="800">}}
+
+If the minimal distance to a wallsegment is smaller than the radius of an agent an additional frictional force occurs. This frictional force acts orthogonally to the repulsive force in the direction of the speed difference of the two agents.
 
 ## Calculating new velocity and new position from forces
 With the definition of the forces affecting an individual, it is possible to calculate its new speed and position.
