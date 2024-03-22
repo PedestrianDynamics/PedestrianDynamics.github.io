@@ -74,6 +74,21 @@
     }
 },
 {
+    "name": "Mira Küpper",
+    "bio": "Post-doctoral Researcher. Specializes in waiting pedestrians at train stations.",
+    "social": {
+        "linkedin": "",
+        "github": "",
+        "orcid":"https://orcid.org/0000-0002-2753-4171",
+        "homepage": "https://www.asim.uni-wuppertal.de/en/",
+        "email" : ""
+    },
+    "affiliation": {
+        "name": "Architecture and Civil Engineering, University of Wuppertal",
+        "url" : "https://www.asim.uni-wuppertal.de/en/"
+    }
+},
+{
     "name": "Enrico Ronchi",
     "bio": "Associate Professor in Lund University. Specialist in Evacuation Modelling, Fire Safety Engineering, Human Behaviour in Fire, Pedestrian Modelling, Virtual Reality, WUI Emergencies, Road Safety and Tunnel Safety.",
     "social": {
