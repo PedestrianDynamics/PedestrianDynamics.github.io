@@ -72,21 +72,3 @@ While the investigations were performed in the context of railway platforms, the
   <br/> http://dx.doi.org/10.34734/FZJ-2024-00602
 - <a name="Ezaki"></a>[5] Ezaki, T., Ohtsuka, K., Chraibi, M., Boltes, M., Yanagisawa, D., Seyfried, A., Schadschneider, A., Nishinari, K. (2016). Inflow Process of Pedestrians to a Confined Space. Collective Dynamics, 1, 1–18. 
   <br/> https://doi.org/10.17815/CD.2016.4
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
