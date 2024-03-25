@@ -11,7 +11,7 @@ The model defines forces that affect an individual:
 * A repulsive force
 * An obstacle force
 
-The driving force represents a person's desire to move in a certain direction, independent of other people and obstacles. The agent force is caused by the interaction between the individuals and causes them to avoid each other in order to avoid collisions. The obstacle force acts in a similar way to the person force to avoid collisions with obstacles in the environment.
+The driving force represents a person's desire to move in a certain direction, independent of other people and obstacles. The repulsive force is caused by the interaction between the individuals and causes them to avoid each other in order to avoid collisions. The obstacle force acts in a similar way to the person force to avoid collisions with obstacles in the environment.
 
 ## Driving force
 The driving force defines the force that propels pedestrians towards their intended destinations:
