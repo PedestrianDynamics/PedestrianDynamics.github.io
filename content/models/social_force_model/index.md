@@ -25,13 +25,13 @@ $$ \overrightarrow{F_i^{\mathrm{drv}}}=\frac{v_i^0\overrightarrow{e_i^0} - \over
 {{< figure src="Driving_Force.png" caption="Driving Force acting on an agent." width="500" >}}
 
 In the figure above, the black dot represents an agent. Its radius is represented by the gray circle around it. The desired velocity ($v_i^0 \overrightarrow{e_i^0}$) is as big as its desired speed and is pointing in the desired direction towards a destination indicated by an X.
-The driving force of the agent results from the difference between the desired velocity and the current velocity.
+The driving force of the agent results from the difference between the desired velocity and the current velocity divided by $\tau$.
 
 
 ## Repulsive force
 Agents exert an exponentially increasing repulsive force on each other as their proximity decreases. Upon collision, not only do the pushing forces intensify further, but a frictional force also arises. This frictional force acts perpendicularly to the repulsive force, aligning with the direction of the difference in speed
 
-$$ \overrightarrow{F\_i^{\mathrm{rep}}} = \sum_{j} \overrightarrow{f_{ij}}$$
+$$ \overrightarrow{F\_i^{\mathrm{rep}}} = \sum_{j} \overrightarrow{f_{ij}}\text{.}$$
 
 $$\overrightarrow{f_{ij}} = [A_i \exp[(r_{ij} - d_{ij})/B_i] + kg(r_{ij} - d_{ij})] \overrightarrow{n_{ij}} + \kappa g(r_{ij} - d_{ij}) \Delta v\_{ji}^t \overrightarrow{t_{ij}} \text{.}$$
 
@@ -42,7 +42,7 @@ $$\phantom{......}\fbox{\phantom{.................} pushing \phantom{...........
 * $d_{ij}$ is the distance between $i$ and $j$
 * $A_i$, $B_i$, $k$ and $\kappa$ are constants (see [default values](#Default_values))
 * $g$  represents the distance between pedestrians when they are in contact, and is zero when there is no contact. 
-$g(x) =  \begin{cases} x \text{ if } x > 0 \\ \text{ else } 0 \end{cases}$
+$g(x)~=~\begin{cases} x \text{ if } x > 0 \\ \text{ else } 0 \end{cases}$
 * $ \overrightarrow{n_{ij}} = (n\_{ij}^1, n\_{ij}^2) = (\overrightarrow{\mathrm{pos}\_i} - \overrightarrow{\mathrm{pos}\_j})/d\_{ij} $ is the normalised vector from $j$ to $i$ 
 * $ \overrightarrow{t_{ij}} = (- n\_{ij}^2, n\_{ij}^1)$ is the tangent of $\overrightarrow{n_{ij}}$ which is perpendicular to it, rotated counterclockwise
 * $\Delta v\_{ji}^t = (\overrightarrow{v\_j} - \overrightarrow{v\_i}) \cdot \overrightarrow{t_{ij}}$ is the tangential velocity difference of $i$ and $j$
@@ -60,21 +60,21 @@ Obstacles exert a force on the agent similar to a static agent.
 Each line segment of an obstacle exerts force on the agent.
 The repulsive force is increases exponentially with decreasing distance. When the agent collides with the segment the repulsive forces are increased additionally. When colliding, a frictional force also occurs, which acts orthogonally to the repulsive force in the direction to the velocity of the agent
 
-$$ \overrightarrow{F\_i^{\mathrm{obst}}} = \sum_{O} \overrightarrow{f_{iO}}$$
+$$ \overrightarrow{F\_i^{\mathrm{obst}}} = \sum_{o} \overrightarrow{f_{io}\text{.}}$$
 
-$$\overrightarrow{f_{iO}} = [A_i \exp[(r_{i} - d_{iO})/B_i] + kg(r_{i} - d_{iO})] \overrightarrow{n_{iO}} + \kappa g(r_{i} - d_{iO}) (\overrightarrow{v\_{i}}\cdot\overrightarrow{t_{iO}}) \overrightarrow{t_{iO}} \text{.}$$
+$$\overrightarrow{f_{io}} = [A_i \exp[(r_{i} - d_{io})/B_i] + kg(r_{i} - d_{io})] \overrightarrow{n_{io}} + \kappa g(r_{i} - d_{io}) (\overrightarrow{v\_{i}}\cdot\overrightarrow{t_{io}}) \overrightarrow{t_{io}} \text{.}$$
 
 $$\phantom{.........}\fbox{\phantom{..................} pushing \phantom{.................}} \fbox{\phantom{..........} sliding \phantom{..........}}$$
 
-* $O$ is a segment of the obstacle
+* $o$ is a segment of the obstacle
 * $r_i$ is the radius agent $i$
-* $d_{iO}$ is distance from closest point on the segement to $i$
-* $\overrightarrow{n_{iO}} = (n\_{iO}^1, n\_{iO}^2) = (\overrightarrow{\mathrm{pos}\_i} - \overrightarrow{\mathrm{pos}\_O})/d\_{iO}$ the direction from $\overrightarrow{\mathrm{pos}\_O}$ the closest point on the segment to $i$
-* $ \overrightarrow{t_{iO}} = (- n\_{iO}^2, n\_{iO}^1)$ is the tangent of $\overrightarrow{n_{iO}}$ which is perpendicular to it, rotated counterclockwise
+* $d_{io}$ is distance from closest point on the segement to $i$
+* $\overrightarrow{n_{io}} = (n\_{io}^1, n\_{io}^2) = (\overrightarrow{\mathrm{pos}\_i} - \overrightarrow{\mathrm{pos}\_o})/d\_{io}$ the direction from $\overrightarrow{\mathrm{pos}\_o}$ the closest point on the segment to $i$
+* $ \overrightarrow{t_{io}} = (- n\_{io}^2, n\_{io}^1)$ is the tangent of $\overrightarrow{n_{io}}$ which is perpendicular to it, rotated counterclockwise
 * $v\_i$ is the velocity of $i$
 * $A_i$, $B_i$, $k$ and $\kappa$ are constants (see [default values](#Default_values))
 * $g$ represents the distance between a pedestrian and an obstacle segment when they are in contact, and is zero when there is no contact. 
- $g(x) =  \begin{cases}
+ $g(x)~=~\begin{cases}
                                       x \text{ if } x > 0 \\
                                       \text{ else } 0
                                   \end{cases}$
@@ -84,9 +84,9 @@ $$\phantom{.........}\fbox{\phantom{..................} pushing \phantom{.......
 
 the repulsive force originating from a segment of an obstacle acts from the point on the wall segment that is closest to the agent. This point is marked in magenta in the illustration above.
 
-{{< figure src="Sliding_Obstacle_Force.png" caption="Direction of the pushing and frictional forces acting on agents colliding with an obstacle segment"  width="800">}}
+{{< figure src="Sliding_Obstacle_Force.png" caption="Direction of the pushing and frictional forces acting on agents colliding with an obstacle segment."  width="800">}}
 
-When the minimum distance between an agent and a wall segment falls below the agent's radius, an additional frictional force comes into effect. This frictional force acts orthogonally to the repulsive force in the direction of the speed difference of the two agents.
+When the minimum distance between an agent and a wall segment falls below the agent's radius, an additional frictional force comes into effect. This frictional force acts orthogonally to the repulsive force in the direction of the velocity of the agent.
 
 ## Calculating new velocity and new position from forces
 With the definition of the forces affecting an individual, it is possible to calculate its new speed 
