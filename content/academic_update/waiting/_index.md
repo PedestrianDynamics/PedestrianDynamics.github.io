@@ -12,7 +12,7 @@ In order to increase the understanding of waiting pedestrians, we contributed a 
 ## Field Studies
 Studying trajectory data from railway stations, which were kindly provided by Swiss Federal Railways (SBB AG), it became clear that the variability of types of users is important when describing how the space at railway platforms is used. While alighting passengers mostly leave the platform directly, boarding passengers spend a significant amount of time waiting. Therewith their trajectories cover a larger area of the platform and exhibit certain waiting places which can be identified by 'knots' in the trajectories.
 
-{{< figure src="traj_einaus.png" caption="Trajectories of boarding (red) and alighting passengers (blue) at Zürich Hardbrücke, Switzerland" >}}
+{{< figure src="traj_einaus.png" caption="Trajectories of boarding (red) and alighting passengers (blue) at Zürich Hardbrücke, Switzerland, in an exemplary time interval of one hour during the afternoon" >}}
 The arrival of trains structures the space usage at the platform in distinct phases, which can be described by waiting or boarding and alighting. At a two-sided platform these phases can also overlap. Passengers mainly use the side of the platform where the train they intend to board is scheduled to arrive, even if the occupation and density on the other side are much lower. Therefore, both platform sides should be analysed separately. 
 
 Additionally, the presence of waiting passengers causes the distribution of mean speeds to show a double peak structure: one peak at lower speeds representing the boarding passengers, the second peak corresponding to alighting and moving passengers. Details can be found in [[1]](#Küpper1).
@@ -22,10 +22,10 @@ Additionally, the presence of waiting passengers causes the distribution of mean
 ### Social Groups and Waiting Time
 In order to analyse the waiting places of passengers and their space occupancy, in the following investigations a passenger is considered as waiting with a speed less than 0.4 m/s. This threshold was determined through the mean speed distributions of boarding and alighting passengers.  
 
-Previous research in the field of pedestrian dynamics highlighted the importance to consider differences between social groups and individuals, and also introduced methods to detect those in trajectory data. In the context of train stations, we found a lower passenger amount on weekends but a higher percentage of social group members than on working days. Independent of the day of the week, the most frequent group size were pairs. While individual passengers often wait at the sides of stairs and obstacles, social groups with a higher number of members are more likely to wait in front of the platform's entrances. Social groups position themselves in a way that ensures the groups communication, mainly in circles, which results in higher space requirements. 
+Previous research in the field of pedestrian dynamics highlighted the importance to consider differences between social groups and individuals, and also introduced methods to detect those in trajectory data. We used trajectory data collected in February 2020 (28 days) during the afternoon peak hours (4 p.m. to 7 p.m.). We found a lower passenger amount on weekends but a higher percentage of social group members than on working days. Independent of the day of the week, the most frequent group size were pairs. While individual passengers often wait at the sides of stairs and obstacles, social groups with a higher number of members are more likely to wait in front of the platform's entrances. Social groups position themselves in a way that ensures the groups communication, mainly in circles, which results in higher space requirements. 
 {{< figure src="groupsize.png" caption="Waiting places of social groups and individuals. a) individuals b) groups with 2-3 members c) groups with 4-5 members d) groups with 6 and more members" >}}
 Regardless of group membership, the total waiting time influences the choice of waiting places. Passengers with small waiting times position themselves close to the platform entrances, while passengers with longer waiting times prefer undisturbed spaces and also use the rearward sides of stairways and obstacles. Further results are reported in [[2]](#Küpper2).
-{{< figure src="waitingtime.png" caption="Waiting places depending on total waiting time a) up to 2 min b) 2-5 min c) 5-10 min d) 10 min and more" >}}
+{{< figure src="waitingtime.png" caption="Waiting places depending on total waiting time a) up to 2 min b) 2-5 min c) 5-10 min d) 10 min and more. The waiting occupation of a certain area states the percentage of time, this area is occupied by a waiting pedestrian. " >}}
 
 
 ## Experiments
@@ -40,15 +40,15 @@ During analysis of density profiles, platforms without obstacles were found to l
 Based on the results from both field and experimental studies, pedestrians choose their waiting positions as a trade-off between different factors. These factors can be transferred into floor fields, as previously introduced by [[5]](#Ezaki).
 {{< figure src="floorfields.png" caption="Schematic illustration of influencing factors" >}}
 
-a) Distance to entrance: Passengers prefer places in the vicinity of the entrance and do not walk to the far side of the platform.
+* **a)** Distance to entrance: Passengers prefer places in the vicinity of the entrance and do not walk to the far side of the platform.
 
-b) Distance to exit: Passengers stay at the side of expected train arrival.
+* **b)** Distance to exit: Passengers stay at the side of expected train arrival.
 
-c) Hazard zones: Platform edges have a repulsive effect. 
+* **c)** Hazard zones: Platform edges have a repulsive effect. 
 
-d) Flow avoidance: Passengers avoid places where they often get in the way of others and are perceived as obstacle.
+* **d)** Flow avoidance: Passengers avoid places where they often get in the way of others and are perceived as obstacle.
 
-e) Stationary obstacles: Obstacles have a two-sided effect: the side facing train arrival acts attractive, the opposite side as repulsive.
+* **e)** Stationary obstacles: Obstacles have a two-sided effect: the side facing train arrival acts attractive, the opposite side as repulsive.
 
 
 Using a superposition of these factors, an estimate of attractiveness of waiting places can be generated. 
