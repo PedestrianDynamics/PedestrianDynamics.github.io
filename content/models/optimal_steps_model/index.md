@@ -19,47 +19,63 @@ In the remainder of the text, and in the figures, we use the physical interpreta
 
 
 The potential $P_l(x)$ for pedestrian $l$ at time $t$ for an arbitrary point $x \in \mathbb{R}^2$ in the  plane is defined as [[1]](#Seitz2012)
-\begin{equation}
-P_l(x) = P_t(x,s) + \sum_{j=1}^m P_{o,j}(x) + \sum_{i=1,i\neq l}^n P_{p,i}(x) 
-\end{equation} 
+
+$$
+P_l(x) = P_t(x,s) + \sum_{j=1}^m P_{o,j}(x) + \sum_{i=1,i\neq l}^n P_{p,i}(x),
+$$
+
 where $P_t(x,s)$ is the attraction potential of the target, $s$ is the vector of the current agent positions, $P_{o,j}(x)$ is the repulsive potential induced by obstacle $j$, $m$ is the number of obstacles, $P_{p,i}$ is the repulsive potential of other agents, $n$ is the number of agents. The implementation of the attraction potential $P_t(x)$ is the so-called floor field. If the attraction potential does not depend on the agents' current positions, means $P_t(x,s)=P_t(x)$, the floor field is static. Otherwise, it is dynamic.
 If we consider the floor field to be static, the value of the potential function at position $x$ equals the negative geodesic distance between $x$ and the target.
 
 The obstacle potential $P_{o,j}(x)$ is defined as 
-\begin{eqnarray}
-P_{o,j}(x) = \left\{
-\begin{array}{ll}
-\delta_1(x) + \delta_2(x) & d_{o,j}(x) < r_l \\
-\delta_1(x)  & r_l \leq d_{o,j}(x) < w_o \\
-0 & \, \textrm{otherwise,} \\
-\end{array}
-\right.
-\end{eqnarray}
 
+<!-- $$ -->
+<!-- \begin{eqnarray} -->
+<!-- P_{o,j}(x) = \left\{ -->
+<!-- \begin{array}{ll} -->
+<!-- \delta_1(x) + \delta_2(x) & d_{o,j}(x) < r_l \\\ -->
+<!-- \delta_1(x)  & r_l \leq d_{o,j}(x) < w_o \\\ -->
+<!-- 0 & \, \textrm{otherwise,} \\\ -->
+<!-- \end{array} -->
+<!-- \right. -->
+<!-- \end{eqnarray} -->
+<!-- $$ -->
+
+$$
+P_{o,j}(x) =
+\begin{array}{ll}
+\delta_1(x) + \delta_2(x) & d_{o,j}(x) < r_l \\\
+\delta_1(x)  & r_l \leq d_{o,j}(x) < w_o \\\
+0 &  \textrm{otherwise,} \\\
+\end{array}
+$$
 where $d_{o,j}(x)$ is the distance to the closest point of the obstacle from position $x$, $w_o$ defined the width of the obstacle repulsion, $r_l$ is the torso radius of agent $l$. The functions $\delta_i$ are defined as
+$$
 \begin{align}
-\delta_1(x) &= 6 \exp{\left[ 2 \left( \left(  \frac{d_{o,j}(x)} {w_o} \right)^{2} - 1\right)^{-1} \right]}\;\text{and}\\
+\delta_1(x) &= 6 \exp{\left[ 2 \left( \left(  \frac{d_{o,j}(x)} {w_o} \right)^{2} - 1\right)^{-1} \right]}\;\text{and}\\\
 \delta_2(x) &= 10^5 \exp{\left[ \left( \left(  \frac{d_{o,j}(x)} {r_l} \right)^{2} - 1\right)^{-1} \right]}. \\
 \end{align}
-
+$$
 The repulsion between two agents is achieved by the distance-dependent potential function $P_{p,i}$. In Vadere, it is implemented as
-\begin{eqnarray}
-P_{p,i}(x) = \left\{
+
+$$
+P_{p,i}(x) = 
 \begin{array}{ll}
-\phi_1(d_{l,i}(x)) + \phi_2(d_{l,i}(x)) + \phi_3(d_{l,i}(x)) & d_{l,i}(x) <r_i + r_l \\
-\phi_1(d_{l,i}(x)) + \phi_2(d_{l,i}(x)) & \, r_i + r_l \leq d_{l,i}(x) < w_{int}  +r_i+r_l \\
-\phi_1(d_{l,i}(x))  & \, w_{int} + r_i + r_l \leq  d_{l,i}(x) < w+r_i+r_l\\
-0 & \, \textrm{otherwise,} \\
+\phi_1(d_{l,i}(x)) + \phi_2(d_{l,i}(x)) + \phi_3(d_{l,i}(x)) & d_{l,i}(x) <r_i + r_l, \\\
+\phi_1(d_{l,i}(x)) + \phi_2(d_{l,i}(x)) & r_i + r_l \leq d_{l,i}(x) < w_{int}  +r_i+r_l, \\\
+\phi_1(d_{l,i}(x))  & w_{int} + r_i + r_l \leq  d_{l,i}(x) < w+r_i+r_l\\\
+0, & \textrm{otherwise,} \\\
 \end{array}
-\right.
-\end{eqnarray}
+$$
+
 where $d_{l,i}(x)$ is the Euclidean distance between agent $l$  and agent $i$. $r_i, r_l$ are the respective torso radii of agent $i,l$. $w_{int}$ and  $w$ are the intimate and the personal space width according to Hall. The functions $\phi_i$ are defined as
+$$
 \begin{align}
-\phi_1({d_{i,j}}) &= \mu \exp{\left[ 4 \left( \left(  \frac{d_{i,j}} {w +r_i +r_l} \right)^{2} - 1\right)^{-1} \right]} \\
-\phi_2({d_{i,j}}) &= \frac{ \mu } {a_p} \exp{\left[ 4 \left( \left(  \frac{d_{i,j}} {w_{int} +r_i +r_l} \right)^{2} - 1\right)^{-1} \right]} \\
+\phi_1({d_{i,j}}) &= \mu \exp{\left[ 4 \left( \left(  \frac{d_{i,j}} {w +r_i +r_l} \right)^{2} - 1\right)^{-1} \right]} \\\
+\phi_2({d_{i,j}}) &= \frac{ \mu } {a_p} \exp{\left[ 4 \left( \left(  \frac{d_{i,j}} {w_{int} +r_i +r_l} \right)^{2} - 1\right)^{-1} \right]} \\\
 \phi_3({d_{i,j}}) &= 10^3 \exp{\left[ \left( \left(  \frac{d_{i,j}} {r_i +r_l} \right)^{2} - 1\right)^{-1} \right]}
 \end{align}
-
+$$
 
 The potential function is based on Hall's theory of interpersonal distances which describes four distance zones around a person [[4]](#Hall). Accordingly, the potential function is defined piece-wise on rings around each agent: a circular core for collision avoidance, a first ring that represents the intimate space, and a second ring that represents personal space. Agents outside the personal zone do not affect other agents' path choice. This is mathematically modeled by setting the  the potential function to zero.
 
@@ -81,10 +97,10 @@ The Vadere project was started in 2010. Its main intention was and still is to f
 
 
 The Optimal Steps Model implements the locomotion model interface ```Model``` that contains four essential methods:
-- initialize() : compute floorfield, initialize step circle optimizer and update scheme.
-- preLoop() : set last time step.
-- postLoop() : shut down update scheme.
-- update() : set new time step and solve optimization problem to find the next position.
+- `initialize()` : compute floorfield, initialize step circle optimizer and update scheme.
+- `preLoop()` : set last time step.
+- `postLoop()` : shut down update scheme.
+- `update()` : set new time step and solve optimization problem to find the next position.
 
 ### Usage
 
@@ -105,8 +121,13 @@ This is aggravated by the fact that a strict event-driven update hinders paralle
 
 
 ### Parameters
-The shape of the potential function is controlled through several parameters. There are two parameters that are especially important for the distancing behavior which is why we introduce them briefly: the potential height $h$ (in Vadere: pedPotentialHeight) and the personal space width $w$ (in Vadere: pedPotentialPersonalSpaceWidth). The parameter potential height $h$ controls the strength of repulsion. If $h$ is increased, we expect agents to increase
-their distance to others. The parameter personal space width $w$ controls how far the repulsion reaches: the larger $w$ the bigger the influence area of an agent. By adusting the personal space width $w$  [[5]](#Mayr) social distancing can be achieved. Nevertheless, the personal space is related to but not equal to a desired social distance $d$ the user wants to model. When there is ample space, it might suffice to set $w = d$ to keep agents at least the desired social distance apart. Since the true distance between agents is an emergent value, the distance is larger [[5]](#Mayr2021). 
+The shape of the potential function is controlled through several parameters. There are two parameters that are especially important for the distancing behavior which is why we introduce them briefly: 
+- the potential height $h$ (in Vadere: `pedPotentialHeight`) 
+- and the personal space width $w$ (in Vadere: `pedPotentialPersonalSpaceWidth`). 
+
+The parameter potential height $h$ controls the strength of repulsion. If $h$ is increased, we expect agents to increase their distance to others. 
+
+The parameter personal space width $w$ controls how far the repulsion reaches: the larger $w$ the bigger the influence area of an agent. By adusting the personal space width $w$  [[5]](#Mayr2021) social distancing can be achieved. Nevertheless, the personal space is related to but not equal to a desired social distance $d$ the user wants to model. When there is ample space, it might suffice to set $w = d$ to keep agents at least the desired social distance apart. Since the true distance between agents is an emergent value, the distance is larger [[5]](#Mayr2021). 
 
 
 
