@@ -7,7 +7,7 @@ math: true
 
 The basic idea of the Optimal Steps Model (OSM) is that virtual pedestrians (agents) try to improve their situation with every step. The utility of each position in space is coded in a scalar function called floor field. Utility increases when approaching targets and decreases when getting too close to obstacles and other virtual pedestrians. Physically spoken, agents, when moving, are attracted by targets and repulsed by obstacles and other agents. That is, the negative utility can be interpreted as a potential that agents seek to minimize. The utility, or potential, depend on the geodesic distance to the target and on the proximity to other agents.
 
-{{< figure src="figure1.png" caption="Schamtic solution of routing with OSM." >}}
+{{< figure src="figure1.png" caption="Schematic solution of routing with OSM." >}}
 
 
 Agents move by stepping on the position on a circle (or disk) around their current location that optimizes this utility. The circle radius represents each agent's personal maximum stride length, which in turn is linearly correlated to the agent's free-flow speed [[1]](#Seitz2012), that is, an assumed desired speed when the path is free. Thus, agents step towards targets while skirting obstacles and avoiding collisions. 
@@ -86,7 +86,7 @@ The potential function is based on Hall's theory of interpersonal distances whic
 The value of the potential function in the personal space ring is very low. Thus, this area will be kept free only if agents have ample space to avoid each other [[3]](#Sivers2016). As soon as the space becomes more constricted agents will get closer. This is typical for normal human behavior. In the intimate space ring, the potential function value increases significantly. In crowds, this area is only kept free if the density is low [[3]](#Sivers2016). Finally, to prevent agents from overlapping, the potential is set to a high value (compared to the values for the personal and intimate spaces) in the collision area. The exact definition of the potential function and default parameters implemented in \textit{Vadere} can be found in [[2]](#Kleinmeier2019).
 
 
-## Implementation in VADERE, Challenges, Limitations, Usage, Parameters
+## Implementation in Vadere, Challenges, Limitations, Usage, Parameters
 
 
 ### Vadere simulator
