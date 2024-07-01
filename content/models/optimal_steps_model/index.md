@@ -5,13 +5,17 @@ math: true
 
 ## Introduction
 
-The basic idea of the Optimal Steps Model (OSM) is that virtual pedestrians (agents) try to improve their situation with every step. The utility of each position in space is coded in a scalar function called floor field. Utility increases when approaching targets and decreases when getting too close to obstacles and other virtual pedestrians. Physically spoken, agents, when moving, are attracted by targets and repulsed by obstacles and other agents. That is, the negative utility can be interpreted as a potential that agents seek to minimize. The utility, or potential, depend on the geodesic distance to the target and on the proximity to other agents.
+The basic idea of the Optimal Steps Model (OSM) is that virtual pedestrians (agents) try to improve their situation with every step. The utility of each position in space is coded in a scalar function called floor field. Utility increases when approaching targets and decreases when getting too close to obstacles and other virtual pedestrians. From a physical perspective, agents in motion are drawn towards targets while being repelled by obstacles and other agents.
+In other words, the negative utility can be understood as a potential that agents aim to minimize.
+The utility, or potential, depends on the geodesic distance to the target and the proximity to other agents.
 
 {{< figure src="figure1.png" caption="Schematic solution of routing with OSM." >}}
 
 
-Agents move by stepping on the position on a circle (or disk) around their current location that optimizes this utility. The circle radius represents each agent's personal maximum stride length, which in turn is linearly correlated to the agent's free-flow speed [[1]](#Seitz2012), that is, an assumed desired speed when the path is free. Thus, agents step towards targets while skirting obstacles and avoiding collisions. 
-In the remainder of the text, and in the figures, we use the physical interpretation in alignment with the names of parameters in Vadere's implementation of the OSM.
+Agents move by stepping on the position on a circle (or disk) around their current location that optimizes this utility. 
+The circle radius represents each agent's personal maximum stride length, which in turn is linearly correlated to the agent's free-flow speed [[1]](#Seitz2012), that is, an assumed desired speed when the path is free. Thus, agents step toward targets while skirting obstacles and avoiding collisions. 
+For the remainder of the text and in the figures, we adopt the physical interpretation consistent with the parameter names in Vadere's implementation of the OSM.
+
 
 {{< figure src="figure2.png" caption="Modeling steps with OSM." >}}
 
@@ -49,7 +53,7 @@ P_{o,j}(x) =
 0 &  \textrm{otherwise,} \\\
 \end{array}
 $$
-where $d_{o,j}(x)$ is the distance to the closest point of the obstacle from position $x$, $w_o$ defined the width of the obstacle repulsion, $r_l$ is the torso radius of agent $l$. The functions $\delta_i$ are defined as
+where $d_{o,j}(x)$ is the Euclidean distance to the closest point of the obstacle from position $x$, $w_o$ defines the width of the obstacle repulsion, $r_l$ is the torso radius of agent $l$. The functions $\delta_i$ are defined as
 $$
 \begin{align}
 \delta_1(x) &= 6 \exp{\left[ 2 \left( \left(  \frac{d_{o,j}(x)} {w_o} \right)^{2} - 1\right)^{-1} \right]}\;\text{and}\\\
@@ -83,7 +87,7 @@ The potential function is based on Hall's theory of interpersonal distances whic
 {{< figure src="figure3.png" caption="Agent's potential versus distance." >}}
 
 
-The value of the potential function in the personal space ring is very low. Thus, this area will be kept free only if agents have ample space to avoid each other [[3]](#Sivers2016). As soon as the space becomes more constricted agents will get closer. This is typical for normal human behavior. In the intimate space ring, the potential function value increases significantly. In crowds, this area is only kept free if the density is low [[3]](#Sivers2016). Finally, to prevent agents from overlapping, the potential is set to a high value (compared to the values for the personal and intimate spaces) in the collision area. The exact definition of the potential function and default parameters implemented in \textit{Vadere} can be found in [[2]](#Kleinmeier2019).
+The value of the potential function in the personal space ring is very low. Thus, this area will be kept free only if agents have ample space to avoid each other [[3]](#Sivers2016). As soon as the space becomes more constricted agents will get closer. This is typical for normal human behavior. In the intimate space ring, the potential function value increases significantly. In crowds, this area is only kept free if the density is low [[3]](#Sivers2016). Finally, to prevent agents from overlapping, the potential is set to a high value (compared to the values for the personal and intimate spaces) in the collision area. The exact definition of the potential function and default parameters implemented in Vadere can be found in [[2]](#Kleinmeier2019).
 
 
 ## Implementation in Vadere, Challenges, Limitations, Usage, Parameters
@@ -111,13 +115,13 @@ Vadere is implemented in Java programming language. Thus, it is available for GN
 
 
 ### Challenges and limitations
-Using the OSM involves solving many optimization problems. For each step of each agent, a non-trivial optimization problem has to be solved. This optimization is computationally expensive and requires most of the overall computation time. Introducing more complex potential functions complicates the evaluation of the potential function which contributes directly to the computation time of the optimization. Evaluating the potential function at specific points only instead of using an optimization technique such as Nelder Mead can accelate the simulation. Note that when you cut down the number of evaluation points to 8, this will mimic a cellular automaton.
+Using the OSM involves solving many optimization problems. For each step of each agent, a non-trivial optimization problem has to be solved. This optimization is computationally expensive and requires most of the overall computation time. Introducing more complex potential functions complicates the evaluation of the potential function which contributes directly to the computation time of the optimization. Evaluating the potential function at specific points only instead of using an optimization technique such as Nelder Mead can accelerate the simulation. Note that when you cut down the number of evaluation points to 8, this will mimic a cellular automaton.
 
 {{< figure src="figure6.png" caption="Grid discrimination." >}}
 
 
 
-This is aggravated by the fact that a strict event-driven update hinders parallelization of the computation. Therefore, simulating thousands of agents in real-time using the OSM with Vadere is not yet possible. Benedikt Zönnchen worked on the acceleration on his dissertation thesis. 
+This is aggravated by the fact that a strict event-driven update hinders parallelization of the computation. Therefore, simulating thousands of agents in real-time using the OSM with Vadere is not yet possible. Benedikt Zönnchen worked on the acceleration in his dissertation thesis. 
 
 
 ### Parameters
