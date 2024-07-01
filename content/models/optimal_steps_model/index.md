@@ -9,7 +9,7 @@ The basic idea of the Optimal Steps Model (OSM) is that virtual pedestrians (age
 In other words, the negative utility can be understood as a potential that agents aim to minimize.
 The utility, or potential, depends on the geodesic distance to the target and the proximity to other agents.
 
-{{< figure src="figure1.png" caption="Schematic solution of routing with OSM." >}}
+{{< figure src="figure1.png" caption="Schematic solution of routing with OSM.  Master thesis C. Mayr: The Heat Method for geodesic distance computation on 2D domains" >}}
 
 
 Agents move by stepping on the position on a circle (or disk) around their current location that optimizes this utility. 
@@ -84,7 +84,7 @@ $$
 The potential function is based on Hall's theory of interpersonal distances which describes four distance zones around a person [[4]](#Hall). Accordingly, the potential function is defined piece-wise on rings around each agent: a circular core for collision avoidance, a first ring that represents the intimate space, and a second ring that represents personal space. Agents outside the personal zone do not affect other agents' path choice. This is mathematically modeled by setting the  the potential function to zero.
 
 
-{{< figure src="figure3.png" caption="Agent's potential versus distance." >}}
+{{< figure src="figure3.png" caption="Agent's potential versus distance for different parameter values. [[5]](#Mayr2021)" >}}
 
 
 The value of the potential function in the personal space ring is very low. Thus, this area will be kept free only if agents have ample space to avoid each other [[3]](#Sivers2016). As soon as the space becomes more constricted agents will get closer. This is typical for normal human behavior. In the intimate space ring, the potential function value increases significantly. In crowds, this area is only kept free if the density is low [[3]](#Sivers2016). Finally, to prevent agents from overlapping, the potential is set to a high value (compared to the values for the personal and intimate spaces) in the collision area. The exact definition of the potential function and default parameters implemented in Vadere can be found in [[2]](#Kleinmeier2019).
