@@ -81,7 +81,7 @@ $$
 \end{align}
 $$
 
-The potential function is based on Hall's theory of interpersonal distances which describes four distance zones around a person [[4]](#Hall). Accordingly, the potential function is defined piece-wise on rings around each agent: a circular core for collision avoidance, a first ring that represents the intimate space, and a second ring that represents personal space. Agents outside the personal zone do not affect other agents' path choice. This is mathematically modeled by setting the  the potential function to zero.
+The potential function is based on Hall's theory of interpersonal distances which describes four distance zones around a person [[4]](#Hall1966). Accordingly, the potential function is defined piece-wise on rings around each agent: a circular core for collision avoidance, a first ring that represents the intimate space, and a second ring that represents personal space. Agents outside the personal zone do not affect other agents' path choice. This is mathematically modeled by setting the  the potential function to zero.
 
 
 {{< figure src="figure3.png" caption="Agent's potential versus distance for different parameter values. [[5]](#Mayr2021)" >}}
