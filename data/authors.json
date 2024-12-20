@@ -1,4 +1,35 @@
-[{
+[
+    {
+    "name": "Ahmed Alia",
+    "bio": "Researcher at Forschungszentrum Jülich, specializing in artificial intelligence for complex data analytics and modeling.",
+    "social": {
+        "linkedin": "https://www.linkedin.com/in/ahmed-alia-4529b029/",
+        "github": "https://github.com/abualia4",
+        "orcid":"https://orcid.org/0000-0002-0999-6807",
+        "homepage": "https://www.fz-juelich.de/profile/alia_a",
+        "email": ""
+    },
+    "affiliation": {
+        "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
+        "url" : "https://www.fz-juelich.de/en/ias/ias-7"
+    }
+    },
+{
+    "name": "Thomas Chatagnon",
+    "bio": "Researcher in crowd dynamics and pedestrian movement, specializing in balance recovery mechanisms in dense crowds and developing innovative data collection methodologies through his work with JupPedSim and PedPy.",
+    "social": {
+        "linkedin": "https://www.linkedin.com/in/thomas-chatagnon-7b5685156/",
+        "github": "https://github.com/ThoChat",
+        "orcid":"https://orcid.org/0000-0003-2686-7182",
+        "homepage": "https://www.fz-juelich.de/profile/chatagnon_t",
+        "email": ""
+    },
+    "affiliation": {
+        "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
+        "url" : "https://www.fz-juelich.de/en/ias/ias-7"
+    }
+},
+    {
     "name": "Mohcine Chraibi",
     "bio": "Head of the division Pedestrian Dynamics - Modeling at the IAS-7. Research intrests include Modeling, Simulation, Wayfinding, Software Engineering, Validation, Verification",
     "social": {
@@ -60,7 +91,7 @@
 },
 {
     "name": "Kai Kratz",
-    "bio": "Software Engineer working primarily on JuPedSim",
+    "bio": "Research Software Engineer",
     "social": {
         "linkedin": "https://www.linkedin.com/in/kaikratz/",
         "github": "https://github.com/Ozaq",
@@ -69,8 +100,8 @@
         "email" : "k.kratz@fz-juelich.de"
     },
     "affiliation": {
-        "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
-        "url" : "https://www.fz-juelich.de/en/ias/ias-7"
+        "name": "European Centre for Medium-Range Weather Forecasts",
+        "url" : "https://www.ecmwf.int/"
     }
 },
 {
@@ -105,7 +136,7 @@
 },
 {
     "name": "Tobias Schrödter",
-    "bio": "Research Software Engineer working on PedPy and JuPedSim",
+    "bio": "Innovation Engineer Software/Hardware",
     "social": {
         "linkedin": "https://www.linkedin.com/in/tobias-schroedter/",
         "github": "https://github.com/schroedtert",
@@ -114,8 +145,8 @@
         "email": ""
     },
     "affiliation": {
-        "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
-        "url" : "https://www.fz-juelich.de/en/ias/ias-7"
+        "name": "Vaillant Group",
+        "url" : "https://www.vaillant-group.com/en/"
     }
 },
 {
