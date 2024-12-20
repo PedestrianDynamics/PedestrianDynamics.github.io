@@ -1,8 +1,9 @@
 ---
-title: Workshop on Pedestrian Traffic and Evacuation Dynamics 2024
+title: PTED 2024
 math: true
 ---
 
+## Workshop on Pedestrian Traffic and Evacuation Dynamics 2024
 
 The 5th Workshop on Pedestrian Traffic and Evacuation Dynamics (2024) was held in Hefei, Anhui Province in China from December 13th to 15th. 
 It was organized by [**Prof. Weiguo Song**](http://staff.ustc.edu.cn/~wgsong/) and [**Prof. Jun Zhang**](https://www.researchgate.net/profile/Jun-Zhang-284) from the State Key Laboratory of Fire Science of University of Science and Technology of China and the National & Local Joint Engineering Research Center of Thermal Safety Technology to discuss new theories, new methods, new technologies and the trends in the research of pedestrian traffic and evacuation dynamics.
