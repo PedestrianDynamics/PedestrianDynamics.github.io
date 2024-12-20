@@ -100,7 +100,7 @@
         "email" : "ozaq@posteo.de"
     },
     "affiliation": {
-        "name": "Independent open source contributor",
+        "name": "Independent open source contributor"
     }
 },
 {
@@ -142,6 +142,9 @@
         "orcid":"https://orcid.org/0000-0002-1071-060X",
         "homepage": "",
         "email": ""
+    },
+     "affiliation": {
+        "name": "Independent open source contributor"
     }
 },
 {
