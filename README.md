@@ -17,3 +17,7 @@ Note: pages will autoregenerated and reloaded on save on the content.
 ```txt
 hugo server --buildDrafts --disableFastRender
 ```
+
+
+## Icons 
+Use Icons from https://v1.heroicons.com/
