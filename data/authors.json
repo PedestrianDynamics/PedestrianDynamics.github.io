@@ -192,5 +192,20 @@
         "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
         "url" : "https://www.fz-juelich.de/en/ias/ias-7"
     }
+},
+ {
+    "name": "Jun Zhang",
+    "bio": "Professor at USTC with focus on pedestrian and evacuation dynamics, encompassing pedestrian modeling, movement analysis techniques, and the study of dynamics in heterogeneous pedestrian flows, with particular attention to the elderly and disabled.",
+    "social": {
+        "linkedin": "",
+        "github": "",
+        "orcid":"https://orcid.org/0000-0002-9505-2027",
+        "homepage": "https://en.sklfs.ustc.edu.cn/2020/0529/c17183a426758/page.htm",
+        "email": ""
+    },
+    "affiliation": {
+        "name": "State Key Laboratory of Fire Science of University of Science and Technology of China",
+        "url" : "https://en.sklfs.ustc.edu.cn/main.htm"
+    }
 }
 ]
