@@ -14,6 +14,10 @@ The calculation of the speed is completely the same as the collision-free speed 
 
 The anticipation mechanism incorporated in the AVM enables it to reproduce lane formation in bidirectional flow scenarios more realistically than the Collision-Free Speed Model. Additionally, the AVM is more effective in preventing jamming in such scenarios and offers improved accuracy in reproducing the fundamental diagram.
 
+This video shows a short introduction of the model and some simulations demonstrating its capabilities.
+
+{{< youtube 2kcOXvm_Y8Q >}}
+
 ## Mathematical description
 In AVM, an agent is represented as a disk with a constant radius $r$. The position and velocity of agent $i$ are denoted by $\vec{x}_i$ and $\vec{v}_i$, respectively, where $\vec{v}_i=\dot{\vec{x}}_i$. Furthermore, $\vec{v}_i=\vec{e}_i\cdot v_i$, where $\vec{e}_i$ and $v_i$ denote the direction of movement and the speed of agent $i$, respectively.
 
@@ -35,7 +39,9 @@ where $\vec{e}_{i,j}$ denotes the unit vector from $i$ to $j$.
 b. Prediction of a future situation: 
 To consider the prediction, it is assumed that the strength of $j$'s impact on $i$ is a function of the predicted distance between these two agents at a particular time point. Given a time constant $t^\text{a}$, which can be interpreted as the prediction time, the predicted distance is defined as 
 
-$${s}^\text{a}_{i,j}(t+t^\text{a})=\max \bigg\{2r,~\Big(\vec{x}^\text{a}_j(t+t^\text{a})-\vec{x}^\text{a}_i(t+t^\text{a})\Big) \cdot \vec{e}_{i,j}(t) \bigg\},$$
+
+$${s}^{\text{a}}_{i,j}(t+t^{\text{a}}) =\max\Big\\{2r, \Big(\vec{x}^\text{a}_j  (t+t^\text{a})-\vec{x}^\text{a}_i(t+t^\text{a})\Big)\vec{e}\_{ij\}(t)\Big\\},$$
+ 
  
 where $\vec{x}^\text{a}_i(t+t^\text{a})=\vec{x}_i(t)+\vec{v}_i(t)\cdot t^\text{a}$.
 
@@ -50,25 +56,39 @@ $$ R_{i,j}(t)= \alpha_{i,j}(t) \cdot \exp
 
 where $D>0$ is a constant parameter used to calibrate the range of the impact from neighbors and $\alpha_{i,j}$ is a directional dependency used to vary the strength of impact from different neighbors.
 
-$$\alpha_{i,j}(t)=k \Big(1+ \frac{1- \vec{e}_i^{~0}(t) \cdot \vec{e}_j(t)}{2}\Big),\; k>0 ,$$
+$$\alpha_{i,j}(t)=k \Big(1+ \frac{1- \vec{e}_i^{~0}(t) \cdot \vec{e}_j(t)}{2}\Big),\\; k>0 ,$$
 
-where $\alpha_{i,j}$ is minimal ($k$) when both vectors $\vec{e}_i^{~0}$ and $\vec{e}_j$ are aligned and is maximum ($2 k$) when they are anti-aligned, which means that agents influence each other's direction strongly in bidirectional scenarios. Here, $\alpha_{i,j}$ means agents have a high tendency to follow the agents who move in the same direction. When this strategy is used, the probability of further conflicts is reduced. 
+where $\alpha_{i,j}$ is minimal when both vectors 
+$\vec{e}_i^{~0}$ and  $\vec{e}_j$ are aligned and is maximum when they are anti-aligned, which 
+ means that agents influence each other's direction strongly in bidirectional scenarios. 
+ 
+Here, $\alpha_{i,j}$ means agents have a high tendency to follow the agents who move in the same direction. When this strategy is used, the probability of further conflicts is reduced. 
 
 The direction of the impact from agent $j$ on $i$'s direction of the movement is defined as
 
-$$\vec{n}_{i,j}(t) =-\text{sgn}\bigg(\vec{e}^{~\text{a}}_{i,j}(t+t^\text{a}) \cdot \vec{e}_i^{~0\bot}(t)\bigg) \cdot\vec{e}_i^{~0\bot}(t),$$
+$$\vec{n}_{i,j}(t) =-\text{sgn} \bigg(\vec{e}^{~\text{a}}(t+t^\text{a})  \cdot \vec{e}_i^{~0\bot}(t) \bigg)$$
 
-where $\vec{e}^{~\text{a}}_{i,j}(t+t^\text{a})= \vec{x}^\text{a}_j(t+t^\text{a})- \vec{x}_i(t)$. The direction of $\vec{n}_{i,j}$ depends on the predicted position of agent $j$ after a period of time $t^\text{a}$. Note that when this predicted position is aligned with the desired direction of $i$, the direction of $\vec{n}_{i,j}(t)$ is chosen randomly as $\vec{e}_i^{~0\bot}$ or $-\vec{e}_i^{~0\bot}$. This rule prevents agents from moving in the opposite direction to the desired direction.
+
+where 
+
+$\vec{e}^{~\text{a}}(t+t^\text{a})= \vec{x}^\text{a}_j(t+t^\text{a})- \vec{x}_i(t)$. 
+
+The direction of $\vec{n}_{i,j}$ depends on the predicted position of agent $j$ after as period of time  $t^\text{a}$.
+
+Note that when this predicted position is aligned with the desired direction of $i$, the direction of $\vec{n}_{i,j}(t)$ is chosen randomly as $\vec{e}_i^{~0\bot}$ or $-\vec{e}_i^{~0\bot}$. This rule prevents agents from moving in the opposite direction to the desired direction.
 
 {{< figure src="figure3.png" caption="The agents who are located in the gray area have an impact" >}}
 
-Finally, the optimal direction of agent $i$ is obtained as
+Finally, the optimal direction of agent $i$,  $\vec{e_i}^{~\text{d}}(t)$ is obtained as
 
-$$ \vec{e}_i^{~\text{d}}(t)=u \bigg(\vec{e}_i^{~0}(t)+\sum_{j\in N_i(t)} R_{j,i}(t)\cdot \vec{n}_{j,i}(t)\bigg),$$ 
 
-where $u$ is a normalization constant such that $\lVert\vec{e}_i^{~\text{d}}\rVert=1$. Then, the direction of movement of agent $i$ is updated as
+$$u \bigg(\vec{e_i}^{~0}(t)+ \sum_{j\in N_i(t)} R_{j,i}(t)\cdot \vec{n}_{j,i}(t)\bigg),$$
 
-$$\frac{d\vec{e}_i(t)}{dt} = \frac{ \vec{e}_i^{~\text{d}}(t)-\vec{e}_{i}(t)}{\tau},$$
+
+where $u$ is a normalization constant such that $\lVert\vec{e}_i^{~\text{d}}\rVert=1$. 
+Then, the direction of movement of agent $i$ is updated as
+
+$$\frac{d\vec{e_i}(t)}{dt} = \frac{ \vec{e_i}^{~\text{d}}(t)-\vec{e}_{i}(t)}{\tau},$$
 
 where $\tau$ is a relaxation parameter adjusting the rate of the turning process from the current direction $\vec{e}_i$ to the optimal direction $\vec{e}_i^{~d}$.
 
@@ -76,7 +96,7 @@ where $\tau$ is a relaxation parameter adjusting the rate of the turning process
 ### Speed function
 After obtaining the new direction of the movement, the set of neighbors that are imminently colliding with $i$ is defined as
 
-$$J_i=\Big\{j,~\vec{e}_i \cdot \vec{e}_{i,j} \ge 0\ \text{and}\ \left|\vec{e}_i^{~\bot} \cdot \vec{e}_{i,j}\right| \leq \frac{2 r}{s_{i,j}}\Big\},$$
+$$J_i= \Big( j,\\;\vec{e_i} \cdot \vec{e_{i,j}} \ge 0\  \text{and}\ \left| \vec{e_i}^{~\bot} \cdot \vec{e_{i,j}} \right| \leq \frac{2 r}{s_{i,j}} \Big) ,$$
 
 where $s_{i,j}$ is the current distance between $i$ and $j$. Therefore, the maximum distance that agent $i$ can move in the direction without overlapping other agents is
 
@@ -86,7 +106,9 @@ $$s_i=\min_{j\in J_i}s_{i,j}-2r.$$
 
 Finally, the speed of agent $i$ in the new direction is
 
-$$v_i=\min\Big\{v_i^0,~\max\big\{0,\frac{s_{i}}{T}\big\}\Big\},$$
+$$v_i=\min\Big\\{v_i^0,~\max\big\\{0,\frac{s_{i}}{T}\big\\}\Big\\},$$
+
+
 
 where $v_i^0$ is the free speed of agent $i$, and $T>0$ is the slope of the speed-headway relationship.
 
@@ -113,13 +135,14 @@ Despite the AVM demonstrating superior performance in bidirectional flow scenari
 **Parameter Sensitivity:** Some parameter values in the AVM are scenario-dependent. In particular, the anticipation parameter plays a significant role in sparse densities, where agents can effectively anticipate new avoidance opportunities. However, in high-density situations, the limited space for avoidance reduces the usefulness of anticipation and can even lead to numerical issues in the simulation.
 
 
-## Challenges in implementing anticipation velocity model
+## Wall implementation in the Anticipation Velocity Model
 
 In the original publication of the AVM, walls are implemented as static agents, with interactions based on the nearest point on the wall to an agent. In high-density scenarios, this approach can lead to imbalances, where agents are pushed towards walls by others, but the walls are unable to exert sufficient repulsive influence to push them back. A common solution to this issue involves calibrating wall parameters to make the repulsion strong enough to counteract the influence of surrounding agents.
 
 However, in the JuPedSim implementation, wall interactions are designed differently. Walls are treated as gliding surfaces, meaning agents adjust their movement to avoid collisions while maintaining smooth trajectories along wall boundaries. The influence of walls on an agent's movement is determined by the agent's distance to the wall and their movement direction.
 
 {{< youtube iY_mQdB0fdE >}}    
+
 
 Importantly, walls do not affect the speed of agents—only their direction. Agents glide along walls by subtly adjusting their trajectory while preserving their intended movement as much as possible. This influence transitions smoothly as agents move closer to or farther from the wall, ensuring realistic and continuous behavior near boundaries.
 
@@ -148,14 +171,6 @@ To determine the desired direction vector, a designated exit or waypoint must be
 
 The following map shows works from the literature connected to the anticipation velocity model.
 
-<figure style="text-align: center;">
-    <img src="https://iffmd.fz-juelich.de/uploads/upload_3eaaacd3f58f94267004de892f6f8c87.png" alt="crowd" width="600"/>
-    <figcaption style="text-align: right;">
-        <small>
-This is not necessary although nice!
-        </small>
-    </figcaption>
-</figure>
 
 {{< figure src="figure5.png" caption="Linking the AVM Paper to 18 Key Publications" >}}
 
