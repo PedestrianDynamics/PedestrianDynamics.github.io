@@ -118,19 +118,19 @@ where $v_i^0$ is the free speed of agent $i$, and $T>0$ is the slope of the spee
 
 The anticipation velocity model depends on seven parameters: 
 - Pedestrian radius ($r>0$)
-- Free speed ($v^0>0$)
+- Free speed ($v^0\ge 0$)
 - Time gap ($T>0$)
 - Repulsion rate and distance ($k>0$ and $D>0$)
 - Rate of turning process ($\tau>0$) 
-- Prediction time ($t^\text{a}$>0)
+- Prediction time ($t^\text{a}\ge 0$)
 
 ## Limitations of the anticipation velocity model
 
 Despite the AVM demonstrating superior performance in bidirectional flow scenarios compared to traditional models such as the collision-free speed model (CSM), there are still notable limitations:
 
-**Realism Gap:** Although the AVM represents an improvement over the CSM, it does not fully capture real-world pedestrian behavior. While the model incorporates anticipation, it overlooks key aspects of human interactions, such as cooperation, pushing, and waiting, which are prevalent in high-density crowds. Consequently, the AVM faces challenges in accurately representing extreme crowd dynamics. For instance, in scenarios with very high pedestrian densities and multidirectional flows, gridlock can still occur.
+**Realism Gap:** Although the AVM represents an improvement over the CSM, it does not fully capture real-world pedestrian behavior. While the model incorporates anticipation, it overlooks key aspects of human interactions, such as cooperation, pushing, and waiting, which are prevalent in high-density crowds. Consequently, the AVM faces challenges in accurately representing extreme crowd dynamics. For instance, in scenarios with very high pedestrian densities and multi-directional flows, gridlock can still occur.
 
--**Model Robustness**: The robustness of the AVM is limited when compared to the CSM. A key difference is that the AVM excludes backward movement, which is often observed in real-world crowds. While backward movement in the CSM is not directly modeled, it still occures and contributes to solving conflicts between agents. By removing this behavior, the AVM becomes less adaptable to certain crowd configurations, particularly when faced with complex interactions.
+**Model Robustness**: The robustness of the AVM is limited when compared to the CSM. A key difference is that the AVM excludes backward movement, which is often observed in real-world crowds. While backward movement in the CSM is not directly modeled, it still occurs and contributes to solving conflicts between agents. By removing this behavior, the AVM becomes less adaptable to certain crowd configurations, particularly when faced with complex interactions.
 
 **Parameter Sensitivity:** Some parameter values in the AVM are scenario-dependent. In particular, the anticipation parameter plays a significant role in sparse densities, where agents can effectively anticipate new avoidance opportunities. However, in high-density situations, the limited space for avoidance reduces the usefulness of anticipation and can even lead to numerical issues in the simulation.
 
