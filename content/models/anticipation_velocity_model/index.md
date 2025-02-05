@@ -139,7 +139,7 @@ Despite the AVM demonstrating superior performance in bidirectional flow scenari
 
 In the original publication of the AVM, walls are implemented as static agents, with interactions based on the nearest point on the wall to an agent. In high-density scenarios, this approach can lead to imbalances, where agents are pushed towards walls by others, but the walls are unable to exert sufficient repulsive influence to push them back. A common solution to this issue involves calibrating wall parameters to make the repulsion strong enough to counteract the influence of surrounding agents.
 
-However, in the JuPedSim implementation, wall interactions are designed differently. Walls are treated as gliding surfaces, meaning agents adjust their movement to avoid collisions while maintaining smooth trajectories along wall boundaries. The influence of walls on an agent's movement is determined by the agent's distance to the wall and their movement direction.
+However, in the [JuPedSim](https://www.jupedsim.org/stable/pedestrian_models/index.html) implementation, wall interactions are designed differently. Walls are treated as gliding surfaces, meaning agents adjust their movement to avoid collisions while maintaining smooth trajectories along wall boundaries. The influence of walls on an agent's movement is determined by the agent's distance to the wall and their movement direction.
 
 {{< youtube iY_mQdB0fdE >}}    
 
@@ -147,7 +147,8 @@ However, in the JuPedSim implementation, wall interactions are designed differen
 Importantly, walls do not affect the speed of agents—only their direction. Agents glide along walls by subtly adjusting their trajectory while preserving their intended movement as much as possible. This influence transitions smoothly as agents move closer to or farther from the wall, ensuring realistic and continuous behavior near boundaries.
 
 ## Using the anticipation velocity model with JuPedSim 
-The anticipation velocity model has also been implemented and tested using the JuPedSim software platform (`VelocityModelBuilder`). 
+The anticipation velocity model has also been implemented and tested using the [JuPedSim](https://github.com/PedestrianDynamics/jupedsim) software platform (`VelocityModelBuilder`). 
+
 Following table summarize the parameters of the model and their naming.
 
 | Parameter Description                     | Variable Name |
@@ -161,7 +162,7 @@ Following table summarize the parameters of the model and their naming.
 | Prediction time                           | `anticipation_time` |
 
 
-To determine the desired direction vector, a designated exit or waypoint must be defined as a polygon. The unit vector, denoted as $\vec{e}_i^{~0}$, is then calculated by pointing from the current position of the pedestrian towards the specified exit or waypoint.
+To determine the desired direction vector, a designated exit or `waypoint` must be defined as a polygon. The unit vector, denoted as $\vec{e}_i^{~0}$, is then calculated by pointing from the current position of the pedestrian towards the specified exit or `waypoint`.
 
 
 > **_NOTE:_**  Given that the target is always a polygon, the objective would be the polygon's center.
