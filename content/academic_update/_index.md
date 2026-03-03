@@ -8,7 +8,7 @@ weight: 5
 
 
 {{< cards >}}
-  {{< card link="derRSE26" image="derRSE26/derse26-logo-en-color_aligned.png" title="derRSE26" icon="code" subtitle="6th German Conference on Research Software Engineering, March 3-5, 2026, University of Stuttgart.">}}
+  {{< card link="deRSE26" image="deRSE26/derse26-logo-en-color_aligned.png" title="deRSE26" icon="code" subtitle="6th German Conference on Research Software Engineering, March 3-5, 2026, University of Stuttgart.">}}
   {{< card link="waiting" image="waiting/groupsize.png" title="Dynamics of Waiting" icon="academic-cap" subtitle="This research seeks to fill the gap on the impact of stationary pedestrians on crowd dynamics.">}}
   {{< card link="ibit23" image="ibit23/IBIT_logo.png" title="IBIT23" icon="user-group" subtitle="9th IBIT Conference on Crowdmanagement & Event Safety Management from 8-9 Nov., 2023, in Cologne, Germany.">}}
   {{< card link="iafss23" image="iafss23/iafss_logo.jpg" title="IAFSS23" icon="fire" subtitle="14th International Symposium on Fire Safety Science will be held from 23-27 Oct., 2023, in Tsukuba, Japan.">}}
