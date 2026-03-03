@@ -31,6 +31,5 @@ In short: how we learned to do less, but better.
 
 ## Download
 
-[Download the talk (PDF)](/derRSE26.pdf)
-
+[Download the talk (PDF)](derRSE26.pdf)
 [JuPedSim Website](https://jupedsim.org)
