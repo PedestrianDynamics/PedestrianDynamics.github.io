@@ -9,7 +9,7 @@ The [11th IBIT Conference on Crowdmanagement & Event Safety Management](https://
 - Back to Basics: Introduction to Modern Safety Planning 2026
 - Hostile Vehicle Mititgation as a Guarantee for Safe Events?
 - Best Practice: Transferable Insights and Pragmatic Approaches
-- Where do the Rules come from?: Regulations, Standards, and Guidelines
+- Where do the Rules come from? Regulations, Standards, and Guidelines
 - Operational Aspects and Procedures
 - Legal Aspects
 
