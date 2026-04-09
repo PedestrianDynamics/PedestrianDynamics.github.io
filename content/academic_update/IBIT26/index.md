@@ -1,5 +1,6 @@
 ---
 title: IBIT Conference 2026
+date: 2026-01-26
 math: true
 ---
 
