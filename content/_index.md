@@ -474,7 +474,7 @@ listed in alphabetical order:
 - [Claudio Feliciani]({{< relref "/authors#ClaudioFeliciani" >}})
 - [Milad Haghani]({{< relref "/authors#MiladHaghani" >}})
 - [Enrico Ronchi]({{< relref "/authors#EnricoRonchi" >}})
-- [Jette Schumann]({{< relref "/authors#JetteSchumann" >}})
+- [Jette Degenhardt]({{< relref "/authors#JetteDegenhardt" >}})
 - [Antoine Tordeux]({{< relref "/authors#AntoineTordeux" >}})
 - [Ezel Üsten]({{< relref "/authors#EzelÜsten" >}})
 
