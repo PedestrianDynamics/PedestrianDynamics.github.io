@@ -1,5 +1,6 @@
 ---
 title: IAFSS Symposium 2023
+date: 2023-10-23
 math: true
 ---
 
