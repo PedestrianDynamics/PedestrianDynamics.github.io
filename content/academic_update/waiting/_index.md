@@ -1,5 +1,6 @@
 ---
 title: The Dynamics of Waiting
+date: 2023-01-01
 math: true
 ---
 

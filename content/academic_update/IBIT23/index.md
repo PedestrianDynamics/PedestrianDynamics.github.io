@@ -1,5 +1,6 @@
 ---
 title: IBIT Conference 2023
+date: 2023-11-08
 math: true
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: IBIT Conference 2026
+date: 2026-01-26
 math: true
 ---
 
@@ -36,7 +37,7 @@ Anna and Jette provided an overview of current research questions and facilitate
 
 
 ## JuPedSim News: From Research to Practical Application
-Mohcine Chraibi presented "From Research for Practice: A Simulation Tool for Pedestrian Flow Analysis," introducing the JuPedSim Web App. The open-source software, previously used primarily within the scientific community, is now accessible through the\is [online platform](https://app.jupedsim.org).
+Mohcine Chraibi presented "From Research for Practice: A Simulation Tool for Pedestrian Flow Analysis," introducing the JuPedSim Web App. The open-source software, previously used primarily within the scientific community, is now accessible through the [online platform](app.jupedsim.org).
 
 The tool enables the configuration and simulation of pedestrian flow scenarios based on validated models. While currently focused on basic scenarios, the long-term vision includes application to more complex situations. The JuPedSim team aims to enhance the tool's practical applicability and seeks user feedback to further improve its functionality for broader use.
 
