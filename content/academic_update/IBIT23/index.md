@@ -33,4 +33,4 @@ The discussion showed that there is still a lot of work to be done in terms of t
 The IBIT conference will take place again next year. The exact date and location have not yet been set but will be announced [here](https://ibit.eu).
 
 
-{{< icon "pencil-alt" >}} By: [Jette Schumann]({{< relref "/authors#JetteSchumann" >}})
+{{< icon "pencil-alt" >}} By: [Jette Degenhardt]({{< relref "/authors#JetteDegenhardt" >}})
