@@ -304,7 +304,7 @@ techniques have gained popularity.
 
 Pedestrian dynamics modeling can be broken down based on the scale of
 application: strategic (which deals with route and departure choices in
-buildings), technical (focusing on path or exit choices in rooms), and
+buildings), tactical (focusing on path or exit choices in rooms), and
 operational (which examines interactions among pedestrians and infrastructure).
 At the operational level, there are three primary types of models:
 

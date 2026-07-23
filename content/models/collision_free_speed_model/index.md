@@ -70,13 +70,13 @@ Inspired from car-following models, the speed function only depends on the dista
 
 The set $J_i$ of pedestrians and obstacles in front is given by
 
-$$J_i=\big\\{j,~\mathbf e_i\cdot \mathbf e_{ij}\le 0~\text{and}~|\mathbf e_i^\perp\cdot\mathbf e_{ij}|\le l/s_{ij}\big\\}.$$
+$$J_i=\big\\{j,\\;\mathbf e_i\cdot \mathbf e_{ij}\le 0\\;\text{and}\\;|\mathbf e_i^\perp\cdot\mathbf e_{ij}|\le l/s_{ij}\big\\}.$$
 
 The distance to the nearest pedestrian or obstacle in front is then the minimum
 $$s_i=\min_{j\in J_i}s_{ij}.$$
 
 In the following, the OV function is the piecewise linear
-$$V(s)=\min\big\\{v_0,\max\{0,(s-l)/T\}\big\\},$$
+$$V(s)=\min\big\\{v_0,\max\\{0,(s-l)/T\\}\big\\},$$
 
 satisfies
 
