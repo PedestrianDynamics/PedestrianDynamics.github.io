@@ -1,211 +1,256 @@
 [
-    {
-    "name": "Ahmed Alia",
-    "bio": "Researcher at Forschungszentrum Jülich, specializing in artificial intelligence for complex data analytics and modeling.",
-    "social": {
-        "linkedin": "https://www.linkedin.com/in/ahmed-alia-4529b029/",
-        "github": "https://github.com/abualia4",
-        "orcid":"https://orcid.org/0000-0002-0999-6807",
-        "homepage": "https://www.fz-juelich.de/profile/alia_a",
-        "email": ""
-    },
-    "affiliation": {
-        "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
-        "url" : "https://www.fz-juelich.de/en/ias/ias-7"
-    }
-    },
-{
-    "name": "Thomas Chatagnon",
-    "bio": "Researcher in crowd dynamics and pedestrian movement, specializing in balance recovery mechanisms in dense crowds and developing innovative data collection methodologies through his work with JupPedSim and PedPy.",
-    "social": {
-        "linkedin": "https://www.linkedin.com/in/thomas-chatagnon-7b5685156/",
-        "github": "https://github.com/ThoChat",
-        "orcid":"https://orcid.org/0000-0003-2686-7182",
-        "homepage": "https://www.fz-juelich.de/profile/chatagnon_t",
-        "email": ""
-    },
-    "affiliation": {
-        "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
-        "url" : "https://www.fz-juelich.de/en/ias/ias-7"
-    }
-},
-    {
-    "name": "Mohcine Chraibi",
-    "bio": "Head of the division Pedestrian Dynamics - Modeling at the IAS-7. Research intrests include Modeling, Simulation, Wayfinding, Software Engineering, Validation, Verification",
-    "social": {
-        "linkedin": "https://www.linkedin.com/in/mohcine-chraibi/",
-        "github": "https://github.com/chraibi",
-        "orcid":"https://orcid.org/0000-0002-0999-6807",
-        "homepage": "https://www.fz-juelich.de/profile/chraibi_m",
-        "email": ""
-    },
-    "affiliation": {
-        "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
-        "url" : "https://www.fz-juelich.de/en/ias/ias-7"
-    }
-},
-{
-    "name": "Alessandro Corbetta",
-    "bio": "Assistant Professor at the Department of Applied Physics and Science Education at Eindhoven University of Technology, The Netherlands, leading the group AI for traffic and complex flows",
-    "social": {
-        "linkedin": "https://nl.linkedin.com/in/corbettaalessandro",
-        "github": "https://github.com/acorbe/",
-        "orcid":"https://orcid.org/0000-0001-6979-3414",
-        "homepage": "https://corbetta.phys.tue.nl/",
-        "email": ""
-    },
-    "affiliation": {
-        "name": "Department of Applied Physics and Science Education at Eindhoven University of Technology",
-        "url" : "https://www.tue.nl/en/our-university/departments/applied-physics-and-science-education/"
-    }
-},
-{
-    "name": "Claudio Feliciani",
-    "bio": "Project Associate Professor at Mathematical Physics of Emergent Systems. Interested in explaining the dynamics of complex systems by covering a wide range of fields and examining the problems under different perspectives.",
-    "social": {
-        "linkedin": "https://www.linkedin.com/in/claudio-feliciani-23304a84",
-        "github": "",
-        "orcid":"https://orcid.org/0000-0003-0718-8707",
-        "homepage": "https://sites.google.com/site/claudiofeliciani",
-        "email": ""
-    },
-    "affiliation": {
-        "name": "Research Center for Advanced Science and Technology (RCAST), University of Tokyo",
-        "url" : "https://www.rcast.u-tokyo.ac.jp/en/research/index.html"
-    }
-},
-{
-    "name": "Milad Haghani",
-    "bio": "Senior Lecturer, UNSW Sydney. Expert in transport safety emphasizing human factors, with areas of interest including crowd safety, evacuation planning, transport psychology, econometric modelling, and meta-research.",
-    "social": {
-        "linkedin": "https://au.linkedin.com/in/milad-haghani-88693291",
-        "github": "",
-        "orcid":"https://orcid.org/0000-0003-3904-5196",
-        "homepage": "https://research.unsw.edu.au/people/dr-milad-haghani",
-        "email": ""
-    },
-    "affiliation": {
-        "name": "University of New South Wales (UNSW)",
-        "url" : "https://www.unsw.edu.au/"
-    }
-},
-{
-    "name": "Kai Kratz",
-    "bio": "",
-    "social": {
-        "linkedin": "https://www.linkedin.com/in/kaikratz/",
-        "github": "https://github.com/Ozaq",
-        "orcid":"",
-        "homepage": "",
-        "email" : "ozaq@posteo.de"
-    },
-    "affiliation": {
-        "name": "Independent open source contributor"
-    }
-},
-{
-    "name": "Mira Küpper",
-    "bio": "Post-doctoral Researcher. Specializes in waiting pedestrians at train stations.",
-    "social": {
-        "linkedin": "",
-        "github": "",
-        "orcid":"https://orcid.org/0000-0002-2753-4171",
-        "homepage": "https://www.asim.uni-wuppertal.de/en/",
-        "email" : ""
-    },
-    "affiliation": {
-        "name": "Architecture and Civil Engineering, University of Wuppertal",
-        "url" : "https://www.asim.uni-wuppertal.de/en/"
-    }
-},
-{
-    "name": "Enrico Ronchi",
-    "bio": "Associate Professor in Lund University. Specialist in Evacuation Modelling, Fire Safety Engineering, Human Behaviour in Fire, Pedestrian Modelling, Virtual Reality, WUI Emergencies, Road Safety and Tunnel Safety.",
-    "social": {
-        "linkedin": "https://se.linkedin.com/in/enrico-ronchi-74855a12",
-        "github": "",
-        "orcid":"https://orcid.org/0000-0002-2789-6359",
-        "homepage": "http://enricoronchi.weebly.com/",
-        "email": ""
-    },
-    "affiliation": {
-        "name": "Department of Building & Environmental Technology, LUND Unversity, Sweden",
-        "url" : "https://www.brand.lth.se/"
-    }
-},
-{
-    "name": "Tobias Schrödter",
-    "bio": "Innovation Engineer Software/Hardware",
-    "social": {
-        "linkedin": "https://www.linkedin.com/in/tobias-schroedter/",
-        "github": "https://github.com/schroedtert",
-        "orcid":"https://orcid.org/0000-0002-1071-060X",
-        "homepage": "",
-        "email": ""
-    },
-     "affiliation": {
-        "name": "Independent open source contributor"
-    }
-},
-{
-    "name": "Jette Degenhardt",
-    "bio": "Post-doctoral Researcher. Specializes in application-oriented pedestrian simulations, the interplay between pedestrian streams and urban traffic, crowd movement analysis, and research software development.",
-    "social": {
-        "linkedin": "",
-        "github": "https://github.com/JetteDegenhardt",
-        "orcid":"https://orcid.org/0000-0003-3668-999X",
-        "homepage": "https://www.fz-juelich.de/profile/degenhardt_j",
-        "email": ""
-    },
-    "affiliation": {
-        "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
-        "url" : "https://www.fz-juelich.de/en/ias/ias-7"
-    }
-},
-{
-    "name": "Antoine Tordeux",
-    "bio": "Jun.- Prof. Dr. Antoine Tordeux on the complex system of road traffic. Specializes in Applied Mathematics, Traffic Flow, Self-driven particle systems, and Pedestrian Dynamics.",
-    "social": {
-        "linkedin": "",
-        "github": "",
-        "researchgate": "https://www.researchgate.net/profile/Antoine-Tordeux",
-        "orcid":"https://orcid.org/0000-0001-5077-0327",
-        "homepage": "https://www.vzu.uni-wuppertal.de/en/",
-        "email": ""
-    },
-    "affiliation": {
-        "name": "Traffic Safety and Reliability, University of Wuppertal",
-        "url" : "https://www.vzu.uni-wuppertal.de/en/"
-    }
-},
-{
-    "name": "Ezel Üsten",
-    "bio": "PhD researcher in the division of Pedestrian Dynamics - Social Psychology at IAS-7, specializing in motivation, emotion, and behavior in crowd entrance scenarios.",
-    "social": {
-        "linkedin": "www.linkedin.com/in/ezelusten",
-        "github": "",
-        "orcid":"https://orcid.org/0000-0003-2250-4245",
-        "homepage": "https://www.fz-juelich.de/profile/uesten_e",
-        "email": ""
-    },
-    "affiliation": {
-        "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
-        "url" : "https://www.fz-juelich.de/en/ias/ias-7"
-    }
-},
  {
-    "name": "Jun Zhang",
-    "bio": "Professor at USTC with focus on pedestrian and evacuation dynamics, encompassing pedestrian modeling, movement analysis techniques, and the study of dynamics in heterogeneous pedestrian flows, with particular attention to the elderly and disabled.",
-    "social": {
-        "linkedin": "",
-        "github": "",
-        "orcid":"https://orcid.org/0000-0002-9505-2027",
-        "homepage": "https://en.sklfs.ustc.edu.cn/2020/0529/c17183a426758/page.htm",
-        "email": ""
-    },
-    "affiliation": {
-        "name": "State Key Laboratory of Fire Science of University of Science and Technology of China",
-        "url" : "https://en.sklfs.ustc.edu.cn/main.htm"
-    }
-}
+  "name": "Ahmed Alia",
+  "bio": "Researcher at Forschungszentrum Jülich, specializing in artificial intelligence for complex data analytics and modeling.",
+  "social": {
+   "linkedin": "https://www.linkedin.com/in/ahmed-alia-4529b029/",
+   "github": "https://github.com/abualia4",
+   "orcid": "https://orcid.org/0000-0002-0999-6807",
+   "homepage": "https://www.fz-juelich.de/profile/alia_a",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
+   "url": "https://www.fz-juelich.de/en/ias/ias-7"
+  }
+ },
+ {
+  "name": "Thomas Chatagnon",
+  "bio": "Researcher in crowd dynamics and pedestrian movement, specializing in balance recovery mechanisms in dense crowds and developing innovative data collection methodologies through his work with JupPedSim and PedPy.",
+  "social": {
+   "linkedin": "https://www.linkedin.com/in/thomas-chatagnon-7b5685156/",
+   "github": "https://github.com/ThoChat",
+   "orcid": "https://orcid.org/0000-0003-2686-7182",
+   "homepage": "https://www.fz-juelich.de/profile/chatagnon_t",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
+   "url": "https://www.fz-juelich.de/en/ias/ias-7"
+  }
+ },
+ {
+  "name": "Mohcine Chraibi",
+  "bio": "Head of the division Pedestrian Dynamics - Modeling at the IAS-7. Research intrests include Modeling, Simulation, Wayfinding, Software Engineering, Validation, Verification",
+  "social": {
+   "linkedin": "https://www.linkedin.com/in/mohcine-chraibi/",
+   "github": "https://github.com/chraibi",
+   "orcid": "https://orcid.org/0000-0002-0999-6807",
+   "homepage": "https://www.fz-juelich.de/profile/chraibi_m",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
+   "url": "https://www.fz-juelich.de/en/ias/ias-7"
+  }
+ },
+ {
+  "name": "Alessandro Corbetta",
+  "bio": "Assistant Professor at the Department of Applied Physics and Science Education at Eindhoven University of Technology, The Netherlands, leading the group AI for traffic and complex flows",
+  "social": {
+   "linkedin": "https://nl.linkedin.com/in/corbettaalessandro",
+   "github": "https://github.com/acorbe/",
+   "orcid": "https://orcid.org/0000-0001-6979-3414",
+   "homepage": "https://corbetta.phys.tue.nl/",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "Department of Applied Physics and Science Education at Eindhoven University of Technology",
+   "url": "https://www.tue.nl/en/our-university/departments/applied-physics-and-science-education/"
+  }
+ },
+ {
+  "name": "Claudio Feliciani",
+  "bio": "Project Associate Professor at Mathematical Physics of Emergent Systems. Interested in explaining the dynamics of complex systems by covering a wide range of fields and examining the problems under different perspectives.",
+  "social": {
+   "linkedin": "https://www.linkedin.com/in/claudio-feliciani-23304a84",
+   "github": "",
+   "orcid": "https://orcid.org/0000-0003-0718-8707",
+   "homepage": "https://sites.google.com/site/claudiofeliciani",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "Research Center for Advanced Science and Technology (RCAST), University of Tokyo",
+   "url": "https://www.rcast.u-tokyo.ac.jp/en/research/index.html"
+  }
+ },
+ {
+  "name": "Milad Haghani",
+  "bio": "Senior Lecturer, UNSW Sydney. Expert in transport safety emphasizing human factors, with areas of interest including crowd safety, evacuation planning, transport psychology, econometric modelling, and meta-research.",
+  "social": {
+   "linkedin": "https://au.linkedin.com/in/milad-haghani-88693291",
+   "github": "",
+   "orcid": "https://orcid.org/0000-0003-3904-5196",
+   "homepage": "https://research.unsw.edu.au/people/dr-milad-haghani",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "University of New South Wales (UNSW)",
+   "url": "https://www.unsw.edu.au/"
+  }
+ },
+ {
+  "name": "Pavel Hrabák",
+  "bio": "Associate Professor at the Department of Applied Mathematics, FIT CTU in Prague. Co-organizer of PED 2025.",
+  "social": {
+   "linkedin": "https://www.linkedin.com/in/pavel-hrabak-356a6790/",
+   "github": "",
+   "orcid": "https://orcid.org/0000-0002-8174-1948",
+   "homepage": "https://fit.cvut.cz/en/faculty/people/5117-pavel-hrabak",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "Faculty of Information Technology - Czech Technical University in Prague",
+   "url": "https://fit.cvut.cz/en"
+  }
+ },
+ {
+  "name": "Kai Kratz",
+  "bio": "",
+  "social": {
+   "linkedin": "https://www.linkedin.com/in/kaikratz/",
+   "github": "https://github.com/Ozaq",
+   "orcid": "",
+   "homepage": "",
+   "email": "ozaq@posteo.de"
+  },
+  "affiliation": {
+   "name": "Independent open source contributor"
+  }
+ },
+ {
+  "name": "Mira Küpper",
+  "bio": "Post-doctoral Researcher. Specializes in waiting pedestrians at train stations.",
+  "social": {
+   "linkedin": "",
+   "github": "",
+   "orcid": "https://orcid.org/0000-0002-2753-4171",
+   "homepage": "https://www.asim.uni-wuppertal.de/en/",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "Architecture and Civil Engineering, University of Wuppertal",
+   "url": "https://www.asim.uni-wuppertal.de/en/"
+  }
+ },
+ {
+  "name": "Hana Najmanová",
+  "bio": "Assistant Professor at the Department of Architectural Engineering, FCE CTU in Prague. Co-organizer of PED 2025.",
+  "social": {
+   "linkedin": "https://www.linkedin.com/in/hana-najmanov%C3%A1-582777270/",
+   "github": "",
+   "orcid": "https://orcid.org/0000-0003-3440-6618",
+   "homepage": "https://www.uceeb.cz/en/ing-hana-najmanova-ph-d-en/",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "Faculty of Civil Engineering - Czech Technical University in Prague",
+   "url": "https://www.fsv.cvut.cz/en"
+  }
+ },
+ {
+  "name": "Enrico Ronchi",
+  "bio": "Associate Professor in Lund University. Specialist in Evacuation Modelling, Fire Safety Engineering, Human Behaviour in Fire, Pedestrian Modelling, Virtual Reality, WUI Emergencies, Road Safety and Tunnel Safety.",
+  "social": {
+   "linkedin": "https://se.linkedin.com/in/enrico-ronchi-74855a12",
+   "github": "",
+   "orcid": "https://orcid.org/0000-0002-2789-6359",
+   "homepage": "http://enricoronchi.weebly.com/",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "Department of Building & Environmental Technology, LUND Unversity, Sweden",
+   "url": "https://www.brand.lth.se/"
+  }
+ },
+ {
+  "name": "Tobias Schrödter",
+  "bio": "Innovation Engineer Software/Hardware",
+  "social": {
+   "linkedin": "https://www.linkedin.com/in/tobias-schroedter/",
+   "github": "https://github.com/schroedtert",
+   "orcid": "https://orcid.org/0000-0002-1071-060X",
+   "homepage": "",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "Independent open source contributor"
+  }
+ },
+ {
+  "name": "Jette Degenhardt",
+  "bio": "Post-doctoral Researcher. Specializes in application-oriented pedestrian simulations, the interplay between pedestrian streams and urban traffic, crowd movement analysis, and research software development.",
+  "social": {
+   "linkedin": "",
+   "github": "https://github.com/JetteDegenhardt",
+   "orcid": "https://orcid.org/0000-0003-3668-999X",
+   "homepage": "https://www.fz-juelich.de/profile/degenhardt_j",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
+   "url": "https://www.fz-juelich.de/en/ias/ias-7"
+  }
+ },
+ {
+  "name": "Antoine Tordeux",
+  "bio": "Jun.- Prof. Dr. Antoine Tordeux on the complex system of road traffic. Specializes in Applied Mathematics, Traffic Flow, Self-driven particle systems, and Pedestrian Dynamics.",
+  "social": {
+   "linkedin": "",
+   "github": "",
+   "researchgate": "https://www.researchgate.net/profile/Antoine-Tordeux",
+   "orcid": "https://orcid.org/0000-0001-5077-0327",
+   "homepage": "https://www.vzu.uni-wuppertal.de/en/",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "Traffic Safety and Reliability, University of Wuppertal",
+   "url": "https://www.vzu.uni-wuppertal.de/en/"
+  }
+ },
+ {
+  "name": "Ezel Üsten",
+  "bio": "PhD researcher in the division of Pedestrian Dynamics - Social Psychology at IAS-7, specializing in motivation, emotion, and behavior in crowd entrance scenarios.",
+  "social": {
+   "linkedin": "www.linkedin.com/in/ezelusten",
+   "github": "",
+   "orcid": "https://orcid.org/0000-0003-2250-4245",
+   "homepage": "https://www.fz-juelich.de/profile/uesten_e",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
+   "url": "https://www.fz-juelich.de/en/ias/ias-7"
+  }
+ },
+ {
+  "name": "Jana Vacková",
+  "bio": "Assistant Professor at the Department of Applied Mathematics, FIT CTU in Prague. Co-organizer of PED 2025.",
+  "social": {
+   "linkedin": "https://www.linkedin.com/in/jana-vackova-614920b7/?locale=en",
+   "github": "",
+   "orcid": "https://orcid.org/0000-0003-4258-5935",
+   "homepage": "https://fit.cvut.cz/en/faculty/people/18743-jana-vackova",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "Faculty of Information Technology - Czech Technical University in Prague",
+   "url": "https://fit.cvut.cz/en"
+  }
+ },
+ {
+  "name": "Jun Zhang",
+  "bio": "Professor at USTC with focus on pedestrian and evacuation dynamics, encompassing pedestrian modeling, movement analysis techniques, and the study of dynamics in heterogeneous pedestrian flows, with particular attention to the elderly and disabled.",
+  "social": {
+   "linkedin": "",
+   "github": "",
+   "orcid": "https://orcid.org/0000-0002-9505-2027",
+   "homepage": "https://en.sklfs.ustc.edu.cn/2020/0529/c17183a426758/page.htm",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "State Key Laboratory of Fire Science of University of Science and Technology of China",
+   "url": "https://en.sklfs.ustc.edu.cn/main.htm"
+  }
+ }
 ]
