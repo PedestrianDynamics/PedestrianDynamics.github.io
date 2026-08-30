@@ -5,39 +5,33 @@ permalink: /about/
 weight: 999
 ---
 
-## Why This Initiative?
+## About this initiative
 
-We believe our field needs a comprehensive resource platform to allow everyone,
-from experienced and upcoming researcher to undergrad student or crowd
-enthusiasts, to have easy access to:
+Our field lacks a central resource where everyone, from experienced
+researchers to undergraduate students and crowd enthusiasts, can easily find:
 
-- **Open-Access Resources**: A rich collection of software, data sets, project
-  insights, and new articles, open to everyone.
+- **Open-access resources**: Software, data sets, project descriptions, and
+  articles, open to everyone.
 
-- **Model Explanations**: Comprehensive summaries shedding light on various
-  model mechanisms.
+- **Model explanations**: Summaries of pedestrian models and how they work.
 
-- **Software Discussions**: Detailed pages on tools related to pedestrian
-  dynamics.
+- **Software pages**: Descriptions of tools used in pedestrian dynamics.
 
-- **Conference Insights**: Dive deep into post-conference analyses, especially
-  from events like [PED](https://ped23.phys.tue.nl/general-program/) and
-  [TGF](https://tgf2024.sciencesconf.org/), highlighting the latest
-  innovations.
+- **Conference reports**: Summaries of events such as
+  [PED](https://ped23.phys.tue.nl/general-program/) and
+  [TGF](https://tgf2024.sciencesconf.org/).
 
-- **Collaborative Involvement**: We aim to regularly collaborate with peers,
-  inviting them to contribute and share their groundbreaking work.
+- **Contributions from peers**: We invite colleagues to contribute and share
+  their work.
 
-- **Research Group Introductions**: Featuring introductions to active research
-  teams, enhancing collaboration within the pedestrian dynamics community.
+- **Research group introductions**: Presenting active research teams to
+  support collaboration within the community.
 
 We founded PedestrianDynamics.org in the spirit of transparency and openness.
-While we might be the primary editors and hosts, we stress that this platform
-does not represent any private interest or corporate entity. Instead, we want
-it to be a beacon for collective knowledge, collaboration, and advancement in
-pedestrian dynamics.
+We are the editors and hosts, but the platform represents no private or
+corporate interest. It belongs to the pedestrian dynamics community.
 
-**Everyone is welcome to contribute, learn, and expand their horizons.**
+**Everyone is welcome to contribute.**
 
 ## Creators
 
