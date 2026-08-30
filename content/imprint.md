@@ -18,7 +18,7 @@ Wilhelm-Johnen-Straße\
 52428 Jülich\
 Germany
 
-**Contact:** m.chraibi@fz-juelich.de
+**Contact:** m.chraibi [at] fz-juelich.de
 
 ## Responsible for content according to § 18 Abs. 2 MStV
 
