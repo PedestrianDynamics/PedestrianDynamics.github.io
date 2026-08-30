@@ -1,5 +1,5 @@
 ---
-title: Blog
+title: Notes
 type: blog
 toc: false
 weight: 2

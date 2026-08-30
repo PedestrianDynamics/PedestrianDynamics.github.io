@@ -1,0 +1,104 @@
+{{ define "main" }}
+  <style>
+    .blog-list-entry {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 2.25rem 0;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    }
+    .blog-list-entry:last-of-type { border-bottom: none; }
+    .blog-list-text { flex: 1; min-width: 0; }
+    .blog-list-meta {
+      font-size: 0.8125rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      margin-bottom: 0.5rem;
+    }
+    .blog-list-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: inherit;
+      text-decoration: none;
+    }
+    .blog-list-title:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .blog-list-summary { opacity: 0.8; margin-top: 0.75rem; line-height: 1.75; }
+    .blog-list-more {
+      display: inline-block;
+      margin-top: 0.5rem;
+      color: hsl(var(--primary-hue), 100%, 50%);
+      text-decoration: none;
+    }
+    .blog-list-more .arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+    .blog-list-entry:hover .blog-list-more .arrow { transform: translateX(0.35rem); }
+    .blog-list-more:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .blog-list-thumb {
+      flex-shrink: 0;
+      line-height: 0;
+      align-self: center;
+    }
+    .blog-list-thumb img, .blog-list-thumb video {
+      width: 100%;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(128, 128, 128, 0.25);
+    }
+    @media (min-width: 640px) {
+      .blog-list-entry { flex-direction: row; }
+      .blog-list-thumb { width: 18rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .blog-list-more .arrow { transition: none; }
+      .blog-list-entry:hover .blog-list-more .arrow { transform: none; }
+    }
+  </style>
+  {{- $readMore := strings.TrimSpace (strings.TrimSuffix "→" ((T "readMore") | default "Read more")) -}}
+  <div class="hx-mx-auto hx-flex {{ partial `utils/page-width` . }}">
+    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true "displayPlaceholder" true) }}
+    <article class="hx-w-full hx-break-words hx-flex hx-min-h-[calc(100vh-var(--navbar-height))] hx-min-w-0 hx-justify-center hx-pb-8 hx-pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+      <main class="hx-w-full hx-min-w-0 hx-max-w-6xl hx-px-6 hx-pt-4 md:hx-px-12">
+        <br class="hx-mt-1.5 hx-text-sm" />
+        {{ if .Title }}<h1 class="hx-text-center hx-mt-2 hx-text-4xl hx-font-bold hx-tracking-tight hx-text-slate-900 dark:hx-text-slate-100">{{ .Title }}</h1>{{ end }}
+        <div class="content">{{ .Content }}</div>
+        {{- $pages := partial "utils/sort-pages" (dict "page" . "by" site.Params.blog.list.sortBy "order" site.Params.blog.list.sortOrder) -}}
+        {{- range $pages }}
+          {{- $post := . }}
+          {{- $thumb := "" }}
+          {{- with .Params.thumbnail }}{{ $thumb = . }}{{ end }}
+          {{- $res := cond (ne $thumb "") (.Resources.Get $thumb) nil }}
+          <div class="blog-list-entry">
+            <div class="blog-list-text">
+              <p class="blog-list-meta">{{ partial "utils/format-date" .Date }} · {{ .ReadingTime }} min read</p>
+              <h3 style="margin: 0"><a class="blog-list-title" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+              {{- if site.Params.blog.list.displayTags -}}
+                {{ with .Params.tags }}
+                  <p class="hx-opacity-50 hx-text-sm hx-leading-7">
+                    {{- range . }}<a class="hx-inline-block hx-mr-2">#{{ . }}</a>{{ end -}}
+                  </p>
+                {{ end -}}
+              {{- end -}}
+              <p class="blog-list-summary">{{- partial "utils/page-description" . -}}</p>
+              <a class="blog-list-more" href="{{ .RelPermalink }}">{{ $readMore }} <span class="arrow">→</span></a>
+            </div>
+            {{- with $res }}
+              <a href="{{ $post.RelPermalink }}" class="blog-list-thumb">
+                {{- if strings.HasSuffix .Name ".mp4" }}
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="{{ .RelPermalink }}" type="video/mp4">
+                  </video>
+                {{- else }}
+                  <img src="{{ .RelPermalink }}" alt="">
+                {{- end }}
+              </a>
+            {{- end }}
+          </div>
+        {{ end -}}
+      </main>
+    </article>
+    <div class="max-xl:hx-hidden hx-h-0 hx-w-64 hx-shrink-0"></div>
+  </div>
+{{- end -}}

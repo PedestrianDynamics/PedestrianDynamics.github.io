@@ -11,3 +11,5 @@ vendor
 !content/blog/
 !content/blog/**
 !*logo*
+!layouts/blog/
+!layouts/blog/**

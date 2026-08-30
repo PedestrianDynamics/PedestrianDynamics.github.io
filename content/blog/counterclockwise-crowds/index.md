@@ -3,6 +3,7 @@ title: Why do roaming crowds drift counterclockwise — and where?
 date: 2026-06-29
 summary: A Nature Communications paper reports that freely roaming crowds drift counterclockwise. We rebuilt the experiment in simulation to test whether a slight individual left-turn bias explains it.
 math: true
+thumbnail: fig1.mp4
 ---
 
 {{< figure src="fig0.png" >}}
