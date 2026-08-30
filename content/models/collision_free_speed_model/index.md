@@ -20,8 +20,7 @@ obstructing each other. The collision-free speed model takes into account the
 length of the agent, which determines the required space for movement, and the
 maximum achievable speed of the agent.
 
-This simplified and computationally efficient model aims to mirror real-world
-pedestrian behaviors while maintaining smooth movement dynamics.
+The model is simple and computationally efficient.
 
 ## Mathematical description
 
@@ -48,10 +47,6 @@ from neighboring pedestrians, which is calibrated by the repulsion rate and
 distance.
 
 {{< figure src="figure1.png" caption="Calculation of the movement direction" >}}
-
-This mathematical representation ensures that the pedestrians are able to
-adjust their speed and direction based on their interactions with neighboring
-agents, ultimately resulting in a collision-free movement.
 
 $$\mathbf e_i(\mathbf x_i,\mathbf x_j,\ldots)=\frac{1}{N}\left(\mathbf e_0+\sum_j R(s_{i,j})\right)$$
 
@@ -101,30 +96,22 @@ The collision-free speed model depends on five parameters:
 
 ## Limitations of the collision-free speed model
 
-Despite its ability to simulate pedestrian dynamics and replicate real-world
-phenomena, the collision-free speed model has some limitations that should be
-acknowledged.
+The collision-free speed model has some limitations:
 
-- Initially, the model operates on basic assumptions and might not encompass
-  the intricate nuances of real pedestrian actions, particularly with its
-  representation of agents as circles.
-- It overlooks elements like response time and visual interpretation.
-- The model may not represent stop-and-go dynamics in crowded regions or
-  gridlocks aptly, unless manifested in confined bottlenecks with a circular
-  form.
-- The model does not take into account other influencing variables like
-  obstacles or environmental conditions that could impact pedestrian movement.
+- The model rests on simple assumptions. In particular, representing agents as
+  circles cannot capture many details of real pedestrian behavior.
+- It neglects response time and visual perception.
+- Stop-and-go waves and gridlocks are not well reproduced, except in confined
+  circular bottlenecks.
+- Obstacles and environmental conditions that influence pedestrian movement
+  are not part of the model.
 
-Numerous studies have presented different enhancements to the collision-free
-speed-based pedestrian model with the aim of addressing its limitations and
-improving the accuracy of pedestrian simulations. For instance, Xu
-[[2]](#Xu2019) proposed a comprehensive velocity model that takes into
-account wall influence and incorporates velocity-based ellipses for accurate
-distance calculations. Moreover, improvements were made to the direction
-function in order to ensure seamless changes in pedestrian directions during
-simulation. Similarly, other researchers such as [[3]](#Rzezonka2022),
-[[4]](#Zhang2021), and [[5]](#Xu2021) introduced additional refinements to
-enhance the direction function further.
+Several studies extended the model to address these limitations. Xu
+[[2]](#Xu2019) proposed a generalized velocity model that includes wall
+influence, uses velocity-based ellipses for distance calculations, and
+smooths changes of direction. Further refinements of the direction function
+were introduced in [[3]](#Rzezonka2022), [[4]](#Zhang2021), and
+[[5]](#Xu2021).
 
 
 ## Challenges in Implementing Collision Free Speed Models
@@ -134,13 +121,11 @@ by the model is solved as follows:
 
 {{< figure src="figure5.png" caption="Update algorithm" >}}
 
-The implementation of collision-free speed models presents several challenges.
-One challenge is the lack of definition for agent-wall interactions in the
-original model. However, this issue has been tackled by proposed enhancements
-to the model, such as Xu's generalized velocity model. Another challenge lies
-in accurately calibrating the parameters in both the speed and direction
-models. In certain symmetrical scenarios, determining a well-defined direction
-function can be difficult.
+Implementing the model raises several practical questions. The original model
+does not define agent-wall interactions; extensions such as Xu's generalized
+velocity model fill this gap. Calibrating the parameters of the speed and
+direction functions is another difficulty, and in some symmetrical scenarios
+the direction function is not well defined.
 
 ### Isotropical direction influence
 
@@ -152,13 +137,10 @@ influenced by agents from behind them.
 
 ### Balancing Collision Avoidance with Performance: Selecting the Appropriate Time-Step
 
-The continuous definition of the model is proved to be collision-free in any
-situation. However, the discretisation of the model, as often required for
-computational efficiency, can introduce potential collision problems. While the
-speed model has a fast and efficient implementation, it is crucial to select a
-sufficiently small time step when solving the ordinary differential equation
-with Euler scheme in order to ensure that the model remains collision-free.
-Therefore, the model is collision-free in discrete time if
+The continuous model is provably collision-free in any situation. Its
+discretisation, however, can introduce collisions. When solving the ordinary
+differential equation with an Euler scheme, the time step must be small
+enough. The model is collision-free in discrete time if
 
 $$\delta t \le \min\left\\{\frac T2,\frac{l(\sqrt2-1)}{v_0\sqrt2}\right\\}$$
 
@@ -170,9 +152,8 @@ pedestrian shape.
 
 ### Parameter calibration
 
-Additionally, accurately calibrating the repulsion rate and distance in the
-direction model can prove challenging due to variation based on specific
-environmental conditions and crowd dynamics.
+The repulsion rate and distance in the direction model are hard to calibrate,
+since suitable values vary with the environment and the crowd.
 
 
 

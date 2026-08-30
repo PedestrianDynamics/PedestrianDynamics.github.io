@@ -21,23 +21,16 @@ pedestrian movement as the result of forces acting on an individual at any
 given moment. These so-called acceleration-based models calculate the
 acceleration of agents by superposing the forces acting on them.
 
-The movement of pedestrians is influenced by three main forces in the
-Generalized Centrifugal Force Model: the destination driving force, the
-obstacle repulsive force, and the repulsive force between pedestrians. The
-destination driving force propels individuals towards their intended
-destinations, taking into account factors such as distance and desired walking
-speed. On the other hand, the obstacle-repulsive force pushes pedestrians away
-from obstacles to maintain a safe distance from walls or other objects. Lastly,
-the repulsive force between pedestrians prevents collisions among them
+Three main forces act on pedestrians in the Generalized Centrifugal Force
+Model: a driving force that propels individuals towards their destination, a
+repulsive force that keeps them away from walls and other obstacles, and a
+repulsive force between pedestrians that prevents collisions
 [[1]](#Chraibi2010).
 
 The model considers both the distance between pedestrians and their relative
-velocities. Using an elliptical volume exclusion instead of a circular one has
-several advantages. Circular symmetry is inconsistent with the asymmetric space
-requirements of pedestrians in terms of their motion direction and transverse
-to it. As a force-based model, GCFM describes the temporal changes in
-pedestrian movement through the combination of short-range forces acting on
-them simultaneously.
+velocities. An elliptical volume exclusion is used instead of a circular one
+because circular symmetry does not match the asymmetric space requirement of
+pedestrians in the direction of motion and transverse to it.
 
 
 ## Mathematical description
@@ -82,11 +75,8 @@ $$\vec{F}_i^{\mathrm{drv}}=m_i \frac{\overrightarrow{v_i^0}-\overrightarrow{v_i}
 
 #### Pedestrian-pedestrian repulsive force
 
-The pedestrian-pedestrian repulsive force in the Generalized Centrifugal Force
-Model is defined as the force that prevents collisions between pedestrians. By
-considering the repulsive force between pedestrians, the Generalized
-Centrifugal Force Model ensures that individuals maintain a safe distance from
-each other.
+The repulsive force between pedestrians prevents collisions and keeps
+individuals at a distance from each other:
 
 $${\overrightarrow{F\_{i,j}}}\_{\text {rep }}=-m_i k\_{i j} \frac{\left(\eta\left\|\overrightarrow{v\_i^0}\right\|+v\_{i j}\right)^2}{d\_{i j}} \overrightarrow{e\_{i j}},$$
 
@@ -102,12 +92,10 @@ $$k_{i j}=\frac{1}{2} \frac{\overrightarrow{v_i} \cdot \overrightarrow{e_{i j}}+
 
 #### Pedestrian-wall repulsive force
 
-In the Generalized Centrifugal Force Model, the repulsive force between
-pedestrians and walls represents the force that propels pedestrians away from
-walls and other fixed structures. For a pedestrian labeled as $i$, this
-repulsive force is nullified when $i$ moves parallel to the wall. However,
-while this force behavior is accurate, it results in minimal repulsion when the
-pedestrian's trajectory is nearly aligned with the wall.
+The repulsive force between pedestrians and walls pushes pedestrians away
+from walls and other fixed structures. For a pedestrian $i$, this force
+vanishes when $i$ moves parallel to the wall, which leaves almost no
+repulsion when the trajectory is nearly aligned with the wall.
 
 For this reason, we characterize in this model walls by three-point masses
 acting on pedestrians within a certain interaction range.

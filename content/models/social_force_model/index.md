@@ -19,7 +19,7 @@ The driving force defines the force that propels pedestrians towards their inten
 $$ \overrightarrow{F_i^{\mathrm{drv}}}=\frac{v_i^0\overrightarrow{e_i^0} - \overrightarrow{v_i}}{\tau}$$
 * $v_i^0$ is the desired speed
 * $\overrightarrow{e_i^0}$ is the desired direction
-* $\overrightarrow{v_i}$ is the currect velocity
+* $\overrightarrow{v_i}$ is the current velocity
 * $\tau$ is the reaction time
 
 {{< figure src="Driving_Force.png" caption="Driving Force acting on an agent." width="500" >}}
@@ -29,7 +29,7 @@ The driving force of the agent results from the difference between the desired v
 
 
 ## Repulsive force
-Agents exert an exponentially increasing repulsive force on each other as their proximity decreases. Upon collision, not only do the pushing forces intensify further, but a frictional force also arises. This frictional force acts perpendicularly to the repulsive force, aligning with the direction of the difference in speed
+Agents exert a repulsive force on each other that grows exponentially as they get closer. When agents collide, the pushing force increases further and a frictional force arises in addition. The frictional force acts perpendicularly to the repulsive force, in the direction of the velocity difference
 
 $$ \overrightarrow{F\_i^{\mathrm{rep}}} = \sum_{j} \overrightarrow{f_{ij}}\text{.}$$
 
@@ -49,7 +49,7 @@ $g(x)~=~\begin{cases} x \text{ if } x > 0 \\ \text{ else } 0 \end{cases}$
 
 {{< figure src="Pushing_Agents.png" caption="Direction of repulsive forces acting on an agent." width="500">}}
 
-The repulsive force of the agents acts from the originating agent towards the agent on which the forces act. When their distance greater than their combined radius no other forces apply.
+The repulsive force of the agents acts from the originating agent towards the agent on which the forces act. When their distance is greater than their combined radius, no other forces apply.
 
 {{< figure src="Sliding_Agent_Forces.png" caption="Direction of the pushing and frictional forces acting on colliding agents.">}}
 
@@ -58,7 +58,7 @@ If the distance between two agents is smaller than their combined radius, the ag
 ## Obstacle force
 Obstacles exert a force on the agent similar to a static agent.
 Each line segment of an obstacle exerts force on the agent.
-The repulsive force is increases exponentially with decreasing distance. When the agent collides with the segment the repulsive forces are increased additionally. When colliding, a frictional force also occurs, which acts orthogonally to the repulsive force in the direction to the velocity of the agent
+The repulsive force increases exponentially with decreasing distance. When the agent collides with the segment, the repulsive force increases further. When colliding, a frictional force also occurs, which acts orthogonally to the repulsive force in the direction to the velocity of the agent
 
 $$ \overrightarrow{F\_i^{\mathrm{obst}}} = \sum_{o} \overrightarrow{f_{io}\text{.}}$$
 
@@ -82,7 +82,7 @@ $$\phantom{.........}\fbox{\phantom{..................} pushing \phantom{.......
 
 {{< figure src="Pushing_Obstacle_Force.png" caption="Direction of repulsive forces acting on an agent." width="650">}}
 
-the repulsive force originating from a segment of an obstacle acts from the point on the wall segment that is closest to the agent. This point is marked in magenta in the illustration above.
+The repulsive force originating from a segment of an obstacle acts from the point on the wall segment that is closest to the agent. This point is marked in magenta in the illustration above.
 
 {{< figure src="Sliding_Obstacle_Force.png" caption="Direction of the pushing and frictional forces acting on agents colliding with an obstacle segment."  width="800">}}
 
@@ -95,7 +95,7 @@ $$ \overrightarrow{v\_{\mathrm{new}}} = \overrightarrow{v\_i} + [\overrightarrow
 and position
 $$ \overrightarrow{\mathrm{pos}\_{\mathrm{new}}} = \overrightarrow{\mathrm{pos}\_i} +  \overrightarrow{v\_{\mathrm{new}}} \cdot \delta T \text{.}$$
 
-Here $m\_i$  denotes the mass of $i$ and $\delta T$ denotes the length one simulation iteration.
+Here $m\_i$ denotes the mass of $i$ and $\delta T$ the length of one simulation iteration.
 
 ## Default values
 <a name="Default_values"></a>

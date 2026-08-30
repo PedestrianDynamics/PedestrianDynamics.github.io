@@ -10,7 +10,7 @@ This anticipation process is structured into three components: perception of the
 
 Similar to the Collision-Free Speed Model, the direction in which an agent moves is determined through an **anisotropic** combination of exponential repulsion from nearby agents within its vision field. However, the strength of this repulsion is influenced by the predicted distance to others in the surroundings, rather than the actual distance used in the Collision-Free Speed Model.
 
-The calculation of the speed is completely the same as the collision-free speed model. Agents adjust their speed according to the nearest neighbor in their headway, allowing them to navigate through congested areas without overlapping or obstructing each other. 
+The calculation of the speed is identical to that of the collision-free speed model. Agents adjust their speed according to the nearest neighbor in their headway, allowing them to navigate through congested areas without overlapping or obstructing each other. 
 
 The anticipation mechanism incorporated in the AVM enables it to reproduce lane formation in bidirectional flow scenarios more realistically than the Collision-Free Speed Model. Additionally, the AVM is more effective in preventing jamming in such scenarios and offers improved accuracy in reproducing the fundamental diagram.
 
@@ -126,7 +126,7 @@ The anticipation velocity model depends on seven parameters:
 
 ## Limitations of the anticipation velocity model
 
-Despite the AVM demonstrating superior performance in bidirectional flow scenarios compared to traditional models such as the collision-free speed model (CSM), there are still notable limitations:
+The AVM performs better than the collision-free speed model (CSM) in bidirectional flow scenarios, but it still has limitations:
 
 **Realism Gap:** Although the AVM represents an improvement over the CSM, it does not fully capture real-world pedestrian behavior. While the model incorporates anticipation, it overlooks key aspects of human interactions, such as cooperation, pushing, and waiting, which are prevalent in high-density crowds. Consequently, the AVM faces challenges in accurately representing extreme crowd dynamics. For instance, in scenarios with very high pedestrian densities and multi-directional flows, gridlock can still occur.
 
@@ -144,12 +144,12 @@ However, in the [JuPedSim](https://www.jupedsim.org/stable/pedestrian_models/ind
 {{< youtube iY_mQdB0fdE >}}    
 
 
-Importantly, walls do not affect the speed of agents—only their direction. Agents glide along walls by subtly adjusting their trajectory while preserving their intended movement as much as possible. This influence transitions smoothly as agents move closer to or farther from the wall, ensuring realistic and continuous behavior near boundaries.
+Walls do not affect the speed of agents, only their direction. Agents glide along walls by adjusting their trajectory while preserving their intended movement as much as possible. The wall influence changes smoothly with the distance to the wall, so behavior near boundaries stays continuous.
 
 ## Using the anticipation velocity model with JuPedSim 
 The anticipation velocity model has also been implemented and tested using the [JuPedSim](https://github.com/PedestrianDynamics/jupedsim) software platform (`VelocityModelBuilder`). 
 
-Following table summarize the parameters of the model and their naming.
+The following table summarizes the parameters of the model and their naming.
 
 | Parameter Description                     | Variable Name |
 | ----------------------------------------- | ------------- |
