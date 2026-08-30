@@ -118,8 +118,8 @@ such as:
   directions.
 
 {{<
-    figure
-    src="images/lane-formation.gif"
+    video
+    src="images/lane-formation.mp4"
     caption="Spontaneous emergence of lane formation in a bi-directional flow"
 >}}
 
@@ -140,8 +140,8 @@ such as:
   two states — motion and halt — creating waves of movement.
 
 {{<
-    figure
-    src="images/stop-go.gif"
+    video
+    src="images/stop-go.mp4"
     caption="Emergence of stop-and-go waves in a system with closed boundary conditions"
 >}}
 
@@ -198,8 +198,8 @@ proposes integrating social psychology with natural sciences, suggesting three
 categories for study: phenomena, behavior, and action.
 
 {{<
-    figure
-    src="images/interaction.gif"
+    video
+    src="images/interaction.mp4"
     caption="Experimental study on entrance to a bottleneck."
 >}}
 
@@ -255,8 +255,8 @@ Nevertheless, their controlled nature provided invaluable insights and set a
 benchmark for further studies in the field.
 
 {{<
-    figure
-    src="images/experiments.gif"
+    video
+    src="images/experiments.mp4"
     caption="Experiments under laboratory conditions. See [IAS-7 Data Archive](https://ped.fz-juelich.de/db)"
 >}}
 
@@ -289,8 +289,8 @@ instances for statistical analyses. This has been achieved e.g. representing
 experimental data in terms of graphs.
 
 {{<
-    figure
-    src="images/voronoi-moving.gif"
+    video
+    src="images/voronoi-moving.mp4"
     caption="Identified silhouettes of individuals in transit and their associated Voronoi diagrams. [Source](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.98.062310)"
 >}}
 

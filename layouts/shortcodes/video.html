@@ -1,0 +1,6 @@
+<figure>
+    <video autoplay loop muted playsinline preload="metadata" style="max-width: 100%">
+        <source src="{{ .Get "src" | relURL }}" type="video/mp4">
+    </video>
+    {{ with .Get "caption" }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+</figure>
