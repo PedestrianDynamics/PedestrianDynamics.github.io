@@ -7,45 +7,34 @@ cascade:
 
 ## Basic questions and applications
 
-Understanding the dynamics of pedestrian movement is of paramount significance
-due to the intricate nature of human crowd behavior. This field delves into the
-complex flow of crowds, a phenomenon that exhibits emergent complexity across
-various scales. Physics offers a versatile framework for interpreting and
-modeling crowd dynamics, enabling insights into their behavior at different
-lengthscales and timescales. Central to this study is the composition of the
-crowd, which plays a pivotal role in unraveling the intricacies of pedestrian
-dynamics.
+Pedestrian dynamics studies how people move in crowds. Crowd flow shows
+emergent behavior on many length and time scales, and physics provides useful
+tools to describe and model it. The composition of the crowd matters as well:
+who is walking, with whom, and for what purpose all influence how a crowd
+moves.
 
 {{< figure
     src="images/crowd.webp"
     caption="Image design: Panar Ege Uesten."
 >}}
 
-At first glance, the research in Pedestrian Dynamics may seem like the
-exploration of ordinary flows of people in crowded places. However, beneath the
-surface lies a fascinating and challenging science that addresses three
-important pillars of our society that make it important to both scientists and
-stakeholders: Improving **transport systems** in accordance with **safety** and
-**comfort**.
+The field matters to scientists and practitioners alike because it addresses
+three concerns of everyday life: efficient **transport systems**, **safety**,
+and **comfort**.
 
 ### Transportation Improvement
 
-Effortless movement of people within high-traffic infrastructure facilities
-such as train stations and airports is a hallmark of pedestrian dynamics. This
-discipline offers valuable perspectives for enhancing the efficiency of these
-vital transit points. As urban centers experience population growth,
-comprehending pedestrian behavior in these environments becomes indispensable
-in crafting well-functioning transportation systems. Crucial metrics, including
-the flow of individuals through bottlenecks and a facility's capacity to
-evacuate per hour, empower us to optimize movement, alleviating congestion and
-promoting sustainable urban mobility. One of the foundational aspects of this
-understanding is the fundamental diagram, which represents the relationship
-between these quantities. A notable reference on this topic is [75 Years of the
-Fundamental Diagram for Traffic Flow Theory: Greenshields
-Symposium](https://www.trb.org/Publications/Blurbs/165625.aspx), which provides
-in-depth insights into the history, latest developments, and practical
-applications of traffic flow theory, backed by empirical data and simulation
-studies.
+Train stations and airports work well when people can move through them
+easily. As cities grow, understanding how pedestrians behave in such
+facilities becomes essential for designing transportation systems that
+function. Quantities such as the flow through a bottleneck or the number of
+people a facility can evacuate per hour help planners reduce congestion and
+support sustainable urban mobility. A basic tool here is the fundamental
+diagram, which relates density, speed, and flow. A good reference on this
+topic is [75 Years of the Fundamental Diagram for Traffic Flow Theory:
+Greenshields Symposium](https://www.trb.org/Publications/Blurbs/165625.aspx),
+covering the history, developments, and practical applications of traffic flow
+theory.
 
 {{<
     figure
@@ -57,13 +46,10 @@ Further reading on the fundamental diagram is found in this dissertation:
 [Pedestrian fundamental diagrams: Comparative analysis of experiments in
 different geometries](https://juser.fz-juelich.de/record/128157)
 
-Moreover, the scope of pedestrian dynamics extends beyond these spaces and
-includes scenarios in the context of large events. The arrival and departure
-process of thousands of event visitors is a complex system consisting of
-different stages and thus of different behaviors like waiting in queues.
-Understanding how pedestrians queue and quantify the time it takes for queues
-to be processed provides valuable insights for managing crowd flow, ensuring
-smooth and enjoyable experiences at various gatherings.
+Pedestrian dynamics also applies to large events. The arrival and departure of
+thousands of visitors happens in stages, each with its own behavior, such as
+waiting in queues. Knowing how pedestrians queue, and how long queues take to
+clear, helps organizers keep crowds moving.
 
 {{<
     figure
@@ -71,28 +57,17 @@ smooth and enjoyable experiences at various gatherings.
     caption="[Photo](https://unsplash.com/photos/aerial-photography-of-people-Nzb4LBsctyQ) by [Hal Gatewood](https://unsplash.com/@halacious) on [Unsplash](https://unsplash.com)"
 >}}
 
-This broader scope underlines the versatile application of pedestrian dynamics,
-enriching our ability to design spaces and processes that accommodate diverse
-human movement patterns efficiently.
-
 ### Safety and Comfort
 
-Safety and comfort are the cornerstones of any environment. Pedestrian Dynamics
-explores intricate balance between these elements, guiding us toward designs
-that prioritize the well-being of individuals. Through meticulous analysis, we
-can identify potential bottlenecks, hazardous areas, and evacuation strategies,
-ensuring the safety of crowds in emergencies. Moreover, optimizing pedestrian
-flow enhances the overall comfort of public spaces, transforming them into
-inviting spaces that offer positive experiences for everyone.
+Analyzing pedestrian movement helps identify bottlenecks, hazardous areas, and
+workable evacuation strategies, so that crowds stay safe in emergencies. The
+same analysis improves comfort: public spaces with smooth pedestrian flow are
+more pleasant to use.
 
-In the domain of crowd dynamics research, the assessment of the "perception of
-safety and security" within crowded settings constitutes a central focus. This
-endeavor fundamentally revolves around how crowd members perceive these
-essential attributes. Crowd dynamics researchers bear the responsibility of
-devising tools and methodologies to evaluate these qualitative perceptions,
-potentially quantifying them while striving for objectivity. The aim is to
-capture these perceptions with a high degree of accuracy, reflecting the
-genuine sentiments of individuals.
+How safe people *feel* in a crowd is a research topic of its own. Perceived
+safety is subjective, so researchers develop tools and methods to measure it
+as objectively as possible and to capture how crowd members actually
+experience a situation.
 
 {{<
     figure
@@ -100,22 +75,17 @@ genuine sentiments of individuals.
     caption="[Photo](https://unsplash.com/photos/people-standing-and-walking-on-stairs-in-mall-mVhd5QVlDWw) by [Anna Dziubinska](https://unsplash.com/@annadziubinska) on [Unsplash](https://unsplash.com/)"
 >}}
 
-## Collective Phenomena: Where Individuals Converge to Form Communities
+## Collective phenomena
 
-Pedestrian dynamics fundamentally delve into collective phenomena, which
-manifest through a rich tapestry of psychological and sociological
-interactions. One core question that underpins the social dimension of
-pedestrian dynamics is: *How do individuals unite to form the collective
-crowd?* This multifaceted query embodies not only social interactions but also
-behaviors, emotions, and cultural nuances, further compounded by variations
-across different social groups.
+Collective phenomena emerge when many individuals interact. A central question
+in pedestrian dynamics is how individuals form a crowd. Answering it involves
+social interactions, behavior, emotions, and culture, and the answer differs
+between social groups.
 
-Specifically, pedestrian dynamics give rise to certain collective phenomena,
-such as:
+Typical collective phenomena in pedestrian crowds include:
 
-- **Lane Formation**: This occurs in bidirectional pedestrian streams, where
-  individuals spontaneously form lanes to streamline their movement in opposing
-  directions.
+- **Lane Formation**: In bidirectional streams, pedestrians spontaneously form
+  lanes, which reduces friction between the opposing directions.
 
 {{<
     video
@@ -123,11 +93,9 @@ such as:
     caption="Spontaneous emergence of lane formation in a bi-directional flow"
 >}}
 
-- **Clogging at Bottlenecks**: Recognized by the jamming arch of multiple
-  interacting individuals or particles near a bottleneck, clogging
-  significantly reduces, or even halts, flow. This phenomenon arises
-  predominantly when entities navigate through narrow constrictions, as often
-  seen in crowded places.
+- **Clogging at Bottlenecks**: Near a narrow passage, several people (or
+  particles) can form an arch that jams the opening and reduces, or even
+  stops, the flow.
 
 {{<
     figure
@@ -135,9 +103,9 @@ such as:
     caption="Clogging in a bottleneck"
 >}}
 
-- **Stop-and-Go Waves**: A distinct behavior observed in congested systems,
-  such as traffic or densely packed crowds. Here, entities fluctuate between
-  two states — motion and halt — creating waves of movement.
+- **Stop-and-Go Waves**: In congested crowds, as in vehicle traffic, people
+  alternate between moving and standing, and these fluctuations travel through
+  the crowd as waves.
 
 {{<
     video
@@ -145,12 +113,8 @@ such as:
     caption="Emergence of stop-and-go waves in a system with closed boundary conditions"
 >}}
 
-Comprehending these dynamics equips us to better understand and subsequently
-influence crowd behaviors, paving the path for advanced crowd management
-techniques. Whether it's an enthralled crowd at a football match, a harmonious
-gathering at a music festival, or a bustling train station teeming with
-purpose-driven individuals, pedestrian dynamics shed light on the intricate
-webs of human interaction that unfold in myriad ways around us.
+Understanding these phenomena is the basis for crowd management, whether at a
+football match, a music festival, or a train station.
 
 For further reading see this
 [review](https://link.springer.com/article/10.1007/s10489-023-04924-7) on
@@ -203,8 +167,8 @@ categories for study: phenomena, behavior, and action.
     caption="Experimental study on entrance to a bottleneck."
 >}}
 
-What is interesting to note is that many aspects related to interactions and
-relationships within a crowd follow exponential laws. Distance thresholds
+Many aspects of interactions and relationships within a crowd follow
+exponential laws. Distance thresholds
 defined to characterize different degrees of personal space usually grow larger
 and larger the less familiar we are with someone. A distance of a few
 centimeters can create a different feeling in a packed train, but it takes a
@@ -243,16 +207,14 @@ data collection efforts.
 
 ### Experiments
 
-In the early 2000s, laboratory investigations emerged as a leading method,
-involving participants walking within controlled environments overseen by
-experimenters. These experiments employed colored vests and helmets, which not
-only added a systematic approach but also greatly enhanced tracking accuracy.
-While these controlled environments excelled in accurately defining
-experimental conditions such as density, geometry, and emotional states, they
-did face challenges such as limited statistical significance stemming from
-volunteer constraints, time limitations, and potential psychological biases.
-Nevertheless, their controlled nature provided invaluable insights and set a
-benchmark for further studies in the field.
+In the early 2000s, laboratory experiments became a leading method:
+participants walk through controlled setups under the supervision of
+experimenters, often wearing colored vests and helmets that make tracking
+easier and more accurate. Controlled settings allow precise definition of
+conditions such as density, geometry, and even emotional state. Their limits
+are the small number of volunteers, restricted time, and possible
+psychological bias. Even so, laboratory data remain a benchmark for the
+field.
 
 {{<
     video
@@ -262,12 +224,11 @@ benchmark for further studies in the field.
 
 ### Field observations
 
-Conversely, field observation  enable continuous data collection throughout the
-year, providing insights into Pedestrian Dynamics beyond average behaviors. For
-example, virtual reality technology has been proven useful to explore several
-aspects related to pedestrian movement and behavior given its low cost and high
-experimental control. Research efforts are ongoing for the systematic
-comparison of Pedestrian Dynamics in real and virtual worlds.
+Field observations, in contrast, allow continuous data collection throughout
+the year and capture behavior beyond the average case. Virtual reality has
+also proven useful for studying pedestrian movement and behavior, thanks to
+its low cost and high experimental control; how well findings from virtual
+worlds transfer to real ones is an ongoing research question.
 
 {{<
     figure
@@ -275,18 +236,14 @@ comparison of Pedestrian Dynamics in real and virtual worlds.
     caption="Real-life anonymous pedestrian tracking in the train station of Eindhoven (NL). [Source](https://research.tue.nl/en/publications/continuous-measurements-of-real-life-bidirectional-pedestrian-flo)"
 >}}
 
-Recent technologies, often hinged in machine learning and computer vision,
-allow real-time and accurate tracking in these settings. Real-life tracking
-opens the possibility of collecting and analyzing datasets with sample sizes
-unimaginable in any other measurement conditions (millions of trajectories can
-be easily collected by crowd tracking in public locations adopting a 24/7
-schedule). Real-life data collection comes with its challenges: data can
-exhibit wide variations in terms of experimental parameters that, more often
-than not, cannot be imposed. Crowd density, flow direction, and group presence,
-that in laboratories can be imposed, in real-life become random variables.
-Analyzing such diverse scenarios requires selecting and aggregating similar
-instances for statistical analyses. This has been achieved e.g. representing
-experimental data in terms of graphs.
+Machine learning and computer vision now allow accurate real-time tracking in
+such settings. Tracking crowds around the clock in public locations yields
+sample sizes out of reach for any other method: millions of trajectories.
+The challenge is that conditions cannot be imposed. Crowd density, flow
+direction, and the presence of groups, all controllable in the laboratory,
+become random variables in real life. Statistical analysis then requires
+selecting and aggregating similar instances, for example by representing the
+data as graphs.
 
 {{<
     video
@@ -296,11 +253,10 @@ experimental data in terms of graphs.
 
 ### Modeling
 
-Mathematical and physics models have evolved through insights from laboratory
-and qualitative studies. Earlier qualitative models played a pivotal role in
-exploring human crowd phenomena and suggesting the feasibility of quantitative
-modeling. Alongside these, data-based models utilizing machine learning
-techniques have gained popularity.
+Mathematical and physical models have evolved from laboratory and qualitative
+studies. Early qualitative models helped explore crowd phenomena and showed
+that quantitative modeling is feasible. More recently, data-based models using
+machine learning have gained popularity.
 
 Pedestrian dynamics modeling can be broken down based on the scale of
 application: strategic (which deals with route and departure choices in
@@ -352,23 +308,17 @@ modeling approach, and fidelity. Other specific models include:
 - **Agent-based Models**: Treat pedestrians as individual agents, using a
   detailed set of parameters to model their behaviors.
 
-In essence, the modeling of pedestrian dynamics is multifaceted, encompassing a
-range of approaches that differ based on scale, detail, and the specific
-behaviors they aim to capture.
+The approaches differ in scale, detail, and the behaviors they aim to
+capture.
 
-Emphasizing the significance of model validation, this
-[paper](https://link.springer.com/chapter/10.1007/978-3-540-79992-4_77) centers
-on the fundamental diagram—a key concept linking density to flow or velocity in
-crowd dynamics. Despite its importance, diverse sources and experiments present
-varying interpretations of this diagram. The paper investigates these variances
-and suggests that differences in measurement approaches can yield divergent
-results. By analyzing experimental trajectories, the research offers insights
-into how these methodologies influence the depiction of the fundamental
-diagram.
+Models need validation. This
+[paper](https://link.springer.com/chapter/10.1007/978-3-540-79992-4_77)
+examines why different sources and experiments report different fundamental
+diagrams and shows, by analyzing experimental trajectories, that the
+measurement method itself influences the result.
 
-A comprehensive review and insightful critique of mathematical studies on
-modeling and simulating human crowds with an emphasis on behavioral dynamics
-can be found in
+A review and critique of mathematical studies on modeling and simulating human
+crowds, with an emphasis on behavioral dynamics, can be found in
 [Bellomo2023](https://link.springer.com/article/10.1007/s10489-023-04924-7).
 
 These three approaches—simulations, experiments under laboratory conditions,
@@ -378,8 +328,7 @@ increasingly employed to validate and fine-tune simulation models.
 
 ## Further reading
 
-For those keen on a deeper exploration of the topic, several review articles
-offer extensive insights.
+Several review articles offer a deeper look at the field.
 
 {{<
     figure
@@ -387,43 +336,34 @@ offer extensive insights.
     caption="[Photo](https://unsplash.com/photos/people-inside-library-1mwPOXb_pB8) by [Benjamin Ashton](https://unsplash.com/@bashton) on [Unsplash](https://unsplash.com)"
 >}}
 
-The article by
 [Haghani2023](https://www.sciencedirect.com/science/article/pii/S0925753523002345?via%3Dihub)
-dives into contemporary challenges related to the Swiss Cheese Model of Crowd
-Safety, detailing its layers and the intricacies of its implementation.
-Moreover, it promotes the idea of a global Vision Zero target in crowd safety
-and accentuates the need for strengthening stakeholder collaboration.
+discusses current challenges in crowd safety through the Swiss Cheese Model,
+argues for a global Vision Zero target, and calls for closer collaboration
+between stakeholders.
 
-Shifting the lens to the inherent behaviors of human crowds, [Physics of Human
-Crowds](https://doi.org/10.1146/annurev-conmatphys-031620-100450) examines the
-universality of these behaviors, transcending individual nuances or crowd
-densities. The authors channel physics methodologies to unlock a deeper
-understanding of pedestrian dynamics, striving for urban environments that
-prioritize safety.
+[Physics of Human
+Crowds](https://doi.org/10.1146/annurev-conmatphys-031620-100450) reviews
+crowd behaviors that appear universally, independent of individual differences
+or crowd density, and shows how methods from physics contribute to
+understanding pedestrian dynamics.
 
-In the realm of crowd management, [What Is Crowd
-Management?](https://doi.org/10.1007/978-3-030-90012-0_1) presents an
-articulate definition, distinguishing the subtleties between management and
-control of crowds. The strategies underlined in this piece harmonize the two
-imperatives of safety and comfort.
+[What Is Crowd Management?](https://doi.org/10.1007/978-3-030-90012-0_1)
+defines the term, distinguishes crowd management from crowd control, and
+presents strategies that address both safety and comfort.
 
-Further enriching this body of knowledge is a
-[paper](https://collective-dynamics.eu/index.php/cod/article/view/A141) that
-showcases experiments with a sample size nearing 1000 participants. The goal?
-To unearth physical and social-psychological theories revolving around
-behaviors witnessed at railway stations and the corresponding crowd management
-techniques.
+A [data guidance
+paper](https://collective-dynamics.eu/index.php/cod/article/view/A141)
+documents crowd management experiments with nearly 1000 participants,
+motivated by physical and social-psychological theories of behavior at
+railway stations.
 
-For those navigating the academic jargon, an
-[article](https://collective-dynamics.eu/index.php/cod/article/view/A19) serves
-as a beacon, elucidating terms that find frequent mention in human crowd
-research.
+A [glossary
+article](https://collective-dynamics.eu/index.php/cod/article/view/A19)
+explains terms that appear frequently in human crowd research.
 
-Concluding this list, a comprehensive
-[review](https://doi.org/10.1007/978-3-030-05129-7_4) marries empirical and
-theoretical pedestrian dynamics studies, spotlighting the pivotal role
-empirical results play in the calibration and validation of nuanced pedestrian
-models.
+Finally, a [review](https://doi.org/10.1007/978-3-030-05129-7_4) connects
+empirical and theoretical pedestrian dynamics studies and shows how empirical
+results are used to calibrate and validate pedestrian models.
 
 ## References
 
