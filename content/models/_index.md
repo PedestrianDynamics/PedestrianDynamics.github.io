@@ -1,6 +1,6 @@
 ---
 title: Pedestrian Models
-weight: 4
+weight: 3
 toc: false
 ---
 

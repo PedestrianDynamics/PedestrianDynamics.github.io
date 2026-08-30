@@ -1,7 +1,7 @@
 ---
 title: Academic Update
 toc: false
-weight: 5
+weight: 1
 ---
 
 "Academic Update" is a curated source for the latest happenings in the academic world. From concise overviews of recent conferences to summaries of newly published papers and notable scholarly trends, this space is dedicated to keeping you informed about the ongoing conversations and discoveries in the fields around pedestrian dynamics. Whether you're in academia or simply have an interest in its progress, "Academic Update" provides a straightforward snapshot of the intellectual developments around us.

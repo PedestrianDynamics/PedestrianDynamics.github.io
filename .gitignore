@@ -5,3 +5,9 @@ _site
 .DS_Store
 vendor
 .idea
+.gstack/
+
+# re-include paths matched by global *log* rule
+!content/blog/
+!content/blog/**
+!*logo*
