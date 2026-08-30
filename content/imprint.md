@@ -12,8 +12,6 @@ Information according to § 5 DDG.
 ## Operator of this website
 
 Mohcine Chraibi\
-Forschungszentrum Jülich GmbH\
-Institute for Advanced Simulation (IAS-7)\
 Wilhelm-Johnen-Straße\
 52428 Jülich\
 Germany
