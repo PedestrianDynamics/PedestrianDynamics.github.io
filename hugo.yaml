@@ -35,7 +35,7 @@ params:
     width: wide
 
   footer:
-    displayCopyright: false
+    displayCopyright: true
     displayPoweredBy: false
 
   displayUpdatedDate: true
