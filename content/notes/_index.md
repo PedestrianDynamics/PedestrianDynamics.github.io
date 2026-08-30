@@ -1,6 +1,7 @@
 ---
 title: Notes
 type: blog
+aliases: [/blog/]
 toc: false
 weight: 2
 ---

@@ -3,6 +3,7 @@ title: Why don't airlines board planes the optimal way?
 date: 2026-06-12
 summary: The mathematically optimal boarding method has existed since 2008. We rebuilt the classic studies in JuPedSim to see why it stays on paper.
 math: true
+aliases: [/blog/airplane-boarding/]
 thumbnail: fig1.mp4
 ---
 
