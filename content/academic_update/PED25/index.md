@@ -46,7 +46,7 @@ In addition to the opening and closing social gatherings, the conference program
 
 The [**13th PED conference**](https://ped2027.tsinghua.edu.cn/) will be hosted by Tsinghua University in Beijing, China, in 2027.
 
-Now, three years after being given the opportunity to host PED, and almost one year after the conference, the journey for us as organizers ends with the proceedings publication and the writing of this report. We believe that thanks to the PED community, the valuable contributions, and the nice atmosphere among the participants, PED 2025 became a great and memorable event.
+Now, three years after being given the opportunity to host PED, and almost one year after the conference, the journey for us as organizers ends with the publication of the [**proceedings in Acta Polytechnica CTU Proceedings**](https://ojs.cvut.cz/ojs/index.php/APP/issue/view/934) — 42 papers, open access — and the writing of this report. We believe that thanks to the PED community, the valuable contributions, and the nice atmosphere among the participants, PED 2025 became a great and memorable event.
 
 {{< icon "pencil-alt" >}} By:
 [Pavel Hrabák]({{< relref "/authors#PavelHrabák" >}}),
