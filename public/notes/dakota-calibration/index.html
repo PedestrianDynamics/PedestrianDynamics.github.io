@@ -32,7 +32,7 @@
   <meta itemprop="description" content="Validation is the step everyone agrees on and few do. We took an open bottleneck experiment, an open model and an open calibration toolkit, and ran the whole procedure, from screening to held-out validation, in a way anyone can repeat.">
   <meta itemprop="datePublished" content="2026-09-05T00:00:00+00:00">
   <meta itemprop="dateModified" content="2026-09-05T00:00:00+00:00">
-  <meta itemprop="wordCount" content="3974">
+  <meta itemprop="wordCount" content="4095">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="How do you validate a pedestrian model against real data?">
   <meta name="twitter:description" content="Validation is the step everyone agrees on and few do. We took an open bottleneck experiment, an open model and an open calibration toolkit, and ran the whole procedure, from screening to held-out validation, in a way anyone can repeat.">
@@ -303,9 +303,9 @@
             </li>
           <li>
               <a
-                href="#why-openness-is-the-method-here"
+                href="#a-note-on-open-source-software"
                 class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
-              >Why openness is the method here</a>
+              >A note on open-source software</a>
             </li>
           <li>
               <a
@@ -647,7 +647,7 @@
         </a>
       </li>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#why-openness-is-the-method-here">Why openness is the method here
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#a-note-on-open-source-software">A note on open-source software
         </a>
       </li>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
@@ -917,7 +917,86 @@ responses
 
 <p>The Hermes parameters produce a semicircle, but a thin one: peak densities around 6 per square metre where the experiment reaches 10, and an entrance flow of 1.3 persons per second where the crowd, pushing to be first, achieved 0.6. The model is too polite and too fast: it does not reproduce the pressure that makes the real entrance slower than an orderly queue would be. The CrowdQueue parameters, with their weak wall repulsion, fail outright: in every seed the crowd pushes an agent through the entrance wall and the simulation stops. The joint parameters land in between and, tellingly, not in one place: two seeds drain the crowd at 1.2 persons per second and one clogs after 63, so the average of 0.9 is an average of two different behaviours.</p>
 <h2>What changed between the calibrations, and what it means for simulations<span class="hx-absolute -hx-mt-20" id="what-changed-between-the-calibrations-and-what-it-means-for-simulations"></span>
-    <a href="#what-changed-between-the-calibrations-and-what-it-means-for-simulations" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>It is worth being plain about what happened to the &ldquo;calibrated model&rdquo; over the course of this note. After Hermes we had a parameter set that reproduced flow, density and speed at five bottleneck widths, two of them unseen, to within ten percent. That set clogged at a half-metre gate in three quarters of the CrowdQueue runs. The set calibrated on CrowdQueue reached the gate flow in wide corridors, stalled in narrow ones, could not reproduce a motivated crowd, and pushed agents through walls at the unguided entrance. The joint calibration on Hermes and CrowdQueue together, the single best compromise Dakota could find, overshoots the Hermes flow by 15 to 25 % at four of five widths, clogs in four of the CrowdQueue runs, and is bimodal at the entrance. There is no parameter set for this model that covers both regimes; the compromise is worse than either specialist in its own regime. The one parameter that was actually measured, the free speed, was the one the optimizer most wanted to change.</p>
+    <a href="#what-changed-between-the-calibrations-and-what-it-means-for-simulations" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>The parameter sets found along the way, all with the desired speed fixed at the measured 1.55 m/s except the first calibration:</p>
+<table>
+  <thead>
+      <tr>
+          <th>parameter</th>
+          <th>default</th>
+          <th>Step 4, all free</th>
+          <th>Step 4, speed fixed</th>
+          <th>Step 6, CrowdQueue</th>
+          <th>Step 7, joint</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>desired speed [m/s]</td>
+          <td>1.2</td>
+          <td>0.80 (at bound)</td>
+          <td>1.55</td>
+          <td>1.55</td>
+          <td>1.55</td>
+      </tr>
+      <tr>
+          <td>radius [m]</td>
+          <td>0.20</td>
+          <td>0.14</td>
+          <td>0.13</td>
+          <td>0.10 (at bound)</td>
+          <td>0.11</td>
+      </tr>
+      <tr>
+          <td>time gap [s]</td>
+          <td>1.0</td>
+          <td>0.56</td>
+          <td>0.81</td>
+          <td>0.96</td>
+          <td>0.81</td>
+      </tr>
+      <tr>
+          <td>neighbor repulsion strength</td>
+          <td>8</td>
+          <td>6.1</td>
+          <td>2.1</td>
+          <td>1.7</td>
+          <td>2.5</td>
+      </tr>
+      <tr>
+          <td>neighbor repulsion range [m]</td>
+          <td>0.10</td>
+          <td>0.15</td>
+          <td>0.25</td>
+          <td>0.34</td>
+          <td>0.28</td>
+      </tr>
+      <tr>
+          <td>wall repulsion strength</td>
+          <td>5</td>
+          <td>5 (fixed)</td>
+          <td>5 (fixed)</td>
+          <td>1.4</td>
+          <td>4.4</td>
+      </tr>
+      <tr>
+          <td>wall repulsion range [m]</td>
+          <td>0.02</td>
+          <td>0.02 (fixed)</td>
+          <td>0.02 (fixed)</td>
+          <td>0.11</td>
+          <td>0.07</td>
+      </tr>
+      <tr>
+          <td>fitted to</td>
+          <td></td>
+          <td>Hermes 2.4, 3.6, 5.0 m</td>
+          <td>Hermes 2.4, 3.6, 5.0 m</td>
+          <td>CrowdQueue h0, 1.2, 3.4, 5.6 m</td>
+          <td>both</td>
+      </tr>
+  </tbody>
+</table>
+<p>It is worth being plain about what happened to the &ldquo;calibrated model&rdquo; over the course of this note. After Hermes we had a parameter set that reproduced flow, density and speed at five bottleneck widths, two of them unseen, to within ten percent. That set clogged at a half-metre gate in three quarters of the CrowdQueue runs. The set calibrated on CrowdQueue reached the gate flow in wide corridors, stalled in narrow ones, could not reproduce a motivated crowd, and pushed agents through walls at the unguided entrance. The joint calibration on Hermes and CrowdQueue together, the single best compromise Dakota could find, overshoots the Hermes flow by 15 to 25 % at four of five widths, clogs in four of the CrowdQueue runs, and is bimodal at the entrance. There is no parameter set for this model that covers both regimes; the compromise is worse than either specialist in its own regime. The one parameter that was actually measured, the free speed, was the one the optimizer most wanted to change.</p>
 <p>None of this is a verdict on the Collision Free Speed model in particular. It is what validation looks like when it is done across regimes instead of within one, and the same pattern would appear for any pedestrian model with a handful of scalar parameters and round agents. The practical consequences, for anyone who runs pedestrian simulations for a living:</p>
 <ul>
 <li><strong>A calibration is a statement about a regime, not about a model.</strong> Parameters fitted to wide bottlenecks are parameters for wide bottlenecks. Using them for a turnstile, a narrow door or an unguided entrance is an extrapolation, and this note shows how far it can be off: not by percent, but by clogging or not clogging.</li>
@@ -936,8 +1015,8 @@ responses
 <li><strong>Hold something back, then change the experiment.</strong> Calibrating on three widths and validating on two is the difference between a fit and a validated model. A second experiment in a different regime is what finds the domain boundary, and here it found it within an afternoon.</li>
 <li><strong>Dakota&rsquo;s job is orchestration, not physics.</strong> It knows nothing about pedestrians. It knows how to run a driver in parallel a few hundred times and what to make of the numbers that come back. That is the part you do not want to write yourself, and the part that makes the procedure repeatable.</li>
 </ul>
-<h2>Why openness is the method here<span class="hx-absolute -hx-mt-20" id="why-openness-is-the-method-here"></span>
-    <a href="#why-openness-is-the-method-here" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Sargent drew the cost of validation against the confidence it buys as a curve that rises steeply near the end. Everything in this study is about pushing that curve down. The trajectories are on a public archive with a DOI and the geometry attached. The model is open source and scriptable. The analysis library is the same one used on the experiment. The calibration toolkit has been maintained by a national laboratory for 25 years. The only thing we added is one driver script and three input files, and they are in the repository linked below.</p>
+<h2>A note on open-source software<span class="hx-absolute -hx-mt-20" id="a-note-on-open-source-software"></span>
+    <a href="#a-note-on-open-source-software" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Sargent drew the cost of validation against the confidence it buys as a curve that rises steeply near the end. Everything in this study is about pushing that curve down. The trajectories are on a public archive with a DOI and the geometry attached. The model is open source and scriptable. The analysis library is the same one used on the experiment. The calibration toolkit has been maintained by a national laboratory for 25 years. The only thing we added is one driver script and three input files, and they are in the repository linked below.</p>
 <p>That has consequences beyond convenience. Anyone can rerun the calibration with a different observable, a different model or a different experiment from the same archive and compare numbers with ours. Someone who thinks a remaining discrepancy is a model deficiency can test it this afternoon. And a validation that lives in a text file can be reviewed, which a sentence like &ldquo;parameters were chosen according to the literature&rdquo; never could. Open data and open software are often argued for on principle. This is the practical version of the argument: put together, they turn validation from a private craft into a shared, checkable result.</p>
 <h2>References<span class="hx-absolute -hx-mt-20" id="references"></span>
     <a href="#references" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ul>

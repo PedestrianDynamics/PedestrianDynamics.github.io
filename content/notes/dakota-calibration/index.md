@@ -173,6 +173,19 @@ The Hermes parameters produce a semicircle, but a thin one: peak densities aroun
 
 ## What changed between the calibrations, and what it means for simulations
 
+The parameter sets found along the way, all with the desired speed fixed at the measured 1.55 m/s except the first calibration:
+
+| parameter | default | Step 4, all free | Step 4, speed fixed | Step 6, CrowdQueue | Step 7, joint |
+|---|---|---|---|---|---|
+| desired speed [m/s] | 1.2 | 0.80 (at bound) | 1.55 | 1.55 | 1.55 |
+| radius [m] | 0.20 | 0.14 | 0.13 | 0.10 (at bound) | 0.11 |
+| time gap [s] | 1.0 | 0.56 | 0.81 | 0.96 | 0.81 |
+| neighbor repulsion strength | 8 | 6.1 | 2.1 | 1.7 | 2.5 |
+| neighbor repulsion range [m] | 0.10 | 0.15 | 0.25 | 0.34 | 0.28 |
+| wall repulsion strength | 5 | 5 (fixed) | 5 (fixed) | 1.4 | 4.4 |
+| wall repulsion range [m] | 0.02 | 0.02 (fixed) | 0.02 (fixed) | 0.11 | 0.07 |
+| fitted to | | Hermes 2.4, 3.6, 5.0 m | Hermes 2.4, 3.6, 5.0 m | CrowdQueue h0, 1.2, 3.4, 5.6 m | both |
+
 It is worth being plain about what happened to the "calibrated model" over the course of this note. After Hermes we had a parameter set that reproduced flow, density and speed at five bottleneck widths, two of them unseen, to within ten percent. That set clogged at a half-metre gate in three quarters of the CrowdQueue runs. The set calibrated on CrowdQueue reached the gate flow in wide corridors, stalled in narrow ones, could not reproduce a motivated crowd, and pushed agents through walls at the unguided entrance. The joint calibration on Hermes and CrowdQueue together, the single best compromise Dakota could find, overshoots the Hermes flow by 15 to 25 % at four of five widths, clogs in four of the CrowdQueue runs, and is bimodal at the entrance. There is no parameter set for this model that covers both regimes; the compromise is worse than either specialist in its own regime. The one parameter that was actually measured, the free speed, was the one the optimizer most wanted to change.
 
 None of this is a verdict on the Collision Free Speed model in particular. It is what validation looks like when it is done across regimes instead of within one, and the same pattern would appear for any pedestrian model with a handful of scalar parameters and round agents. The practical consequences, for anyone who runs pedestrian simulations for a living:
@@ -193,7 +206,7 @@ None of this is a verdict on the Collision Free Speed model in particular. It is
 - **Hold something back, then change the experiment.** Calibrating on three widths and validating on two is the difference between a fit and a validated model. A second experiment in a different regime is what finds the domain boundary, and here it found it within an afternoon.
 - **Dakota's job is orchestration, not physics.** It knows nothing about pedestrians. It knows how to run a driver in parallel a few hundred times and what to make of the numbers that come back. That is the part you do not want to write yourself, and the part that makes the procedure repeatable.
 
-## Why openness is the method here
+## A note on open-source software
 
 Sargent drew the cost of validation against the confidence it buys as a curve that rises steeply near the end. Everything in this study is about pushing that curve down. The trajectories are on a public archive with a DOI and the geometry attached. The model is open source and scriptable. The analysis library is the same one used on the experiment. The calibration toolkit has been maintained by a national laboratory for 25 years. The only thing we added is one driver script and three input files, and they are in the repository linked below.
 
