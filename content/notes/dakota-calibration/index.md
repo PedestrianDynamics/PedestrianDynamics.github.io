@@ -36,7 +36,7 @@ traj = pedpy.load_trajectory_from_ped_data_archive_hdf5(f)
 area = pedpy.load_walkable_area_from_ped_data_archive_hdf5(f)
 ```
 
-We measure three things per run: the flow through the bottleneck, from the slope of the N(t) curve at a line across the gap; and the density and mean speed in a 2.8 by 2 m area directly in front of it, averaged over the jam phase. The same three functions are applied to the simulated trajectories. Seyfried and Schadschneider's warning about measurement methods is answered the simplest way: there is only one method, applied to both sides.
+We measure three things per run: the flow through the bottleneck, from the slope of the N(t) curve at a line across the gap; and the density and mean speed in a 2.8 by 2 m area directly in front of it, averaged over the jam phase. The area is the same for all widths, so it covers more than the 2.4 m opening and only the middle of the 5.0 m one. These are local measurements of the crowd state upstream of the gap, not averages over the whole opening, and the calibration compares them like for like. The same three functions are applied to the simulated trajectories. Seyfried and Schadschneider's warning about measurement methods is answered the simplest way: there is only one method, applied to both sides.
 
 {{< figure
     src="fig1.png"
@@ -49,7 +49,7 @@ We rebuilt the setup in JuPedSim: the corridor, the boards, the semicircular hol
 
 {{< figure
     src="fig2.png"
-    caption="Measured N(t) curves (solid) against the default model (dashed), and flow against bottleneck width. The defaults give between 35 and 45 % of the measured flow."
+    caption="Measured N(t) curves (solid) against the default model (dashed), and flow against bottleneck width. The defaults underpredict the flow by a factor of two to three, worst at the widest opening."
 >}}
 
 This is not a surprise if you know the model. Its specific flow is bounded by roughly one over the time gap parameter, which defaults to one second, so the model cannot exceed about one person per metre per second through a jammed opening. The experiment shows close to three. No amount of tweaking the desired speed fixes that. The question is which of the seven parameters do.
@@ -85,20 +85,20 @@ responses
   no_hessians
 ```
 
-The first stage is a Morris screening: 80 evaluations, each one a short walk through parameter space changing one parameter at a time. It is cheap and it ranks the parameters per observable.
+The first stage is a Morris screening: 80 evaluations, each one a short walk through parameter space changing one parameter at a time. It is cheap and it ranks the parameters per observable. It is a ranking, not a measurement: with ten trajectories the estimates are coarse, and any ranking of this kind is conditional on the ranges it was sampled over.
 
 {{< figure
     src="fig3.png"
-    caption="Morris screening. Each cell is the mean absolute effect of a parameter on an observable, scaled to the strongest parameter in that column, computed on the trajectories where no run failed. The time gap and the agent radius drive the flow, the neighbor repulsion drives the density, and the two wall parameters barely matter."
+    caption="Morris screening over the full parameter ranges. Each cell is the mean absolute elementary effect of a parameter on an observable, scaled to the strongest parameter in that column. An elementary effect is one step of one parameter along a Morris trajectory; steps where either end of the pair failed were discarded, so the count n per row is the number of valid steps that survived, between four and seven of the ten drawn. The time gap, the radius and the neighbor repulsion range dominate; the desired speed has a moderate effect on flow and speed; the two wall parameters are weakest."
 >}}
 
 The screening also revealed something no fit would have: in 28 of the 80 evaluations the model pushed agents through the walls and JuPedSim aborted the run. Those combinations have strong, long-range neighbor repulsion and weak wall repulsion. We narrowed the bounds accordingly and froze the wall parameters at their defaults. Knowing where a model breaks is part of validating it.
 
-With five parameters left, a Sobol analysis with 280 evaluations gives the proper variance decomposition. Dakota computes the indices itself; the only change to the input file is one keyword, `variance_based_decomp`.
+With five parameters left, and narrower ranges, a Sobol analysis with 280 evaluations gives the variance decomposition. Dakota computes the indices itself; the only change to the input file is one keyword, `variance_based_decomp`. Because the ranges and the fixed parameters changed between the two stages, the two rankings are not expected to coincide exactly; sensitivity is always relative to the ranges assumed.
 
 {{< figure
     src="fig4.png"
-    caption="Sobol indices for the five remaining parameters, 280 evaluations, none failed. The time gap owns the flow and the speed, the radius and the neighbor repulsion range own the density. The desired speed explains little of any observable: in a jammed crowd it is nearly unidentifiable from jam observables, which matters below. With 40 base samples the estimates carry noise of a few hundredths, which is why some main indices exceed their totals; the ranking is robust, the decimals are not."
+    caption="Sobol indices for the five remaining parameters, 280 evaluations, none failed. The time gap has the largest first-order contribution to flow and, together with the neighbor repulsion range, to speed; the radius and the neighbor repulsion range dominate the density. The desired speed contributes a total index of 0.13 to 0.19 to the speed, small but not negligible. With 40 base samples the estimator is coarse: several first-order indices exceed their totals by 0.1, which is impossible for exact indices, so these are preliminary estimates. The broad ranking is what we use, not the decimals."
 >}}
 
 ## Step 4 — calibration, and why we did not use gradients
@@ -119,9 +119,9 @@ responses
   no_hessians
 ```
 
-After 42 evaluations, about twenty minutes on a laptop, the optimizer converged. All nine residuals were within the noise. And the desired speed had gone to the lower bound of its range, 0.8 m/s, half the free speed measured on the participants.
+After 42 evaluations, about twenty minutes on a laptop, the optimizer converged with all nine residuals below one standard deviation of the assumed uncertainty. And the desired speed had gone to the lower bound of its range, 0.8 m/s, half the free speed measured on the participants.
 
-This is the moment where a fit and a validation part ways. The Sobol analysis had already said that the desired speed explains almost nothing in a jammed crowd, so the optimizer was free to put it anywhere, and it put it where the residuals were a hair smaller. A model with participants walking at 0.8 m/s reproduces the bottleneck. It does not reproduce the participants. Sargent calls this data validity: parameters that were measured are data, not fitting variables. Liao et al. (2014) made the same move for FDS+Evac. So we fixed the desired speed at the measured 1.55 m/s and calibrated the remaining four parameters. That converged in 24 evaluations.
+This is the moment where a fit and a validation part ways. The Sobol analysis had already said that the desired speed is a minor influence on the jam observables, so the misfit is flat along it and the optimizer was free to put it wherever the residuals were a hair smaller. A model with participants walking at 0.8 m/s reproduces the bottleneck. It does not reproduce the participants. Sargent calls this data validity: parameters that were measured are data, not fitting variables. Liao et al. (2014) made the same move for FDS+Evac. So we fixed the desired speed at the measured 1.55 m/s and calibrated the remaining four parameters. That converged in 24 evaluations.
 
 | parameter | default | all five free | desired speed fixed |
 |---|---|---|---|
@@ -137,10 +137,10 @@ Both parameter sets fit the three calibration widths to within a few percent. Th
 
 {{< figure
     src="fig5.png"
-    caption="Flow, density and speed against bottleneck width: experiment, default model and calibrated model. The dotted widths, 3.0 and 4.4 m, were not used in the calibration. Error bars are the spread over three random seeds."
+    caption="Flow, density and speed against bottleneck width: experiment with the acceptance band (6 % on flow, 10 % on density and speed, the uncertainty assumed in the calibration weights), default model, and calibrated model with the desired speed fixed. Red error bars are the minimum and maximum over three simulation seeds; the experiment is one run per width. The dotted widths, 3.0 and 4.4 m, were not used in the calibration."
 >}}
 
-With the desired speed fixed, the model holds on the two widths the optimizer never saw. At 3.0 m the flow is 9 % high and density and speed within 5 %. At 4.4 m the flow is within 3 %, the density 7 % high and the speed 11 % low. That is at the edge of the acceptance criterion we set, and honest about where the model is weakest: it reaches the right flow at 4.4 m with slightly too many, slightly too slow agents in front of the gap, a milder version of what Liao et al. (2014) saw in FDS+Evac.
+With the desired speed fixed, the calibration improves every observable substantially, at the held-out widths too, and the figure shows the acceptance band we set, 6 % on flow and 10 % on density and speed. It also shows where the model leaves it. At 3.0 m the flow is 9 % high, outside the band; at 4.4 m the density is 7 % high and the speed 11 % low, at the band's edge. And the speed panel shows a pattern rather than isolated misses: the model follows the measured increase of speed with width up to 3.6 m and then flattens, so at 4.4 and 5.0 m it reaches its flow with slightly too many, slightly too slow agents in front of the gap. That is a milder version of what Liao et al. (2014) saw in FDS+Evac, and it is a systematic discrepancy, not noise.
 
 | width [m] | flow exp / sim [1/s] | density exp / sim [1/m²] | speed exp / sim [m/s] |
 |---|---|---|---|
@@ -150,7 +150,7 @@ With the desired speed fixed, the model holds on the two widths the optimizer ne
 | 4.4 (held out) | 10.9 / 11.2 | 4.0 / 4.3 | 0.55 / 0.49 |
 | 5.0 | 13.8 / 12.4 | 4.1 / 4.0 | 0.63 / 0.53 |
 
-The largest miss is at 5.0 m, a calibration width: the measured flow jumps above the linear trend there and the model does not follow. Either the widest run is different in a way three scalar observables cannot see, or the model's flow really is linear in the width. That is a question about the model, and now a well-posed one.
+The largest miss is at 5.0 m, a calibration width: the measured flow jumps above the linear trend there and the model does not follow. Given the speed pattern, that looks like the model's width dependence flattening, not like an odd measurement. So the honest summary of Step 5 is: a substantial improvement over the defaults, most points inside the band, and a systematic width-dependent shortfall at the wide end that the calibration cannot remove. Whether that passes depends on the purpose, which is exactly why the purpose has to be stated first.
 
 ## Step 6 — a second experiment, and where the model stops
 
@@ -161,14 +161,25 @@ The largest miss is at 5.0 m, a calibration width: the measured flow jumps above
 
 A calibration is only validated within the domain it was tested in. To find the edge of that domain we took a second open dataset, the [CrowdQueue experiment](https://ped.fz-juelich.de/db/doku.php?id=crowdqueue) from Wuppertal 2018 (Adrian et al. 2020): a crowd in front of an entrance again, but through a 0.5 m gate instead of a 2.4 to 5 m opening, in corridors from 1.2 to 5.6 m wide. The archive files carry the full geometry and everyone's starting position, so each simulation starts from the measured first frame of its run.
 
-The transfer test comes first: the Hermes parameters applied to the 21 usable runs without refitting. The model reproduces the gate flow in five of them and clogs at the funnel in the rest, in three runs to a standstill. The weak, long-range neighbor repulsion that fits a wide bottleneck lets round agents form stable arches in a half-metre gap. Recalibrating on the baseline runs, with the wall parameters free because the 1.2 m corridors exercise them, gives a model that reaches about 1.1 persons per second and stays there: right for the low-motivation runs, 10 to 30 % low for the baseline runs, still clogging in some seeds of the narrow corridors, and unable to reach the 2.1 per second of the high-motivation run at any time gap. The radius went to its lower bound, the optimizer's way of pushing round agents through an opening that people pass by turning their shoulders.
+Each run is simulated three times and every seed is shown, because averages hide the thing that matters here. A seed counts as emptied if everyone has passed the gate within 120 s, twice the longest experiment; otherwise it counts as clogged, and its flow is the number who passed divided by the run time. No seed in this figure aborted.
+
+The transfer test comes first: the Hermes parameters applied to the 21 usable runs without refitting. Of 63 seeds, 8 emptied. The rest clogged at the funnel, most of them after a handful of people, some after most of the crowd. The weak, long-range neighbor repulsion that fits a wide bottleneck lets round agents form stable arches in a half-metre gap. Recalibrating on the baseline runs, with the wall parameters free because the 1.2 m corridors exercise them, helps but does not cure it: 22 of 63 seeds empty, the gate flow of the emptied and late-clogging seeds sits near 1.1 persons per second, and in the narrow corridors the outcome of a run still depends on the seed. The radius went to its lower bound, the optimizer's way of pushing round agents through an opening that people pass by turning their shoulders.
+
+The low-motivation runs make the central point of this note in one row of the figure. Take the first of them, the 1.2 m corridor with 24 people: the calibrated model matches the measured flow, 1.1 against 1.06 persons per second, and at the same time has the corridor 60 % denser than measured, 2.9 against 1.8 per square metre, with people moving at half the measured speed, 0.28 against 0.51 m/s. The flow is right because the upstream state is wrong in two ways that cancel. A validation on flow alone would have passed this run.
 
 {{< figure
     src="fig6.png"
-    caption="CrowdQueue: experiment (bars) against the Hermes parameters (blue), the model recalibrated on CrowdQueue (orange) and the joint calibration (green), three seeds each, columns ordered by corridor width. Top: baseline motivation, bottom: low motivation."
+    caption="CrowdQueue: experiment (bars) against the Hermes parameters (blue), the model recalibrated on CrowdQueue (orange) and the joint calibration (green), one marker per seed, columns ordered by corridor width with the run number; asterisks mark the runs used in the calibration. Filled markers: the run emptied within 120 s; open markers: it clogged and the flow is what passed over the run. Top: baseline motivation, bottom: low motivation."
 >}}
 
-That is the domain boundary in numbers: this model, calibrated this way, is valid for wide bottlenecks in a dense crowd and not for single-file passage through a narrow gate, where its circular body and its clogging are the limiting factors, not its parameters.
+The one high-motivation run, 11 people through the 1.2 m corridor at 2.1 persons per second, is not in the figure because it needs its own: a sweep of the time gap with everything else fixed.
+
+{{< figure
+    src="fig8.png"
+    caption="The high-motivation run: flow, density and speed in the corridor against the time gap, all other parameters at the CrowdQueue calibration, three seeds per point, from the one-dimensional Dakota sweep. Grey band: the measured value with its assumed uncertainty. Only a time gap below 0.3 s reaches the measured flow, and there the density is five times and the speed four times the measured values."
+>}}
+
+That is the domain boundary in numbers: this model, calibrated this way, is valid within its acceptance band for wide bottlenecks in a dense crowd, and not for single-file passage through a narrow gate, where the outcome of a run depends on the seed and the parameters cannot fix that. Our reading is that the circular body and the arching it produces are the limiting factors; that is a hypothesis the figures are consistent with, not something they prove.
 
 ## Step 7 — a third experiment, without barriers
 
@@ -181,10 +192,10 @@ The last test uses the [BaSiGo entrance experiment](https://ped.fz-juelich.de/da
 
 {{< figure
     src="fig7.png"
-    caption="Time-averaged density in front of the entrance, 20 to 110 s into the run: experiment against the parameter sets from the other two calibrations. Grey: the entrance barriers. The CrowdQueue parameters are missing because every seed pushed an agent through the wall."
+    caption="Time-averaged density in front of the entrance, 20 to 110 s into the run, on a 0.5 m grid: the experiment and each simulation seed separately, with its entrance flow and the number of people who passed. Grey: the entrance barriers. The CrowdQueue parameters are missing because every seed pushed an agent through the wall."
 >}}
 
-The Hermes parameters produce a semicircle, but a thin one: peak densities around 6 per square metre where the experiment reaches 10, and an entrance flow of 1.3 persons per second where the crowd, pushing to be first, achieved 0.6. The model is too polite and too fast: it does not reproduce the pressure that makes the real entrance slower than an orderly queue would be. The CrowdQueue parameters, with their weak wall repulsion, fail outright: in every seed the crowd pushes an agent through the entrance wall and the simulation stops. The joint parameters land in between and, tellingly, not in one place: two seeds drain the crowd at 1.2 persons per second and one clogs after 63, so the average of 0.9 is an average of two different behaviours.
+The maps are averaged over time only, 20 to 110 s into the run, and each seed is shown on its own. White is zero density; the maps stop at the edge of the grid, which is the tracked area. The Hermes parameters produce a semicircle, but the wrong one. Its density is concentrated at the entrance and falls off regularly, with peaks around 6 per square metre; the measured crowd is dense to 10 per square metre over a region that extends two to three metres upstream and is visibly asymmetric, heavier to the left of the entrance. And the model drains the crowd at 1.3 persons per second where the people, pushing to be first, achieved 0.6. The CrowdQueue parameters, with their weak wall repulsion, fail outright: in every seed the crowd pushes an agent through the entrance wall and the simulation stops. The joint parameters do not land in one place: two seeds drain the crowd at 1.1 to 1.4 persons per second and the third clogs after 63 people, with a density peak of 15 at the gate. What the model lacks is a hypothesis, not a finding of this figure: we suspect the pressure of a crowd that wants to be first, and the shoulder rotation that gets real people through half a metre, but the maps only show that the shape, the extent and the flow are all wrong.
 
 ## What changed between the calibrations, and what it means for simulations
 
@@ -201,7 +212,7 @@ The parameter sets found along the way, all with the desired speed fixed at the 
 | wall repulsion range [m] | 0.02 | 0.02 (fixed) | 0.02 (fixed) | 0.11 | 0.07 |
 | fitted to | | Hermes 2.4, 3.6, 5.0 m | Hermes 2.4, 3.6, 5.0 m | CrowdQueue h0, 1.2, 3.4, 5.6 m | both |
 
-It is worth being plain about what happened to the "calibrated model" over the course of this note. After Hermes we had a parameter set that reproduced flow, density and speed at five bottleneck widths, two of them unseen, to within ten percent. That set clogged at a half-metre gate in three quarters of the CrowdQueue runs. The set calibrated on CrowdQueue reached the gate flow in wide corridors, stalled in narrow ones, could not reproduce a motivated crowd, and pushed agents through walls at the unguided entrance. The joint calibration on Hermes and CrowdQueue together, the single best compromise Dakota could find, overshoots the Hermes flow by 15 to 25 % at four of five widths, clogs in four of the CrowdQueue runs, and is bimodal at the entrance. There is no parameter set for this model that covers both regimes; the compromise is worse than either specialist in its own regime. The one parameter that was actually measured, the free speed, was the one the optimizer most wanted to change.
+It is worth being plain about what happened to the "calibrated model" over the course of this note. After Hermes we had a parameter set that reproduced flow, density and speed at five bottleneck widths, two of them unseen, mostly within ten percent and with a systematic shortfall at the wide end. That set clogged at a half-metre gate in 55 of 63 CrowdQueue seeds. The set calibrated on CrowdQueue reached the gate flow in wide corridors, stalled in narrow ones, could not reproduce a motivated crowd, and pushed agents through walls at the unguided entrance. The joint calibration on Hermes and CrowdQueue together, the single best compromise Dakota could find, overshoots the Hermes flow by 15 to 25 % at four of five widths, clogs in 30 of 63 CrowdQueue seeds, and is bimodal at the entrance. There is no parameter set for this model that covers both regimes; the compromise is worse than either specialist in its own regime. The one parameter that was actually measured, the free speed, was the one the optimizer most wanted to change.
 
 None of this is a verdict on the Collision Free Speed model in particular. It is what validation looks like when it is done across regimes instead of within one, and the same pattern would appear for any pedestrian model with a handful of scalar parameters and round agents. The practical consequences, for anyone who runs pedestrian simulations for a living:
 
