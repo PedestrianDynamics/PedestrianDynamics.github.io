@@ -147,13 +147,28 @@ With the desired speed fixed, the model holds on the two widths the optimizer ne
 
 The largest miss is at 5.0 m, a calibration width: the measured flow jumps above the linear trend there and the model does not follow. Either the widest run is different in a way three scalar observables cannot see, or the model's flow really is linear in the width. That is a question about the model, and now a well-posed one.
 
+## Step 6 — a second experiment, and where the model stops
+
+A calibration is only validated within the domain it was tested in. To find the edge of that domain we took a second open dataset, the [CrowdQueue experiment](https://ped.fz-juelich.de/db/doku.php?id=crowdqueue) from Wuppertal 2018 (Adrian et al. 2020): the same kind of crowd in front of an entrance, but through a 0.5 m gate instead of a 2.4 to 5 m opening, in corridors from 1.2 to 5.6 m wide, with the participants' motivation varied between runs. The archive files carry the full geometry and everyone's starting position, so the simulation starts from the measured first frame of each run.
+
+First the transfer test: the Hermes parameters, applied to the 21 usable runs without any refitting. The model reproduces the gate flow in five of them and clogs at the funnel in the rest, in three runs to a standstill. The weak, long-range neighbor repulsion that fits a wide bottleneck lets circular agents form stable arches in a half-metre gap. No amount of validation on Hermes could have shown this, and one afternoon with a second dataset did.
+
+Recalibrating on the baseline-motivation runs, with the wall parameters now free because the 1.2 m corridors exercise them, gives a model that reaches a gate flow of about 1.1 per second and stays there. That matches the low-motivation runs, undershoots the baseline runs by 10 to 30 %, still clogs in some seeds of the narrow corridors, and cannot reach the 2.1 per second of the high-motivation run at any time gap without wrecking density and speed. The radius went to its lower bound of 0.10 m, which is the optimizer's way of pushing round agents through an opening that real people pass by turning their shoulders. Refitting the time gap on the low-motivation runs moved it in the wrong direction, so motivation is not a time gap in this model either.
+
+{{< figure
+    src="fig6.png"
+    caption="CrowdQueue: experiment (bars) against three parameter sets, three seeds each. Top: baseline motivation, bottom: low motivation, columns ordered by corridor width. The Hermes parameters (blue) clog in most runs; the recalibrated model (orange) reaches the gate flow in the wide corridors and stalls in the narrow ones; the time-gap refit (green) changes little."
+>}}
+
+That is the domain boundary, stated in numbers: this model, calibrated this way, is valid for wide bottlenecks in a dense crowd and is not valid for single-file passage through a narrow gate, where its circular body and its clogging behaviour are the limiting factors, not its parameters.
+
 ## What we learned about validating
 
 - **State the purpose, then pick the observables.** Flow alone would have passed a model with the wrong density, as it did in 2014. Three observables, one per mechanism, is the minimum.
 - **Analyse experiment and simulation with the same code.** The measurement method is part of the result. PedPy loads both, so the observables are defined once.
 - **Screen before you calibrate.** The Morris run costs 80 evaluations, removed two of seven parameters, and mapped a whole region where the model fails outright.
 - **Do not use gradients on an agent-based model.** Surrogate-based optimization converged in a few dozen evaluations where the gradient solver never left the start.
-- **Hold something back.** Calibrating on three widths and validating on two is the difference between a fit and a validated model, and it is the only way to see where the model, not the parameters, is at fault.
+- **Hold something back, then change the experiment.** Calibrating on three widths and validating on two is the difference between a fit and a validated model. A second experiment in a different regime is what finds the domain boundary, and here it found it within an afternoon.
 - **Dakota's job is orchestration, not physics.** It knows nothing about pedestrians. It knows how to run a driver in parallel a few hundred times and what to make of the numbers that come back. That is the part you do not want to write yourself, and the part that makes the procedure repeatable.
 
 ## Why openness is the method here
@@ -164,6 +179,7 @@ That has consequences beyond convenience. Anyone can rerun the calibration with 
 
 ## References
 
+- Adrian, J., Seyfried, A., Sieben, A. (2020). Crowds in front of bottlenecks at entrances from the perspective of physics and social psychology. Journal of the Royal Society Interface 17, 20190871. [doi:10.1098/rsif.2019.0871](https://doi.org/10.1098/rsif.2019.0871).
 - Kurtc, V., Chraibi, M., Tordeux, A. (2018). Automated quality assessment of space-continuous models for pedestrian dynamics. [arXiv:1809.01862](https://arxiv.org/abs/1809.01862).
 - Liao, W., Chraibi, M., Seyfried, A., Zhang, J., Zheng, X., Zhao, Y. (2014). Validation of FDS+Evac for pedestrian simulations in wide bottlenecks. IEEE ITSC 2014, 554–559. [doi:10.1109/ITSC.2014.6957748](https://doi.org/10.1109/ITSC.2014.6957748).
 - Liao, W., Zhang, J., Zheng, X., Zhao, Y. (2017). A generalized validation procedure for pedestrian models. Simulation Modelling Practice and Theory 77, 20–31. [doi:10.1016/j.simpat.2017.05.002](https://doi.org/10.1016/j.simpat.2017.05.002).
@@ -174,7 +190,7 @@ That has consequences beyond convenience. Anyone can rerun the calibration with 
 - Seyfried, A., Schadschneider, A. (2008). Fundamental diagram and validation of crowd models. ACRI 2008, LNCS 5191, 563–566.
 - Seyfried, A., Passon, O., Steffen, B., Boltes, M., Rupprecht, T., Klingsch, W. (2009). New insights into pedestrian flow through bottlenecks. Transportation Science 43, 395–406.
 - Tordeux, A., Chraibi, M., Seyfried, A. (2016). Collision-free speed model for pedestrian dynamics. Traffic and Granular Flow '15, 225–232.
-- Experiment data: Hermes bottleneck experiment, Düsseldorf 2009, [doi:10.34735/ped.2009.6](https://doi.org/10.34735/ped.2009.6). Dakota: Adams et al., Sandia National Laboratories, version 6.24.
+- Experiment data: Hermes bottleneck experiment, Düsseldorf 2009, [doi:10.34735/ped.2009.6](https://doi.org/10.34735/ped.2009.6); CrowdQueue experiment, Wuppertal 2018, [doi:10.34735/ped.2018.1](https://doi.org/10.34735/ped.2018.1). Dakota: Adams et al., Sandia National Laboratories, version 6.24.
 
 Code, Dakota input files and results: [github.com/PedestrianDynamics/jupedsim-dakota-calibration](https://github.com/PedestrianDynamics/jupedsim-dakota-calibration)
 
