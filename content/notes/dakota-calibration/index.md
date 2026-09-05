@@ -149,18 +149,40 @@ The largest miss is at 5.0 m, a calibration width: the measured flow jumps above
 
 ## Step 6 — a second experiment, and where the model stops
 
-A calibration is only validated within the domain it was tested in. To find the edge of that domain we took a second open dataset, the [CrowdQueue experiment](https://ped.fz-juelich.de/db/doku.php?id=crowdqueue) from Wuppertal 2018 (Adrian et al. 2020): the same kind of crowd in front of an entrance, but through a 0.5 m gate instead of a 2.4 to 5 m opening, in corridors from 1.2 to 5.6 m wide, with the participants' motivation varied between runs. The archive files carry the full geometry and everyone's starting position, so the simulation starts from the measured first frame of each run.
+A calibration is only validated within the domain it was tested in. To find the edge of that domain we took a second open dataset, the [CrowdQueue experiment](https://ped.fz-juelich.de/db/doku.php?id=crowdqueue) from Wuppertal 2018 (Adrian et al. 2020): a crowd in front of an entrance again, but through a 0.5 m gate instead of a 2.4 to 5 m opening, in corridors from 1.2 to 5.6 m wide. The archive files carry the full geometry and everyone's starting position, so each simulation starts from the measured first frame of its run.
 
-First the transfer test: the Hermes parameters, applied to the 21 usable runs without any refitting. The model reproduces the gate flow in five of them and clogs at the funnel in the rest, in three runs to a standstill. The weak, long-range neighbor repulsion that fits a wide bottleneck lets circular agents form stable arches in a half-metre gap. No amount of validation on Hermes could have shown this, and one afternoon with a second dataset did.
-
-Recalibrating on the baseline-motivation runs, with the wall parameters now free because the 1.2 m corridors exercise them, gives a model that reaches a gate flow of about 1.1 per second and stays there. That matches the low-motivation runs, undershoots the baseline runs by 10 to 30 %, still clogs in some seeds of the narrow corridors, and cannot reach the 2.1 per second of the high-motivation run at any time gap without wrecking density and speed. The radius went to its lower bound of 0.10 m, which is the optimizer's way of pushing round agents through an opening that real people pass by turning their shoulders. Refitting the time gap on the low-motivation runs moved it in the wrong direction, so motivation is not a time gap in this model either.
+The transfer test comes first: the Hermes parameters applied to the 21 usable runs without refitting. The model reproduces the gate flow in five of them and clogs at the funnel in the rest, in three runs to a standstill. The weak, long-range neighbor repulsion that fits a wide bottleneck lets round agents form stable arches in a half-metre gap. Recalibrating on the baseline runs, with the wall parameters free because the 1.2 m corridors exercise them, gives a model that reaches about 1.1 persons per second and stays there: right for the low-motivation runs, 10 to 30 % low for the baseline runs, still clogging in some seeds of the narrow corridors, and unable to reach the 2.1 per second of the high-motivation run at any time gap. The radius went to its lower bound, the optimizer's way of pushing round agents through an opening that people pass by turning their shoulders.
 
 {{< figure
     src="fig6.png"
-    caption="CrowdQueue: experiment (bars) against three parameter sets, three seeds each. Top: baseline motivation, bottom: low motivation, columns ordered by corridor width. The Hermes parameters (blue) clog in most runs; the recalibrated model (orange) reaches the gate flow in the wide corridors and stalls in the narrow ones; the time-gap refit (green) changes little."
+    caption="CrowdQueue: experiment (bars) against the Hermes parameters (blue), the model recalibrated on CrowdQueue (orange) and the joint calibration (green), three seeds each, columns ordered by corridor width. Top: baseline motivation, bottom: low motivation."
 >}}
 
-That is the domain boundary, stated in numbers: this model, calibrated this way, is valid for wide bottlenecks in a dense crowd and is not valid for single-file passage through a narrow gate, where its circular body and its clogging behaviour are the limiting factors, not its parameters.
+That is the domain boundary in numbers: this model, calibrated this way, is valid for wide bottlenecks in a dense crowd and not for single-file passage through a narrow gate, where its circular body and its clogging are the limiting factors, not its parameters.
+
+## Step 7 — a third experiment, without barriers
+
+The last test uses the [BaSiGo entrance experiment](https://ped.fz-juelich.de/da/doku.php?id=entrance_semicircle) from 2013 (Sieben et al. 2017): an entrance with two half-metre lanes and no guiding barriers, 319 people told that their favourite artist is playing and they want to be first in. Nothing was fitted to it. The crowd shape is entirely the model's own doing, which makes it the kind of validation Liao et al. (2017) asked for, a spatial profile rather than a number. People enter the camera view during the run, so the simulation injects each agent at the time and place where the data first see them, and everything after that is the model.
+
+{{< figure
+    src="fig7.png"
+    caption="Time-averaged density in front of the entrance, 20 to 110 s into the run: experiment against the parameter sets from the other two calibrations. Grey: the entrance barriers. The CrowdQueue parameters are missing because every seed pushed an agent through the wall."
+>}}
+
+The Hermes parameters produce a semicircle, but a thin one: peak densities around 6 per square metre where the experiment reaches 10, and an entrance flow of 1.3 persons per second where the crowd, pushing to be first, achieved 0.6. The model is too polite and too fast: it does not reproduce the pressure that makes the real entrance slower than an orderly queue would be. The CrowdQueue parameters, with their weak wall repulsion, fail outright: in every seed the crowd pushes an agent through the entrance wall and the simulation stops. The joint parameters land in between and, tellingly, not in one place: two seeds drain the crowd at 1.2 persons per second and one clogs after 63, so the average of 0.9 is an average of two different behaviours.
+
+## What changed between the calibrations, and what it means for simulations
+
+It is worth being plain about what happened to the "calibrated model" over the course of this note. After Hermes we had a parameter set that reproduced flow, density and speed at five bottleneck widths, two of them unseen, to within ten percent. That set clogged at a half-metre gate in three quarters of the CrowdQueue runs. The set calibrated on CrowdQueue reached the gate flow in wide corridors, stalled in narrow ones, could not reproduce a motivated crowd, and pushed agents through walls at the unguided entrance. The joint calibration on Hermes and CrowdQueue together, the single best compromise Dakota could find, overshoots the Hermes flow by 15 to 25 % at four of five widths, clogs in four of the CrowdQueue runs, and is bimodal at the entrance. There is no parameter set for this model that covers both regimes; the compromise is worse than either specialist in its own regime. The one parameter that was actually measured, the free speed, was the one the optimizer most wanted to change.
+
+None of this is a verdict on the Collision Free Speed model in particular. It is what validation looks like when it is done across regimes instead of within one, and the same pattern would appear for any pedestrian model with a handful of scalar parameters and round agents. The practical consequences, for anyone who runs pedestrian simulations for a living:
+
+- **A calibration is a statement about a regime, not about a model.** Parameters fitted to wide bottlenecks are parameters for wide bottlenecks. Using them for a turnstile, a narrow door or an unguided entrance is an extrapolation, and this note shows how far it can be off: not by percent, but by clogging or not clogging.
+- **Report the domain with the parameters.** A parameter set in a paper or a project file should come with the experiments it was fitted to and the ones it was tested on. Without that, "calibrated" is not information.
+- **Some behaviour is not a parameter.** Motivation changed the measured flow through the same gate by a factor of two. No value of the time gap reproduces that without breaking density and speed. A model that treats a pushing crowd as a faster orderly one will be wrong in exactly the situations that matter for safety.
+- **Measured quantities beat fitted ones.** Fixing the free speed at its measured value cost a little fit quality and bought a parameter set that means what it says. The fit had been buying its accuracy with an unphysical value.
+- **Failure modes are results.** A third of the screening runs pushed agents through walls. That region of parameter space is where the model breaks, and it is worth knowing before an engineer lands in it by hand.
+- **The tooling is the cheap part.** Every calibration and every test here is a text file and a driver script. What is expensive is the honesty of running the test that might fail. Open data makes that test available to everyone, which is the strongest argument for it.
 
 ## What we learned about validating
 
@@ -187,10 +209,11 @@ That has consequences beyond convenience. Anyone can rerun the calibration with 
 - Ronchi, E., Kuligowski, E. D., Reneke, P. A., Peacock, R. D., Nilsson, D. (2013). The process of verification and validation of building fire evacuation models. NIST Technical Note 1822.
 - Sargent, R. G. (1984). Simulation model validation. In: Simulation and Model-Based Methodologies: An Integrative View, Springer, 537–555.
 - Sargent, R. G. (2008). Verification and validation of simulation models. Proceedings of the Winter Simulation Conference, 157–169.
+- Sieben, A., Schumann, J., Seyfried, A. (2017). Collective phenomena in crowds — where pedestrian dynamics need social psychology. PLOS ONE 12(6), e0177328. [doi:10.1371/journal.pone.0177328](https://doi.org/10.1371/journal.pone.0177328).
 - Seyfried, A., Schadschneider, A. (2008). Fundamental diagram and validation of crowd models. ACRI 2008, LNCS 5191, 563–566.
 - Seyfried, A., Passon, O., Steffen, B., Boltes, M., Rupprecht, T., Klingsch, W. (2009). New insights into pedestrian flow through bottlenecks. Transportation Science 43, 395–406.
 - Tordeux, A., Chraibi, M., Seyfried, A. (2016). Collision-free speed model for pedestrian dynamics. Traffic and Granular Flow '15, 225–232.
-- Experiment data: Hermes bottleneck experiment, Düsseldorf 2009, [doi:10.34735/ped.2009.6](https://doi.org/10.34735/ped.2009.6); CrowdQueue experiment, Wuppertal 2018, [doi:10.34735/ped.2018.1](https://doi.org/10.34735/ped.2018.1). Dakota: Adams et al., Sandia National Laboratories, version 6.24.
+- Experiment data: Hermes bottleneck experiment, Düsseldorf 2009, [doi:10.34735/ped.2009.6](https://doi.org/10.34735/ped.2009.6); CrowdQueue experiment, Wuppertal 2018, [doi:10.34735/ped.2018.1](https://doi.org/10.34735/ped.2018.1); BaSiGo entrance experiment, Düsseldorf 2013, [doi:10.34735/ped.2013.2](https://doi.org/10.34735/ped.2013.2). Dakota: Adams et al., Sandia National Laboratories, version 6.24.
 
 Code, Dakota input files and results: [github.com/PedestrianDynamics/jupedsim-dakota-calibration](https://github.com/PedestrianDynamics/jupedsim-dakota-calibration)
 
