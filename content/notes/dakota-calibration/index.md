@@ -20,6 +20,11 @@ Following Sargent, we state the purpose first. The model should reproduce the fl
 
 ## Step 1 — the experiment
 
+{{< figure
+    src="exp1.jpg"
+    caption="The Hermes bottleneck experiment, Düsseldorf 2009: overhead view of a run, and the setup sketch with the semicircular holding zones at 3 persons per square metre. Images: Pedestrian Dynamics Data Archive, Forschungszentrum Jülich."
+>}}
+
 The [Hermes bottleneck experiment](https://ped.fz-juelich.de/db/doku.php?id=hermes_bottleneck) was run in May 2009 in Hall 2 of the Düsseldorf fairground with about 350 participants (Seyfried et al. 2009; Liao et al. 2014). The bottleneck was built from boards higher than two metres, 1 m long, and its width was varied from 2.4 to 5.0 m in five runs. Participants waited in a semicircular holding area of radius 8.6 m directly in front of the bottleneck, which puts the initial density at three persons per square metre, and walked through on command. The free walking speed of 42 participants was measured separately: 1.55 m/s with a spread of 0.18 m/s.
 
 The trajectories are open data with a DOI. Since 2024 they come as HDF5 files that carry a geometry along, so PedPy loads both with one call each. One caveat, found only by reading the paper next to the file: the polygon in the archive is a 12 m box around the camera window with the wall blocks cut off at its edges, and three of its five gaps are 0.1 m narrower than the run's stated width. The simulation therefore takes the gap width from the run parameter and the corridor and holding area from the paper. A corrected polygon for each run is in the repository.
@@ -149,6 +154,11 @@ The largest miss is at 5.0 m, a calibration width: the measured flow jumps above
 
 ## Step 6 — a second experiment, and where the model stops
 
+{{< figure
+    src="exp2.jpg"
+    caption="The CrowdQueue experiment, Wuppertal 2018: a run in the 5.6 m corridor seen from above, and the setup with the 0.5 m gate at the origin. Images: Pedestrian Dynamics Data Archive, Forschungszentrum Jülich."
+>}}
+
 A calibration is only validated within the domain it was tested in. To find the edge of that domain we took a second open dataset, the [CrowdQueue experiment](https://ped.fz-juelich.de/db/doku.php?id=crowdqueue) from Wuppertal 2018 (Adrian et al. 2020): a crowd in front of an entrance again, but through a 0.5 m gate instead of a 2.4 to 5 m opening, in corridors from 1.2 to 5.6 m wide. The archive files carry the full geometry and everyone's starting position, so each simulation starts from the measured first frame of its run.
 
 The transfer test comes first: the Hermes parameters applied to the 21 usable runs without refitting. The model reproduces the gate flow in five of them and clogs at the funnel in the rest, in three runs to a standstill. The weak, long-range neighbor repulsion that fits a wide bottleneck lets round agents form stable arches in a half-metre gap. Recalibrating on the baseline runs, with the wall parameters free because the 1.2 m corridors exercise them, gives a model that reaches about 1.1 persons per second and stays there: right for the low-motivation runs, 10 to 30 % low for the baseline runs, still clogging in some seeds of the narrow corridors, and unable to reach the 2.1 per second of the high-motivation run at any time gap. The radius went to its lower bound, the optimizer's way of pushing round agents through an opening that people pass by turning their shoulders.
@@ -161,6 +171,11 @@ The transfer test comes first: the Hermes parameters applied to the 21 usable ru
 That is the domain boundary in numbers: this model, calibrated this way, is valid for wide bottlenecks in a dense crowd and not for single-file passage through a narrow gate, where its circular body and its clogging are the limiting factors, not its parameters.
 
 ## Step 7 — a third experiment, without barriers
+
+{{< figure
+    src="exp3.jpg"
+    caption="The BaSiGo entrance experiment, Düsseldorf 2013: the crowd in front of the unguided entrance, top right. Image: Pedestrian Dynamics Data Archive, Forschungszentrum Jülich."
+>}}
 
 The last test uses the [BaSiGo entrance experiment](https://ped.fz-juelich.de/da/doku.php?id=entrance_semicircle) from 2013 (Sieben et al. 2017): an entrance with two half-metre lanes and no guiding barriers, 319 people told that their favourite artist is playing and they want to be first in. Nothing was fitted to it. The crowd shape is entirely the model's own doing, which makes it the kind of validation Liao et al. (2017) asked for, a spatial profile rather than a number. People enter the camera view during the run, so the simulation injects each agent at the time and place where the data first see them, and everything after that is the model.
 
@@ -228,6 +243,8 @@ That has consequences beyond convenience. Anyone can rerun the calibration with 
 - Tordeux, A., Chraibi, M., Seyfried, A. (2016). Collision-free speed model for pedestrian dynamics. Traffic and Granular Flow '15, 225–232.
 - Experiment data: Hermes bottleneck experiment, Düsseldorf 2009, [doi:10.34735/ped.2009.6](https://doi.org/10.34735/ped.2009.6); CrowdQueue experiment, Wuppertal 2018, [doi:10.34735/ped.2018.1](https://doi.org/10.34735/ped.2018.1); BaSiGo entrance experiment, Düsseldorf 2013, [doi:10.34735/ped.2013.2](https://doi.org/10.34735/ped.2013.2). Dakota: Adams et al., Sandia National Laboratories, version 6.24.
 
-Code, Dakota input files and results: [github.com/PedestrianDynamics/jupedsim-dakota-calibration](https://github.com/PedestrianDynamics/jupedsim-dakota-calibration)
+## Code
+
+Driver scripts, Dakota input files, results and figures for every step: [github.com/PedestrianDynamics/jupedsim-dakota-calibration](https://github.com/PedestrianDynamics/jupedsim-dakota-calibration). Dakota 6.24, JuPedSim 1.4.2, PedPy 1.4.0.
 
 {{< icon "pencil-alt" >}} By: [Mohcine Chraibi]({{< relref "/authors#MohcineChraibi" >}})
