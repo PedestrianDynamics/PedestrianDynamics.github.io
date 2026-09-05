@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta name="generator" content="Hugo 0.144.0-DEV"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon shortcut" href="/favicon.ico" sizes="32x32" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
+<link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+<link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
+
+  <title>Pedestrian Dynamics</title>
+  <meta name="description" content="" />
+
+  
+    <link rel="canonical" href="http://localhost:1313/" itemprop="url" />
+  
+
+  
+
+<meta property="og:title" content="Pedestrian Dynamics" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://localhost:1313/" />
+
+  
+  <meta itemprop="name" content="Pedestrian Dynamics">
+  <meta itemprop="description" content="Basic questions and applications Pedestrian dynamics studies how people move in crowds. Crowd flow shows emergent behavior on many length and time scales, and physics provides useful tools to describe and model it. The composition of the crowd matters as well: who is walking, with whom, and for what purpose all influence how a crowd moves.
+Image design: Panar Ege Uesten.">
+  <meta itemprop="datePublished" content="2026-09-05T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-09-05T00:00:00+00:00">
+  <meta itemprop="wordCount" content="2208">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Pedestrian Dynamics">
+  <meta name="twitter:description" content="Basic questions and applications Pedestrian dynamics studies how people move in crowds. Crowd flow shows emergent behavior on many length and time scales, and physics provides useful tools to describe and model it. The composition of the crowd matters as well: who is walking, with whom, and for what purpose all influence how a crowd moves.
+Image design: Panar Ege Uesten.">
+
+    <link href="/css/compiled/main.css" rel="stylesheet" />
+
+
+
+  <link href="/css/custom.css" rel="stylesheet" />
+
+
+
+
+
+  <script>
+     
+    const defaultTheme = 'system';
+
+    const setDarkTheme = () => {
+      document.documentElement.classList.add("dark");
+      document.documentElement.style.colorScheme = "dark";
+    }
+    const setLightTheme = () => {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.style.colorScheme = "light";
+    }
+
+    if ("color-theme" in localStorage) {
+      localStorage.getItem("color-theme") === "dark" ? setDarkTheme() : setLightTheme();
+    } else {
+      defaultTheme === "dark" ? setDarkTheme() : setLightTheme();
+      if (defaultTheme === "system") {
+        window.matchMedia("(prefers-color-scheme: dark)").matches ? setDarkTheme() : setLightTheme();
+      }
+    }
+  </script>
+
+  
+</head>
+<body dir="ltr"><div class="nav-container hx-sticky hx-top-0 hx-z-20 hx-w-full hx-bg-transparent print:hx-hidden">
+  <div class="nav-container-blur hx-pointer-events-none hx-absolute hx-z-[-1] hx-h-full hx-w-full hx-bg-white dark:hx-bg-dark hx-shadow-[0_2px_4px_rgba(0,0,0,.02),0_1px_0_rgba(0,0,0,.06)] contrast-more:hx-shadow-[0_0_0_1px_#000] dark:hx-shadow-[0_-1px_0_rgba(255,255,255,.1)_inset] contrast-more:dark:hx-shadow-[0_0_0_1px_#fff]"></div>
+
+  <nav class="hx-mx-auto hx-flex hx-items-center hx-justify-end hx-gap-2 hx-h-16 hx-px-6 hx-max-w-[90rem]">
+    <a class="hx-flex hx-items-center hover:hx-opacity-75 ltr:hx-mr-auto rtl:hx-ml-auto" href="/">
+        <span class="hx-mx-2 hx-font-extrabold hx-inline hx-select-none" title="Pedestrian Dynamics">Pedestrian Dynamics</span>
+    </a><a
+            title="About"
+            href="/about"
+            
+            class="hx-text-sm contrast-more:hx-text-gray-700 contrast-more:dark:hx-text-gray-100 hx-relative -hx-ml-2 hx-hidden hx-whitespace-nowrap hx-p-2 md:hx-inline-block hx-text-gray-600 hover:hx-text-gray-800 dark:hx-text-gray-400 dark:hover:hx-text-gray-200"
+          >
+            <span class="hx-text-center">About</span>
+          </a><div class="search-wrapper hx-relative md:hx-w-64">
+  <div class="hx-relative hx-flex hx-items-center hx-text-gray-900 contrast-more:hx-text-gray-800 dark:hx-text-gray-300 contrast-more:dark:hx-text-gray-300">
+    <input
+      placeholder="Search..."
+      class="search-input hx-block hx-w-full hx-appearance-none hx-rounded-lg hx-px-3 hx-py-2 hx-transition-colors hx-text-base hx-leading-tight md:hx-text-sm hx-bg-black/[.05] dark:hx-bg-gray-50/10 focus:hx-bg-white dark:focus:hx-bg-dark placeholder:hx-text-gray-500 dark:placeholder:hx-text-gray-400 contrast-more:hx-border contrast-more:hx-border-current"
+      type="search"
+      value=""
+      spellcheck="false"
+    />
+    <kbd
+      class="hx-absolute hx-my-1.5 hx-select-none ltr:hx-right-1.5 rtl:hx-left-1.5 hx-h-5 hx-rounded hx-bg-white hx-px-1.5 hx-font-mono hx-text-[10px] hx-font-medium hx-text-gray-500 hx-border dark:hx-border-gray-100/20 dark:hx-bg-dark/50 contrast-more:hx-border-current contrast-more:hx-text-current contrast-more:dark:hx-border-current hx-items-center hx-gap-1 hx-transition-opacity hx-pointer-events-none hx-hidden sm:hx-flex"
+    >
+      CTRL K
+    </kbd>
+  </div>
+
+  <div>
+    <ul
+      class="search-results hextra-scrollbar hx-hidden hx-border hx-border-gray-200 hx-bg-white hx-text-gray-100 dark:hx-border-neutral-800 dark:hx-bg-neutral-900 hx-absolute hx-top-full hx-z-20 hx-mt-2 hx-overflow-auto hx-overscroll-contain hx-rounded-xl hx-py-2.5 hx-shadow-xl hx-max-h-[min(calc(50vh-11rem-env(safe-area-inset-bottom)),400px)] md:hx-max-h-[min(calc(100vh-5rem-env(safe-area-inset-bottom)),400px)] hx-inset-x-0 ltr:md:hx-left-auto rtl:md:hx-right-auto contrast-more:hx-border contrast-more:hx-border-gray-900 contrast-more:dark:hx-border-gray-50 hx-w-screen hx-min-h-[100px] hx-max-w-[min(calc(100vw-2rem),calc(100%+20rem))]"
+      style="transition: max-height 0.2s ease 0s;"
+    ></ul>
+  </div>
+</div>
+
+          <a class="hx-p-2 hx-text-current" target="_blank" rel="noreferer" href="https://github.com/PedestrianDynamics/PedestrianDynamics.github.io" title="GitHub"><svg height=24 fill="currentColor" viewBox="3 3 18 18">
+  <path d="M12 3C7.0275 3 3 7.12937 3 12.2276C3 16.3109 5.57625 19.7597 9.15374 20.9824C9.60374 21.0631 9.77249 20.7863 9.77249 20.5441C9.77249 20.3249 9.76125 19.5982 9.76125 18.8254C7.5 19.2522 6.915 18.2602 6.735 17.7412C6.63375 17.4759 6.19499 16.6569 5.8125 16.4378C5.4975 16.2647 5.0475 15.838 5.80124 15.8264C6.51 15.8149 7.01625 16.4954 7.18499 16.7723C7.99499 18.1679 9.28875 17.7758 9.80625 17.5335C9.885 16.9337 10.1212 16.53 10.38 16.2993C8.3775 16.0687 6.285 15.2728 6.285 11.7432C6.285 10.7397 6.63375 9.9092 7.20749 9.26326C7.1175 9.03257 6.8025 8.08674 7.2975 6.81794C7.2975 6.81794 8.05125 6.57571 9.77249 7.76377C10.4925 7.55615 11.2575 7.45234 12.0225 7.45234C12.7875 7.45234 13.5525 7.55615 14.2725 7.76377C15.9937 6.56418 16.7475 6.81794 16.7475 6.81794C17.2424 8.08674 16.9275 9.03257 16.8375 9.26326C17.4113 9.9092 17.76 10.7281 17.76 11.7432C17.76 15.2843 15.6563 16.0687 13.6537 16.2993C13.98 16.5877 14.2613 17.1414 14.2613 18.0065C14.2613 19.2407 14.25 20.2326 14.25 20.5441C14.25 20.7863 14.4188 21.0746 14.8688 20.9824C16.6554 20.364 18.2079 19.1866 19.3078 17.6162C20.4077 16.0457 20.9995 14.1611 21 12.2276C21 7.12937 16.9725 3 12 3Z"></path>
+</svg>
+<span class="hx-sr-only">GitHub</span>
+          </a><button type="button" aria-label="Menu" class="hamburger-menu -hx-mr-2 hx-rounded hx-p-2 active:hx-bg-gray-400/20 md:hx-hidden"><svg height=24 fill="none" viewBox="0 0 24 24" stroke="currentColor"><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8H20"></path></g><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16H20"></path></g></svg></button>
+  </nav>
+</div>
+
+  <div class='hx-mx-auto hx-flex hx-max-w-[90rem]'>
+    <div class="mobile-menu-overlay [transition:background-color_1.5s_ease] hx-fixed hx-inset-0 hx-z-10 hx-bg-black/80 dark:hx-bg-black/60 hx-hidden"></div>
+<aside class="sidebar-container hx-flex hx-flex-col print:hx-hidden md:hx-top-16 md:hx-shrink-0 md:hx-w-64 md:hx-self-start max-md:[transform:translate3d(0,-100%,0)] md:hx-sticky">
+  
+  <div class="hx-px-4 hx-pt-4 md:hx-hidden">
+    <div class="search-wrapper hx-relative md:hx-w-64">
+  <div class="hx-relative hx-flex hx-items-center hx-text-gray-900 contrast-more:hx-text-gray-800 dark:hx-text-gray-300 contrast-more:dark:hx-text-gray-300">
+    <input
+      placeholder="Search..."
+      class="search-input hx-block hx-w-full hx-appearance-none hx-rounded-lg hx-px-3 hx-py-2 hx-transition-colors hx-text-base hx-leading-tight md:hx-text-sm hx-bg-black/[.05] dark:hx-bg-gray-50/10 focus:hx-bg-white dark:focus:hx-bg-dark placeholder:hx-text-gray-500 dark:placeholder:hx-text-gray-400 contrast-more:hx-border contrast-more:hx-border-current"
+      type="search"
+      value=""
+      spellcheck="false"
+    />
+    <kbd
+      class="hx-absolute hx-my-1.5 hx-select-none ltr:hx-right-1.5 rtl:hx-left-1.5 hx-h-5 hx-rounded hx-bg-white hx-px-1.5 hx-font-mono hx-text-[10px] hx-font-medium hx-text-gray-500 hx-border dark:hx-border-gray-100/20 dark:hx-bg-dark/50 contrast-more:hx-border-current contrast-more:hx-text-current contrast-more:dark:hx-border-current hx-items-center hx-gap-1 hx-transition-opacity hx-pointer-events-none hx-hidden sm:hx-flex"
+    >
+      CTRL K
+    </kbd>
+  </div>
+
+  <div>
+    <ul
+      class="search-results hextra-scrollbar hx-hidden hx-border hx-border-gray-200 hx-bg-white hx-text-gray-100 dark:hx-border-neutral-800 dark:hx-bg-neutral-900 hx-absolute hx-top-full hx-z-20 hx-mt-2 hx-overflow-auto hx-overscroll-contain hx-rounded-xl hx-py-2.5 hx-shadow-xl hx-max-h-[min(calc(50vh-11rem-env(safe-area-inset-bottom)),400px)] md:hx-max-h-[min(calc(100vh-5rem-env(safe-area-inset-bottom)),400px)] hx-inset-x-0 ltr:md:hx-left-auto rtl:md:hx-right-auto contrast-more:hx-border contrast-more:hx-border-gray-900 contrast-more:dark:hx-border-gray-50 hx-w-screen hx-min-h-[100px] hx-max-w-[min(calc(100vw-2rem),calc(100%+20rem))]"
+      style="transition: max-height 0.2s ease 0s;"
+    ></ul>
+  </div>
+</div>
+
+  </div>
+  <div class="hextra-scrollbar hx-overflow-y-auto hx-overflow-x-hidden hx-p-4 hx-grow md:hx-h-[calc(100vh-var(--navbar-height)-var(--menu-height))]">
+    <ul class="hx-flex hx-flex-col hx-gap-1 md:hx-hidden">
+      
+      
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/"
+    
+  >Academic Update
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/derse26/"
+    
+  >derRSE 2026
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/ibit26/"
+    
+  >IBIT Conference 2026
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/ped25/"
+    
+  >Pedestrian and Evacuation Dynamics 2025
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/hefei24/"
+    
+  >PTED 2024
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/tgf24/"
+    
+  >Traffic and Granular Flow 2024
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/ibit23/"
+    
+  >IBIT Conference 2023
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/iafss23/"
+    
+  >IAFSS Symposium 2023
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/waiting/"
+    
+  >The Dynamics of Waiting
+    </a>
+              
+            </li></ul>
+      </div></li>
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/notes/"
+    
+  >Notes
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/notes/dakota-calibration/"
+    
+  >How do you validate a pedestrian model against real data?
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/notes/counterclockwise-crowds/"
+    
+  >Why do roaming crowds drift counterclockwise — and where?
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/notes/airplane-boarding/"
+    
+  >Why don&#39;t airlines board planes the optimal way?
+    </a>
+              
+            </li></ul>
+      </div></li>
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/models/"
+    
+  >Pedestrian Models
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/models/social_force_model/"
+    
+  >Social Force Model
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/models/optimal_steps_model/"
+    
+  >Optimal Steps Model
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/models/generalized_centrifugal_force_model/"
+    
+  >Generalized Centrifugal Force Model
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/models/collision_free_speed_model/"
+    
+  >Collision Free Speed Model
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/models/anticipation_velocity_model/"
+    
+  >Anticipation Velocity Model
+    </a>
+              
+            </li></ul>
+      </div></li>
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/open_source_software/"
+    
+  >Open Source Software
+    </a></li>
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/authors/"
+    
+  >Authors
+    </a></li>
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/about/"
+    
+  >About
+    </a></li>
+    </ul>
+
+    <ul class="hx-flex hx-flex-col hx-gap-1 max-md:hx-hidden">
+        
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/"
+    
+  >Academic Update
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/derse26/"
+    
+  >derRSE 2026
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/ibit26/"
+    
+  >IBIT Conference 2026
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/ped25/"
+    
+  >Pedestrian and Evacuation Dynamics 2025
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/hefei24/"
+    
+  >PTED 2024
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/tgf24/"
+    
+  >Traffic and Granular Flow 2024
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/ibit23/"
+    
+  >IBIT Conference 2023
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/iafss23/"
+    
+  >IAFSS Symposium 2023
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/academic_update/waiting/"
+    
+  >The Dynamics of Waiting
+    </a>
+              
+            </li></ul>
+      </div></li>
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/notes/"
+    
+  >Notes
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/notes/dakota-calibration/"
+    
+  >How do you validate a pedestrian model against real data?
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/notes/counterclockwise-crowds/"
+    
+  >Why do roaming crowds drift counterclockwise — and where?
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/notes/airplane-boarding/"
+    
+  >Why don&#39;t airlines board planes the optimal way?
+    </a>
+              
+            </li></ul>
+      </div></li>
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/models/"
+    
+  >Pedestrian Models
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/models/social_force_model/"
+    
+  >Social Force Model
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/models/optimal_steps_model/"
+    
+  >Optimal Steps Model
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/models/generalized_centrifugal_force_model/"
+    
+  >Generalized Centrifugal Force Model
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/models/collision_free_speed_model/"
+    
+  >Collision Free Speed Model
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/models/anticipation_velocity_model/"
+    
+  >Anticipation Velocity Model
+    </a>
+              
+            </li></ul>
+      </div></li>
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/open_source_software/"
+    
+  >Open Source Software
+    </a></li>
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/authors/"
+    
+  >Authors
+    </a></li>
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/about/"
+    
+  >About
+    </a></li>
+        
+      </ul>
+    </div>
+  
+  
+    <div class="  hx-sticky hx-bottom-0 hx-bg-white dark:hx-bg-dark hx-mx-4 hx-py-4 hx-shadow-[0_-12px_16px_#fff] hx-flex hx-items-center hx-gap-2 dark:hx-border-neutral-800 dark:hx-shadow-[0_-12px_16px_#111] contrast-more:hx-border-neutral-400 contrast-more:hx-shadow-none contrast-more:dark:hx-shadow-none hx-border-t" data-toggle-animation="show"><div class="hx-flex hx-grow hx-flex-col"><button
+  title="Change theme"
+  data-theme="light"
+  class="theme-toggle hx-group hx-h-7 hx-rounded-md hx-px-2 hx-text-left hx-text-xs hx-font-medium hx-text-gray-600 hx-transition-colors dark:hx-text-gray-400 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50"
+  type="button"
+  aria-label="Change theme"
+>
+  <div class="hx-flex hx-items-center hx-gap-2 hx-capitalize"><svg height=12 class="group-data-[theme=light]:hx-hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><span class="group-data-[theme=light]:hx-hidden">Light</span><svg height=12 class="group-data-[theme=dark]:hx-hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg><span class="group-data-[theme=dark]:hx-hidden">Dark</span></div>
+</button>
+</div></div></aside>
+    
+<nav class="hextra-toc hx-order-last hx-hidden hx-w-64 hx-shrink-0 xl:hx-block print:hx-hidden hx-px-4" aria-label="table of contents">
+    <div class="hextra-scrollbar hx-sticky hx-top-16 hx-overflow-y-auto hx-pr-4 hx-pt-6 hx-text-sm [hyphens:auto] hx-max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] ltr:hx--mr-4 rtl:hx--ml-4"><p class="hx-mb-4 hx-font-semibold hx-tracking-tight">On this page</p><ul>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#basic-questions-and-applications">Basic questions and applications
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#transportation-improvement">Transportation Improvement
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#safety-and-comfort">Safety and Comfort
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#collective-phenomena">Collective phenomena
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#interactions-and-relationships-from-individuals-to-groups-from-communities-to-cities">Interactions and relationships: From individuals to groups, from communities to cities
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#methods">Methods
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#experiments">Experiments
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#field-observations">Field observations
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#modeling">Modeling
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#further-reading">Further reading
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#references">References
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#contributors">Contributors
+        </a>
+      </li></ul>
+      <div class="hx-mt-8 hx-border-t hx-bg-white hx-pt-8 hx-shadow-[0_-12px_16px_white] dark:hx-bg-dark dark:hx-shadow-[0_-12px_16px_#111] hx-sticky hx-bottom-0 hx-flex hx-flex-col hx-items-start hx-gap-2 hx-pb-8 dark:hx-border-neutral-800 contrast-more:hx-border-t contrast-more:hx-border-neutral-400 contrast-more:hx-shadow-none contrast-more:dark:hx-border-neutral-400">
+        <button aria-hidden="true" id="backToTop" onClick="scrollUp();" class="hx-transition-all hx-duration-75 hx-opacity-0 hx-text-xs hx-font-medium hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-100 contrast-more:hx-text-gray-800 contrast-more:dark:hx-text-gray-50">
+          <span>Scroll to top</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hx-inline ltr:hx-ml-1 rtl:hx-mr-1 hx-h-3.5 hx-w-3.5 hx-border hx-rounded-full hx-border-gray-500 hover:hx-border-gray-900 dark:hx-border-gray-400 dark:hover:hx-border-gray-100 contrast-more:hx-border-gray-800 contrast-more:dark:hx-border-gray-50">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+
+    <article class="hx-w-full hx-break-words hx-flex hx-min-h-[calc(100vh-var(--navbar-height))] hx-min-w-0 hx-justify-center hx-pb-8 hx-pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+      <main class="hx-w-full hx-min-w-0 hx-max-w-6xl hx-px-6 hx-pt-4 md:hx-px-12">
+        
+  <div class="hx-mt-1.5 hx-flex hx-items-center hx-gap-1 hx-overflow-hidden hx-text-sm hx-text-gray-500 dark:hx-text-gray-400 contrast-more:hx-text-current"><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Pedestrian Dynamics</div>
+  </div>
+
+        <div class="content">
+          <h1>Pedestrian Dynamics</h1>
+          <h2>Basic questions and applications<span class="hx-absolute -hx-mt-20" id="basic-questions-and-applications"></span>
+    <a href="#basic-questions-and-applications" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Pedestrian dynamics studies how people move in crowds. Crowd flow shows
+emergent behavior on many length and time scales, and physics provides useful
+tools to describe and model it. The composition of the crowd matters as well:
+who is walking, with whom, and for what purpose all influence how a crowd
+moves.</p>
+<figure><img src="images/crowd.webp"
+    alt="Image design: Panar Ege Uesten."><figcaption>
+      <p>Image design: Panar Ege Uesten.</p>
+    </figcaption>
+</figure>
+
+<p>The field matters to scientists and practitioners alike because it addresses
+three concerns of everyday life: efficient <strong>transport systems</strong>, <strong>safety</strong>,
+and <strong>comfort</strong>.</p>
+<h3>Transportation Improvement<span class="hx-absolute -hx-mt-20" id="transportation-improvement"></span>
+    <a href="#transportation-improvement" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Train stations and airports work well when people can move through them
+easily. As cities grow, understanding how pedestrians behave in such
+facilities becomes essential for designing transportation systems that
+function. Quantities such as the flow through a bottleneck or the number of
+people a facility can evacuate per hour help planners reduce congestion and
+support sustainable urban mobility. A basic tool here is the fundamental
+diagram, which relates density, speed, and flow. A good reference on this
+topic is <a href="https://www.trb.org/Publications/Blurbs/165625.aspx" target="_blank" rel="noopener">75 Years of the Fundamental Diagram for Traffic Flow Theory:
+Greenshields Symposium</a>,
+covering the history, developments, and practical applications of traffic flow
+theory.</p>
+<figure><img src="images/fd.png"
+    alt="The fundamental diagram describes the relationship of flow and density and helps to understand the formation of congestions."><figcaption>
+      <p>The fundamental diagram describes the relationship of flow and density and helps to understand the formation of congestions.</p>
+    </figcaption>
+</figure>
+
+<p>Further reading on the fundamental diagram is found in this dissertation:
+<a href="https://juser.fz-juelich.de/record/128157" target="_blank" rel="noopener">Pedestrian fundamental diagrams: Comparative analysis of experiments in
+different geometries</a></p>
+<p>Pedestrian dynamics also applies to large events. The arrival and departure of
+thousands of visitors happens in stages, each with its own behavior, such as
+waiting in queues. Knowing how pedestrians queue, and how long queues take to
+clear, helps organizers keep crowds moving.</p>
+<figure><img src="images/queue.jpg"
+    alt="Photo by Hal Gatewood on Unsplash"><figcaption>
+      <p><a href="https://unsplash.com/photos/aerial-photography-of-people-Nzb4LBsctyQ" target="_blank" rel="noopener">Photo</a> by <a href="https://unsplash.com/@halacious" target="_blank" rel="noopener">Hal Gatewood</a> on <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></p>
+    </figcaption>
+</figure>
+
+<h3>Safety and Comfort<span class="hx-absolute -hx-mt-20" id="safety-and-comfort"></span>
+    <a href="#safety-and-comfort" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Analyzing pedestrian movement helps identify bottlenecks, hazardous areas, and
+workable evacuation strategies, so that crowds stay safe in emergencies. The
+same analysis improves comfort: public spaces with smooth pedestrian flow are
+more pleasant to use.</p>
+<p>How safe people <em>feel</em> in a crowd is a research topic of its own. Perceived
+safety is subjective, so researchers develop tools and methods to measure it
+as objectively as possible and to capture how crowd members actually
+experience a situation.</p>
+<figure><img src="images/crowd_station.jpg"
+    alt="Photo by Anna Dziubinska on Unsplash"><figcaption>
+      <p><a href="https://unsplash.com/photos/people-standing-and-walking-on-stairs-in-mall-mVhd5QVlDWw" target="_blank" rel="noopener">Photo</a> by <a href="https://unsplash.com/@annadziubinska" target="_blank" rel="noopener">Anna Dziubinska</a> on <a href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash</a></p>
+    </figcaption>
+</figure>
+
+<h2>Collective phenomena<span class="hx-absolute -hx-mt-20" id="collective-phenomena"></span>
+    <a href="#collective-phenomena" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Collective phenomena emerge when many individuals interact. A central question
+in pedestrian dynamics is how individuals form a crowd. Answering it involves
+social interactions, behavior, emotions, and culture, and the answer differs
+between social groups.</p>
+<p>Typical collective phenomena in pedestrian crowds include:</p>
+<ul>
+<li><strong>Lane Formation</strong>: In bidirectional streams, pedestrians spontaneously form
+lanes, which reduces friction between the opposing directions.</li>
+</ul>
+<figure>
+    <video autoplay loop muted playsinline preload="auto" style="max-width: 100%">
+        <source src="/images/lane-formation.mp4" type="video/mp4">
+    </video>
+    <figcaption>Spontaneous emergence of lane formation in a bi-directional flow</figcaption>
+</figure>
+
+<ul>
+<li><strong>Clogging at Bottlenecks</strong>: Near a narrow passage, several people (or
+particles) can form an arch that jams the opening and reduces, or even
+stops, the flow.</li>
+</ul>
+<figure><img src="images/clogging.webp"
+    alt="Clogging in a bottleneck"><figcaption>
+      <p>Clogging in a bottleneck</p>
+    </figcaption>
+</figure>
+
+<ul>
+<li><strong>Stop-and-Go Waves</strong>: In congested crowds, as in vehicle traffic, people
+alternate between moving and standing, and these fluctuations travel through
+the crowd as waves.</li>
+</ul>
+<figure>
+    <video autoplay loop muted playsinline preload="auto" style="max-width: 100%">
+        <source src="/images/stop-go.mp4" type="video/mp4">
+    </video>
+    <figcaption>Emergence of stop-and-go waves in a system with closed boundary conditions</figcaption>
+</figure>
+
+<p>Understanding these phenomena is the basis for crowd management, whether at a
+football match, a music festival, or a train station.</p>
+<p>For further reading see this
+<a href="https://link.springer.com/article/10.1007/s10489-023-04924-7" target="_blank" rel="noopener">review</a> on
+collective behavior modeling and simulation: building a link between cognitive
+psychology and physical action.</p>
+<h2>Interactions and relationships: From individuals to groups, from communities to cities<span class="hx-absolute -hx-mt-20" id="interactions-and-relationships-from-individuals-to-groups-from-communities-to-cities"></span>
+    <a href="#interactions-and-relationships-from-individuals-to-groups-from-communities-to-cities" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>The key to understanding the different forms of collective organization lies in
+the type and the nature of interactions between individuals and groups of
+individuals. One factor is the <strong>distance</strong>: The closer we are to each other,
+the more senses are used to &lsquo;feel&rsquo; the presence of others. When bodies are
+touching, we can feel the heat and, in some cases, even other people&rsquo;s
+heartbeats.</p>
+<figure><img src="images/distance-modell.png"
+    alt="Edward T. Hall&rsquo;s interpersonal distances of man (The Hidden Dimension)"><figcaption>
+      <p>Edward T. Hall&rsquo;s interpersonal distances of man (<a href="https://archive.org/details/hiddendimension000hall" target="_blank" rel="noopener">The Hidden Dimension</a>)</p>
+    </figcaption>
+</figure>
+
+<p>This creates a sensation that may be unpleasant in a crowded train but can help
+lead to the emergence of helpful behavior in case of dangerous situations. When
+walking in a crowded space, <strong>sight</strong> plays an important role. However, what we
+see and how we process visual clues largely depends on the distance. From a
+close distance, we can read someone&rsquo;s facial expression and understand, for
+example, where someone is looking. This information, in addition to shoulder
+orientation and other minor cues, can help us understand where someone is
+heading and whether that person is looking at us. From a greater distance, it
+becomes challenging to discern the intentions of other people. However, if we
+can see them, we can choose to either join a crowded place or avoid it, so the
+mere presence of people will also influence our decisions. For instance, people
+sitting along a river and seeking privacy or intimacy will often avoid others,
+typically choosing a spot equidistant from other groups of people. On the other
+hand, in an unfamiliar place where we are aware that specific customs are
+followed, we may choose to line up by following others, as is the case in
+places like a city hall, for example.</p>
+<p>The
+<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0177328" target="_blank" rel="noopener">article</a>
+discusses pedestrian dynamics in gatherings, emphasizing that pedestrians not
+only respond to stimuli but also act based on social norms and identities. It
+proposes integrating social psychology with natural sciences, suggesting three
+categories for study: phenomena, behavior, and action.</p>
+<figure>
+    <video autoplay loop muted playsinline preload="auto" style="max-width: 100%">
+        <source src="/images/interaction.mp4" type="video/mp4">
+    </video>
+    <figcaption>Experimental study on entrance to a bottleneck.</figcaption>
+</figure>
+
+<p>Many aspects of interactions and relationships within a crowd follow
+exponential laws. Distance thresholds
+defined to characterize different degrees of personal space usually grow larger
+and larger the less familiar we are with someone. A distance of a few
+centimeters can create a different feeling in a packed train, but it takes a
+change of several meters to feel distant from a person already dozens of meters
+apart. Similarly, collision avoidance is also subject to exponential laws.
+Steering maneuvers are performed much more quickly when people are approaching
+very quickly, and minimum corrections are made for distant individuals. See for
+instance the direction model in the <a href="/models/collision_free_speed_model/" >collision free speed
+model</a>. Even more interesting is that
+higher-level aggregations also follow similar laws. In a given country, only a
+few cities exceed a population of one or several million, while hundreds of
+cities may have several dozens of thousands of people. A large number of
+villages can also be found with small populations. This dimension also changes
+with culture, reflecting differences at the microscopic scale in some way. What
+may be considered a small city in Asian countries could be considered a
+metropolis in Europe or South America. Yet, the same principle typically
+applies to each distinct geographical area, demonstrating the universal nature
+of human social organization.</p>
+<p>In short, our <strong>perception and cognition</strong> shape the world in which we live and
+the way we interact with other people. Although we can only walk short
+distances and move within limited spaces, our planning occurs on larger scales,
+and migration, while slow, can span significant distances. Not surprisingly,
+collective organization at a microscopic scale is reflected in similar laws
+found on a macroscopic scale. We cannot escape from our human nature, as we are
+a part of the natural world, which also adheres to similar laws.</p>
+<h2>Methods<span class="hx-absolute -hx-mt-20" id="methods"></span>
+    <a href="#methods" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Research into Pedestrian Dynamics employs various methods, including
+simulations, experiments under laboratory conditions, real-life measurements,
+and qualitative observations. The emergence of computer vision technology has
+enabled the integration of insights from simulation studies with systematic
+data collection efforts.</p>
+<h3>Experiments<span class="hx-absolute -hx-mt-20" id="experiments"></span>
+    <a href="#experiments" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>In the early 2000s, laboratory experiments became a leading method:
+participants walk through controlled setups under the supervision of
+experimenters, often wearing colored vests and helmets that make tracking
+easier and more accurate. Controlled settings allow precise definition of
+conditions such as density, geometry, and even emotional state. Their limits
+are the small number of volunteers, restricted time, and possible
+psychological bias. Even so, laboratory data remain a benchmark for the
+field.</p>
+<figure>
+    <video autoplay loop muted playsinline preload="auto" style="max-width: 100%">
+        <source src="/images/experiments.mp4" type="video/mp4">
+    </video>
+    <figcaption>Experiments under laboratory conditions. See <a href="https://ped.fz-juelich.de/db" target="_blank" rel="noopener">IAS-7 Data Archive</a></figcaption>
+</figure>
+
+<h3>Field observations<span class="hx-absolute -hx-mt-20" id="field-observations"></span>
+    <a href="#field-observations" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Field observations, in contrast, allow continuous data collection throughout
+the year and capture behavior beyond the average case. Virtual reality has
+also proven useful for studying pedestrian movement and behavior, thanks to
+its low cost and high experimental control; how well findings from virtual
+worlds transfer to real ones is an ongoing research question.</p>
+<figure><img src="images/corbetta1.png"
+    alt="Real-life anonymous pedestrian tracking in the train station of Eindhoven (NL). Source"><figcaption>
+      <p>Real-life anonymous pedestrian tracking in the train station of Eindhoven (NL). <a href="https://research.tue.nl/en/publications/continuous-measurements-of-real-life-bidirectional-pedestrian-flo" target="_blank" rel="noopener">Source</a></p>
+    </figcaption>
+</figure>
+
+<p>Machine learning and computer vision now allow accurate real-time tracking in
+such settings. Tracking crowds around the clock in public locations yields
+sample sizes out of reach for any other method: millions of trajectories.
+The challenge is that conditions cannot be imposed. Crowd density, flow
+direction, and the presence of groups, all controllable in the laboratory,
+become random variables in real life. Statistical analysis then requires
+selecting and aggregating similar instances, for example by representing the
+data as graphs.</p>
+<figure>
+    <video autoplay loop muted playsinline preload="auto" style="max-width: 100%">
+        <source src="/images/voronoi-moving.mp4" type="video/mp4">
+    </video>
+    <figcaption>Identified silhouettes of individuals in transit and their associated Voronoi diagrams. <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.98.062310" target="_blank" rel="noopener">Source</a></figcaption>
+</figure>
+
+<h3>Modeling<span class="hx-absolute -hx-mt-20" id="modeling"></span>
+    <a href="#modeling" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Mathematical and physical models have evolved from laboratory and qualitative
+studies. Early qualitative models helped explore crowd phenomena and showed
+that quantitative modeling is feasible. More recently, data-based models using
+machine learning have gained popularity.</p>
+<p>Pedestrian dynamics modeling can be broken down based on the scale of
+application: strategic (which deals with route and departure choices in
+buildings), tactical (focusing on path or exit choices in rooms), and
+operational (which examines interactions among pedestrians and infrastructure).
+At the operational level, there are three primary types of models:</p>
+<ol>
+<li><strong>Macroscopic Models</strong>: Derived from fluid dynamics, these models study
+averages like density, speed, or flow.</li>
+<li><strong>Mesoscopic Models</strong>: Rooted in thermodynamics, they deal with the
+probability density of pedestrian movements over time, position, and speed.</li>
+<li><strong>Microscopic Models</strong>: View pedestrians as individual entities interacting
+with each other.</li>
+</ol>
+<figure><img src="images/co140311.f1.jpeg"
+    alt="Physics of Human Crowds, Corbetta &amp; Toschi. Annual Review of Condensed Matter Physics, vol. 14, 1, p.311-333, 2023"><figcaption>
+      <p><a href="https://www.annualreviews.org/doi/abs/10.1146/annurev-conmatphys-031620-100450" target="_blank" rel="noopener">Physics of Human Crowds</a>, Corbetta &amp; Toschi. Annual Review of Condensed Matter Physics, vol. 14, 1, p.311-333, 2023</p>
+    </figcaption>
+</figure>
+
+<p>Microscopic models further differ based on parameters such as time, space,
+modeling approach, and fidelity. Other specific models include:</p>
+<ul>
+<li><strong>Cellular Automaton (CA)</strong>: Here, systems are divided into cells,
+representing spaces that can be free or occupied by pedestrians. These models
+use space-based rules to determine movement.</li>
+</ul>
+<figure><img src="images/ca.png"
+    alt="Potential movement paths on a grid, along with their associated transition probabilities, are outlined for the von Neumann neighborhood scenario"><figcaption>
+      <p>Potential movement paths on a grid, along with their associated transition probabilities, are outlined for the von Neumann neighborhood scenario</p>
+    </figcaption>
+</figure>
+
+<ul>
+<li>
+<p><strong>Force-based Models</strong>: These continuous models utilize systems of equations
+to determine pedestrian motion, considering factors like repulsion from
+others or attractions to certain routes.</p>
+</li>
+<li>
+<p><strong>Speed Models</strong>: Unlike force-based ones, these models focus on speed and
+don&rsquo;t consider inertia. Some are vision-based, determining pedestrian
+movement based on predicted movements of surrounding individuals.</p>
+</li>
+</ul>
+<figure><img src="images/ellipses.png"
+    alt="In continuous space models, whether force-based or velocity-based, pedestrians are depicted as two-dimensional figures (like ellipses, circles, etc.). The distance between these figures determines the repulsive interactions among them"><figcaption>
+      <p>In continuous space models, whether force-based or velocity-based, pedestrians are depicted as two-dimensional figures (like ellipses, circles, etc.). The distance between these figures determines the repulsive interactions among them</p>
+    </figcaption>
+</figure>
+
+<ul>
+<li><strong>Agent-based Models</strong>: Treat pedestrians as individual agents, using a
+detailed set of parameters to model their behaviors.</li>
+</ul>
+<p>The approaches differ in scale, detail, and the behaviors they aim to
+capture.</p>
+<p>Models need validation. This
+<a href="https://link.springer.com/chapter/10.1007/978-3-540-79992-4_77" target="_blank" rel="noopener">paper</a>
+examines why different sources and experiments report different fundamental
+diagrams and shows, by analyzing experimental trajectories, that the
+measurement method itself influences the result.</p>
+<p>A review and critique of mathematical studies on modeling and simulating human
+crowds, with an emphasis on behavioral dynamics, can be found in
+<a href="https://link.springer.com/article/10.1007/s10489-023-04924-7" target="_blank" rel="noopener">Bellomo2023</a>.</p>
+<p>These three approaches—simulations, experiments under laboratory conditions,
+qualitative observations—complement and intertwine with each other.
+Experimental data, whether from controlled or real-life settings, are
+increasingly employed to validate and fine-tune simulation models.</p>
+<h2>Further reading<span class="hx-absolute -hx-mt-20" id="further-reading"></span>
+    <a href="#further-reading" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Several review articles offer a deeper look at the field.</p>
+<figure><img src="images/reading.jpg"
+    alt="Photo by Benjamin Ashton on Unsplash"><figcaption>
+      <p><a href="https://unsplash.com/photos/people-inside-library-1mwPOXb_pB8" target="_blank" rel="noopener">Photo</a> by <a href="https://unsplash.com/@bashton" target="_blank" rel="noopener">Benjamin Ashton</a> on <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></p>
+    </figcaption>
+</figure>
+
+<p><a href="https://www.sciencedirect.com/science/article/pii/S0925753523002345?via%3Dihub" target="_blank" rel="noopener">Haghani2023</a>
+discusses current challenges in crowd safety through the Swiss Cheese Model,
+argues for a global Vision Zero target, and calls for closer collaboration
+between stakeholders.</p>
+<p><a href="https://doi.org/10.1146/annurev-conmatphys-031620-100450" target="_blank" rel="noopener">Physics of Human
+Crowds</a> reviews
+crowd behaviors that appear universally, independent of individual differences
+or crowd density, and shows how methods from physics contribute to
+understanding pedestrian dynamics.</p>
+<p><a href="https://doi.org/10.1007/978-3-030-90012-0_1" target="_blank" rel="noopener">What Is Crowd Management?</a>
+defines the term, distinguishes crowd management from crowd control, and
+presents strategies that address both safety and comfort.</p>
+<p>A <a href="https://collective-dynamics.eu/index.php/cod/article/view/A141" target="_blank" rel="noopener">data guidance
+paper</a>
+documents crowd management experiments with nearly 1000 participants,
+motivated by physical and social-psychological theories of behavior at
+railway stations.</p>
+<p>A <a href="https://collective-dynamics.eu/index.php/cod/article/view/A19" target="_blank" rel="noopener">glossary
+article</a>
+explains terms that appear frequently in human crowd research.</p>
+<p>Finally, a <a href="https://doi.org/10.1007/978-3-030-05129-7_4" target="_blank" rel="noopener">review</a> connects
+empirical and theoretical pedestrian dynamics studies and shows how empirical
+results are used to calibrate and validate pedestrian models.</p>
+<h2>References<span class="hx-absolute -hx-mt-20" id="references"></span>
+    <a href="#references" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ol>
+<li><a href="https://www.trb.org/Publications/Blurbs/165625.aspx" target="_blank" rel="noopener"> 75 Years of the Fundamental Diagram for Traffic Flow Theory: Greenshields
+Symposium </a></li>
+<li><a href="https://juser.fz-juelich.de/record/128157" target="_blank" rel="noopener">Pedestrian fundamental diagrams: Comparative analysis of experiments in
+different geometries</a></li>
+<li><a href="https://link.springer.com/article/10.1007/s10489-023-04924-7" target="_blank" rel="noopener">A review on collective behavior modeling and simulation: building a link
+between cognitive psychology and physical
+action</a></li>
+<li><a href="https://archive.org/details/hiddendimension000hall" target="_blank" rel="noopener">The Hidden Dimension</a></li>
+<li><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0177328" target="_blank" rel="noopener">Collective phenomena in crowds—Where pedestrian dynamics need social
+psychology</a></li>
+<li><a href="https://research.tue.nl/en/publications/continuous-measurements-of-real-life-bidirectional-pedestrian-flo" target="_blank" rel="noopener">Continuous measurements of real-life bidirectional pedestrian flows on a
+wide
+walkway</a></li>
+<li><a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.98.062310" target="_blank" rel="noopener">Physics-based modeling and data representation of pairwise interactions
+among
+pedestrians</a></li>
+<li><a href="https://www.annualreviews.org/doi/abs/10.1146/annurev-conmatphys-031620-100450" target="_blank" rel="noopener">Physics of Human
+Crowds</a></li>
+<li><a href="https://link.springer.com/chapter/10.1007/978-3-540-79992-4_77" target="_blank" rel="noopener">Fundamental Diagram and Validation of Crowd
+Models</a></li>
+<li><a href="https://link.springer.com/article/10.1007/s10489-023-04924-7" target="_blank" rel="noopener">A review on collective behavior modeling and simulation: building a link
+between cognitive psychology and physical
+action</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S0925753523002345?via%3Dihub" target="_blank" rel="noopener">A roadmap for the future of crowd safety research and practice:
+Introducing the Swiss Cheese Model of Crowd Safety and the imperative of a
+Vision Zero
+target</a></li>
+<li><a href="https://doi.org/10.1007/978-3-030-90012-0_1" target="_blank" rel="noopener">What Is Crowd Management?</a></li>
+<li><a href="https://collective-dynamics.eu/index.php/cod/article/view/A141" target="_blank" rel="noopener">Pedestrian Crowd Management Experiments: A Data Guidance Paper
+</a></li>
+<li><a href="https://collective-dynamics.eu/index.php/cod/article/view/A19" target="_blank" rel="noopener">A Glossary for Research on Human Crowd
+Dynamics</a></li>
+<li><a href="https://doi.org/10.1007/978-3-030-05129-7_4" target="_blank" rel="noopener">Pedestrian Dynamics: From Empirical Results to
+Modeling</a></li>
+</ol>
+<h2>Contributors<span class="hx-absolute -hx-mt-20" id="contributors"></span>
+    <a href="#contributors" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>This article is a collaborative work, with contributions from various authors
+listed in alphabetical order:</p>
+<ul>
+<li><a href="/authors/#MohcineChraibi" >Mohcine Chraibi</a></li>
+<li><a href="/authors/#AlessandroCorbetta" >Alessandro Corbetta</a></li>
+<li><a href="/authors/#ClaudioFeliciani" >Claudio Feliciani</a></li>
+<li><a href="/authors/#MiladHaghani" >Milad Haghani</a></li>
+<li><a href="/authors/#EnricoRonchi" >Enrico Ronchi</a></li>
+<li><a href="/authors/#JetteDegenhardt" >Jette Degenhardt</a></li>
+<li><a href="/authors/#AntoineTordeux" >Antoine Tordeux</a></li>
+<li><a href="/authors/#EzelÜsten" >Ezel Üsten</a></li>
+</ul>
+
+        </div>
+        
+    <div class="hx-mt-12 hx-mb-8 hx-block hx-text-xs hx-text-gray-500 ltr:hx-text-right rtl:hx-text-left dark:hx-text-gray-400">Last updated on <time datetime="2026-09-05T00:00:00.000Z">September 5, 2026</time></div>
+        
+        
+      </main>
+    </article>
+  </div>
+
+      <footer class="hextra-footer hx-bg-gray-100 hx-pb-[env(safe-area-inset-bottom)] dark:hx-bg-neutral-900 print:hx-bg-transparent"><div
+    class="hx-max-w-screen-xl hx-mx-auto hx-flex hx-justify-center hx-py-12 hx-pl-[max(env(safe-area-inset-left),1.5rem)] hx-pr-[max(env(safe-area-inset-right),1.5rem)] hx-text-gray-600 dark:hx-text-gray-400 md:hx-justify-start"
+  >
+    <div class="hx-flex hx-w-full hx-flex-col hx-items-center sm:hx-items-start"><div class="hx-mt-6 hx-text-xs">© 2026 PedestrianDynamics.org contributors · <a href="/imprint/" >Imprint</a> · <a href="/privacy/" >Privacy</a></div>
+    </div>
+  </div>
+</footer>
+    
+    <script defer src="/js/main.js" integrity=""></script>
+
+
+<script defer src="/lib/flexsearch/flexsearch.bundle.min.0425860527cc9968f9f049421c7a56b39327d475e2e3a8f550416be3a9134327.js" integrity="sha256-BCWGBSfMmWj58ElCHHpWs5Mn1HXi46j1UEFr46kTQyc="></script>
+    <script defer src="/en.search.js" integrity=""></script>
+
+
+  </body>
+</html>
