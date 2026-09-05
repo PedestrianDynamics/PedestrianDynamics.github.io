@@ -245,6 +245,12 @@ That has consequences beyond convenience. Anyone can rerun the calibration with 
 
 ## Code
 
-Driver scripts, Dakota input files, results and figures for every step: [github.com/PedestrianDynamics/jupedsim-dakota-calibration](https://github.com/PedestrianDynamics/jupedsim-dakota-calibration). Dakota 6.24, JuPedSim 1.4.2, PedPy 1.4.0.
+Driver scripts, Dakota input files, results and figures for every step: [github.com/PedestrianDynamics/jupedsim-dakota-calibration](https://github.com/PedestrianDynamics/jupedsim-dakota-calibration)
+
+Software used in this study:
+
+- [Dakota](https://dakota.sandia.gov) 6.24
+- [JuPedSim](https://jupedsim.org) 1.4.2
+- [PedPy](https://pedpy.readthedocs.io) 1.4.0
 
 {{< icon "pencil-alt" >}} By: [Mohcine Chraibi]({{< relref "/authors#MohcineChraibi" >}})
