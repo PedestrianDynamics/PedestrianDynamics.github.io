@@ -13,3 +13,4 @@ vendor
 !*logo*
 !layouts/blog/
 !layouts/blog/**
+public/
