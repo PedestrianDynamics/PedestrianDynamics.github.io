@@ -195,6 +195,19 @@ Recalibrating on the seven baseline runs at 1.2, 3.4 and 5.6 m, with the wall pa
 
 The low-motivation runs show what a flow-only validation would miss. Between the baseline and the low-motivation condition the measured flow at the same gate is about 10 % lower; the model has no input for motivation, so with parameters fixed at the baseline calibration it predicts the same or a higher flow, and overshoots the low-motivation runs by 24 % on average. In the 1.2 m corridor with 24 people the calibrated model gives a flow 25 % high, a corridor 48 % denser than measured and people moving 31 % slower: the throughput is within a quarter of the measurement while the upstream state is wrong in two directions at once. Refitting only the time gap on the nine low-motivation runs moves it to the upper end of its range, 1.9 s, and leaves a residual norm of 11.7 over 27 residuals, so the difference between the conditions is not reproduced by that one adjustment with the other parameters held.
 
+### A separate calibration for each motivation condition
+
+To make the compensation concrete, we also calibrated the seven parameters separately on every usable run in each condition, using identical bounds and the same three observables. These are exploratory one-start fits with one simulation seed per Dakota evaluation; the norms below are recomputed from three independent seeds at the selected points. The `h+` condition has only one 11-person run, so it cannot support a comparable multi-parameter calibration and is left out.
+
+| condition | usable runs | desired speed v0 [m/s] | radius [m] | time gap T [s] | neighbor strength | neighbor range [m] | wall strength | wall range [m] | norm (three-seed means) |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| h0 | 11 | 1.230 | 0.125 | 0.698 | 7.09 | 0.044 | 5.00 | 0.015 | 14.1 |
+| h− | 9 | 0.819 | 0.111 | 0.777 | 5.69 | 0.174 | 2.12 | 0.052 | 15.3 |
+
+The separate fits are direct evidence that static parameters absorb part of the motivation condition: desired speed falls by 0.41 m/s and the time gap rises by 11 %, while the model remains able to empty 31 of 33 `h0` seeds and all 27 `h−` seeds at the selected points. But they do not support the stronger claim that the difference lies mostly in `T` and a `v0`-like direction. The neighbor range changes by a factor of four, the wall range by a factor of three and a half, the wall strength falls by more than half, and the radius and neighbor strength also move. The fits still have large residual norms, so these numbers should be read as compensating parameter combinations, not as estimates of how motivation changes human walking.
+
+**A cleaner bridge to a dynamical model would be a nested comparison:** keep one common set of static interaction parameters, allow only condition-specific changes in `T` and `v0` (or in a motivation state that controls them), and compare that model with the fully separate fits on held-out runs. This experiment motivates that test, but by itself it cannot identify which parameter direction represents motivation.
+
 The one high-motivation run, 11 people through the 1.2 m corridor at 2.1 persons per second, gets its own sweep.
 
 {{< figure
