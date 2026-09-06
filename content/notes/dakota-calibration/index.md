@@ -61,7 +61,7 @@ Dakota needs two things: an input file describing the study, and a driver script
 ```
 method
   psuade_moat
-    samples = 80
+    samples = 160
     partitions = 3
 
 variables
@@ -85,20 +85,27 @@ responses
   no_hessians
 ```
 
-The first stage is a Morris screening: 80 evaluations, each one a short walk through parameter space changing one parameter at a time. It is cheap and it ranks the parameters per observable. It is a ranking, not a measurement: with ten trajectories the estimates are coarse, and any ranking of this kind is conditional on the ranges it was sampled over.
+The first stage is a Morris screening: twenty trajectories of eight evaluations each, every step changing one parameter at a time, 160 evaluations in all. It is cheap and it ranks the parameters per observable. It is a ranking, not a measurement, and any ranking of this kind is conditional on the ranges it was sampled over. We ran it first with ten trajectories and then with twenty; the ranking did not change, so the figure shows the larger run.
 
 {{< figure
     src="fig3.png"
-    caption="Morris screening over the full parameter ranges. Each cell is the mean absolute elementary effect of a parameter on an observable, scaled to the strongest parameter in that column. An elementary effect is one step of one parameter along a Morris trajectory; steps where either end of the pair failed were discarded, so the count n per row is the number of valid steps that survived, between four and seven of the ten drawn. The time gap, the radius and the neighbor repulsion range dominate; the desired speed has a moderate effect on flow and speed; the two wall parameters are weakest."
+    caption="Morris screening over the full parameter ranges, twenty trajectories. Each cell is the mean absolute elementary effect of a parameter on an observable, scaled to the strongest parameter in that column. An elementary effect is one step of one parameter along a trajectory; steps where either end failed were discarded, and n per row is the number of valid steps that survived out of the twenty drawn. The time gap, the radius and the neighbor repulsion range dominate; the desired speed has a moderate effect on flow and speed over this wide range; the two wall parameters are weakest."
 >}}
 
-The screening also revealed something no fit would have: in 28 of the 80 evaluations the model pushed agents through the walls and JuPedSim aborted the run. Those combinations have strong, long-range neighbor repulsion and weak wall repulsion. We narrowed the bounds accordingly and froze the wall parameters at their defaults. Knowing where a model breaks is part of validating it.
+The screening also revealed something no fit would have: in 43 of the 160 evaluations, about a quarter, the model pushed agents through the walls and JuPedSim aborted the run. Those combinations have strong, long-range neighbor repulsion and weak wall repulsion. We narrowed the bounds accordingly and froze the wall parameters at their defaults. Knowing where a model breaks is part of validating it.
 
-With five parameters left, and narrower ranges, a Sobol analysis with 280 evaluations gives the variance decomposition. Dakota computes the indices itself; the only change to the input file is one keyword, `variance_based_decomp`. Because the ranges and the fixed parameters changed between the two stages, the two rankings are not expected to coincide exactly; sensitivity is always relative to the ranges assumed.
+With five parameters left, and narrower ranges, a Sobol analysis gives the variance decomposition. Dakota computes the indices itself; the only change to the input file is one keyword, `variance_based_decomp`, and the cost is the base sample size times the number of parameters plus two. Because the ranges and the fixed parameters changed between the two stages, the two rankings are not expected to coincide exactly; sensitivity is always relative to the ranges assumed.
+
+How many samples are enough is an empirical question, so we answered it empirically: three replicate runs with 40 base samples and different seeds, then 80 and 160 base samples, 2240 evaluations in all. At 40 samples the replicates disagree by up to 0.25 in the total index and twenty of the 45 first-order indices exceed their totals, which exact indices cannot do. At 160 samples no first-order index exceeds its total, and the time gap's share of flow and speed has risen from about 0.4 to about 0.7 while the others settled. The ranking of the leading parameters was the same in every run; the magnitudes needed the largest one.
 
 {{< figure
     src="fig4.png"
-    caption="Sobol indices for the five remaining parameters, 280 evaluations, none failed. The time gap has the largest first-order contribution to flow and, together with the neighbor repulsion range, to speed; the radius and the neighbor repulsion range dominate the density. The desired speed contributes a total index of 0.13 to 0.19 to the speed, small but not negligible. With 40 base samples the estimator is coarse: several first-order indices exceed their totals by 0.1, which is impossible for exact indices, so these are preliminary estimates. The broad ranking is what we use, not the decimals."
+    caption="Sobol indices for the five remaining parameters from the run with 160 base samples, 1120 evaluations, none failed. The time gap dominates flow and speed with total indices of 0.6 to 0.8; the radius dominates density with 0.5 to 0.6, followed by the neighbor repulsion range with about 0.3; the neighbor range also contributes 0.25 to 0.35 to speed; the desired speed contributes 0.06 to flow and 0.12 to 0.17 to speed. In this run no first-order index exceeds its total."
+>}}
+
+{{< figure
+    src="fig9.png"
+    caption="Convergence of the Sobol total indices with the base sample size. Bars at 40 span three replicate runs with different seeds. The ranking is stable across all runs; the magnitude of the time gap's index is not settled below 160 base samples."
 >}}
 
 ## Step 4 — calibration, and why we did not use gradients
@@ -230,14 +237,14 @@ None of this is a verdict on the Collision Free Speed model in particular. It is
 - **Some behaviour is not a parameter.** Motivation changed the measured flow through the same gate by a factor of two. No value of the time gap reproduces that without breaking density and speed. A model that treats a pushing crowd as a faster orderly one will be wrong in exactly the situations that matter for safety.
 - **Measured quantities beat fitted ones.** Fixing the free speed at its measured value cost a little fit quality and bought a parameter set that means what it says. The fit had been buying its accuracy with an unphysical value.
 - **Run the optimizer twice.** One calibration gives one point in a valley. A second run from another seed, twenty minutes here, showed that the valley has two ends with different physics and the same misfit. Any parameter set reported without that check is a sample, not a result.
-- **Failure modes are results.** A third of the screening runs pushed agents through walls. That region of parameter space is where the model breaks, and it is worth knowing before an engineer lands in it by hand.
+- **Failure modes are results.** A quarter of the screening runs pushed agents through walls. That region of parameter space is where the model breaks, and it is worth knowing before an engineer lands in it by hand.
 - **The tooling is the cheap part.** Every calibration and every test here is a text file and a driver script. What is expensive is the honesty of running the test that might fail. Open data makes that test available to everyone, which is the strongest argument for it.
 
 ## What we learned about validating
 
 - **State the purpose, then pick the observables.** Flow alone would have passed a model with the wrong density, as it did in 2014. Three observables, one per mechanism, is the minimum.
 - **Analyse experiment and simulation with the same code.** The measurement method is part of the result. PedPy loads both, so the observables are defined once.
-- **Screen before you calibrate.** The Morris run costs 80 evaluations, removed two of seven parameters, and mapped a whole region where the model fails outright.
+- **Screen before you calibrate, and check the screening.** The Morris run costs 160 evaluations, removed two of seven parameters, and mapped a whole region where the model fails outright. The Sobol indices needed four times the samples we first gave them before their magnitudes settled; the ranking was right from the start, the numbers were not.
 - **Do not use gradients on an agent-based model.** Surrogate-based optimization converged in a few dozen evaluations where the gradient solver never left the start.
 - **Hold something back, then change the experiment.** Calibrating on three widths and validating on two is the difference between a fit and a validated model. A second experiment in a different regime is what finds the domain boundary, and here it found it within an afternoon.
 - **Dakota's job is orchestration, not physics.** It knows nothing about pedestrians. It knows how to run a driver in parallel a few hundred times and what to make of the numbers that come back. That is the part you do not want to write yourself, and the part that makes the procedure repeatable.
