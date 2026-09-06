@@ -7,6 +7,9 @@ markup:
     renderer:
       unsafe: true
 
+# last-updated dates from the last commit touching each page
+enableGitInfo: true
+
 module:
   imports:
     - path: github.com/imfing/hextra
