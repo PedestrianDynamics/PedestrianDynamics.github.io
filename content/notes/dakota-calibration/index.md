@@ -3,7 +3,7 @@ title: How do you validate a pedestrian model against real data?
 date: 2026-09-05
 summary: Validation is the step everyone agrees on and few do. We took an open bottleneck experiment, an open model and an open calibration toolkit, and ran the whole procedure, from screening to held-out validation, in a way anyone can repeat.
 math: true
-thumbnail: fig3.png
+thumbnail: motivation_pair.gif
 ---
 
 Pedestrian simulations are used to size exits, plan events and argue about safety, so the question whether a model is right is not academic. The simulation community settled the vocabulary long ago. Verification asks whether the software implements the model correctly. Validation asks whether the model, within the domain it is meant for, reproduces reality with an accuracy that is good enough for its purpose (Sargent 1984, 2008; ISO 16730 as summarised by Ronchi et al. 2013). Sargent adds two points that are easy to forget: a model is never valid in the abstract but only for a purpose, and confidence in a model costs money, so one always stops somewhere short of certainty.
@@ -217,6 +217,11 @@ The densities become more tangible as head counts because the front area is 2.2 
 {{< figure
     src="front_occupancy.png"
     caption="People inside the 2.2 m² area immediately upstream of the gate, experiment against three simulation seeds at the condition-specific v0–T profile points. The paired runs have the same corridor width and nominal population. The refit reproduces the large 63-person occupancy contrast and part of the 24-person contrast. Each simulation is conditioned on that run's observed initial positions and arrivals; the figure is not a generative test of motivation."
+>}}
+
+{{< figure
+    src="motivation_pair.gif"
+    caption="The two 63-person runs in the 1.2 m corridor, tracked experiment beside one simulation seed at the condition-specific v0–T profile point. The dashed rectangle is the front measurement area; the counts below each panel are the people inside it and the people who have passed the gate. Illustration only: the simulation starts from the observed positions, so the sparser low-motivation queue is partly inherited."
 >}}
 
 We also tested the proposed spacing explanation by fixing `v0` and `T` at the `h0` profile point and varying radius and neighbor range. Its one-seed minimum, radius 0.150 m and range 0.083 m, has norm 14.66; the three-seed check is 14.41. At that point the two low-motivation 1.2 m runs are 50 and 80 % too dense and 38 and 42 % too slow. **The best spacing slice remains worse than the extended `v0`–`T` slice: 14.4 versus 11.7 over 27 residuals.**
