@@ -5,7 +5,7 @@ draft: true
 summary: We calibrated JuPedSim's Collision Free Speed model with Dakota on an open bottleneck experiment and checked the result on two widths the optimizer never saw. The defaults miss the flow by a factor of two. Calibration brings it mostly within ten percent, though neither calibrated set passes the stated tolerance everywhere, and two optimizer starts give two different parameter sets.
 math: true
 aliases: [/blog/dakota-calibration/]
-thumbnail: fig5.png
+thumbnail: bottleneck_pair.gif
 ---
 
 {{< callout type="info" icon="information-circle" >}}
@@ -161,6 +161,11 @@ Set B is the reason for the last column. A surrogate-based optimizer with a few 
 Both sets reproduce flow and density at the three calibration widths to within about ten percent, and speed to within twenty, with residual norms we cannot distinguish. They are nowhere near each other. Time gap, repulsion strength and range shift by factors of two to four between them. Three observables at three widths do not pin four free parameters, and a good fit says nothing about whether the parameters mean what their names say. Fixing the one parameter that was measured removes the freedom to be wrong in that direction. It does not make the others physical: the radius that comes out, 0.13 to 0.15 m, is an effective size in a model with round bodies, and the remaining parameters still compensate for one another.
 
 ## Step 5 — does it hold on the widths it never saw?
+
+{{< figure
+    src="bottleneck_pair.gif"
+    caption="The 3.6 m run, tracked experiment inside the camera window beside one seed of the simulation with set A, cropped to the same window. Both clocks start at the first crossing of the flow line (red); the dashed box is the density and speed area. Illustration only: the simulation starts from a synthetic lattice, not from the measured positions."
+>}}
 
 {{< figure
     src="fig5.png"
