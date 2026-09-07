@@ -1,1 +1,722 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pedestrian Dynamics – Pedestrian Models</title><link>https://pedestriandynamics.org/models/</link><description>Recent content in Pedestrian Models on Pedestrian Dynamics</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://pedestriandynamics.org/models/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pedestrian Dynamics – Pedestrian Models</title><link>https://pedestriandynamics.org/models/</link><description>Recent content in Pedestrian Models on Pedestrian Dynamics</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://pedestriandynamics.org/models/index.xml" rel="self" type="application/rss+xml"/><item><title>Anticipation Velocity Model</title><link>https://pedestriandynamics.org/models/anticipation_velocity_model/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/models/anticipation_velocity_model/</guid><description>&lt;h2>Introduction to anticipation velocity model&lt;span class="hx-absolute -hx-mt-20" id="introduction-to-anticipation-velocity-model">&lt;/span>
+&lt;a href="#introduction-to-anticipation-velocity-model" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The anticipation velocity model (AVM) &lt;a href="#Xu2021" >1&lt;/a> is a mathematical approach designed for pedestrian dynamics. It represents a further development of the collision-free speed model &lt;a href="#Tordeux2015" >2&lt;/a>, extending its framework by incorporating pedestrian anticipation.
+This anticipation process is structured into three components: perception of the current situation, prediction of a future situation, and selection of a strategy that leads to action.&lt;/p>
+&lt;p>Similar to the Collision-Free Speed Model, the direction in which an agent moves is determined through an &lt;strong>anisotropic&lt;/strong> combination of exponential repulsion from nearby agents within its vision field. However, the strength of this repulsion is influenced by the predicted distance to others in the surroundings, rather than the actual distance used in the Collision-Free Speed Model.&lt;/p>
+&lt;p>The calculation of the speed is identical to that of the collision-free speed model. Agents adjust their speed according to the nearest neighbor in their headway, allowing them to navigate through congested areas without overlapping or obstructing each other.&lt;/p>
+&lt;p>The anticipation mechanism incorporated in the AVM enables it to reproduce lane formation in bidirectional flow scenarios more realistically than the Collision-Free Speed Model. Additionally, the AVM is more effective in preventing jamming in such scenarios and offers improved accuracy in reproducing the fundamental diagram.&lt;/p>
+&lt;p>This video shows a short introduction of the model and some simulations demonstrating its capabilities.&lt;/p>
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/2kcOXvm_Y8Q?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video">&lt;/iframe>
+&lt;/div>
+&lt;h2>Mathematical description&lt;span class="hx-absolute -hx-mt-20" id="mathematical-description">&lt;/span>
+&lt;a href="#mathematical-description" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>In AVM, an agent is represented as a disk with a constant radius $r$. The position and velocity of agent $i$ are denoted by $\vec{x}_i$ and $\vec{v}_i$, respectively, where $\vec{v}_i=\dot{\vec{x}}_i$. Furthermore, $\vec{v}_i=\vec{e}_i\cdot v_i$, where $\vec{e}_i$ and $v_i$ denote the direction of movement and the speed of agent $i$, respectively.&lt;/p>
+&lt;h3>Direction function&lt;span class="hx-absolute -hx-mt-20" id="direction-function">&lt;/span>
+&lt;a href="#direction-function" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>The desired direction of agent $i$ is denoted by $\vec{e}_i^{~0}$, a unit vector pointing towards its target.
+Then the process of operational navigation to avoid collisions and obstructions can be divided into three parts.&lt;/p>
+&lt;p>a. Perception of the actual situation:
+To consider restrictions using visual perception, it is assumed that only agents located in the union of two half-planes, where $i$ is moving or intends to move, affect its direction. The set containing all agents who have an impact on $i$&amp;rsquo;s direction of movement is&lt;/p>
+&lt;p>$$N_i(t)=\bigg{j,~\vec{e}&lt;em>i(t) \cdot \vec{e}&lt;/em>{i,j}(t)&amp;gt;0\ \text{or}\ \vec{e}&lt;em>i^{\ 0}(t) \cdot \vec{e}&lt;/em>{i,j}(t)&amp;gt;0\bigg},$$&lt;/p>
+&lt;p>where $\vec{e}_{i,j}$ denotes the unit vector from $i$ to $j$.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/anticipation_velocity_model/figure1.png"
+alt="The agents who are located in the gray area have an impact">&lt;figcaption>
+&lt;p>The agents who are located in the gray area have an impact&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>b. Prediction of a future situation:
+To consider the prediction, it is assumed that the strength of $j$&amp;rsquo;s impact on $i$ is a function of the predicted distance between these two agents at a particular time point. Given a time constant $t^\text{a}$, which can be interpreted as the prediction time, the predicted distance is defined as&lt;/p>
+&lt;p>$${s}^{\text{a}}_{i,j}(t+t^{\text{a}}) =\max\Big\{2r, \Big(\vec{x}^\text{a}_j (t+t^\text{a})-\vec{x}^\text{a}_i(t+t^\text{a})\Big)\vec{e}_{ij}(t)\Big\},$$&lt;/p>
+&lt;p>where $\vec{x}^\text{a}_i(t+t^\text{a})=\vec{x}_i(t)+\vec{v}_i(t)\cdot t^\text{a}$.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/anticipation_velocity_model/figure2.png"
+alt="The agents who are located in the gray area have an impact">&lt;figcaption>
+&lt;p>The agents who are located in the gray area have an impact&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>c. Selection of a strategy leading to an action:
+After the introduction of the predicted distance, the strength of the impact from agent $j$ on the direction of movement of agent $i$ is defined as&lt;/p>
+&lt;p>$$ R_{i,j}(t)= \alpha_{i,j}(t) \cdot \exp
+\bigg( \frac{2 r-s^\text{a}_{i,j}(t+t^\text{a})}{D} \bigg),$$&lt;/p>
+&lt;p>where $D&amp;gt;0$ is a constant parameter used to calibrate the range of the impact from neighbors and $\alpha_{i,j}$ is a directional dependency used to vary the strength of impact from different neighbors.&lt;/p>
+&lt;p>$$\alpha_{i,j}(t)=k \Big(1+ \frac{1- \vec{e}_i^{~0}(t) \cdot \vec{e}_j(t)}{2}\Big),\; k&amp;gt;0 ,$$&lt;/p>
+&lt;p>where $\alpha_{i,j}$ is minimal when both vectors
+$\vec{e}_i^{~0}$ and $\vec{e}_j$ are aligned and is maximum when they are anti-aligned, which
+means that agents influence each other&amp;rsquo;s direction strongly in bidirectional scenarios.&lt;/p>
+&lt;p>Here, $\alpha_{i,j}$ means agents have a high tendency to follow the agents who move in the same direction. When this strategy is used, the probability of further conflicts is reduced.&lt;/p>
+&lt;p>The direction of the impact from agent $j$ on $i$&amp;rsquo;s direction of the movement is defined as&lt;/p>
+&lt;p>$$\vec{n}_{i,j}(t) =-\text{sgn} \bigg(\vec{e}^{~\text{a}}(t+t^\text{a}) \cdot \vec{e}_i^{~0\bot}(t) \bigg)$$&lt;/p>
+&lt;p>where&lt;/p>
+&lt;p>$\vec{e}^{~\text{a}}(t+t^\text{a})= \vec{x}^\text{a}_j(t+t^\text{a})- \vec{x}_i(t)$.&lt;/p>
+&lt;p>The direction of $\vec{n}_{i,j}$ depends on the predicted position of agent $j$ after as period of time $t^\text{a}$.&lt;/p>
+&lt;p>Note that when this predicted position is aligned with the desired direction of $i$, the direction of $\vec{n}_{i,j}(t)$ is chosen randomly as $\vec{e}_i^{~0\bot}$ or $-\vec{e}_i^{~0\bot}$. This rule prevents agents from moving in the opposite direction to the desired direction.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/anticipation_velocity_model/figure3.png"
+alt="The agents who are located in the gray area have an impact">&lt;figcaption>
+&lt;p>The agents who are located in the gray area have an impact&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>Finally, the optimal direction of agent $i$, $\vec{e_i}^{~\text{d}}(t)$ is obtained as&lt;/p>
+&lt;p>$$u \bigg(\vec{e_i}^{~0}(t)+ \sum_{j\in N_i(t)} R_{j,i}(t)\cdot \vec{n}_{j,i}(t)\bigg),$$&lt;/p>
+&lt;p>where $u$ is a normalization constant such that $\lVert\vec{e}_i^{~\text{d}}\rVert=1$.
+Then, the direction of movement of agent $i$ is updated as&lt;/p>
+&lt;p>$$\frac{d\vec{e_i}(t)}{dt} = \frac{ \vec{e_i}^{~\text{d}}(t)-\vec{e}_{i}(t)}{\tau},$$&lt;/p>
+&lt;p>where $\tau$ is a relaxation parameter adjusting the rate of the turning process from the current direction $\vec{e}_i$ to the optimal direction $\vec{e}_i^{~d}$.&lt;/p>
+&lt;h3>Speed function&lt;span class="hx-absolute -hx-mt-20" id="speed-function">&lt;/span>
+&lt;a href="#speed-function" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>After obtaining the new direction of the movement, the set of neighbors that are imminently colliding with $i$ is defined as&lt;/p>
+&lt;p>$$J_i= \Big( j,\;\vec{e_i} \cdot \vec{e_{i,j}} \ge 0\ \text{and}\ \left| \vec{e_i}^{~\bot} \cdot \vec{e_{i,j}} \right| \leq \frac{2 r}{s_{i,j}} \Big) ,$$&lt;/p>
+&lt;p>where $s_{i,j}$ is the current distance between $i$ and $j$. Therefore, the maximum distance that agent $i$ can move in the direction without overlapping other agents is&lt;/p>
+&lt;p>$$s_i=\min_{j\in J_i}s_{i,j}-2r.$$&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/anticipation_velocity_model/figure4.png"
+alt="Calculation of the speed in the direction of movement">&lt;figcaption>
+&lt;p>Calculation of the speed in the direction of movement&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>Finally, the speed of agent $i$ in the new direction is&lt;/p>
+&lt;p>$$v_i=\min\Big\{v_i^0,~\max\big\{0,\frac{s_{i}}{T}\big\}\Big\},$$&lt;/p>
+&lt;p>where $v_i^0$ is the free speed of agent $i$, and $T&amp;gt;0$ is the slope of the speed-headway relationship.&lt;/p>
+&lt;h3>Parameters&lt;span class="hx-absolute -hx-mt-20" id="parameters">&lt;/span>
+&lt;a href="#parameters" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>The anticipation velocity model depends on seven parameters:&lt;/p>
+&lt;ul>
+&lt;li>Pedestrian radius ($r&amp;gt;0$)&lt;/li>
+&lt;li>Free speed ($v^0\ge 0$)&lt;/li>
+&lt;li>Time gap ($T&amp;gt;0$)&lt;/li>
+&lt;li>Repulsion rate and distance ($k&amp;gt;0$ and $D&amp;gt;0$)&lt;/li>
+&lt;li>Rate of turning process ($\tau&amp;gt;0$)&lt;/li>
+&lt;li>Prediction time ($t^\text{a}\ge 0$)&lt;/li>
+&lt;/ul>
+&lt;h2>Limitations of the anticipation velocity model&lt;span class="hx-absolute -hx-mt-20" id="limitations-of-the-anticipation-velocity-model">&lt;/span>
+&lt;a href="#limitations-of-the-anticipation-velocity-model" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The AVM performs better than the collision-free speed model (CSM) in bidirectional flow scenarios, but it still has limitations:&lt;/p>
+&lt;p>&lt;strong>Realism Gap:&lt;/strong> Although the AVM represents an improvement over the CSM, it does not fully capture real-world pedestrian behavior. While the model incorporates anticipation, it overlooks key aspects of human interactions, such as cooperation, pushing, and waiting, which are prevalent in high-density crowds. Consequently, the AVM faces challenges in accurately representing extreme crowd dynamics. For instance, in scenarios with very high pedestrian densities and multi-directional flows, gridlock can still occur.&lt;/p>
+&lt;p>&lt;strong>Model Robustness&lt;/strong>: The robustness of the AVM is limited when compared to the CSM. A key difference is that the AVM excludes backward movement, which is often observed in real-world crowds. While backward movement in the CSM is not directly modeled, it still occurs and contributes to solving conflicts between agents. By removing this behavior, the AVM becomes less adaptable to certain crowd configurations, particularly when faced with complex interactions.&lt;/p>
+&lt;p>&lt;strong>Parameter Sensitivity:&lt;/strong> Some parameter values in the AVM are scenario-dependent. In particular, the anticipation parameter plays a significant role in sparse densities, where agents can effectively anticipate new avoidance opportunities. However, in high-density situations, the limited space for avoidance reduces the usefulness of anticipation and can even lead to numerical issues in the simulation.&lt;/p>
+&lt;h2>Wall implementation in the Anticipation Velocity Model&lt;span class="hx-absolute -hx-mt-20" id="wall-implementation-in-the-anticipation-velocity-model">&lt;/span>
+&lt;a href="#wall-implementation-in-the-anticipation-velocity-model" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>In the original publication of the AVM, walls are implemented as static agents, with interactions based on the nearest point on the wall to an agent. In high-density scenarios, this approach can lead to imbalances, where agents are pushed towards walls by others, but the walls are unable to exert sufficient repulsive influence to push them back. A common solution to this issue involves calibrating wall parameters to make the repulsion strong enough to counteract the influence of surrounding agents.&lt;/p>
+&lt;p>However, in the &lt;a href="https://www.jupedsim.org/stable/pedestrian_models/index.html" target="_blank" rel="noopener">JuPedSim&lt;/a> implementation, wall interactions are designed differently. Walls are treated as gliding surfaces, meaning agents adjust their movement to avoid collisions while maintaining smooth trajectories along wall boundaries. The influence of walls on an agent&amp;rsquo;s movement is determined by the agent&amp;rsquo;s distance to the wall and their movement direction.&lt;/p>
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/iY_mQdB0fdE?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video">&lt;/iframe>
+&lt;/div>
+&lt;p>Walls do not affect the speed of agents, only their direction. Agents glide along walls by adjusting their trajectory while preserving their intended movement as much as possible. The wall influence changes smoothly with the distance to the wall, so behavior near boundaries stays continuous.&lt;/p>
+&lt;h2>Using the anticipation velocity model with JuPedSim&lt;span class="hx-absolute -hx-mt-20" id="using-the-anticipation-velocity-model-with-jupedsim">&lt;/span>
+&lt;a href="#using-the-anticipation-velocity-model-with-jupedsim" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The anticipation velocity model has also been implemented and tested using the &lt;a href="https://github.com/PedestrianDynamics/jupedsim" target="_blank" rel="noopener">JuPedSim&lt;/a> software platform (&lt;code>VelocityModelBuilder&lt;/code>).&lt;/p>
+&lt;p>The following table summarizes the parameters of the model and their naming.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Parameter Description&lt;/th>
+&lt;th>Variable Name&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Pedestrian size&lt;/td>
+&lt;td>&lt;code>radius&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Desired speed&lt;/td>
+&lt;td>&lt;code>v0&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Time gap&lt;/td>
+&lt;td>&lt;code>time_gap&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Repulsion rate for agents interaction&lt;/td>
+&lt;td>&lt;code>strength_neighbor_repulsion&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Repulsion distance for agents interaction&lt;/td>
+&lt;td>&lt;code>range_neighbor_repulsion&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Rate of turning process&lt;/td>
+&lt;td>&lt;code>reaction_time&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Prediction time&lt;/td>
+&lt;td>&lt;code>anticipation_time&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>To determine the desired direction vector, a designated exit or &lt;code>waypoint&lt;/code> must be defined as a polygon. The unit vector, denoted as $\vec{e}_i^{~0}$, is then calculated by pointing from the current position of the pedestrian towards the specified exit or &lt;code>waypoint&lt;/code>.&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;strong>&lt;em>NOTE:&lt;/em>&lt;/strong> Given that the target is always a polygon, the objective would be the polygon&amp;rsquo;s center.&lt;/p>&lt;/blockquote>
+&lt;h2>The anticipation velocity model in the literature&lt;span class="hx-absolute -hx-mt-20" id="the-anticipation-velocity-model-in-the-literature">&lt;/span>
+&lt;a href="#the-anticipation-velocity-model-in-the-literature" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The following map shows works from the literature connected to the anticipation velocity model.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/anticipation_velocity_model/figure5.png"
+alt="Linking the AVM Paper to 18 Key Publications">&lt;figcaption>
+&lt;p>Linking the AVM Paper to 18 Key Publications&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;h2>References:&lt;span class="hx-absolute -hx-mt-20" id="references">&lt;/span>
+&lt;a href="#references" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>&lt;a name="Xu2021">&lt;/a>[1] Xu, Q., Chraibi, M., Seyfried, A. (2021). Anticipation in a velocity-based model for pedestrian dynamics. Transportation Research Part C: Emerging Technologies, Volume 133. &lt;a href="https://doi.org/10.1016/j.trc.2021.103464" target="_blank" rel="noopener">https://doi.org/10.1016/j.trc.2021.103464&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a name="Tordeux2015">&lt;/a>[2] Tordeux, A., Chraibi, M., Seyfried, A. (2016). Collision-Free Speed Model for Pedestrian Dynamics. In: Knoop, V., Daamen, W. (eds) Traffic and Granular Flow &amp;lsquo;15.
+&lt;br>
+&lt;a href="https://doi.org/10.1007/978-3-319-33482-0_29" target="_blank">
+&lt;i class="fas fa-file-alt">&lt;/i> DOI Link
+&lt;/a>
+  |  
+&lt;a href="https://pedestriandynamics.org/models/collision_free_speed_model/" target="_blank">
+&lt;i class="fas fa-external-link-alt">&lt;/i> Model Description
+&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title>Collision Free Speed Model</title><link>https://pedestriandynamics.org/models/collision_free_speed_model/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/models/collision_free_speed_model/</guid><description>&lt;h2>Introduction to collision-free speed model&lt;span class="hx-absolute -hx-mt-20" id="introduction-to-collision-free-speed-model">&lt;/span>
+&lt;a href="#introduction-to-collision-free-speed-model" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The collision-free speed model &lt;a href="#Tordeux2015" >[1]&lt;/a> is a
+mathematical approach designed for pedestrian dynamics, emphasizing the
+prevention of collisions among agents.&lt;/p>
+&lt;p>The direction in which an agent moves is determined through an isotropic
+combination of exponential repulsion from nearby agents. The strength of this
+repulsion is influenced by the proximity to others within their surroundings,
+treating all directions equally in terms of influence.&lt;/p>
+&lt;p>Agents adjust their speed according to the nearest neighbor in their headway,
+allowing them to navigate through congested areas without overlapping or
+obstructing each other. The collision-free speed model takes into account the
+length of the agent, which determines the required space for movement, and the
+maximum achievable speed of the agent.&lt;/p>
+&lt;p>The model is simple and computationally efficient.&lt;/p>
+&lt;h2>Mathematical description&lt;span class="hx-absolute -hx-mt-20" id="mathematical-description">&lt;/span>
+&lt;a href="#mathematical-description" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Models that establish a relationship between speed and spacing, known as the OV
+function, were originally introduced in traffic flow studies. They have since
+been adapted for pedestrian modeling, offering a straightforward way to control
+the fundamental diagram. The collision-free speed model is mathematically
+represented as a derivative equation for the velocity of each pedestrian.
+Typically, this can be expressed as&lt;/p>
+&lt;p>$$\dot{\mathbf{x}}_i=V_i\big(s_i(\mathbf{x}_i,\mathbf{x}_j,\ldots)\big)\times\mathbf e_i(\mathbf{x}_i,\mathbf{x}_j,\ldots)$$&lt;/p>
+&lt;p>where $x_i$ represents the position of pedestrian $i$ and $V_i$ represents
+their speed.&lt;/p>
+&lt;p>The speed function $V_i$ regulates the overall speed of the pedestrian, while
+the direction function $\textbf{e}_i$ determines the direction in which the
+pedestrian moves.&lt;/p>
+&lt;h3>Direction function&lt;span class="hx-absolute -hx-mt-20" id="direction-function">&lt;/span>
+&lt;a href="#direction-function" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>The direction function is governed by a weighted sum of exponential repulsion
+from neighboring pedestrians, which is calibrated by the repulsion rate and
+distance.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/collision_free_speed_model/figure1.png"
+alt="Calculation of the movement direction">&lt;figcaption>
+&lt;p>Calculation of the movement direction&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>$$\mathbf e_i(\mathbf x_i,\mathbf x_j,\ldots)=\frac{1}{N}\left(\mathbf e_0+\sum_j R(s_{i,j})\right)$$&lt;/p>
+&lt;p>with $\mathbf e_0$ the desired direction, $N$ a normalization constant such
+that $|\mathbf e_i|=1$ and $R(s)=a,\exp\big((l-s)/D\big)$ the repulsion
+function calibrated by the coefficient $a&amp;gt;0$ and distance $D&amp;gt;0$.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/collision_free_speed_model/figure2.png"
+alt="Repulsive influence in the direction">&lt;figcaption>
+&lt;p>Repulsive influence in the direction&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;h3>Speed function&lt;span class="hx-absolute -hx-mt-20" id="speed-function">&lt;/span>
+&lt;a href="#speed-function" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>The velocity is calculated by multiplying two functions: A speed function $V_i$
+and a direction function $\textbf{e}_i$.&lt;/p>
+&lt;p>Inspired from car-following models, the speed function only depends on the distance to the nearest pedestrian or obstacle in front through an Optimal Velocity (OV) function.&lt;/p>
+&lt;p>The set $J_i$ of pedestrians and obstacles in front is given by&lt;/p>
+&lt;p>$$J_i=\big\{j,\;\mathbf e_i\cdot \mathbf e_{ij}\le 0\;\text{and}\;|\mathbf e_i^\perp\cdot\mathbf e_{ij}|\le l/s_{ij}\big\}.$$&lt;/p>
+&lt;p>The distance to the nearest pedestrian or obstacle in front is then the minimum
+$$s_i=\min_{j\in J_i}s_{ij}.$$&lt;/p>
+&lt;p>In the following, the OV function is the piecewise linear
+$$V(s)=\min\big\{v_0,\max\{0,(s-l)/T\}\big\},$$&lt;/p>
+&lt;p>satisfies&lt;/p>
+&lt;p>$$\begin{align*}V(s)&amp;amp;\gt0\quad\forall s\gt l\\ V(s)&amp;amp;=0\quad\forall s\le\ell\end{align*}$$&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/collision_free_speed_model/figure3.png"
+alt="OV speed function vs fundamental diagram">&lt;figcaption>
+&lt;p>OV speed function vs fundamental diagram&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>The spacing is calculated along the direction of motion and is defined as the
+spacing to the nearest neighbor that may collide with the agent. See following
+picture:&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/collision_free_speed_model/figure4.png"
+alt="Calculation of the minimal speed in the direction of motion">&lt;figcaption>
+&lt;p>Calculation of the minimal speed in the direction of motion&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;h3>Parameters&lt;span class="hx-absolute -hx-mt-20" id="parameters">&lt;/span>
+&lt;a href="#parameters" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>The collision-free speed model depends on five parameters:&lt;/p>
+&lt;ul>
+&lt;li>Pedestrian diameter ($l \ge 0$)&lt;/li>
+&lt;li>Desired speed ($v_0 &amp;gt; 0$)&lt;/li>
+&lt;li>Time gap ($T &amp;gt; 0$)&lt;/li>
+&lt;li>Repulsion rate and distance ($a&amp;gt;0$ and $D&amp;gt;0$)&lt;/li>
+&lt;/ul>
+&lt;h2>Limitations of the collision-free speed model&lt;span class="hx-absolute -hx-mt-20" id="limitations-of-the-collision-free-speed-model">&lt;/span>
+&lt;a href="#limitations-of-the-collision-free-speed-model" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The collision-free speed model has some limitations:&lt;/p>
+&lt;ul>
+&lt;li>The model rests on simple assumptions. In particular, representing agents as
+circles cannot capture many details of real pedestrian behavior.&lt;/li>
+&lt;li>It neglects response time and visual perception.&lt;/li>
+&lt;li>Stop-and-go waves and gridlocks are not well reproduced, except in confined
+circular bottlenecks.&lt;/li>
+&lt;li>Obstacles and environmental conditions that influence pedestrian movement
+are not part of the model.&lt;/li>
+&lt;/ul>
+&lt;p>Several studies extended the model to address these limitations. Xu
+&lt;a href="#Xu2019" >[2]&lt;/a> proposed a generalized velocity model that includes wall
+influence, uses velocity-based ellipses for distance calculations, and
+smooths changes of direction. Further refinements of the direction function
+were introduced in &lt;a href="#Rzezonka2022" >[3]&lt;/a>, &lt;a href="#Zhang2021" >[4]&lt;/a>, and
+&lt;a href="#Xu2021" >[5]&lt;/a>.&lt;/p>
+&lt;h2>Challenges in Implementing Collision Free Speed Models&lt;span class="hx-absolute -hx-mt-20" id="challenges-in-implementing-collision-free-speed-models">&lt;/span>
+&lt;a href="#challenges-in-implementing-collision-free-speed-models" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Numerical solution of the first-order ordinary differential equation defined
+by the model is solved as follows:&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/collision_free_speed_model/figure5.png"
+alt="Update algorithm">&lt;figcaption>
+&lt;p>Update algorithm&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>Implementing the model raises several practical questions. The original model
+does not define agent-wall interactions; extensions such as Xu&amp;rsquo;s generalized
+velocity model fill this gap. Calibrating the parameters of the speed and
+direction functions is another difficulty, and in some symmetrical scenarios
+the direction function is not well defined.&lt;/p>
+&lt;h3>Isotropical direction influence&lt;span class="hx-absolute -hx-mt-20" id="isotropical-direction-influence">&lt;/span>
+&lt;a href="#isotropical-direction-influence" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>The direction model is uniform, meaning it does not differentiate between
+various directions of influence. The model treats all directions equally and
+does not consider specific pedestrian preferences or biases in their movement.
+This may lead to certain unrealistic situations where the agent&amp;rsquo;s direction is
+influenced by agents from behind them.&lt;/p>
+&lt;h3>Balancing Collision Avoidance with Performance: Selecting the Appropriate Time-Step&lt;span class="hx-absolute -hx-mt-20" id="balancing-collision-avoidance-with-performance-selecting-the-appropriate-time-step">&lt;/span>
+&lt;a href="#balancing-collision-avoidance-with-performance-selecting-the-appropriate-time-step" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>The continuous model is provably collision-free in any situation. Its
+discretisation, however, can introduce collisions. When solving the ordinary
+differential equation with an Euler scheme, the time step must be small
+enough. The model is collision-free in discrete time if&lt;/p>
+&lt;p>$$\delta t \le \min\left\{\frac T2,\frac{l(\sqrt2-1)}{v_0\sqrt2}\right\}$$&lt;/p>
+&lt;p>The condition for collision-free dynamics is determined solely by the
+parameters of the speed model. For example, if we use parameter values of $T=1$
+s, $v_0=1.2$ m/s and $l$, with a smallness condition on the time step
+approximate to $\delta t \le0.072$ s for explicit Euler schemes and circular
+pedestrian shape.&lt;/p>
+&lt;h3>Parameter calibration&lt;span class="hx-absolute -hx-mt-20" id="parameter-calibration">&lt;/span>
+&lt;a href="#parameter-calibration" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>The repulsion rate and distance in the direction model are hard to calibrate,
+since suitable values vary with the environment and the crowd.&lt;/p>
+&lt;h2>References&lt;span class="hx-absolute -hx-mt-20" id="references">&lt;/span>
+&lt;a href="#references" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>&lt;a name="Tordeux2015">&lt;/a>[1] Tordeux, A., Chraibi, M., Seyfried, A. (2016).
+Collision-Free Speed Model for Pedestrian Dynamics. In: Knoop, V., Daamen, W.
+(eds) Traffic and Granular Flow &amp;lsquo;15.
+&lt;br/>&lt;a href="https://doi.org/10.1007/978-3-319-33482-0_29" target="_blank" rel="noopener">https://doi.org/10.1007/978-3-319-33482-0_29&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a name="Xu2019">&lt;/a>[2] Xu, Q., Chraibi, M., Tordeux, M., Zhang (2019).
+Generalized collision-free velocity model for pedestrian dynamics. Physica A:
+Statistical Mechanics and its Applications, Volume 535.
+&lt;br/>&lt;a href="https://doi.org/10.1016/j.physa.2019.122521" target="_blank" rel="noopener">https://doi.org/10.1016/j.physa.2019.122521&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a name="Rzezonka2022">&lt;/a>[3] Rzezonka, J., Chraibi, M., Seyfried, A., Hein,
+B., Schadschneider, A. (2022). An attempt to distinguish physical and
+socio-psychological influences on pedestrian bottleneck. Royal Society Open
+Science. &lt;br/>&lt;a href="https://royalsocietypublishing.org/doi/10.1098/rsos.211822" target="_blank" rel="noopener">https://royalsocietypublishing.org/doi/10.1098/rsos.211822&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a name="Zhang2021">&lt;/a>[4] Zhang, S., Zhang, J., Chraibi, M., Song, W.
+(2021). A speed-based model for crowd simulation considering walking
+preferences. Communications in Nonlinear Science and Numerical Simulation,
+Volume 95. &lt;br/>&lt;a href="https://doi.org/10.1016/j.cnsns.2020.105624" target="_blank" rel="noopener">https://doi.org/10.1016/j.cnsns.2020.105624&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a name="Xu2021">&lt;/a>[5] Xu, Q., Chraibi, M., Seyfried, A. (2021).
+Anticipation in a velocity-based model for pedestrian dynamics.
+Transportation Research Part C: Emerging Technologies, Volume 133.
+&lt;br/>&lt;a href="https://doi.org/10.1016/j.trc.2021.103464" target="_blank" rel="noopener">https://doi.org/10.1016/j.trc.2021.103464&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a name="Xu2021">&lt;/a>[6] Tordeux, A. talk in TGF15, Delft.
+&lt;br/>&lt;a href="https://www.vzu.uni-wuppertal.de/fileadmin/site/vzu/Pres_1st_order_models.pdf" target="_blank" rel="noopener">Slides.&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title>Generalized Centrifugal Force Model</title><link>https://pedestriandynamics.org/models/generalized_centrifugal_force_model/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/models/generalized_centrifugal_force_model/</guid><description>&lt;h2>Introduction to Generalized Centrifugal Force Model&lt;span class="hx-absolute -hx-mt-20" id="introduction-to-generalized-centrifugal-force-model">&lt;/span>
+&lt;a href="#introduction-to-generalized-centrifugal-force-model" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The Generalized Centrifugal Force Model &lt;a href="#Chraibi2010" >[1]&lt;/a> is a force-based
+model that defines the movement of pedestrians through the combination of
+small-range forces. This model represents the spatial requirement of
+pedestrians, including their body asymmetry, in an elliptical shape with two
+axes dependent on speed. The semi-axis representing the dynamic space
+requirement in the direction of motion increases proportionally as speed
+increases. Conversely, the semi-axis along the shoulder direction decreases
+with higher velocities.&lt;/p>
+&lt;h2>Basic Principles of Generalized Centrifugal Force Model&lt;span class="hx-absolute -hx-mt-20" id="basic-principles-of-generalized-centrifugal-force-model">&lt;/span>
+&lt;a href="#basic-principles-of-generalized-centrifugal-force-model" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>GCFM belongs to the class of force-based pedestrian models, which view
+pedestrian movement as the result of forces acting on an individual at any
+given moment. These so-called acceleration-based models calculate the
+acceleration of agents by superposing the forces acting on them.&lt;/p>
+&lt;p>Three main forces act on pedestrians in the Generalized Centrifugal Force
+Model: a driving force that propels individuals towards their destination, a
+repulsive force that keeps them away from walls and other obstacles, and a
+repulsive force between pedestrians that prevents collisions
+&lt;a href="#Chraibi2010" >[1]&lt;/a>.&lt;/p>
+&lt;p>The model considers both the distance between pedestrians and their relative
+velocities. An elliptical volume exclusion is used instead of a circular one
+because circular symmetry does not match the asymmetric space requirement of
+pedestrians in the direction of motion and transverse to it.&lt;/p>
+&lt;h2>Mathematical description&lt;span class="hx-absolute -hx-mt-20" id="mathematical-description">&lt;/span>
+&lt;a href="#mathematical-description" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;h3>Elliptical volume exclusion of agents&lt;span class="hx-absolute -hx-mt-20" id="elliptical-volume-exclusion-of-agents">&lt;/span>
+&lt;a href="#elliptical-volume-exclusion-of-agents" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>The Generalized Centrifugal Force Model incorporates an elliptical volume
+exclusion of pedestrians. This means that pedestrians are represented as
+elliptical disks with two semi-axes, which depend on their speed. The semi-axis
+representing the dynamic space requirement in the direction of motion ($a$)
+increases proportionally as speed increases, while the semi-axis along the
+shoulder direction decreases with higher speed values ($b$).&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/generalized_centrifugal_force_model/figure1.png"
+alt="The distance between the borders of the ellipses along a line connecting their centers.">&lt;figcaption>
+&lt;p>The distance between the borders of the ellipses along a line connecting their centers.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>The mathematical description of the elliptical volume exclusion in GCFM is as follows&lt;/p>
+&lt;p>$$a=a_{\min }+\tau_a v_i$$&lt;/p>
+&lt;p>and&lt;/p>
+&lt;p>$$b=b_{\max }-\left(b_{\max }-b_{\min }\right) \frac{v_i}{v_i^0},$$&lt;/p>
+&lt;p>where $v_i$ is the speed and $v_i^0$ the desired speed of agent $i$.&lt;/p>
+&lt;h3>Equation of motion&lt;span class="hx-absolute -hx-mt-20" id="equation-of-motion">&lt;/span>
+&lt;a href="#equation-of-motion" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>The behavior of agents in motion is influenced by the presence of others,
+causing them to deviate from a straight path. Drawing parallels to Newtonian
+mechanics, such deviations or accelerations are attributed to a force. Hence,
+the equation of motion can be written as:&lt;/p>
+&lt;p>$$\vec{\ddot x}_i=\overrightarrow{F_i^{\mathrm{drv}}}+\sum_{j \in \mathcal{N}_{i}} \overrightarrow{F_{i j}^{\mathrm{rep}}}+\sum_{w \in \mathcal{W}_{i}} \overrightarrow{F_{i w}^{\mathrm{rep}}}.$$&lt;/p>
+&lt;h4>Driving force&lt;span class="hx-absolute -hx-mt-20" id="driving-force">&lt;/span>
+&lt;a href="#driving-force" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>&lt;p>The driving force in the Generalized Centrifugal Force Model is defined as the
+force that propels pedestrians towards their intended destinations:&lt;/p>
+&lt;p>$$\vec{F}_i^{\mathrm{drv}}=m_i \frac{\overrightarrow{v_i^0}-\overrightarrow{v_i}}{\tau}.$$&lt;/p>
+&lt;h4>Pedestrian-pedestrian repulsive force&lt;span class="hx-absolute -hx-mt-20" id="pedestrian-pedestrian-repulsive-force">&lt;/span>
+&lt;a href="#pedestrian-pedestrian-repulsive-force" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>&lt;p>The repulsive force between pedestrians prevents collisions and keeps
+individuals at a distance from each other:&lt;/p>
+&lt;p>$${\overrightarrow{F_{i,j}}}_{\text {rep }}=-m_i k_{i j} \frac{\left(\eta\left|\overrightarrow{v_i^0}\right|+v_{i j}\right)^2}{d_{i j}} \overrightarrow{e_{i j}},$$&lt;/p>
+&lt;p>with the relative speed&lt;/p>
+&lt;p>$$v_{i j}=\frac{1}{2}\left[\left(\overrightarrow{v_i}-\overrightarrow{v_j}\right) \cdot \overrightarrow{e_{i j}}+\left|\left(\overrightarrow{v_i}-\overrightarrow{v_j}\right) \cdot \overrightarrow{e_{i j}}\right|\right],$$&lt;/p>
+&lt;p>and a reduction of the influence range to $180^\circ$ by:&lt;/p>
+&lt;p>$$k_{i j}=\frac{1}{2} \frac{\overrightarrow{v_i} \cdot \overrightarrow{e_{i j}}+\left|\overrightarrow{v_i} \cdot \overrightarrow{e_{i j}}\right|}{v_i}.$$&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/generalized_centrifugal_force_model/figure2.png"
+alt="The interpolation of the repulsive force between pedestrians.">&lt;figcaption>
+&lt;p>The interpolation of the repulsive force between pedestrians.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;h4>Pedestrian-wall repulsive force&lt;span class="hx-absolute -hx-mt-20" id="pedestrian-wall-repulsive-force">&lt;/span>
+&lt;a href="#pedestrian-wall-repulsive-force" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>&lt;p>The repulsive force between pedestrians and walls pushes pedestrians away
+from walls and other fixed structures. For a pedestrian $i$, this force
+vanishes when $i$ moves parallel to the wall, which leaves almost no
+repulsion when the trajectory is nearly aligned with the wall.&lt;/p>
+&lt;p>For this reason, we characterize in this model walls by three-point masses
+acting on pedestrians within a certain interaction range.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/generalized_centrifugal_force_model/figure2.png"
+alt="Each wall is modeled as three static point masses acting on pedestrians.">&lt;figcaption>
+&lt;p>Each wall is modeled as three static point masses acting on pedestrians.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;h2>Limitations of the GCFM&lt;span class="hx-absolute -hx-mt-20" id="limitations-of-the-gcfm">&lt;/span>
+&lt;a href="#limitations-of-the-gcfm" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>As a force-based model, the GCFM suffers from several drawbacks typical for
+force-based models, namely the duality problem of overlapping and oscillations.&lt;/p>
+&lt;p>It is possible to reduce the amount of overlapping among agents, by increasing
+the strength of the repulsive forces. However, this leads inevitably to an
+increase of oscillations in the movements of agents, which in turn can only be
+mitigated by decreasing the strength of the repulsive forces. See
+&lt;a href="#Chraibi203" >[2]&lt;/a> for a more in-depth analysis of this issue.&lt;/p>
+&lt;h2>Challenges in Implementing GCFM&lt;span class="hx-absolute -hx-mt-20" id="challenges-in-implementing-gcfm">&lt;/span>
+&lt;a href="#challenges-in-implementing-gcfm" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The computational cost of the GCFM is high, as it requires continuous
+calculations to determine the forces and interactions between pedestrians. This
+includes calculating distances between ellipses, such as the closest approach
+distance. Additionally, while the strength of repulsive force decreases with
+increasing distance between pedestrians, it currently has an infinite range,
+which is unrealistic for pedestrian interactions. To address this, we propose
+introducing a cutoff radius for the force to limit interactions only to
+adjacent pedestrians. However, implementing this cutoff radius requires a
+two-sided Hermite-interpolation of the repulsive force and further increases
+computational complexity. Furthermore, finding appropriate values for model
+parameters that are independent of neighborhood properties and reduce
+overlapping and oscillation is challenging.&lt;/p>
+&lt;h2>References:&lt;span class="hx-absolute -hx-mt-20" id="references">&lt;/span>
+&lt;a href="#references" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;ul>
+&lt;li>&lt;a name="Chraibi2010">&lt;/a>[1] Chraibi, M., Seyfried, A., Schadschneider, A.
+(2010). Generalized centrifugal-force model for pedestrian dynamics, Physical
+Review E, 82, 4
+&lt;br/>&lt;a href="https://link.aps.org/doi/10.1103/PhysRevE.82.046111" target="_blank" rel="noopener">https://link.aps.org/doi/10.1103/PhysRevE.82.046111&lt;/a>&lt;/li>
+&lt;li>&lt;a name="Chraibi2013">&lt;/a>[2] Chraibi, M., Schadschneider, A., Seyfried, A.
+(2013). On Force-Based Modeling of Pedestrian Dynamics.
+&lt;br/>&lt;a href="https://doi.org/10.1007/978-1-4614-8483-7_2" target="_blank" rel="noopener">https://doi.org/10.1007/978-1-4614-8483-7_2&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>Optimal Steps Model</title><link>https://pedestriandynamics.org/models/optimal_steps_model/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/models/optimal_steps_model/</guid><description>&lt;h2>Introduction&lt;span class="hx-absolute -hx-mt-20" id="introduction">&lt;/span>
+&lt;a href="#introduction" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The basic idea of the Optimal Steps Model (OSM) is that virtual pedestrians (agents) try to improve their situation with every step. The utility of each position in space is coded in a scalar function called floor field. Utility increases when approaching targets and decreases when getting too close to obstacles and other virtual pedestrians. From a physical perspective, agents in motion are drawn towards targets while being repelled by obstacles and other agents.
+In other words, the negative utility can be understood as a potential that agents aim to minimize.
+The utility, or potential, depends on the geodesic distance to the target and the proximity to other agents.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/optimal_steps_model/figure1.png"
+alt="Schematic solution of routing with OSM. Master thesis C. Mayr: The Heat Method for geodesic distance computation on 2D domains">&lt;figcaption>
+&lt;p>Schematic solution of routing with OSM. Master thesis C. Mayr: The Heat Method for geodesic distance computation on 2D domains&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>Agents move by stepping on the position on a circle (or disk) around their current location that optimizes this utility.
+The circle radius represents each agent&amp;rsquo;s personal maximum stride length, which in turn is linearly correlated to the agent&amp;rsquo;s free-flow speed &lt;a href="#Seitz2012" >[1]&lt;/a>, that is, an assumed desired speed when the path is free. Thus, agents step toward targets while skirting obstacles and avoiding collisions.
+For the remainder of the text and in the figures, we adopt the physical interpretation consistent with the parameter names in Vadere&amp;rsquo;s implementation of the OSM.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/optimal_steps_model/figure2.png"
+alt="Modeling steps with OSM.">&lt;figcaption>
+&lt;p>Modeling steps with OSM.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;h2>Mathematical description&lt;span class="hx-absolute -hx-mt-20" id="mathematical-description">&lt;/span>
+&lt;a href="#mathematical-description" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The potential $P_l(x)$ for pedestrian $l$ at time $t$ for an arbitrary point $x \in \mathbb{R}^2$ in the plane is defined as &lt;a href="#Seitz2012" >[1]&lt;/a>&lt;/p>
+&lt;p>$$
+P_l(x) = P_t(x,s) + \sum_{j=1}^m P_{o,j}(x) + \sum_{i=1,i\neq l}^n P_{p,i}(x),
+$$&lt;/p>
+&lt;p>where $P_t(x,s)$ is the attraction potential of the target, $s$ is the vector of the current agent positions, $P_{o,j}(x)$ is the repulsive potential induced by obstacle $j$, $m$ is the number of obstacles, $P_{p,i}$ is the repulsive potential of other agents, $n$ is the number of agents. The implementation of the attraction potential $P_t(x)$ is the so-called floor field. If the attraction potential does not depend on the agents&amp;rsquo; current positions, means $P_t(x,s)=P_t(x)$, the floor field is static. Otherwise, it is dynamic.
+If we consider the floor field to be static, the value of the potential function at position $x$ equals the negative geodesic distance between $x$ and the target.&lt;/p>
+&lt;p>The obstacle potential $P_{o,j}(x)$ is defined as&lt;/p>
+&lt;!-- $$ -->
+&lt;!-- \begin{eqnarray} -->
+&lt;!-- P_{o,j}(x) = \left\{ -->
+&lt;!-- \begin{array}{ll} -->
+&lt;!-- \delta_1(x) + \delta_2(x) &amp; d_{o,j}(x) &lt; r_l \\\ -->
+&lt;!-- \delta_1(x) &amp; r_l \leq d_{o,j}(x) &lt; w_o \\\ -->
+&lt;!-- 0 &amp; \, \textrm{otherwise,} \\\ -->
+&lt;!-- \end{array} -->
+&lt;!-- \right. -->
+&lt;!-- \end{eqnarray} -->
+&lt;!-- $$ -->
+&lt;p>$$
+P_{o,j}(x) =
+\begin{array}{ll}
+\delta_1(x) + \delta_2(x) &amp;amp; d_{o,j}(x) &amp;lt; r_l \\
+\delta_1(x) &amp;amp; r_l \leq d_{o,j}(x) &amp;lt; w_o \\
+0 &amp;amp; \textrm{otherwise,} \\
+\end{array}
+$$
+where $d_{o,j}(x)$ is the Euclidean distance to the closest point of the obstacle from position $x$, $w_o$ defines the width of the obstacle repulsion, $r_l$ is the torso radius of agent $l$. The functions $\delta_i$ are defined as
+$$
+\begin{align}
+\delta_1(x) &amp;amp;= 6 \exp{\left[ 2 \left( \left( \frac{d_{o,j}(x)} {w_o} \right)^{2} - 1\right)^{-1} \right]};\text{and}\\
+\delta_2(x) &amp;amp;= 10^5 \exp{\left[ \left( \left( \frac{d_{o,j}(x)} {r_l} \right)^{2} - 1\right)^{-1} \right]}. \
+\end{align}
+$$
+The repulsion between two agents is achieved by the distance-dependent potential function $P_{p,i}$. In Vadere, it is implemented as&lt;/p>
+&lt;p>$$
+P_{p,i}(x) =
+\begin{array}{ll}
+\phi_1(d_{l,i}(x)) + \phi_2(d_{l,i}(x)) + \phi_3(d_{l,i}(x)) &amp;amp; d_{l,i}(x) &amp;lt;r_i + r_l, \\
+\phi_1(d_{l,i}(x)) + \phi_2(d_{l,i}(x)) &amp;amp; r_i + r_l \leq d_{l,i}(x) &amp;lt; w_{int} +r_i+r_l, \\
+\phi_1(d_{l,i}(x)) &amp;amp; w_{int} + r_i + r_l \leq d_{l,i}(x) &amp;lt; w+r_i+r_l\\
+0, &amp;amp; \textrm{otherwise,} \\
+\end{array}
+$$&lt;/p>
+&lt;p>where $d_{l,i}(x)$ is the Euclidean distance between agent $l$ and agent $i$. $r_i, r_l$ are the respective torso radii of agent $i,l$. $w_{int}$ and $w$ are the intimate and the personal space width according to Hall. The functions $\phi_i$ are defined as
+$$
+\begin{align}
+\phi_1({d_{i,j}}) &amp;amp;= \mu \exp{\left[ 4 \left( \left( \frac{d_{i,j}} {w +r_i +r_l} \right)^{2} - 1\right)^{-1} \right]} \\
+\phi_2({d_{i,j}}) &amp;amp;= \frac{ \mu } {a_p} \exp{\left[ 4 \left( \left( \frac{d_{i,j}} {w_{int} +r_i +r_l} \right)^{2} - 1\right)^{-1} \right]} \\
+\phi_3({d_{i,j}}) &amp;amp;= 10^3 \exp{\left[ \left( \left( \frac{d_{i,j}} {r_i +r_l} \right)^{2} - 1\right)^{-1} \right]}
+\end{align}
+$$&lt;/p>
+&lt;p>The potential function is based on Hall&amp;rsquo;s theory of interpersonal distances which describes four distance zones around a person &lt;a href="#Hall1966" >[4]&lt;/a>. Accordingly, the potential function is defined piece-wise on rings around each agent: a circular core for collision avoidance, a first ring that represents the intimate space, and a second ring that represents personal space. Agents outside the personal zone do not affect other agents&amp;rsquo; path choice. This is mathematically modeled by setting the the potential function to zero.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/optimal_steps_model/figure3.png"
+alt="Agent&amp;rsquo;s potential versus distance for different parameter values. [5]">&lt;figcaption>
+&lt;p>Agent&amp;rsquo;s potential versus distance for different parameter values. &lt;a href="#Mayr2021" >[5]&lt;/a>&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>The value of the potential function in the personal space ring is very low. Thus, this area will be kept free only if agents have ample space to avoid each other &lt;a href="#Sivers2016" >[3]&lt;/a>. As soon as the space becomes more constricted agents will get closer. This is typical for normal human behavior. In the intimate space ring, the potential function value increases significantly. In crowds, this area is only kept free if the density is low &lt;a href="#Sivers2016" >[3]&lt;/a>. Finally, to prevent agents from overlapping, the potential is set to a high value (compared to the values for the personal and intimate spaces) in the collision area. The exact definition of the potential function and default parameters implemented in Vadere can be found in &lt;a href="#Kleinmeier2019" >[2]&lt;/a>.&lt;/p>
+&lt;h2>Implementation in Vadere, Challenges, Limitations, Usage, Parameters&lt;span class="hx-absolute -hx-mt-20" id="implementation-in-vadere-challenges-limitations-usage-parameters">&lt;/span>
+&lt;a href="#implementation-in-vadere-challenges-limitations-usage-parameters" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;h3>Vadere simulator&lt;span class="hx-absolute -hx-mt-20" id="vadere-simulator">&lt;/span>
+&lt;a href="#vadere-simulator" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>The Vadere project was started in 2010. Its main intention was and still is to facilitate development and comparison of locomotion models. Therefore, it was designed as a generic framework, but with an eye on keeping it lightweight, so that new locomotion models can be quickly implemented. Vadere has an event-driven update scheme and a simulation loop.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/optimal_steps_model/figure4.png"
+alt="Vadere simulation loop.">&lt;figcaption>
+&lt;p>Vadere simulation loop.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>The Optimal Steps Model implements the locomotion model interface &lt;code>Model&lt;/code> that contains four essential methods:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>initialize()&lt;/code> : compute floorfield, initialize step circle optimizer and update scheme.&lt;/li>
+&lt;li>&lt;code>preLoop()&lt;/code> : set last time step.&lt;/li>
+&lt;li>&lt;code>postLoop()&lt;/code> : shut down update scheme.&lt;/li>
+&lt;li>&lt;code>update()&lt;/code> : set new time step and solve optimization problem to find the next position.&lt;/li>
+&lt;/ul>
+&lt;h3>Usage&lt;span class="hx-absolute -hx-mt-20" id="usage">&lt;/span>
+&lt;a href="#usage" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>Vadere is implemented in Java programming language. Thus, it is available for GNU-/Linux, MacOS and Microsoft Windows. Vadere reads in simulation parameters, like the topography or an agent’s radius, from a human-readable JSON-based text file instead of using a binary format. Also, the simulation results — usually x and y coordinates for each pedestrian and a time step — are written to text files. In this way, users can use text editors to create input files for Vadere and they can open result files from Vadere with 3rd-party software like MATLAB. Furthermore, text files allow users to modify parameters quickly in an automated way. This is essential for studies where parameters must be varied and, thus, thousands of simulations must be run. Performing simulations with Vadere requires three steps. These steps are supported by the graphical user interface.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/optimal_steps_model/figure5.png"
+alt="Vadere interface.">&lt;figcaption>
+&lt;p>Vadere interface.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;h3>Challenges and limitations&lt;span class="hx-absolute -hx-mt-20" id="challenges-and-limitations">&lt;/span>
+&lt;a href="#challenges-and-limitations" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>Using the OSM involves solving many optimization problems. For each step of each agent, a non-trivial optimization problem has to be solved. This optimization is computationally expensive and requires most of the overall computation time. Introducing more complex potential functions complicates the evaluation of the potential function which contributes directly to the computation time of the optimization. Evaluating the potential function at specific points only instead of using an optimization technique such as Nelder Mead can accelerate the simulation. Note that when you cut down the number of evaluation points to 8, this will mimic a cellular automaton.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/optimal_steps_model/figure6.png"
+alt="Grid discrimination.">&lt;figcaption>
+&lt;p>Grid discrimination.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>This is aggravated by the fact that a strict event-driven update hinders parallelization of the computation. Therefore, simulating thousands of agents in real-time using the OSM with Vadere is not yet possible. Benedikt Zönnchen worked on the acceleration in his dissertation thesis.&lt;/p>
+&lt;h3>Parameters&lt;span class="hx-absolute -hx-mt-20" id="parameters">&lt;/span>
+&lt;a href="#parameters" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>The shape of the potential function is controlled through several parameters. There are two parameters that are especially important for the distancing behavior which is why we introduce them briefly:&lt;/p>
+&lt;ul>
+&lt;li>the potential height $h$ (in Vadere: &lt;code>pedPotentialHeight&lt;/code>)&lt;/li>
+&lt;li>and the personal space width $w$ (in Vadere: &lt;code>pedPotentialPersonalSpaceWidth&lt;/code>).&lt;/li>
+&lt;/ul>
+&lt;p>The parameter potential height $h$ controls the strength of repulsion. If $h$ is increased, we expect agents to increase their distance to others.&lt;/p>
+&lt;p>The parameter personal space width $w$ controls how far the repulsion reaches: the larger $w$ the bigger the influence area of an agent. By adusting the personal space width $w$ &lt;a href="#Mayr2021" >[5]&lt;/a> social distancing can be achieved. Nevertheless, the personal space is related to but not equal to a desired social distance $d$ the user wants to model. When there is ample space, it might suffice to set $w = d$ to keep agents at least the desired social distance apart. Since the true distance between agents is an emergent value, the distance is larger &lt;a href="#Mayr2021" >[5]&lt;/a>.&lt;/p>
+&lt;h2>References&lt;span class="hx-absolute -hx-mt-20" id="references">&lt;/span>
+&lt;a href="#references" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>&lt;a name="Seitz2012">&lt;/a>[1] Michael J. Seitz and Gerta Köster. Natural discretization of pedestrian movement in continuous space. Physical Review E, 86(4):046108, 2012.
+&lt;br/>&lt;a href="https://doi.org/10.1103/PhysRevE.86.046108" target="_blank" rel="noopener">https://doi.org/10.1103/PhysRevE.86.046108&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a name="Kleinmeier2019">&lt;/a>[2] Benedikt Kleinmeier, Benedikt Zönnchen, Marion Gödel, and Gerta Köster. Vadere: An open-source simulation framework to promote interdisciplinary understanding. Collective Dynamics, 4, 2019.
+&lt;br/>&lt;a href="https://doi.org/10.17815/CD.2019.21" target="_blank" rel="noopener">https://doi.org/10.17815/CD.2019.21&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a name="Sivers2016">&lt;/a>[3] von Sivers, Isabella Katharina Maximiliana. Modellierung sozialpsychologischer Faktoren in Personenstromsimulationen. Dissertation Technical University Munich, 2016.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a name="Hall1966">&lt;/a>[4] Edward Twitchell Hall. The Hidden Dimension. Doubleday, New York, 1966.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a name="Mayr2021">&lt;/a>[5] Christina M. Mayr and Gerta Köster. Social distancing with the Optimal Steps Model. Collective Dynamics, 2021.
+&lt;br/>&lt;a href="https://doi.org/10.17815/CD.2021.116" target="_blank" rel="noopener">https://doi.org/10.17815/CD.2021.116&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a name="Xu2021">&lt;/a>[5] Xu, Q., Chraibi, M., Seyfried, A. (2021).
+Anticipation in a velocity-based model for pedestrian dynamics.
+Transportation Research Part C: Emerging Technologies, Volume 133.&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title>Social Force Model</title><link>https://pedestriandynamics.org/models/social_force_model/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/models/social_force_model/</guid><description>&lt;h2>Introduction to Social Force Model&lt;span class="hx-absolute -hx-mt-20" id="introduction-to-social-force-model">&lt;/span>
+&lt;a href="#introduction-to-social-force-model" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The Social Force Model &lt;a href="#Helbing2000" >[1]&lt;/a> is a force-based model that defines the movement of pedestrians by the combination of different social forces affecting an individual.&lt;/p>
+&lt;p>The model defines forces that affect an individual:&lt;/p>
+&lt;ul>
+&lt;li>A driving force&lt;/li>
+&lt;li>A repulsive force&lt;/li>
+&lt;li>An obstacle force&lt;/li>
+&lt;/ul>
+&lt;p>The driving force represents a person&amp;rsquo;s desire to move in a certain direction, independent of other people and obstacles. The repulsive force is caused by the interaction between the individuals and causes them to avoid each other in order to avoid collisions. The obstacle force acts in a similar way to the person force to avoid collisions with obstacles in the environment.&lt;/p>
+&lt;h2>Driving force&lt;span class="hx-absolute -hx-mt-20" id="driving-force">&lt;/span>
+&lt;a href="#driving-force" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The driving force defines the force that propels pedestrians towards their intended destinations:&lt;/p>
+&lt;p>$$ \overrightarrow{F_i^{\mathrm{drv}}}=\frac{v_i^0\overrightarrow{e_i^0} - \overrightarrow{v_i}}{\tau}$$&lt;/p>
+&lt;ul>
+&lt;li>$v_i^0$ is the desired speed&lt;/li>
+&lt;li>$\overrightarrow{e_i^0}$ is the desired direction&lt;/li>
+&lt;li>$\overrightarrow{v_i}$ is the current velocity&lt;/li>
+&lt;li>$\tau$ is the reaction time&lt;/li>
+&lt;/ul>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/social_force_model/Driving_Force.png"
+alt="Driving Force acting on an agent." width="500">&lt;figcaption>
+&lt;p>Driving Force acting on an agent.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>In the figure above, the black dot represents an agent. Its radius is represented by the gray circle around it. The desired velocity ($v_i^0 \overrightarrow{e_i^0}$) is as big as its desired speed and is pointing in the desired direction towards a destination indicated by an X.
+The driving force of the agent results from the difference between the desired velocity and the current velocity divided by $\tau$.&lt;/p>
+&lt;h2>Repulsive force&lt;span class="hx-absolute -hx-mt-20" id="repulsive-force">&lt;/span>
+&lt;a href="#repulsive-force" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Agents exert a repulsive force on each other that grows exponentially as they get closer. When agents collide, the pushing force increases further and a frictional force arises in addition. The frictional force acts perpendicularly to the repulsive force, in the direction of the velocity difference&lt;/p>
+&lt;p>$$ \overrightarrow{F_i^{\mathrm{rep}}} = \sum_{j} \overrightarrow{f_{ij}}\text{.}$$&lt;/p>
+&lt;p>$$\overrightarrow{f_{ij}} = [A_i \exp[(r_{ij} - d_{ij})/B_i] + kg(r_{ij} - d_{ij})] \overrightarrow{n_{ij}} + \kappa g(r_{ij} - d_{ij}) \Delta v_{ji}^t \overrightarrow{t_{ij}} \text{.}$$&lt;/p>
+&lt;p>$$\phantom{&amp;hellip;&amp;hellip;}\fbox{\phantom{&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;..} pushing \phantom{&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;..}} \fbox{\phantom{&amp;hellip;&amp;hellip;} sliding \phantom{&amp;hellip;&amp;hellip;}}$$&lt;/p>
+&lt;ul>
+&lt;li>$j$ is another agent&lt;/li>
+&lt;li>$r_{ij} = r_i + r_j$ is the combined radius of $i$ and $j$&lt;/li>
+&lt;li>$d_{ij}$ is the distance between $i$ and $j$&lt;/li>
+&lt;li>$A_i$, $B_i$, $k$ and $\kappa$ are constants (see &lt;a href="#Default_values" >default values&lt;/a>)&lt;/li>
+&lt;li>$g$ represents the distance between pedestrians when they are in contact, and is zero when there is no contact.
+$g(x)&lt;del>=&lt;/del>\begin{cases} x \text{ if } x &amp;gt; 0 \ \text{ else } 0 \end{cases}$&lt;/li>
+&lt;li>$ \overrightarrow{n_{ij}} = (n_{ij}^1, n_{ij}^2) = (\overrightarrow{\mathrm{pos}_i} - \overrightarrow{\mathrm{pos}_j})/d_{ij} $ is the normalised vector from $j$ to $i$&lt;/li>
+&lt;li>$ \overrightarrow{t_{ij}} = (- n_{ij}^2, n_{ij}^1)$ is the tangent of $\overrightarrow{n_{ij}}$ which is perpendicular to it, rotated counterclockwise&lt;/li>
+&lt;li>$\Delta v_{ji}^t = (\overrightarrow{v_j} - \overrightarrow{v_i}) \cdot \overrightarrow{t_{ij}}$ is the tangential velocity difference of $i$ and $j$&lt;/li>
+&lt;/ul>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/social_force_model/Pushing_Agents.png"
+alt="Direction of repulsive forces acting on an agent." width="500">&lt;figcaption>
+&lt;p>Direction of repulsive forces acting on an agent.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>The repulsive force of the agents acts from the originating agent towards the agent on which the forces act. When their distance is greater than their combined radius, no other forces apply.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/social_force_model/Sliding_Agent_Forces.png"
+alt="Direction of the pushing and frictional forces acting on colliding agents.">&lt;figcaption>
+&lt;p>Direction of the pushing and frictional forces acting on colliding agents.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>If the distance between two agents is smaller than their combined radius, the agents collide and a frictional force also occurs. This frictional force acts orthogonally to the repulsive force in the direction of the velocity difference of the two agents.&lt;/p>
+&lt;h2>Obstacle force&lt;span class="hx-absolute -hx-mt-20" id="obstacle-force">&lt;/span>
+&lt;a href="#obstacle-force" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Obstacles exert a force on the agent similar to a static agent.
+Each line segment of an obstacle exerts force on the agent.
+The repulsive force increases exponentially with decreasing distance. When the agent collides with the segment, the repulsive force increases further. When colliding, a frictional force also occurs, which acts orthogonally to the repulsive force in the direction to the velocity of the agent&lt;/p>
+&lt;p>$$ \overrightarrow{F_i^{\mathrm{obst}}} = \sum_{o} \overrightarrow{f_{io}\text{.}}$$&lt;/p>
+&lt;p>$$\overrightarrow{f_{io}} = [A_i \exp[(r_{i} - d_{io})/B_i] + kg(r_{i} - d_{io})] \overrightarrow{n_{io}} + \kappa g(r_{i} - d_{io}) (\overrightarrow{v_{i}}\cdot\overrightarrow{t_{io}}) \overrightarrow{t_{io}} \text{.}$$&lt;/p>
+&lt;p>$$\phantom{&amp;hellip;&amp;hellip;&amp;hellip;}\fbox{\phantom{&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;} pushing \phantom{&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;..}} \fbox{\phantom{&amp;hellip;&amp;hellip;&amp;hellip;.} sliding \phantom{&amp;hellip;&amp;hellip;&amp;hellip;.}}$$&lt;/p>
+&lt;ul>
+&lt;li>$o$ is a segment of the obstacle&lt;/li>
+&lt;li>$r_i$ is the radius agent $i$&lt;/li>
+&lt;li>$d_{io}$ is distance from closest point on the segement to $i$&lt;/li>
+&lt;li>$\overrightarrow{n_{io}} = (n_{io}^1, n_{io}^2) = (\overrightarrow{\mathrm{pos}_i} - \overrightarrow{\mathrm{pos}_o})/d_{io}$ the direction from $\overrightarrow{\mathrm{pos}_o}$ the closest point on the segment to $i$&lt;/li>
+&lt;li>$ \overrightarrow{t_{io}} = (- n_{io}^2, n_{io}^1)$ is the tangent of $\overrightarrow{n_{io}}$ which is perpendicular to it, rotated counterclockwise&lt;/li>
+&lt;li>$v_i$ is the velocity of $i$&lt;/li>
+&lt;li>$A_i$, $B_i$, $k$ and $\kappa$ are constants (see &lt;a href="#Default_values" >default values&lt;/a>)&lt;/li>
+&lt;li>$g$ represents the distance between a pedestrian and an obstacle segment when they are in contact, and is zero when there is no contact.
+$g(x)&lt;del>=&lt;/del>\begin{cases}
+x \text{ if } x &amp;gt; 0 \
+\text{ else } 0
+\end{cases}$&lt;/li>
+&lt;/ul>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/social_force_model/Pushing_Obstacle_Force.png"
+alt="Direction of repulsive forces acting on an agent." width="650">&lt;figcaption>
+&lt;p>Direction of repulsive forces acting on an agent.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>The repulsive force originating from a segment of an obstacle acts from the point on the wall segment that is closest to the agent. This point is marked in magenta in the illustration above.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/models/social_force_model/Sliding_Obstacle_Force.png"
+alt="Direction of the pushing and frictional forces acting on agents colliding with an obstacle segment." width="800">&lt;figcaption>
+&lt;p>Direction of the pushing and frictional forces acting on agents colliding with an obstacle segment.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>When the minimum distance between an agent and a wall segment falls below the agent&amp;rsquo;s radius, an additional frictional force comes into effect. This frictional force acts orthogonally to the repulsive force in the direction of the velocity of the agent.&lt;/p>
+&lt;h2>Calculating new velocity and new position from forces&lt;span class="hx-absolute -hx-mt-20" id="calculating-new-velocity-and-new-position-from-forces">&lt;/span>
+&lt;a href="#calculating-new-velocity-and-new-position-from-forces" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>With the definition of the forces affecting an individual, it is possible to calculate its new speed&lt;/p>
+&lt;p>$$ \overrightarrow{v_{\mathrm{new}}} = \overrightarrow{v_i} + [\overrightarrow{F_i^{\mathrm{drv}}} + \frac{\overrightarrow{F_i^{\mathrm{rep}}} + \overrightarrow{F_i^{\mathrm{obst}}}}{m_i}] \cdot \delta T$$
+and position
+$$ \overrightarrow{\mathrm{pos}_{\mathrm{new}}} = \overrightarrow{\mathrm{pos}_i} + \overrightarrow{v_{\mathrm{new}}} \cdot \delta T \text{.}$$&lt;/p>
+&lt;p>Here $m_i$ denotes the mass of $i$ and $\delta T$ the length of one simulation iteration.&lt;/p>
+&lt;h2>Default values&lt;span class="hx-absolute -hx-mt-20" id="default-values">&lt;/span>
+&lt;a href="#default-values" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>&lt;a name="Default_values">&lt;/a>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Parameter&lt;/th>
+&lt;th>Value&lt;/th>
+&lt;th>Unit&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>$A_i$&lt;/td>
+&lt;td>2_000&lt;/td>
+&lt;td>N&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>$B_i$&lt;/td>
+&lt;td>0.08&lt;/td>
+&lt;td>m&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>$k$&lt;/td>
+&lt;td>120_000&lt;/td>
+&lt;td>$\mathrm{\frac{kg}{s^2}}$&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>$\kappa$&lt;/td>
+&lt;td>240_000&lt;/td>
+&lt;td>$\mathrm{\frac{kg}{m \cdot s}}$&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>$r_i$&lt;/td>
+&lt;td>0.3&lt;/td>
+&lt;td>m&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>$\tau$&lt;/td>
+&lt;td>0.5&lt;/td>
+&lt;td>s&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>$v_i^0$&lt;/td>
+&lt;td>0.8&lt;/td>
+&lt;td>$\mathrm{\frac{m}{s}}$&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>$m$&lt;/td>
+&lt;td>80&lt;/td>
+&lt;td>kg&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2>References&lt;span class="hx-absolute -hx-mt-20" id="references">&lt;/span>
+&lt;a href="#references" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;ul>
+&lt;li>&lt;a name="Helbing2000">&lt;/a>[1] Helbing, D., Farkas, I., Vicsek, T. (2000).
+Simulating dynamical features of escape panic. In: Nature
+&lt;br/>&lt;a href="https://doi.org/10.1038/35035023" target="_blank" rel="noopener">https://doi.org/10.1038/35035023&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>
