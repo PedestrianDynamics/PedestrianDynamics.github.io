@@ -42,5 +42,9 @@ params:
     displayPoweredBy: false
 
   displayUpdatedDate: true
+
+  # sections included in the site-wide feed at /index.xml
+  rss:
+    sections: [notes, academic_update]
   dateFormat: "January 2, 2006"
 

@@ -1,0 +1,8 @@
+{{- with site.Home.OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}" />
+{{- end }}
+{{- if not .IsHome }}
+{{- with .OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }} – {{ $.Title }}" />
+{{- end }}
+{{- end }}
