@@ -1,7 +1,6 @@
 ---
 title: "Calibrating a pedestrian model against real data, part 2: where it stops"
 date: 2026-09-07
-draft: true
 summary: The parameters calibrated on a wide bottleneck in part 1 go to a half-metre gate and an unguided entrance. One set stalls, the other is too fast, a recalibration disagrees with the first, and no tested static parameter slice reproduces low motivation. What that means for anyone who runs pedestrian simulations.
 math: true
 thumbnail: motivation_pair.gif

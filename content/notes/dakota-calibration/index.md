@@ -1,7 +1,6 @@
 ---
 title: "Calibrating a pedestrian model against real data, part 1: the bottleneck"
 date: 2026-09-05
-draft: true
 summary: We calibrated JuPedSim's Collision Free Speed model with Dakota on an open bottleneck experiment and checked the result on two widths the optimizer never saw. The defaults miss the flow by a factor of two. Calibration brings it mostly within ten percent, though neither calibrated set passes the stated tolerance everywhere, and two optimizer starts give two different parameter sets.
 math: true
 aliases: [/blog/dakota-calibration/]
