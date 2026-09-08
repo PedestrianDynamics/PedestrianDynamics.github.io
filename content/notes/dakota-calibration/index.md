@@ -88,7 +88,12 @@ responses
   no_hessians
 ```
 
-The first stage is a Morris screening: twenty trajectories of eight evaluations each, every step changing one parameter at a time, 160 evaluations in all. It is cheap and it ranks the parameters per observable. It is a ranking, not a measurement, and it is conditional on the ranges it was sampled over.
+The first stage is a Morris screening: twenty trajectories of eight evaluations each, every step changing one parameter at a time, 160 evaluations in all. Each path starts at a random point of a grid over the parameter box and steps through it changing one parameter at a time; the jump in an observable at each step, divided by the step, is that parameter's elementary effect, and the ranking is the mean absolute effect over the twenty paths. It is cheap and it ranks the parameters per observable. It is a ranking, not a measurement, and it is conditional on the ranges it was sampled over.
+
+{{< figure
+    src="morris_sketch.png"
+    caption="How the screening works. Left: a sketch for two parameters and two paths. Each path is drawn in full before any run: a random start on the grid, a random order of the parameters, a random direction per step. Each arrow is one simulation batch, and the change in flow along it, divided by the step, is one elementary effect. When a run aborts, the path still continues to its next point; only the steps into and out of the failed point are discarded. Right: the real result for the flow at 3.6 m, seven parameters and twenty paths. Steps are measured as fractions of each parameter's range, so the effects of different parameters are comparable. The mean change ranks the parameters; its standard deviation shows how much an effect depends on where in the box the step was taken. Reading the radius as an example: it is the strongest lever, a step of two thirds of its range changed the flow by about 6.7 persons per second on average against a measured 5 per second, and its point lies below the diagonal, so the effect was about the same wherever the other parameters stood. The neighbor range has a similar mean but lies above the diagonal: some steps did nothing and others collapsed the flow. The absolute value hides the sign; for the radius the effect is negative, a larger radius means less flow."
+>}}
 
 {{< figure
     src="fig3.png"
