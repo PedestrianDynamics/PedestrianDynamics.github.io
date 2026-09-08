@@ -7,7 +7,7 @@ aliases: [/blog/dakota-calibration/]
 thumbnail: bottleneck_pair.gif
 ---
 
-{{< callout type="info" icon="information-circle" >}}
+{{< callout type="info" icon="none" >}}
 **Abstract.** This is the first of two parts. We calibrated JuPedSim's Collision Free Speed model with Dakota against the Hermes bottleneck experiment, three widths in the fit and two held out, with the same open analysis code on experiment and simulation. The defaults miss the measured flow by a factor of two. After calibration, flow, density and speed in front of the opening are mostly within ten percent, including at the two held-out widths, but not everywhere: both calibrated sets overshoot the flow at 3.0 m and undershoot it at 5.0 m. Two optimizer starts give two parameter sets with near-equal residual norms that differ by factors of two to four. The held-out widths are an interpolation test inside one experiment, not an independent validation. [Part 2]({{< relref "/notes/dakota-validation" >}}) takes the same parameters to a half-metre gate and an unguided entrance, where they fail.
 {{< /callout >}}
 

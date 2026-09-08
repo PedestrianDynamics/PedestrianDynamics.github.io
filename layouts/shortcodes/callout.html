@@ -4,7 +4,10 @@
 {{/* Site override of the Hextra 0.8.4 shortcode: an explicit "icon" (heroicon svg) takes precedence over the type's emoji */}}
 {{ $icon := .Get "icon" }}
 {{ $emoji := .Get "emoji" }}
-{{ if and (eq $emoji "") (eq $icon "") }}
+{{/* icon="none" renders the box without any symbol */}}
+{{ if eq $icon "none" }}
+  {{ $icon = "" }}
+{{ else if and (eq $emoji "") (eq $icon "") }}
   {{ $emoji = index $calloutEmojiDict $type }}
 {{ end }}
 

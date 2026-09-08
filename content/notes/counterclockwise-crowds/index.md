@@ -7,7 +7,7 @@ aliases: [/blog/counterclockwise-crowds/]
 thumbnail: fig1.mp4
 ---
 
-{{< callout type="info" icon="information-circle" >}}
+{{< callout type="info" icon="none" >}}
 **Abstract.** Echeverría-Huarte et al. report that freely roaming crowds in a circular arena drift counterclockwise and attribute it to an individual tendency to turn left. We rebuilt the 5 m arena in JuPedSim, steering each agent with a roaming rule and measuring the paper's polarization M̄. With symmetric collision avoidance, four different collision models all give M̄ near zero. A turn-left-at-wall rule in about a third of the agents reproduces the reported M̄ of about 0.2. The spatial pattern does not follow: the wall rule concentrates the rotation in a ring at the rim, an always-on left veer spreads it inward and reverses its sign, while the experiment rotates counterclockwise at every radius. Matching the average is easy; matching where the rotation lives is the open problem, and the origin of the individual bias remains unexplained.
 {{< /callout >}}
 

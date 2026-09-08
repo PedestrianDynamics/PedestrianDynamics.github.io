@@ -6,7 +6,7 @@ math: true
 thumbnail: motivation_pair.gif
 ---
 
-{{< callout type="info" icon="information-circle" >}}
+{{< callout type="info" icon="none" >}}
 **Abstract.** [Part 1]({{< relref "/notes/dakota-calibration" >}}) calibrated JuPedSim's Collision Free Speed model with Dakota on the Hermes bottleneck experiment and found two parameter sets with near-equal residual norms. This part takes them to two other open experiments without refitting: a 0.5 m gate with the motivation varied between runs, and an entrance without guiding barriers. At the gate one set stalls in most seeds and the other passes it 20 to 40 % too fast. Recalibrating on the gate makes passage reliable but not every observable accurate, and two optimizer starts again disagree. Separate timing parameters absorb part of the low-motivation condition, in-sample, but not the speed. At the unguided entrance every set drains the crowd two to three times faster than the people did. A joint calibration over both experiments is worse than either specialist. The note closes with what we would do differently.
 {{< /callout >}}
 

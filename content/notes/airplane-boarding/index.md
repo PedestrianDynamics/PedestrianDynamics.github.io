@@ -7,7 +7,7 @@ aliases: [/blog/airplane-boarding/]
 thumbnail: fig1.mp4
 ---
 
-{{< callout type="info" icon="information-circle" >}}
+{{< callout type="info" icon="none" >}}
 **Abstract.** We rebuilt the classic airplane boarding studies in JuPedSim: a 180-seat single-aisle cabin, six boarding strategies, twenty runs each. With uniform, compliant passengers the ranking from the literature holds. Steffen's interleaved method is fastest, back-to-front is barely better than random, and front-to-back is worst. Lowering the share of passengers who board in their assigned slot, as in Dong et al. (2025), moves the optimized methods toward random boarding, in agreement with their cellular automaton on a different aircraft. Mixed passenger profiles and travel groups boarding together make Steffen's exact order the most fragile method, while a coarser Steffen-style variant stays robust and overtakes it. The benefit of an optimized order depends on passengers following it.
 {{< /callout >}}
 
