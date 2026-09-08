@@ -7,6 +7,10 @@ aliases: [/blog/counterclockwise-crowds/]
 thumbnail: fig1.mp4
 ---
 
+{{< callout type="info" icon="information-circle" >}}
+**Abstract.** Echeverría-Huarte et al. report that freely roaming crowds in a circular arena drift counterclockwise and attribute it to an individual tendency to turn left. We rebuilt the 5 m arena in JuPedSim, steering each agent with a roaming rule and measuring the paper's polarization M̄. With symmetric collision avoidance, four different collision models all give M̄ near zero. A turn-left-at-wall rule in about a third of the agents reproduces the reported M̄ of about 0.2. The spatial pattern does not follow: the wall rule concentrates the rotation in a ring at the rim, an always-on left veer spreads it inward and reverses its sign, while the experiment rotates counterclockwise at every radius. Matching the average is easy; matching where the rotation lives is the open problem, and the origin of the individual bias remains unexplained.
+{{< /callout >}}
+
 {{< figure src="fig0.png" >}}
 
 Recently a [paper in Nature Communications](https://www.nature.com/articles/s41467-026-73713-w) (Echeverría-Huart et al.) reports something simple and odd. If you put people in a circular arena and let them walk around freely, the crowd slowly drifts counterclockwise. The authors saw it in experiments in Spain and Japan, so it is not a fluke of one room or one group. Their explanation is that the drift does not come from people avoiding each other. It comes from each person, on their own, having a slight tendency to turn left. (The paper even made it into The New York Times.)
