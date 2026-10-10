@@ -1,4 +1,67 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pedestrian Dynamics – Notes</title><link>https://pedestriandynamics.org/notes/</link><description>Recent content in Notes on Pedestrian Dynamics</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://pedestriandynamics.org/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>Calibrating a pedestrian model against real data, part 2: where it stops</title><link>https://pedestriandynamics.org/notes/dakota-validation/</link><pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/notes/dakota-validation/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pedestrian Dynamics – Notes</title><link>https://pedestriandynamics.org/notes/</link><description>Recent content in Notes on Pedestrian Dynamics</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://pedestriandynamics.org/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>Can a model move like museum visitors and still take the wrong paths?</title><link>https://pedestriandynamics.org/notes/guggenheim-atrium/</link><pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/notes/guggenheim-atrium/</guid><description>
+&lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;/div>
+&lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
+&lt;strong>Abstract.&lt;/strong> Can a pedestrian model that moves like real people still take the wrong paths? We filmed the atrium of the Guggenheim Bilbao for 6.5 minutes with a phone and extracted 331 visitor trajectories, calibrated from the floor tiles and the visitors&amp;rsquo; own walking speed. The movement looks random but is not: paths are near-straight, and about a third of the time people stand. We then rebuilt the atrium in JuPedSim, driven only by measured distributions of entries, destinations, stops and waiting times, never by measured paths. The simulation matches how visitors move: the same near-ballistic displacement and the same mixing without lanes. Speeds and stop locations agree too, but those are largely put in by construction. It does not match where they spend their time. Agents walk gate-to-gate along shortest paths, while real visitors wander over the whole floor and stand longer (29% of person-time against 17% simulated). Getting the statistics of motion right is not enough for museum crowds; the model needs an exploratory component, and the data measure how large it is.
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/guggenheim-atrium/fig0.png"
+alt="All 331 trajectories of the 6.5 minutes in one image. The apparent chaos is the overlay; the single paths are mostly straight.">&lt;figcaption>
+&lt;p>All 331 trajectories of the 6.5 minutes in one image. The apparent chaos is the overlay; the single paths are mostly straight.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>We spent 6.5 minutes filming the atrium of the Guggenheim Bilbao from an upper balcony. We wanted to see how far a single phone video can be taken as a data source for crowd science, using open tools only.&lt;/p>
+&lt;h2>From a phone video to trajectories&lt;span class="hx-absolute -hx-mt-20" id="from-a-phone-video-to-trajectories">&lt;/span>
+&lt;a href="#from-a-phone-video-to-trajectories" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Detection and tracking use YOLO and ByteTrack. The handheld camera shakes, so we registered every frame to a reference frame before tracking. For calibration we used what the scene offers. The stone tile grid on the floor gives the geometry of the ground plane up to one unknown scale factor. That factor comes from the pedestrians themselves: the walking speed distribution has a clear peak, which we pin to the well-established free walking speed of 1.3 m/s. The tile size then comes out at about 0.73 m.&lt;/p>
+&lt;p>This makes the absolute scale an assumption, while angles and proportions are measured independently from the tiles. The tracking is monocular, from bounding-box feet, so occlusions add noise at short time lags. And it is one afternoon, 6.5 minutes. Nothing below claims more than that window.&lt;/p>
+&lt;p>We do not show the video itself, since it shows museum visitors. Everything below works from the extracted trajectories. The museum was not involved in this study.&lt;/p>
+&lt;h2>The movement is not random&lt;span class="hx-absolute -hx-mt-20" id="the-movement-is-not-random">&lt;/span>
+&lt;a href="#the-movement-is-not-random" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>It looks random from above, but the mean squared displacement grows almost ballistically, with a slope of about 1.8 where a random walk would give 1. And 82% of one-second steps turn by less than 30 degrees. People walk in straight, purposeful legs.&lt;/p>
+&lt;p>The disorder comes from composition: many directed paths with different goals, crossing each other, plus about a third of all person-time spent standing (below 0.3 m/s). Stops are short and heavy-tailed, with a median of 2.4 s.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/guggenheim-atrium/fig1.png"
+alt="The tests behind the claim: mean squared displacement, turning angles, speed distribution, stop durations.">&lt;figcaption>
+&lt;p>The tests behind the claim: mean squared displacement, turning angles, speed distribution, stop durations.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>We also tested this at the level of whole routes, following the &lt;a href="https://doi.org/10.1007/s12652-019-01428-6" target="_blank" rel="noopener">Louvre study by Yoshimura et al.&lt;/a> Each track becomes a sequence of gates and stop points, compared against a random walk on the same graph. Both kinds of visitors are clearly non-random, but in opposite ways. Visitors who cross without stopping reuse a handful of corridors; the atrium works as a thoroughfare. Visitors who stop are the opposite: 43 different route types among 63 tracks, most of them unique. Yoshimura et al. found the same contrast between short-stay and long-stay visitors across the whole Louvre. It seems to be visible already within a single hall.&lt;/p>
+&lt;p>Where people stop, two classical indicators from visitor studies, attraction power (how many stop) and holding power (how long they stay), turn out to be negatively correlated here. The spot that attracts the most visitors holds them for about six seconds; the spot that holds visitors the longest attracts few. Stop durations follow a lognormal distribution, not the Weibull reported by &lt;a href="https://doi.org/10.1016/j.jocs.2021.101357" target="_blank" rel="noopener">Centorrino et al.&lt;/a> for room visits in the Galleria Borghese. A pause in a hall is apparently a different thing than a visit to a room.&lt;/p>
+&lt;h2>Rebuilding the atrium in JuPedSim&lt;span class="hx-absolute -hx-mt-20" id="rebuilding-the-atrium-in-jupedsim">&lt;/span>
+&lt;a href="#rebuilding-the-atrium-in-jupedsim" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Then we built the same situation in &lt;a href="https://www.jupedsim.org/" target="_blank" rel="noopener">JuPedSim&lt;/a>. Agents enter at the measured times and gates. Destinations, stops and waiting times are drawn from the measured distributions. The model never sees an actual measured path.&lt;/p>
+&lt;figure>
+&lt;video autoplay loop muted playsinline preload="auto" style="max-width: 100%">
+&lt;source src="https://pedestriandynamics.org/notes/guggenheim-atrium/fig2.mp4" type="video/mp4">
+&lt;/video>
+&lt;figcaption>The JuPedSim run. Agents colored by walking speed; the dark dots are agents waiting at a stop point.&lt;/figcaption>
+&lt;/figure>
+&lt;p>The simulation reproduces the dynamics: the same near-ballistic displacement, the same speed distribution, stops in the right places. It also reproduces the flow structure. The interior of the atrium is a mixing zone with no lanes, and the simulation shows the same.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/guggenheim-atrium/fig4.png"
+alt="Where the model holds: direction of flow, measured (left) and simulated (right). Color shows how one-directional each cell is; blue means people cross it in all directions.">&lt;figcaption>
+&lt;p>Where the model holds: direction of flow, measured (left) and simulated (right). Color shows how one-directional each cell is; blue means people cross it in all directions.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;h2>Where the model fails&lt;span class="hx-absolute -hx-mt-20" id="where-the-model-fails">&lt;/span>
+&lt;a href="#where-the-model-fails" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>It does not reproduce the spatial spread. Simulated agents walk gate-to-gate along shortest paths, so the occupancy map shows narrow corridors. The measured map is spread over the whole floor, because real visitors also wander. The simulation also stands less: 17% of person-time against 29% measured. The demand model only knows discrete stops longer than two seconds, while real standing includes shuffling, micro-pauses and slow reorientation.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/guggenheim-atrium/fig3.png"
+alt="Measured occupancy and standing (left) against simulated (right). The measured occupancy is spread over the floor; the simulated one collapses onto gate-to-gate corridors.">&lt;figcaption>
+&lt;p>Measured occupancy and standing (left) against simulated (right). The measured occupancy is spread over the floor; the simulated one collapses onto gate-to-gate corridors.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>This is a known limitation. Current locomotion models are built for directed walking. The exploratory part of museum behavior has to be added on top, for example as noise in the desired direction or as soft intermediate attractors. What the data gives us is a measure of how large that part is, which is what a model needs for calibration.&lt;/p>
+&lt;h2>Run it yourself&lt;span class="hx-absolute -hx-mt-20" id="run-it-yourself">&lt;/span>
+&lt;a href="#run-it-yourself" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>We packed the scenario (geometry, gates, stop points, arrival rates) into a file for the web app. Download &lt;a href="https://github.com/PedestrianDynamics/guggenheim-atrium/raw/main/guggenheim_atrium.zip" target="_blank" rel="noopener">guggenheim_atrium.zip&lt;/a>, open it at &lt;a href="https://app.jupedsim.org" target="_blank" rel="noopener">app.jupedsim.org&lt;/a> and run the atrium in the browser, no installation.&lt;/p>
+&lt;figure>
+&lt;video autoplay loop muted playsinline preload="auto" style="max-width: 100%">
+&lt;source src="https://pedestriandynamics.org/notes/guggenheim-atrium/fig5.mp4" type="video/mp4">
+&lt;/video>
+&lt;figcaption>The atrium scenario running in the web app: gates, stop points and arrival rates from the measurement.&lt;/figcaption>
+&lt;/figure>
+&lt;p>Everything ran on one laptop with open-source tools: JuPedSim for the simulation, the analysis in Python. The video, code and trajectories fit in a folder.&lt;/p>
+&lt;h2>Code and data&lt;span class="hx-absolute -hx-mt-20" id="code-and-data">&lt;/span>
+&lt;a href="#code-and-data" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Code, trajectories and the detailed results: &lt;a href="https://github.com/PedestrianDynamics/guggenheim-atrium" target="_blank" rel="noopener">github.com/PedestrianDynamics/guggenheim-atrium&lt;/a>&lt;/p>
+&lt;p>&lt;span class="hx-inline-block hx-align-text-bottom icon">&lt;svg height=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">&lt;path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>&lt;/svg>&lt;/span>
+By: &lt;a href="https://pedestriandynamics.org/authors/#MohcineChraibi" >Mohcine Chraibi&lt;/a>&lt;/p></description></item><item><title>Calibrating a pedestrian model against real data, part 2: where it stops</title><link>https://pedestriandynamics.org/notes/dakota-validation/</link><pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/notes/dakota-validation/</guid><description>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
 &lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
