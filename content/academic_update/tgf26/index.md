@@ -34,6 +34,8 @@ The steering committee meeting was extended to hold the founding meeting of the 
 
 At the closing session, the venue of [TGF28](https://collectivedynamics.org/tgf28/) was announced as Wuppertal. The organising team is led by Antoine Tordeux.
 
+The Traffic and Granular Flow series is organised by [Antoine Tordeux]({{< relref "/authors#AntoineTordeux" >}}) (Wuppertal), Armin Seyfried (Wuppertal, Jülich), [Mohcine Chraibi]({{< relref "/authors#MohcineChraibi" >}}) (Jülich), Anna Sieben (Wuppertal, Jülich) and Andreas Schadschneider (Cologne).
+
 {{< figure
     src="audience.png"
     caption="Conference audience (faces blurred)"
