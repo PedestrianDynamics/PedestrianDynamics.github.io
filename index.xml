@@ -683,7 +683,36 @@ alt="The same three as spatial maps (blue counterclockwise, red clockwise). The 
 &lt;a href="#code-and-credits" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Code, full-quality videos, and data: &lt;a href="https://github.com/PedestrianDynamics/clockwise" target="_blank" rel="noopener">github.com/PedestrianDynamics/clockwise&lt;/a>&lt;/p>
 &lt;p>Credit for the phenomenon and the experiments goes to Iñaki Echeverría Huarte, Claudio Feliciani, Iker Zuriguel Ballaz and colleagues. There was a charming talk at TGF26 by Iker Zuriguel Ballaz — here is the &lt;a href="https://bpb-eu-w2.wpmucdn.com/blogs.bristol.ac.uk/dist/1/1202/files/2026/05/TGF26_abstract_11.pdf" target="_blank" rel="noopener">abstract&lt;/a>.&lt;/p>
 &lt;p>&lt;span class="hx-inline-block hx-align-text-bottom icon">&lt;svg height=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">&lt;path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>&lt;/svg>&lt;/span>
-By: &lt;a href="https://pedestriandynamics.org/authors/#MohcineChraibi" >Mohcine Chraibi&lt;/a>&lt;/p></description></item><item><title>Why don't airlines board planes the optimal way?</title><link>https://pedestriandynamics.org/notes/airplane-boarding/</link><pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/notes/airplane-boarding/</guid><description>
+By: &lt;a href="https://pedestriandynamics.org/authors/#MohcineChraibi" >Mohcine Chraibi&lt;/a>&lt;/p></description></item><item><title>Traffic and Granular Flow 2026</title><link>https://pedestriandynamics.org/academic_update/tgf26/</link><pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/academic_update/tgf26/</guid><description>&lt;p>The 16th edition of the Traffic and Granular Flow (TGF26) conference took place from 16 to 19 June 2026 in Bristol, UK. It was the first time the series met in the United Kingdom. The University of Bristol hosted the conference, which brought together researchers in traffic, pedestrian dynamics, granular flows, collective behaviour and related fields.&lt;/p>
+&lt;p>Since 1995, TGF has been a biennial forum for systems in which interacting individuals, agents or particles produce complex collective phenomena. TGF26 kept the established topics, pedestrian and evacuation dynamics among them, and added robotics, swarm intelligence and the collective dynamics of biological systems.&lt;/p>
+&lt;p>The programme covered fundamental studies of collective motion and practical work on transport, crowd safety and mobility. More than 60 talks and close to 50 posters presented pedestrian movement, evacuation modelling, traffic, granular materials, biological collectives and swarm robotics. The mix of theory, experiments, data-driven methods and simulation showed the value of interdisciplinary work on complex systems.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/academic_update/tgf26/keynote.jpg"
+alt="A conference session at TGF26">&lt;figcaption>
+&lt;p>A conference session at TGF26&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>Five keynote talks covered the range of the conference. Seth Bullock (University of Bristol) explored how physical space shapes collective behaviour. He argued that spatial constraints can enable collective systems as well as limit them. Antoine Deblais (University of Amsterdam) presented the locomotion and particle-collection abilities of filamentous worms in confined spaces, and how such biological mechanisms can inspire robots. Yan Feng (Delft University of Technology) used extended reality (XR) to study human mobility in controlled, immersive settings, with applications to wayfinding, evacuation and transport accessibility. Mary Katherine Heinrich (Université Libre de Bruxelles) described a swarm robotics approach that combines self-organisation with dynamic hierarchies, so that robot collectives coordinate while staying flexible and robust. Claudio Roncoli (KU Leuven) addressed traffic control in systems whose flow characteristics change over time, and the need for adaptive control of increasingly heterogeneous and automated traffic.&lt;/p>
+&lt;p>Engineer&amp;rsquo;s House in Clifton gave delegates an informal place to meet and discuss their work. The Clifton Suspension Bridge, nearby, inspired the conference logo.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/academic_update/tgf26/bridge.jpg"
+alt="The Clifton Suspension Bridge">&lt;figcaption>
+&lt;p>The Clifton Suspension Bridge&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>The social programme included a boat trip on the Floating Harbour, with time on the waterfront afterwards, and an evening at M Shed, a former cargo shed that now houses one of Bristol&amp;rsquo;s museums.&lt;/p>
+&lt;p>On the last day, around 30 delegates visited the Bristol Robotics Laboratory.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/academic_update/tgf26/logo.png"
+alt="The TGF26 logo">&lt;figcaption>
+&lt;p>The TGF26 logo&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>The proceedings will be published in the journal &lt;em>Collective Dynamics&lt;/em>.&lt;/p>
+&lt;p>The steering committee meeting was extended to hold the founding meeting of the International Association for Collective Dynamics. Andreas Schadschneider was unanimously elected its first chairman. The association will support, sustain and promote TGF and related conferences.&lt;/p>
+&lt;p>At the closing session, the venue of TGF28 was announced as Wuppertal. The organising team is led by Antoine Tordeux.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/academic_update/tgf26/audience.png"
+alt="Conference audience (faces blurred)">&lt;figcaption>
+&lt;p>Conference audience (faces blurred)&lt;/p>
+&lt;/figcaption>
+&lt;/figure></description></item><item><title>Why don't airlines board planes the optimal way?</title><link>https://pedestriandynamics.org/notes/airplane-boarding/</link><pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/notes/airplane-boarding/</guid><description>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
 &lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">

@@ -1,4 +1,33 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pedestrian Dynamics – Academic Update</title><link>https://pedestriandynamics.org/academic_update/</link><description>Recent content in Academic Update on Pedestrian Dynamics</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://pedestriandynamics.org/academic_update/index.xml" rel="self" type="application/rss+xml"/><item><title>derRSE 2026</title><link>https://pedestriandynamics.org/academic_update/derse26/</link><pubDate>Tue, 03 Mar 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/academic_update/derse26/</guid><description>&lt;p>The sixth German Conference on Research Software Engineering (&lt;a href="https://events.hifis.net/event/2945/" target="_blank" rel="noopener">&lt;strong>derRSE26&lt;/strong>&lt;/a>) will be held at the University of Stuttgart from March 3rd to 5th, 2026.&lt;/p>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pedestrian Dynamics – Academic Update</title><link>https://pedestriandynamics.org/academic_update/</link><description>Recent content in Academic Update on Pedestrian Dynamics</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://pedestriandynamics.org/academic_update/index.xml" rel="self" type="application/rss+xml"/><item><title>Traffic and Granular Flow 2026</title><link>https://pedestriandynamics.org/academic_update/tgf26/</link><pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/academic_update/tgf26/</guid><description>&lt;p>The 16th edition of the Traffic and Granular Flow (TGF26) conference took place from 16 to 19 June 2026 in Bristol, UK. It was the first time the series met in the United Kingdom. The University of Bristol hosted the conference, which brought together researchers in traffic, pedestrian dynamics, granular flows, collective behaviour and related fields.&lt;/p>
+&lt;p>Since 1995, TGF has been a biennial forum for systems in which interacting individuals, agents or particles produce complex collective phenomena. TGF26 kept the established topics, pedestrian and evacuation dynamics among them, and added robotics, swarm intelligence and the collective dynamics of biological systems.&lt;/p>
+&lt;p>The programme covered fundamental studies of collective motion and practical work on transport, crowd safety and mobility. More than 60 talks and close to 50 posters presented pedestrian movement, evacuation modelling, traffic, granular materials, biological collectives and swarm robotics. The mix of theory, experiments, data-driven methods and simulation showed the value of interdisciplinary work on complex systems.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/academic_update/tgf26/keynote.jpg"
+alt="A conference session at TGF26">&lt;figcaption>
+&lt;p>A conference session at TGF26&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>Five keynote talks covered the range of the conference. Seth Bullock (University of Bristol) explored how physical space shapes collective behaviour. He argued that spatial constraints can enable collective systems as well as limit them. Antoine Deblais (University of Amsterdam) presented the locomotion and particle-collection abilities of filamentous worms in confined spaces, and how such biological mechanisms can inspire robots. Yan Feng (Delft University of Technology) used extended reality (XR) to study human mobility in controlled, immersive settings, with applications to wayfinding, evacuation and transport accessibility. Mary Katherine Heinrich (Université Libre de Bruxelles) described a swarm robotics approach that combines self-organisation with dynamic hierarchies, so that robot collectives coordinate while staying flexible and robust. Claudio Roncoli (KU Leuven) addressed traffic control in systems whose flow characteristics change over time, and the need for adaptive control of increasingly heterogeneous and automated traffic.&lt;/p>
+&lt;p>Engineer&amp;rsquo;s House in Clifton gave delegates an informal place to meet and discuss their work. The Clifton Suspension Bridge, nearby, inspired the conference logo.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/academic_update/tgf26/bridge.jpg"
+alt="The Clifton Suspension Bridge">&lt;figcaption>
+&lt;p>The Clifton Suspension Bridge&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>The social programme included a boat trip on the Floating Harbour, with time on the waterfront afterwards, and an evening at M Shed, a former cargo shed that now houses one of Bristol&amp;rsquo;s museums.&lt;/p>
+&lt;p>On the last day, around 30 delegates visited the Bristol Robotics Laboratory.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/academic_update/tgf26/logo.png"
+alt="The TGF26 logo">&lt;figcaption>
+&lt;p>The TGF26 logo&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>The proceedings will be published in the journal &lt;em>Collective Dynamics&lt;/em>.&lt;/p>
+&lt;p>The steering committee meeting was extended to hold the founding meeting of the International Association for Collective Dynamics. Andreas Schadschneider was unanimously elected its first chairman. The association will support, sustain and promote TGF and related conferences.&lt;/p>
+&lt;p>At the closing session, the venue of TGF28 was announced as Wuppertal. The organising team is led by Antoine Tordeux.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/academic_update/tgf26/audience.png"
+alt="Conference audience (faces blurred)">&lt;figcaption>
+&lt;p>Conference audience (faces blurred)&lt;/p>
+&lt;/figcaption>
+&lt;/figure></description></item><item><title>derRSE 2026</title><link>https://pedestriandynamics.org/academic_update/derse26/</link><pubDate>Tue, 03 Mar 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/academic_update/derse26/</guid><description>&lt;p>The sixth German Conference on Research Software Engineering (&lt;a href="https://events.hifis.net/event/2945/" target="_blank" rel="noopener">&lt;strong>derRSE26&lt;/strong>&lt;/a>) will be held at the University of Stuttgart from March 3rd to 5th, 2026.&lt;/p>
 &lt;h2>Talk&lt;span class="hx-absolute -hx-mt-20" id="talk">&lt;/span>
 &lt;a href="#talk" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>&lt;strong>JuPedSim: From Obscure Executables to a Publicly Documented Library&lt;/strong>&lt;/p>
 &lt;p>&lt;strong>Speaker:&lt;/strong> Mr Kai Kratz&lt;/p>
