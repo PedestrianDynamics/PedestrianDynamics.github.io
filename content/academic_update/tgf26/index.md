@@ -4,7 +4,7 @@ date: 2026-06-16
 math: true
 ---
 
-Report by [Nikolai Bode](https://www.bristol.ac.uk/people/person/Nikolai-Bode-87b388ce-e23c-480f-964c-a5034c53cce6/), University of Bristol. [Google Scholar](https://scholar.google.com/citations?user=JdkAYUoAAAAJ&hl=en) · [LinkedIn](https://www.linkedin.com/in/nikolai-bode-161750104/)
+Report by [Nikolai Bode](/authors/#NikolaiBode), University of Bristol.
 
 The 16th edition of the Traffic and Granular Flow (TGF26) conference took place from 16 to 19 June 2026 in Bristol, UK. It was the first time the series met in the United Kingdom. The University of Bristol hosted the conference, which brought together researchers in traffic, pedestrian dynamics, granular flows, collective behaviour and related fields.
 

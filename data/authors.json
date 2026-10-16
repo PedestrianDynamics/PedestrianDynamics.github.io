@@ -15,6 +15,21 @@
   }
  },
  {
+  "name": "Nikolai Bode",
+  "bio": "",
+  "social": {
+   "linkedin": "https://www.linkedin.com/in/nikolai-bode-161750104/",
+   "github": "",
+   "orcid": "",
+   "homepage": "https://www.bristol.ac.uk/people/person/Nikolai-Bode-87b388ce-e23c-480f-964c-a5034c53cce6/",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "University of Bristol",
+   "url": "https://www.bristol.ac.uk/"
+  }
+ },
+ {
   "name": "Thomas Chatagnon",
   "bio": "Researcher in crowd dynamics and pedestrian movement, specializing in balance recovery mechanisms in dense crowds and developing innovative data collection methodologies through his work with JuPedSim and PedPy.",
   "social": {
