@@ -28,6 +28,11 @@ The social programme included a boat trip on the Floating Harbour, with time on 
 
 {{< figure
     src="banksy_girl_pierced_eardrum.jpg"
+    caption="A Banksy mural in Bristol"
+>}}
+
+{{< figure
+    src="banksy_girl_pierced_eardrum.jpg"
     caption="Banksy's mural *Girl with a Pierced Eardrum* on Hanover Place, Spike Island, Bristol"
 >}}
 
