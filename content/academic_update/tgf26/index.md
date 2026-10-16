@@ -28,16 +28,11 @@ The social programme included a boat trip on the Floating Harbour, with time on 
 
 On the last day, around 30 delegates visited the Bristol Robotics Laboratory.
 
-{{< figure
-    src="logo.png"
-    caption="The TGF26 logo"
->}}
-
 The proceedings will be published in the journal *Collective Dynamics*.
 
-The steering committee meeting was extended to hold the founding meeting of the International Association for Collective Dynamics. Andreas Schadschneider was unanimously elected its first chairman. The association will support, sustain and promote TGF and related conferences.
+The steering committee meeting was extended to hold the founding meeting of the [International Association for Collective Dynamics](https://collectivedynamics.org/). Andreas Schadschneider was unanimously elected its first chairman. The association will support, sustain and promote TGF and related conferences.
 
-At the closing session, the venue of TGF28 was announced as Wuppertal. The organising team is led by Antoine Tordeux.
+At the closing session, the venue of [TGF28](https://collectivedynamics.org/tgf28/) was announced as Wuppertal. The organising team is led by Antoine Tordeux.
 
 {{< figure
     src="audience.png"
