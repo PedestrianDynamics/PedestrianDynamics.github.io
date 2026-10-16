@@ -26,7 +26,10 @@ Engineer's House in Clifton gave delegates an informal place to meet and discuss
 
 The social programme included a boat trip on the Floating Harbour, with time on the waterfront afterwards, and an evening at M Shed, a former cargo shed that now houses one of Bristol's museums.
 
-On the last day, around 30 delegates visited the Bristol Robotics Laboratory.
+{{< figure
+    src="banksy_girl_pierced_eardrum.jpg"
+    caption="Banksy's mural *Girl with a Pierced Eardrum* on Hanover Place, Spike Island, Bristol"
+>}}
 
 The proceedings will be published in the journal *Collective Dynamics*.
 
