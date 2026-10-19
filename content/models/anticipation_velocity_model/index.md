@@ -40,7 +40,7 @@ b. Prediction of a future situation:
 To consider the prediction, it is assumed that the strength of $j$'s impact on $i$ is a function of the predicted distance between these two agents at a particular time point. Given a time constant $t^\text{a}$, which can be interpreted as the prediction time, the predicted distance is defined as 
 
 
-$${s}^{\text{a}}_{i,j}(t+t^{\text{a}}) =\max\Big\\{2r, \Big(\vec{x}^\text{a}_j  (t+t^\text{a})-\vec{x}^\text{a}_i(t+t^\text{a})\Big)\vec{e}\_{ij\}(t)\Big\\},$$
+$${s}^{\text{a}}_{i,j}(t+t^{\text{a}}) =\max\Big\{2r, \Big(\vec{x}^\text{a}_j  (t+t^\text{a})-\vec{x}^\text{a}_i(t+t^\text{a})\Big)\cdot\vec{e}_{ij}(t)\Big\},$$
  
  
 where $\vec{x}^\text{a}_i(t+t^\text{a})=\vec{x}_i(t)+\vec{v}_i(t)\cdot t^\text{a}$.
@@ -56,7 +56,7 @@ $$ R_{i,j}(t)= \alpha_{i,j}(t) \cdot \exp
 
 where $D>0$ is a constant parameter used to calibrate the range of the impact from neighbors and $\alpha_{i,j}$ is a directional dependency used to vary the strength of impact from different neighbors.
 
-$$\alpha_{i,j}(t)=k \Big(1+ \frac{1- \vec{e}_i^{~0}(t) \cdot \vec{e}_j(t)}{2}\Big),\\; k>0 ,$$
+$$\alpha_{i,j}(t)=k \Big(1+ \frac{1- \vec{e}_i^{~0}(t) \cdot \vec{e}_j(t)}{2}\Big),\; k>0 ,$$
 
 where $\alpha_{i,j}$ is minimal when both vectors 
 $\vec{e}_i^{~0}$ and  $\vec{e}_j$ are aligned and is maximum when they are anti-aligned, which 
@@ -96,7 +96,7 @@ where $\tau$ is a relaxation parameter adjusting the rate of the turning process
 ### Speed function
 After obtaining the new direction of the movement, the set of neighbors that are imminently colliding with $i$ is defined as
 
-$$J_i= \Big( j,\\;\vec{e_i} \cdot \vec{e_{i,j}} \ge 0\  \text{and}\ \left| \vec{e_i}^{~\bot} \cdot \vec{e_{i,j}} \right| \leq \frac{2 r}{s_{i,j}} \Big) ,$$
+$$J_i= \Big\{ j,\;\vec{e_i} \cdot \vec{e_{i,j}} \ge 0\  \text{and}\ \left| \vec{e_i}^{~\bot} \cdot \vec{e_{i,j}} \right| \leq \frac{2 r}{s_{i,j}} \Big\} ,$$
 
 where $s_{i,j}$ is the current distance between $i$ and $j$. Therefore, the maximum distance that agent $i$ can move in the direction without overlapping other agents is
 
@@ -106,7 +106,7 @@ $$s_i=\min_{j\in J_i}s_{i,j}-2r.$$
 
 Finally, the speed of agent $i$ in the new direction is
 
-$$v_i=\min\Big\\{v_i^0,~\max\big\\{0,\frac{s_{i}}{T}\big\\}\Big\\},$$
+$$v_i=\min\Big\{v_i^0,~\max\big\{0,\frac{s_{i}}{T}\big\}\Big\},$$
 
 
 
