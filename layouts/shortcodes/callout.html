@@ -1,14 +1,14 @@
-{{ $calloutEmojiDict := dict "info" "ℹ️" "warning" "⚠️" "error" "🚫" }}
+{{ $calloutIconDict := dict "info" "information-circle" "warning" "exclamation" "error" "x-circle" }}
 {{ $type := .Get "type" | default "default" }}
-{{/* If emoji is not set, use the emoji from dict */}}
-{{/* Site override of the Hextra 0.8.4 shortcode: an explicit "icon" (heroicon svg) takes precedence over the type's emoji */}}
+{{/* If neither emoji nor icon is set, use the heroicon for the type */}}
+{{/* Site override of the Hextra 0.8.4 shortcode: an explicit "icon" (heroicon svg) takes precedence over the type's default icon */}}
 {{ $icon := .Get "icon" }}
 {{ $emoji := .Get "emoji" }}
 {{/* icon="none" renders the box without any symbol */}}
 {{ if eq $icon "none" }}
   {{ $icon = "" }}
 {{ else if and (eq $emoji "") (eq $icon "") }}
-  {{ $emoji = index $calloutEmojiDict $type }}
+  {{ $icon = index $calloutIconDict $type | default "" }}
 {{ end }}
 
 {{ $defaultClass := "hx-border-orange-100 hx-bg-orange-50 hx-text-orange-800 dark:hx-border-orange-400/30 dark:hx-bg-orange-400/20 dark:hx-text-orange-300" }}
