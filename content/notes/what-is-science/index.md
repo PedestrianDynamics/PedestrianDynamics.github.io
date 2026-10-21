@@ -10,7 +10,7 @@ thumbnail: network-shortcut.png
 **How do we gain scientific knowledge, and how do we recognise a good explanation?** This essay follows one example, a road network in which a new road makes everyone slower, through five steps: **Problem** (sections 1–3) → **Explanation** (4) → **Testing** (5–7) → **Improvement** (8) → **Application** (9). It grew out of the first lecture of *Scientific Working* at the University of Wuppertal in October 2026.
 {{< /callout >}}
 
-Why do we know things today that nobody knew 300 years ago? The obvious answers are experiments, better instruments, more data, better technology. More observations alone are not enough, though. We need explanations that we can test critically and improve. The idea goes back to Karl Popper; David Deutsch (*The Beginning of Infinity*, 2011) adds the criterion that good explanations are hard to vary.
+Why do we know things today that nobody knew 300 years ago? The obvious answers are experiments, better instruments, more data, better technology. More observations alone are not enough, though. We need explanations that we can test critically and improve. The idea goes back to Karl Popper; David Deutsch (*The Beginning of Infinity*, 2011) adds the criterion that good explanations are hard to vary. The essay follows one example. It describes a way of reasoning; fields differ in the methods they use and the order in which they use them.
 
 A second question goes with the first: how can we understand things that nobody has observed yet? The example at the centre of this essay answers it. Dietrich Braess found the paradox named after him in 1968 in a model, before it was documented on a road.
 
@@ -38,9 +38,20 @@ Take a small road network with four nodes: Start, A, B and Goal. Two routes lead
 
 {{< figure src="network.png" width="560" caption="The network. On the narrow roads the travel time grows with the number of drivers *n*; on the wide roads it is a constant *C*." >}}
 
-Take 15 drivers and \(C = 17\). Suppose 10 drive the upper route and 5 the lower one. The upper route then takes \(10 + 17 = 27\) minutes and the lower one \(17 + 5 = 22\). Some drivers on the upper route switch. This goes on until the two routes are nearly balanced: with 7 on top and 8 below, the upper route takes 24 minutes and the lower one 25. A driver who switches from the lower to the upper route would then also need 25 minutes, so nobody can improve by switching alone. This state is a **Nash equilibrium**; in traffic it is called a **Wardrop equilibrium**.
+Take 15 drivers and \(C = 17\). Suppose 10 drive the upper route and 5 the lower one. The upper route then takes \(10 + 17 = 27\) minutes and the lower one \(17 + 5 = 22\). Some drivers on the upper route switch. This goes on until the two routes are nearly balanced: with 7 on top and 8 below, the upper route takes 24 minutes and the lower one 25. A driver who switches from the lower to the upper route would then also need 25 minutes, so nobody can improve by switching alone. This state is a **Nash equilibrium**.[^wardrop]
 
-Now the city builds a shortcut from A to B with a travel time of zero. There are three routes: upper, lower, and Start → A → B → Goal. With \(o\) drivers on the upper route, \(u\) on the lower one and \(a\) on the shortcut, the travel times are
+Now the city builds a shortcut from A to B with a travel time of zero. There are three routes: upper, lower, and Start → A → B → Goal.
+
+{{< figure src="network-shortcut.png" width="560" caption="The same network with a shortcut from A to B that takes no time at all." >}}
+
+Start from the old split, 7 drivers on the upper route and 8 on the lower one. One driver from the upper route tries the shortcut. The first narrow road still carries 7 drivers, the second now carries 9. This driver needs \(7 + 0 + 9 = 16\) minutes instead of 24, because the 17-minute wide road is replaced by a narrow road that takes 9 minutes. The driver gains 8 minutes, and everyone on the second narrow road loses one.
+
+Each driver who moves over also gains, though less each time, as long as both narrow roads together cost less than one narrow and one wide road. So the drivers move over, and the narrow roads fill up. In the end all 15 use the shortcut, and each needs \(15 + 0 + 15 = 30\) minutes. A driver who goes back to the upper route alone needs \(15 + 17 = 32\) minutes, more than 30. So nobody leaves the shortcut, although without it everyone would arrive sooner. This is again a Nash equilibrium, but a worse one. The old split of 7 and 8 would be better for everyone, but with the shortcut it is no longer an equilibrium.
+
+{{< figure src="result.png" width="640" caption="The two equilibria for 15 drivers and C = 17. Each driver chooses the fastest route, and the result is worse for all." >}}
+
+{{< details title="The general case" closed="true" >}}
+With \(o\) drivers on the upper route, \(u\) on the lower one and \(a\) on the shortcut, the travel times are
 
 $$
 \begin{aligned}
@@ -50,15 +61,10 @@ t_\text{shortcut} &= (o + a) + (u + a).
 \end{aligned}
 $$
 
-{{< figure src="network-shortcut.png" width="560" caption="The same network with a shortcut from A to B that takes no time at all." >}}
+With \(N\) drivers and no shortcut, the equilibrium travel time is about \(N/2 + C\). With the shortcut it is \(2N\) if \(N \le C\) and \(2C\) if \(C \le N \le 2C\); for \(N \ge 2C\) the shortcut stays empty and the time stays \(N/2 + C\). The paradox therefore occurs when \(N/2 < C < 3N/2\). Here \(N = 15\) and \(C = 17\). With \(C = 20\), the paradox disappears for fewer than about 14 drivers, and again for 40 or more.
+{{< /details >}}
 
-For each single driver, the shortcut looks attractive: both narrow roads together cost less than one narrow and one wide road. So the drivers move over, and the narrow roads fill up. In the end all 15 use the shortcut, and each needs \(15 + 0 + 15 = 30\) minutes. A driver who goes back to the upper route alone needs \(15 + 17 = 32\) minutes, more than 30. So nobody leaves the shortcut, although without it everyone would arrive sooner. This is again a Nash equilibrium, but a worse one. The old split of 7 and 8 would be better for everyone, but with the shortcut it is no longer an equilibrium.
-
-{{< figure src="result.png" width="640" caption="The two equilibria for 15 drivers and C = 17. Each driver chooses the fastest route, and the result is worse for all." >}}
-
-The choice of \(C\) matters. Here \(C\) is the number of drivers plus 2. With a fixed \(C = 20\) the paradox disappears for fewer than about 14 drivers, and again for 40 or more.
-
-Try it yourself: move the drivers between the routes, switch the shortcut on, and watch where the travel times settle. The box below the bars tells you whether anyone can still gain by switching.
+Try it yourself. The game keeps \(C = N + 2\), so \(C\) changes with the number of drivers. Move the drivers between the routes, switch the shortcut on, and watch where the travel times settle. The box below the bars tells you whether anyone can still gain by switching.
 
 {{< braess-game >}}
 
@@ -80,9 +86,9 @@ Here are two explanations for the paradox.
 
 {{< figure src="explanations.png" caption="Two explanations for the same result." >}}
 
-Explanation A sounds plausible but names no mechanism. "Selfish" could explain the opposite result as well, and A does not say under which conditions the paradox occurs. A is the bull of this story: you could put any other word in place of "selfish". Explanation B says which roads fill up and why. No part of B can be swapped without the calculation breaking down, and that is why B makes predictions.
+Explanation A sounds plausible but names no mechanism. "Selfish" could explain the opposite result as well, and A does not say under which conditions the paradox occurs. A is the bull of this story: you could put any other word in place of "selfish". Explanation B says which roads fill up and why. B connects assumptions to consequences. We can change an assumption, for example the travel time of the shortcut, but then the model fixes what follows, so B cannot be adjusted to fit any outcome. That is why B makes predictions.
 
-A test: what happens if the shortcut takes 5 minutes instead of none? B predicts that the paradox remains but becomes weaker. With 18 drivers and \(C = 20\), the travel time is then about 34 to 35 minutes instead of 36, compared with 29 without the shortcut. Once the shortcut takes about \(C - N/2\) minutes (\(N\) being the number of drivers; with \(C = N + 2\) that is 11 minutes for 18 drivers, 9 to 10 for 15), nobody uses it any more, and everything is as before. Explanation A cannot even address this question.
+A test: what happens if the shortcut takes 5 minutes instead of none? B predicts that the paradox remains but becomes weaker. With the same 15 drivers, the drivers need 27 to 29 minutes, depending on the split, instead of 30, compared with 24 to 25 without the shortcut. Once the shortcut takes about 9 to 10 minutes (in general \(C - N/2\) for \(N\) drivers), nobody uses it any more, and everything is as before. Explanation A cannot even address this question.
 
 {{< callout type="info" >}}
 A good explanation cannot be changed at will without ceasing to explain anything. (After David Deutsch, *The Beginning of Infinity*, 2011.)
@@ -139,7 +145,7 @@ Three cases are often cited for the Braess paradox:
 - **New York 1990:** 42nd Street is closed on Earth Day. Congestion, if anything, decreases.
 - **Seoul 2003–2005:** an urban motorway is demolished. At first traffic gets slower, then many people switch to the subway.
 
-As evidence for Braess they are weak: they are observations after an intervention, not controlled experiments. What else changed? In Seoul, trips shifted to the subway over several years (Chung et al. 2012). Seoul is therefore more an example of adaptation than a clean Braess case. In reality many things change at once. An experiment tries to isolate one cause.
+As evidence for Braess they are weak: they are observations after an intervention, not controlled experiments. What else changed? In Seoul, trips shifted to the subway over several years (Chung et al. 2012). The shift to the subway may be part of the response to the demolition, or it may have other causes; the observations alone do not tell. In reality many things change at once. An experiment tries to isolate one cause.
 
 ### Experiment
 
@@ -175,6 +181,12 @@ The observation was real; the explanation was wrong, because one influence had b
 
 The episode gave its name to the **Clever Hans effect**: the expectations of observers unconsciously influence the behaviour of those observed. Related are the experimenter effect (Rosenthal) and the interviewer effect in surveys. Today's countermeasures are blinding and control conditions. Science means looking for evidence for one's own explanation and also finding out where one might be wrong, including in one's own experimental design.
 
+### Criticism as a shared practice
+
+Pfungst found the error because he could work with the horse, change the conditions one at a time and publish what he did. Science relies on this kind of access more than on the objectivity of individual scientists, a point Popper made in *The Open Society and Its Enemies* (1945). A result comes with its methods and data, so that others can check the calculations, repeat the measurements, collect new observations and test alternative explanations. An error that survives one investigation can show up in the next. This works only when methods and data are actually shared and the checks are actually done; publication alone does not do it (see National Academies 2019 on transparency and replication).
+
+An expert's reputation does not make a claim correct. That does not put every opinion on the same level either. The useful questions are what evidence supports a claim and how well it has held up under informed, independent checks.
+
 ## 7. Simulation, verification and validation
 
 The network above has four nodes; you can work it out in your head. A city network has tens of thousands of links, travel times depend nonlinearly on load, and people decide differently. Then you need numerical methods and software, for example SUMO, MATSim, Vissim or, for pedestrians, JuPedSim.
@@ -192,7 +204,9 @@ The tempting conclusion is: "The input models are validated and the software pas
 
 Roache (1998), following Boehm and Blottner, put it briefly: verification means solving the equations right, validation means solving the right equations. A program can be perfectly verified and still not valid. And this "verification" is not Popper's.
 
+{{< details title="A note on standards" closed="true" >}}
 For pedestrian simulations the German guideline RiMEA (Richtlinie für Mikroskopische Entfluchtungsanalysen, version 4.1.1, 2025) lists test cases 1 to 16 in its Annex 1. RiMEA uses verification and validation interchangeably, following ISO/TR 13387-8:1999. What it calls "quantitative verification", the comparison with data from evacuation drills, is validation in the AIAA sense (AIAA G-077-1998), and RiMEA itself regards it as not yet possible.
+{{< /details >}}
 
 ## 8. How scientific knowledge improves
 
@@ -214,7 +228,7 @@ Causality means: A causes B. In the route game the chain is clear. The road does
 
 {{< figure src="causality.png" caption="In the controlled game the causal chain can be shown. In Seoul it cannot: without a comparison, a sequence in time is a correlation, not a cause." >}}
 
-Seoul is harder. After the urban motorway was demolished, traffic first got slower, but not worse in the long run. Was the demolition the cause, or the switch to the subway, driving behaviour, the economy? Without a comparison this is a correlation in time, not proof of a cause. And a falsification in Popper's sense needs a reliable observation, which is exactly what is uncertain in the city cases.
+Seoul is harder. After the urban motorway was demolished, traffic first got slower, but not worse in the long run. Whether the demolition was the cause stays open. Without a comparison this is a correlation in time, not proof of a cause. And a falsification in Popper's sense needs a reliable observation, which is exactly what is uncertain in the city cases.
 
 ### Interaction
 
@@ -222,7 +236,7 @@ The causal chain has a catch: drivers also react to each other. Interaction mean
 
 {{< figure src="interaction.png" width="560" caption="Everyone influences everyone." >}}
 
-So one cannot simply say that the road is the cause. The result emerges from the interplay. This holds for almost everything in traffic and pedestrian dynamics.
+In this model the new road changes the outcome through the drivers' responses to each other. The road is a cause, and it acts through this feedback. Identifying a cause does not mean that it acts alone. Such feedback is the rule in traffic and pedestrian dynamics.
 
 ## 9. What science can and cannot tell us
 
@@ -238,6 +252,10 @@ A thought experiment: you are a Dortmund fan in the Bayern Munich block, and Dor
 
 What exactly does the "collective mind" explain? Which mechanism lies behind it? Which observation would refute it? It is supposed to explain aggressive crowds as well as peaceful ones. Can it be adapted so freely that it explains everything, and therefore nothing? Further reading: Clarke (2002), Drury, Novelli and Stott (2013), Haghani et al. (2019).
 
+### Predictions and decisions
+
+Suppose a well-tested model predicts that closing a road reduces the mean travel time. The prediction alone does not decide whether the road should be closed. Some travellers gain and others lose, and access to particular places, costs and safety count as well. Weighing them requires stating what we want to achieve. Science can say what is likely to happen under each option; which outcome to prefer is a decision about goals.
+
 ### How to evaluate a claim
 
 The questions used throughout this essay work for any claim, in a newspaper, a report or one's own thesis:
@@ -245,10 +263,18 @@ The questions used throughout this essay work for any claim, in a newspaper, a r
 1. What exactly is explained, and what is the mechanism?
 2. Could the explanation be changed at will and still "explain" the same thing?
 3. Which observation would refute it?
-4. Is there a controlled comparison, with and without, or only a sequence in time?
+4. What evidence separates the explanation from plausible alternatives: a controlled comparison, independent observations that agree, or only a sequence in time?
 5. Was a model checked against reality, and for which purpose is it valid?
 
+Controlled experiments are one way to answer question 4. Where they are impossible, as for earthquakes or planetary orbits, independent observations can do this, when they test predictions that the alternatives get wrong.
+
 An example of how a question becomes testable: "A bottleneck 3 m wide and 1 m long, or 1 m wide and 3 m long: which is better?" As it stands, this is not yet a scientific question. One has to fix the walking direction (the width across the direction of walking matters most, but the length of the bottleneck also affects the flow; Liddle et al. 2009), the geometry, and what "better" means: higher flow, shorter evacuation time or lower density in front of the bottleneck. Only then does an intuitive question become a testable hypothesis. As with Braess, one changes the geometry and asks what happens to the flow.
+
+### How much confidence a result deserves
+
+Scientific knowledge can be revised, and its parts are uncertain to very different degrees. A new conjecture and an explanation that has passed many independent tests do not have the same standing. Plate tectonics has passed tests from magnetic stripes, the age of the ocean floor and GPS; the story of the bull has passed none. The question to ask is how well an explanation has survived attempts to find its weaknesses, what evidence supports it and where its limits lie.
+
+The road network shows the same gradation. That all 15 drivers end up at 30 minutes follows from the rules of the model, and anyone can check the arithmetic. Whether a real city behaves this way depends on further questions: how people choose routes, how travel times vary and whether the model contains the effects that matter. Confidence in the calculation and confidence in its application are two different things.
 
 ### Summary
 
@@ -261,7 +287,7 @@ An example of how a question becomes testable: "A bottleneck 3 m wide and 1 m lo
 Scientific knowledge is provisional, testable, methodically grounded and correctable. We know more today than 300 years ago because we form explanations, criticise them and improve them, instead of only collecting observations: the bull and plate tectonics, Ptolemy and Kepler and Newton, whose *Principia* appeared in 1687, almost 340 years ago.
 
 {{< callout type="info" >}}
-Science means developing explanations, finding their errors and replacing them with better ones. It has no final answers.
+Science means developing explanations, finding their errors and replacing them with better ones. It has no final answers, but some of its answers have survived far more tests than others.
 {{< /callout >}}
 
 ## Further material
@@ -283,8 +309,10 @@ Science means developing explanations, finding their errors and replacing them w
 - Kolata, G. (1990). *New York Times*, 25 December 1990.
 - Le Bon, G. (1895): *Psychologie des foules*. English: *The Crowd: A Study of the Popular Mind* (1896).
 - Liddle, J., Seyfried, A., Klingsch, W., Rupprecht, T., Schadschneider, A., Winkens, A. (2009): An Experimental Study of Pedestrian Congestions: Influence of Bottleneck Width and Length. arXiv:0911.4350.
+- National Academies of Sciences, Engineering, and Medicine (2019): *Reproducibility and Replicability in Science*. Washington, DC: The National Academies Press. doi:10.17226/25303.
 - Pfungst, O. (1907): *Das Pferd des Herrn von Osten (Der Kluge Hans)*. Leipzig: Barth.
 - Popper, K. (1934): *Logik der Forschung*. Wien: Springer.
+- Popper, K. (1945): *The Open Society and Its Enemies*. London: Routledge.
 - Rapoport, A., Kugler, T., Dugar, S., Gisches, E. J. (2009): Choice of routes in congested traffic networks: Experimental tests of the Braess Paradox. *Games and Economic Behavior* 65(2), 538–571.
 - RiMEA (2025): Richtlinie für Mikroskopische Entfluchtungsanalysen, version 4.1.1.
 - Roache, P. J. (1998): Verification of codes and calculations. *AIAA Journal* 36(5), 696–702.
@@ -293,5 +321,7 @@ Science means developing explanations, finding their errors and replacing them w
 - Wardrop, J. G. (1952): Some Theoretical Aspects of Road Traffic Research. *Proceedings of the Institution of Civil Engineers* Part II 1(3).
 
 Stuttgart case: after Knödel (1969), cited in the German Wikipedia article "Braess-Paradoxon".
+
+[^wardrop]: Traffic research uses the related **Wardrop equilibrium** (Wardrop 1952): the travel times on all used routes are equal, and no unused route is faster. It is usually stated for so many drivers that a single one does not change the travel times. With 15 drivers, one driver changes a narrow road by a whole minute, so in a Nash equilibrium the used routes can differ by one minute, here 24 and 25.
 
 {{< icon "pencil-alt" >}} By: [Mohcine Chraibi]({{< relref "/authors#MohcineChraibi" >}}) and [Armin Seyfried]({{< relref "/authors#ArminSeyfried" >}})
