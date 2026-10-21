@@ -1,0 +1,144 @@
+<!-- Interactive Braess network: move drivers between routes, toggle the A→B shortcut, see travel times and whether anyone gains by switching. -->
+<div class="braess-game">
+  <svg viewBox="0 0 400 300" class="bg-net" role="img" aria-label="Braess network with live travel times">
+    <defs>
+      <marker id="bg-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="3.5" markerHeight="3.5" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="bg-arrhead" /></marker>
+      <marker id="bg-arracc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="3.5" markerHeight="3.5" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="bg-arrhead acc" /></marker>
+    </defs>
+    <g class="bg-edges"></g>
+    <g class="bg-nodes"></g>
+  </svg>
+  <div class="bg-ctl">
+    <div class="bg-row bg-top">
+      <label>Drivers N <input type="number" class="bg-n" min="2" max="40" value="15"></label>
+      <span class="bg-small bg-c"></span>
+      <label class="bg-sw"><input type="checkbox" class="bg-short"> Shortcut A → B</label>
+    </div>
+    <div class="bg-row"><span class="bg-lab">upper: <b class="bg-up-v"></b></span><input type="range" class="bg-up" min="0"></div>
+    <div class="bg-row bg-ab-row"><span class="bg-lab acc">shortcut: <b class="bg-ab-v"></b></span><input type="range" class="bg-ab acc" min="0"></div>
+    <div class="bg-row"><span class="bg-lab">lower: <b class="bg-low-v"></b></span><span class="bg-small">(the rest)</span></div>
+    <div class="bg-bars"></div>
+    <p class="bg-small">Average over all drivers: <b class="bg-avg"></b></p>
+    <div class="bg-status"></div>
+  </div>
+</div>
+
+<style>
+.braess-game { --bg-blue: #023d6b; --bg-acc: #e4661b; --bg-grey: #5a6b7d; --bg-light: #eef2f6; --bg-node: #fff;
+  display: grid; grid-template-columns: 1.05fr 1fr; gap: 1.4rem; align-items: start; margin: 1.5rem 0; }
+html.dark .braess-game { --bg-blue: #8fb8e0; --bg-grey: #9aa8b6; --bg-light: #1f2a36; --bg-node: #111; }
+@media (max-width: 640px) { .braess-game { grid-template-columns: 1fr; } }
+.braess-game .bg-net { width: 100%; }
+.braess-game .bg-arrhead { fill: var(--bg-grey); }
+.braess-game .bg-arrhead.acc { fill: var(--bg-acc); }
+.braess-game .bg-elab { font: 700 15px sans-serif; fill: var(--bg-blue); }
+.braess-game .bg-elab.acc { fill: var(--bg-acc); }
+.braess-game .bg-node { fill: var(--bg-node); stroke: var(--bg-blue); stroke-width: 2.5; }
+.braess-game .bg-node.end { fill: var(--bg-blue); }
+.braess-game .bg-nlab { font: 700 15px sans-serif; fill: var(--bg-blue); }
+.braess-game .bg-nlab.end { fill: var(--bg-node); font-size: 13px; }
+.braess-game .bg-row { display: flex; align-items: center; gap: 0.7rem; margin: 0.35rem 0; font-size: 0.9rem; }
+.braess-game .bg-top { flex-wrap: wrap; margin-bottom: 0.7rem; }
+.braess-game input[type=range] { flex: 1; accent-color: var(--bg-blue); }
+.braess-game input[type=range].acc { accent-color: var(--bg-acc); }
+.braess-game input[type=number] { width: 3.4rem; border: 1px solid var(--bg-grey); padding: 0 0.3rem; background: transparent; }
+.braess-game .bg-lab { width: 7.5rem; color: var(--bg-blue); }
+.braess-game .bg-lab.acc, .braess-game .bg-sw { color: var(--bg-acc); }
+.braess-game .bg-sw { font-weight: 700; }
+.braess-game .bg-small { font-size: 0.8rem; color: var(--bg-grey); }
+.braess-game .bg-bars { margin-top: 0.8rem; }
+.braess-game .bg-bar { display: grid; grid-template-columns: 5.5rem 1fr; align-items: center; margin: 0.3rem 0; font-size: 0.85rem; }
+.braess-game .bg-bl { color: var(--bg-blue); font-weight: 700; }
+.braess-game .bg-track { background: var(--bg-light); }
+.braess-game .bg-fill { background: var(--bg-blue); color: var(--bg-node); padding: 0.15rem 0.4rem; white-space: nowrap; transition: width 0.25s; font-weight: 700; }
+.braess-game .bg-fill.acc { background: var(--bg-acc); color: #fff; }
+.braess-game .bg-fill.empty { opacity: 0.35; }
+.braess-game .bg-status { margin-top: 0.6rem; padding: 0.5rem 0.7rem; border-left: 4px solid var(--bg-acc); background: var(--bg-light); font-size: 0.9rem; }
+.braess-game .bg-status.ok { border-left-color: var(--bg-blue); color: var(--bg-blue); font-weight: 700; }
+</style>
+
+<script>
+(() => {
+  const root = document.currentScript.previousElementSibling.previousElementSibling
+  const $ = s => root.querySelector(s)
+  const NS = 'http://www.w3.org/2000/svg'
+  const P = { S: [50, 150], A: [200, 40], B: [200, 260], Z: [350, 150] }
+  const R = { S: 34, A: 22, B: 22, Z: 34 }
+  const names = { up: 'upper', low: 'lower', ab: 'shortcut' }
+  const el = (tag, attrs, text) => {
+    const e = document.createElementNS(NS, tag)
+    for (const k in attrs) e.setAttribute(k, attrs[k])
+    if (text !== undefined) e.textContent = text
+    return e
+  }
+  function edge(a, b) {
+    const [xa, ya] = P[a], [xb, yb] = P[b]
+    const d = Math.hypot(xb - xa, yb - ya), ux = (xb - xa) / d, uy = (yb - ya) / d
+    return { x1: xa + ux * R[a], y1: ya + uy * R[a], x2: xb - ux * (R[b] + 4), y2: yb - uy * (R[b] + 4) }
+  }
+  for (const [k, xy] of Object.entries(P)) {
+    const end = k === 'S' || k === 'Z'
+    $('.bg-nodes').append(el('circle', { cx: xy[0], cy: xy[1], r: R[k], class: 'bg-node' + (end ? ' end' : '') }))
+    $('.bg-nodes').append(el('text', { x: xy[0], y: xy[1] + 5, 'text-anchor': 'middle', class: 'bg-nlab' + (end ? ' end' : '') },
+      { S: 'Start', A: 'A', B: 'B', Z: 'Goal' }[k]))
+  }
+  const st = { n: 15, up: 7, ab: 0, short: false }
+  function times(o, u, a, c) { return { up: o + a + c, low: c + u + a, ab: o + a + u + a } }
+  function render() {
+    const n = st.n, c = n + 2, low = n - st.up - st.ab
+    const routes = st.short ? ['up', 'low', 'ab'] : ['up', 'low']
+    const cnt = { up: st.up, low, ab: st.ab }
+    const t = times(st.up, low, st.ab, c)
+    $('.bg-c').textContent = `C = N + 2 = ${c}`
+    $('.bg-up').max = n; $('.bg-up').value = st.up; $('.bg-ab').max = n; $('.bg-ab').value = st.ab
+    $('.bg-up-v').textContent = st.up; $('.bg-ab-v').textContent = st.ab; $('.bg-low-v').textContent = low
+    $('.bg-ab-row').style.display = st.short ? '' : 'none'
+    // network with line widths proportional to load
+    const w = x => 2 + 5 * x / Math.max(n, 1)
+    const E = [
+      ['S', 'A', 105, 82, st.up + st.ab, `${st.up + st.ab} min`], ['A', 'Z', 295, 82, st.up, `${c} min`],
+      ['S', 'B', 105, 228, low, `${c} min`], ['B', 'Z', 295, 228, low + st.ab, `${low + st.ab} min`],
+    ]
+    const g = $('.bg-edges'); g.replaceChildren()
+    for (const [a, b, lx, ly, load, lab] of E) {
+      g.append(el('line', { ...edge(a, b), stroke: 'var(--bg-grey)', 'stroke-width': w(load), 'marker-end': 'url(#bg-arr)' }))
+      g.append(el('text', { x: lx, y: ly, 'text-anchor': 'middle', class: 'bg-elab' }, lab))
+    }
+    if (st.short) {
+      g.append(el('line', { ...edge('A', 'B'), stroke: 'var(--bg-acc)', 'stroke-width': w(st.ab), 'marker-end': 'url(#bg-arracc)' }))
+      g.append(el('text', { x: 210, y: 155, class: 'bg-elab acc' }, '0 min'))
+    }
+    // bars
+    const maxT = Math.max(...routes.map(r => t[r]), 1)
+    $('.bg-bars').innerHTML = routes.map(r => `<div class="bg-bar"><span class="bg-bl">${names[r]}</span><div class="bg-track">` +
+      `<div class="bg-fill${r === 'ab' ? ' acc' : ''}${cnt[r] ? '' : ' empty'}" style="width:${100 * t[r] / maxT}%">${t[r]} min</div></div></div>`).join('')
+    const tot = routes.reduce((s, r) => s + cnt[r] * t[r], 0)
+    $('.bg-avg').textContent = `${(tot / n).toFixed(1)} min`
+    // best single-driver switch
+    let best = null
+    for (const r of routes) {
+      if (!cnt[r]) continue
+      for (const r2 of routes) {
+        if (r2 === r) continue
+        const k = { ...cnt }; k[r]--; k[r2]++
+        const gain = t[r] - times(k.up, k.low, k.ab, c)[r2]
+        if (gain > 0 && (!best || gain > best.gain)) best = { r, r2, gain }
+      }
+    }
+    const s = $('.bg-status')
+    s.className = 'bg-status' + (best ? '' : ' ok')
+    s.textContent = best
+      ? `A driver on the ${names[best.r]} route saves ${best.gain} min by switching to the ${names[best.r2]} route.`
+      : 'Equilibrium: nobody can improve by switching alone.'
+  }
+  const clamp = () => {
+    st.up = Math.min(st.up, st.n)
+    st.ab = Math.min(st.ab, st.n - st.up)
+  }
+  $('.bg-n').addEventListener('input', e => { const v = parseInt(e.target.value, 10); if (v >= 2 && v <= 40) { st.n = v; clamp(); render() } })
+  $('.bg-short').addEventListener('change', e => { st.short = e.target.checked; if (!st.short) st.ab = 0; render() })
+  $('.bg-up').addEventListener('input', e => { st.up = +e.target.value; if (st.up + st.ab > st.n) st.ab = st.n - st.up; render() })
+  $('.bg-ab').addEventListener('input', e => { st.ab = +e.target.value; if (st.up + st.ab > st.n) st.up = st.n - st.ab; render() })
+  render()
+})()
+</script>

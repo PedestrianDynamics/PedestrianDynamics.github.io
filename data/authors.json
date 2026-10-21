@@ -194,6 +194,21 @@
   }
  },
  {
+  "name": "Armin Seyfried",
+  "bio": "Director of the Institute for Civil Safety Research (IAS-7). Research interests include complex systems, pedestrian dynamics, crowds, collective phenomena and traffic",
+  "social": {
+   "linkedin": "https://www.linkedin.com/in/armin-seyfried-9a3024167/",
+   "orcid": "https://orcid.org/0000-0001-8888-0978",
+   "scholar": "https://scholar.google.de/citations?user=PcYzmfgAAAAJ",
+   "homepage": "https://www.fz-juelich.de/profile/seyfried_a",
+   "email": ""
+  },
+  "affiliation": {
+   "name": "Civil Safety Research (IAS-7) - Forschungszentrum Jülich",
+   "url": "https://www.fz-juelich.de/en/ias/ias-7"
+  }
+ },
+ {
   "name": "Jette Degenhardt",
   "bio": "Post-doctoral Researcher. Specializes in application-oriented pedestrian simulations, the interplay between pedestrian streams and urban traffic, crowd movement analysis, and research software development.",
   "social": {
