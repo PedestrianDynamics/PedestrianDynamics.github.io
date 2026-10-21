@@ -7,7 +7,7 @@ thumbnail: network-shortcut.png
 ---
 
 {{< callout type="info" icon="none" >}}
-**How do we gain scientific knowledge, and how do we recognise a good explanation?** This essay follows one example, a road network in which a new road makes everyone slower, through five steps: **Problem** (sections 1–3) → **Explanation** (4) → **Testing** (5–7) → **Improvement** (8) → **Application** (9). It grew out of the first lecture of *Scientific Working* at the University of Wuppertal in October 2026.
+**How do we gain scientific knowledge, and how do we recognise a good explanation?** This essay follows one example, a road network in which a new road makes everyone slower, through five steps: **Problem** (sections 1–3) → **Explanation** (4) → **Testing** (5–8) → **Improvement** (9) → **Application** (10). It grew out of the first lecture of *Scientific Working* at the University of Wuppertal in October 2026.
 {{< /callout >}}
 
 Why do we know things today that nobody knew 300 years ago? The obvious answers are experiments, better instruments, more data, better technology. More observations alone are not enough, though. We need explanations that we can test critically and improve. The idea goes back to Karl Popper (*Conjectures and Refutations*, 1963); David Deutsch (*The Beginning of Infinity*, 2011, ch. 1) adds the criterion that good explanations are hard to vary. The essay follows one example. It describes a way of reasoning; fields differ in the methods they use and the order in which they use them.
@@ -205,10 +205,36 @@ The tempting conclusion is: "The input models are validated and the software pas
 Roache (1998), following Boehm and Blottner, put it briefly: verification means solving the equations right, validation means solving the right equations. A program can be perfectly verified and still not valid. And this "verification" is not Popper's.
 
 {{< details title="A note on standards" closed="true" >}}
-For pedestrian simulations the German guideline RiMEA (Richtlinie für Mikroskopische Entfluchtungsanalysen, version 4.1.1, 2025) lists test cases 1 to 16 in its Annex 1. RiMEA uses verification and validation interchangeably, following ISO/TR 13387-8:1999. What it calls "quantitative verification", the comparison with data from evacuation drills, is validation in the AIAA sense (AIAA G-077-1998), and RiMEA itself regards it as not yet possible.
+For pedestrian simulations the German guideline RiMEA (Richtlinie für Mikroskopische Entfluchtungsanalysen, version 4.1.1, 2025) lists test cases 1 to 16 in its Annex 1. RiMEA uses verification and validation interchangeably, following ISO/TR 13387-8:1999. What it calls "quantitative verification", the comparison with data from evacuation drills, is validation in the AIAA sense (AIAA G-077-1998), and RiMEA itself regards it as not yet possible. The NIST report on evacuation models makes the same correction for the IMO guidelines (Ronchi et al. 2013).
 {{< /details >}}
 
-## 8. How scientific knowledge improves
+## 8. Models, experiments and observations of crowds
+
+In pedestrian dynamics these questions are part of our daily work. We build models, run experiments with hundreds of participants and observe people at stations, stadiums and events. Each method draws criticism. Models simplify behaviour. Participants in an experiment know that they are in an experiment. Observations in public spaces are limited by privacy, and their conditions cannot be controlled. Simulations are still used to plan buildings and events, and decisions about evacuation have to be made with the evidence available.
+
+The criticism is often general: "models are just models", "people don't behave like that", "experiments are not reality". Each points to a real problem, but none says which conclusion is affected. The terms of this essay turn them into questions that can be checked:
+
+| Objection | Question to ask |
+|---|---|
+| "Models are just models." | Which simplification could change the result we are using? |
+| "People don't behave like that." | Which behaviour is missing, for which people and situation, and which prediction does it affect? |
+| "Experiments are not reality." | Which findings carry over to the target situation, and which depend on the experimental setting? |
+| "Field observations are too messy." | What can be measured reliably, and which influences can be told apart? |
+| "We ran thousands of simulations." | Which uncertainty did the runs reduce, and which assumptions stayed untested? |
+
+Someone once told one of us that he trusts his simulation more than our experiments, because he can run it thousands of times and we cannot. Repeated runs of a stochastic model are useful. They show when the mean evacuation time, its spread and the shape of the evacuation curve stop changing (Ronchi et al. 2014). If a model assumes that everyone knows all exits and takes the fastest route, a million runs with different random seeds will never produce a person who does not know the way. Models have to make such assumptions about behaviour, often without data to support them (Kuligowski 2013). Convergence shows how precisely we know the model's answer; only data show whether that answer describes these people (section 7).
+
+The same care applies to experiments. An experiment observes real people, in a particular situation. A bottleneck experiment with instructed participants supports conclusions about movement under those instructions, densities and geometries. Whether they hold for another population, a different motivation or an emergency is a separate question. Field observations have the opposite problem: they are closer to the target situation, but many factors vary at once, and being natural does not make them valid (Haghani 2023).
+
+The methods check different parts of an explanation. An experiment can isolate a mechanism, an observation can check whether it transfers, and a simulation works out the consequences under conditions that cannot be tested directly. Sources with the same weakness do not add up to a strong one. These methods help each other because their weaknesses differ.
+
+Human behaviour is varied, so a model can support only narrow claims. "Our model reproduces human behaviour" is too broad to test. "Our model estimates the flow through this exit, for this population and these conditions, with this uncertainty" can be tested. Estimating the flow through a given exit is also a different task from predicting which exit people choose. The second rests on assumptions about behaviour that movement data do not test.
+
+A useful criticism names an omission and says why it matters. For example: "The model does not include groups who wait for each other. This matters here, because the predicted benefit of the second exit depends on people spreading out independently." Such a criticism can be checked, and it may be strong enough to rule out one particular use of the model.
+
+For practical projects the question becomes: what evidence is enough for this model to support this decision? "Layout A gives a shorter mean evacuation time in this simulation", "Layout A is faster under every behavioural assumption we tested" and "Layout A is safer for the people who will use it" are three different claims, and each needs more evidence than the one before. The third also needs a safety criterion, for example that everyone is out before conditions become untenable (ASET > RSET); a layout can be faster on average and worse for the last people out. Sometimes the answer is that the evidence does not support the proposed safety claim.
+
+## 9. How scientific knowledge improves
 
 ### What moves around what?
 
@@ -238,7 +264,7 @@ The causal chain has a catch: drivers also react to each other. Interaction mean
 
 In this model the new road changes the outcome through the drivers' responses to each other. The road is a cause, and it acts through this feedback. Identifying a cause does not mean that it acts alone. Such feedback is the rule in traffic and pedestrian dynamics.
 
-## 9. What science can and cannot tell us
+## 10. What science can and cannot tell us
 
 ### From basic research to application
 
@@ -315,8 +341,10 @@ Science means developing explanations, finding their errors and replacing them w
 - Douglas, H. E. (2009): *Science, Policy, and the Value-Free Ideal*. Pittsburgh: University of Pittsburgh Press.
 - Drury, J., Novelli, D., Stott, C. (2013): Psychological disaster myths in the perception and management of mass emergencies. *Journal of Applied Social Psychology* 43(11), 2259–2270.
 - Duhem, P. (1954): *The Aim and Structure of Physical Theory*. Translated by P. P. Wiener. Princeton: Princeton University Press.
+- Haghani, M. (2023): The notion of validity in experimental crowd dynamics. *International Journal of Disaster Risk Reduction* 93, 103750.
 - Haghani, M., Cristiani, E., Bode, N. W. F., Boltes, M., Corbetta, A. (2019): Panic, Irrationality, and Herding: Three Ambiguous Terms in Crowd Dynamics Research. *Journal of Advanced Transportation*, 9267643.
 - Kolata, G. (1990). *New York Times*, 25 December 1990.
+- Kuligowski, E. (2013): Predicting Human Behavior During Fires. *Fire Technology* 49(1), 101–120.
 - Le Bon, G. (1895): *Psychologie des foules*. English: *The Crowd: A Study of the Popular Mind* (1896).
 - Liddle, J., Seyfried, A., Klingsch, W., Rupprecht, T., Schadschneider, A., Winkens, A. (2009): An Experimental Study of Pedestrian Congestions: Influence of Bottleneck Width and Length. arXiv:0911.4350.
 - National Academies of Sciences, Engineering, and Medicine (2019): *Reproducibility and Replicability in Science*. Washington, DC: The National Academies Press. doi:10.17226/25303.
@@ -328,6 +356,8 @@ Science means developing explanations, finding their errors and replacing them w
 - Rapoport, A., Kugler, T., Dugar, S., Gisches, E. J. (2009): Choice of routes in congested traffic networks: Experimental tests of the Braess Paradox. *Games and Economic Behavior* 65(2), 538–571.
 - RiMEA (2025): Richtlinie für Mikroskopische Entfluchtungsanalysen, version 4.1.1.
 - Roache, P. J. (1998): Verification of codes and calculations. *AIAA Journal* 36(5), 696–702.
+- Ronchi, E., Kuligowski, E. D., Reneke, P. A., Peacock, R. D., Nilsson, D. (2013): *The Process of Verification and Validation of Building Fire Evacuation Models*. NIST Technical Note 1822.
+- Ronchi, E., Reneke, P. A., Peacock, R. D. (2014): A method for the analysis of behavioural uncertainty in evacuation modelling. *Fire Technology* 50(6), 1545–1571.
 - Schäfer, B. et al. (2022): Understanding Braess' Paradox in power grids. *Nature Communications* 13, 5396.
 - Vine, F. J., Matthews, D. H. (1963): Magnetic anomalies over oceanic ridges. *Nature* 199, 947–949.
 - Wardrop, J. G. (1952): Some Theoretical Aspects of Road Traffic Research. *Proceedings of the Institution of Civil Engineers* Part II 1(3).
