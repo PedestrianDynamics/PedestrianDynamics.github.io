@@ -10,7 +10,7 @@ thumbnail: network-shortcut.png
 **How do we gain scientific knowledge, and how do we recognise a good explanation?** This essay follows one example, a road network in which a new road makes everyone slower, through five steps: **Problem** (sections 1–3) → **Explanation** (4) → **Testing** (5–7) → **Improvement** (8) → **Application** (9). It grew out of the first lecture of *Scientific Working* at the University of Wuppertal in October 2026.
 {{< /callout >}}
 
-Why do we know things today that nobody knew 300 years ago? The obvious answers are experiments, better instruments, more data, better technology. More observations alone are not enough, though. We need explanations that we can test critically and improve. The idea goes back to Karl Popper; David Deutsch (*The Beginning of Infinity*, 2011) adds the criterion that good explanations are hard to vary. The essay follows one example. It describes a way of reasoning; fields differ in the methods they use and the order in which they use them.
+Why do we know things today that nobody knew 300 years ago? The obvious answers are experiments, better instruments, more data, better technology. More observations alone are not enough, though. We need explanations that we can test critically and improve. The idea goes back to Karl Popper (*Conjectures and Refutations*, 1963); David Deutsch (*The Beginning of Infinity*, 2011, ch. 1) adds the criterion that good explanations are hard to vary. The essay follows one example. It describes a way of reasoning; fields differ in the methods they use and the order in which they use them.
 
 A second question goes with the first: how can we understand things that nobody has observed yet? The example at the centre of this essay answers it. Dietrich Braess found the paradox named after him in 1968 in a model, before it was documented on a road.
 
@@ -91,7 +91,7 @@ Explanation A sounds plausible but names no mechanism. "Selfish" could explain t
 A test: what happens if the shortcut takes 5 minutes instead of none? B predicts that the paradox remains but becomes weaker. With the same 15 drivers, the drivers need 27 to 29 minutes, depending on the split, instead of 30, compared with 24 to 25 without the shortcut. Once the shortcut takes about 9 to 10 minutes (in general \(C - N/2\) for \(N\) drivers), nobody uses it any more, and everything is as before. Explanation A cannot even address this question.
 
 {{< callout type="info" >}}
-A good explanation cannot be changed at will without ceasing to explain anything. (After David Deutsch, *The Beginning of Infinity*, 2011.)
+A good explanation cannot be changed at will without ceasing to explain anything. (After David Deutsch, *The Beginning of Infinity*, 2011, ch. 1.)
 {{< /callout >}}
 
 Deutsch's criterion says something about the quality of an explanation. It does not replace testing against experience; it complements it.
@@ -111,7 +111,7 @@ The road network is a **model**: a simplified image of reality. A lot has been l
 
 That does not make it a bad model. A model does not have to contain every detail of reality. It has to capture the mechanisms that matter for the question, here the interplay of route choice, traffic load and travel time. With four nodes and five edges it explains something surprising. That is the strength of a model: we simplify reality in order to understand one mechanism.
 
-A model should be as simple as possible, but complex enough for the question. **Ockham's razor** says the same: if two models explain an observation equally well, the simpler one is preferable. A good model captures the relevant mechanisms and gives useful explanations and predictions for its purpose, however few details it contains. Whether we left out the right things is a question for validation (section 7).
+A model should be as simple as possible, but complex enough for the question. **Ockham's razor** says the same: if two models explain an observation equally well, the simpler one is preferable. A good model captures the relevant mechanisms and gives useful explanations and predictions for its purpose, however few details it contains. Box (1976) wrote: "Since all models are wrong the scientist must be alert to what is importantly wrong." In the road network, the colour of the cars does not matter; the assumptions about route choice and congestion are the mechanism itself. Whether we left out the right things is a question for validation (section 7).
 
 Three terms are often mixed up:
 
@@ -123,11 +123,11 @@ The touchstone for a hypothesis is one question: which observation would refute 
 
 ### Verify or falsify?
 
-Karl Popper (*Logik der Forschung*, 1934) pointed out that general statements can never be proven conclusively, because nobody has seen all cases. Every white swan confirms the statement "All swans are white", but none proves it. A single black swan refutes it.
+Karl Popper (*Logik der Forschung*, 1934; *Conjectures and Refutations*, 1963, ch. 1) pointed out that general statements can never be proven conclusively, because nobody has seen all cases. Every white swan confirms the statement "All swans are white", but none proves it. A single black swan refutes it.
 
 The same holds for traffic. A hundred cities in which a new road helped do not prove that new roads always help. One Braess case is enough to refute it, but only because the statement is universal ("always"). Against "mostly", a single counterexample does not help.
 
-In practice a refutation is rarely this clean. A prediction always rests on auxiliary assumptions about instruments, data and conditions. When a prediction fails, one of these may be wrong instead of the theory. This is known as the Duhem–Quine problem, and it is one reason why a single surprising observation rarely settles a dispute.
+In practice a refutation is rarely this clean. A prediction always rests on auxiliary assumptions about instruments, data and conditions. When a prediction fails, something in this group of assumptions is wrong, but the failure does not say which part (Duhem 1954, part II, ch. 6); it may be an auxiliary assumption instead of the theory. This is known as the Duhem–Quine problem, and it is one reason why a single surprising observation rarely settles a dispute.
 
 Popper asks: can the statement fail? Deutsch adds: does it explain why it must be so? Good scientific explanations do both.
 
@@ -185,7 +185,7 @@ The episode gave its name to the **Clever Hans effect**: the expectations of obs
 
 Pfungst found the error because he could work with the horse, change the conditions one at a time and publish what he did. Science relies on this kind of access more than on the objectivity of individual scientists, a point Popper made in *The Open Society and Its Enemies* (1945). A result comes with its methods and data, so that others can check the calculations, repeat the measurements, collect new observations and test alternative explanations. An error that survives one investigation can show up in the next. This works only when methods and data are actually shared and the checks are actually done; publication alone does not do it (see National Academies 2019 on transparency and replication).
 
-An expert's reputation does not make a claim correct. That does not put every opinion on the same level either. The useful questions are what evidence supports a claim and how well it has held up under informed, independent checks.
+An expert's reputation does not make a claim correct. That does not put every opinion on the same level either. The useful questions are what evidence supports a claim and how well it has held up under informed, independent checks. Oreskes (2019) argues that trust in science rests on this collective, critical scrutiny within diverse expert communities.
 
 ## 7. Simulation, verification and validation
 
@@ -254,7 +254,7 @@ What exactly does the "collective mind" explain? Which mechanism lies behind it?
 
 ### Predictions and decisions
 
-Suppose a well-tested model predicts that closing a road reduces the mean travel time. The prediction alone does not decide whether the road should be closed. Some travellers gain and others lose, and access to particular places, costs and safety count as well. Weighing them requires stating what we want to achieve. Science can say what is likely to happen under each option; which outcome to prefer is a decision about goals.
+Suppose a well-tested model predicts that closing a road reduces the mean travel time. The prediction alone does not decide whether the road should be closed. Some travellers gain and others lose, and access to particular places, costs and safety count as well. Weighing them requires stating what we want to achieve. Science can say what is likely to happen under each option; which outcome to prefer is a decision about goals. Values also enter the science itself, for example when deciding how much evidence is enough to accept a claim, given the consequences of being wrong (Douglas 2009, ch. 5).
 
 ### How to evaluate a claim
 
@@ -290,6 +290,13 @@ Scientific knowledge is provisional, testable, methodically grounded and correct
 Science means developing explanations, finding their errors and replacing them with better ones. It has no final answers, but some of its answers have survived far more tests than others.
 {{< /callout >}}
 
+## Further reading
+
+- David Deutsch, *The Beginning of Infinity* (2011), chapter 1, "The Reach of Explanations". A shorter text by him: ["Why It's Good To Be Wrong"](https://nautil.us/why-its-good-to-be-wrong-234374/), *Nautilus*, 23 May 2013.
+- Karl Popper, *Conjectures and Refutations* (1963), chapter 1, "Science: Conjectures and Refutations".
+- Naomi Oreskes, *Why Trust Science?* (2019).
+- Peter Godfrey-Smith, *Theory and Reality: An Introduction to the Philosophy of Science* (2nd edition, University of Chicago Press, 2021), an introduction to the philosophy of science that compares several views.
+
 ## Further material
 
 - [Slides of the lecture](/teaching/scientific-working-2026/) ([PDF](/teaching/scientific-working-2026/What_is_science_slides.pdf))
@@ -297,22 +304,27 @@ Science means developing explanations, finding their errors and replacing them w
 
 ## References
 
+- AIAA (1998): *Guide for the Verification and Validation of Computational Fluid Dynamics Simulations*. AIAA G-077-1998.
+- Box, G. E. P. (1976): Science and Statistics. *Journal of the American Statistical Association* 71(356), 791–799. doi:10.1080/01621459.1976.10480949.
 - Braess, D. (1968): Über ein Paradoxon aus der Verkehrsplanung. *Unternehmensforschung* 12, 258–268.
 - Braess, D., Nagurney, A., Wakolbinger, T. (2005): On a Paradox of Traffic Planning. *Transportation Science* 39(4), 446–450.
-- AIAA (1998): *Guide for the Verification and Validation of Computational Fluid Dynamics Simulations*. AIAA G-077-1998.
 - Chung, J.-H., Hwang, K. Y., Bae, Y. K. (2012): The loss of road capacity and self-compliance: Lessons from the Cheonggyecheon stream restoration. *Transport Policy* 21, 165–178.
 - Clarke, L. (2002): Panic: Myth or Reality? *Contexts* 1(3).
 - Cohen, J. E., Horowitz, P. (1991): Paradoxical behaviour of mechanical and electrical networks. *Nature* 352, 699–701.
-- Deutsch, D. (2011): *The Beginning of Infinity*. London: Allen Lane.
+- Deutsch, D. (2011): *The Beginning of Infinity: Explanations That Transform the World*. London: Allen Lane.
+- Douglas, H. E. (2009): *Science, Policy, and the Value-Free Ideal*. Pittsburgh: University of Pittsburgh Press.
 - Drury, J., Novelli, D., Stott, C. (2013): Psychological disaster myths in the perception and management of mass emergencies. *Journal of Applied Social Psychology* 43(11), 2259–2270.
+- Duhem, P. (1954): *The Aim and Structure of Physical Theory*. Translated by P. P. Wiener. Princeton: Princeton University Press.
 - Haghani, M., Cristiani, E., Bode, N. W. F., Boltes, M., Corbetta, A. (2019): Panic, Irrationality, and Herding: Three Ambiguous Terms in Crowd Dynamics Research. *Journal of Advanced Transportation*, 9267643.
 - Kolata, G. (1990). *New York Times*, 25 December 1990.
 - Le Bon, G. (1895): *Psychologie des foules*. English: *The Crowd: A Study of the Popular Mind* (1896).
 - Liddle, J., Seyfried, A., Klingsch, W., Rupprecht, T., Schadschneider, A., Winkens, A. (2009): An Experimental Study of Pedestrian Congestions: Influence of Bottleneck Width and Length. arXiv:0911.4350.
 - National Academies of Sciences, Engineering, and Medicine (2019): *Reproducibility and Replicability in Science*. Washington, DC: The National Academies Press. doi:10.17226/25303.
+- Oreskes, N. (2019): *Why Trust Science?* Princeton: Princeton University Press.
 - Pfungst, O. (1907): *Das Pferd des Herrn von Osten (Der Kluge Hans)*. Leipzig: Barth.
 - Popper, K. (1934): *Logik der Forschung*. Wien: Springer.
 - Popper, K. (1945): *The Open Society and Its Enemies*. London: Routledge.
+- Popper, K. (1963): *Conjectures and Refutations: The Growth of Scientific Knowledge*. London: Routledge & Kegan Paul.
 - Rapoport, A., Kugler, T., Dugar, S., Gisches, E. J. (2009): Choice of routes in congested traffic networks: Experimental tests of the Braess Paradox. *Games and Economic Behavior* 65(2), 538–571.
 - RiMEA (2025): Richtlinie für Mikroskopische Entfluchtungsanalysen, version 4.1.1.
 - Roache, P. J. (1998): Verification of codes and calculations. *AIAA Journal* 36(5), 696–702.
