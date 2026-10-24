@@ -358,7 +358,7 @@ Science means developing explanations, finding their errors and replacing them w
 - ISO/TR 13387-8 (1999): *Fire safety engineering — Part 8: Life safety — Occupant behaviour, location and condition*. Geneva: ISO (withdrawn).
 - ISO 20414 (2020): *Fire safety engineering — Verification and validation protocol for building fire evacuation models*. Geneva: ISO.
 - Knödel, W. (1969): *Graphentheoretische Methoden und ihre Anwendungen*. Berlin: Springer.
-- Kolata, G. (1990): What if They Closed 42d Street and Nobody Noticed? *New York Times*, 25 December 1990.
+- Kolata, G. (1990): What if They Closed 42d Street and Nobody Noticed? *New York Times*, 25 December 1990. Free summary: ["42nd Street: Braess's Paradox"](https://blogs.cornell.edu/info2040/2016/09/14/42nd-street-braess-paradox/), Cornell course blog *Networks*, 2016.
 - Kuligowski, E. (2013): Predicting Human Behavior During Fires. *Fire Technology* 49(1), 101–120.
 - Le Bon, G. (1895): *Psychologie des foules*. English: *The Crowd: A Study of the Popular Mind* (1896).
 - Liddle, J., Seyfried, A., Klingsch, W., Rupprecht, T., Schadschneider, A., Winkens, A. (2009): An Experimental Study of Pedestrian Congestions: Influence of Bottleneck Width and Length. arXiv:0911.4350.
