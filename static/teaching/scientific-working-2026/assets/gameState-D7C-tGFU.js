@@ -1,0 +1,1 @@
+import{ct as e,h as t}from"./modules/shiki-DeBYTtZa.js";var n=e(15),r=t(()=>n.value+2);export{n,r as t};
