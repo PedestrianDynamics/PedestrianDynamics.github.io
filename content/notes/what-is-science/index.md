@@ -222,7 +222,7 @@ The criticism is often general: "models are just models", "people don't behave l
 | "Field observations are too messy." | What can be measured reliably, and which influences can be told apart? |
 | "We ran thousands of simulations." | Which uncertainty did the runs reduce, and which assumptions stayed untested? |
 
-Someone once told one of us that he trusts his simulation more than our experiments, because he can run it thousands of times and we cannot. Repeated runs of a stochastic model are useful. They show when the mean evacuation time, its spread and the shape of the evacuation curve stop changing (Ronchi et al. 2014). If a model assumes that everyone knows all exits and takes the fastest route, a million runs with different random seeds will never produce a person who does not know the way. Models have to make such assumptions about behaviour, often without data to support them (Kuligowski 2013). Convergence shows how precisely we know the model's answer; only data show whether that answer describes these people (section 7).
+A common argument is that a simulation deserves more trust than an experiment, because it can be run thousands of times and an experiment cannot. Repeated runs of a stochastic model are useful. They show when the mean evacuation time, its spread and the shape of the evacuation curve stop changing (Ronchi et al. 2014). If a model assumes that everyone knows all exits and takes the fastest route, a million runs with different random seeds will never produce a person who does not know the way. Models have to make such assumptions about behaviour, often without data to support them (Kuligowski 2013). Convergence shows how precisely we know the model's answer; only data show whether that answer describes these people (section 7).
 
 {{< figure src="convergence.png" caption="Illustration with synthetic data: the running mean of a stochastic model settles on the model's own value as the runs accumulate, while a measured drill value stays where it is. ([Script](convergence.py))" >}}
 
@@ -302,7 +302,7 @@ The questions used throughout this essay work for any claim, in a newspaper, a r
 
 Controlled experiments are one way to answer question 4. Where they are impossible, as for earthquakes or planetary orbits, independent observations can do this, when they test predictions that the alternatives get wrong.
 
-An example of how a question becomes testable: "A bottleneck 3 m wide and 1 m long, or 1 m wide and 3 m long: which is better?" As it stands, this is not yet a scientific question. One has to fix the walking direction (the width across the direction of walking matters most, but the length of the bottleneck also affects the flow; Liddle et al. 2009), the geometry, and what "better" means: higher flow, shorter evacuation time or lower density in front of the bottleneck. Only then does an intuitive question become a testable hypothesis. As with Braess, one changes the geometry and asks what happens to the flow.
+An example of how a question becomes testable: "A bottleneck 3 m wide and 1 m long, or 1 m wide and 3 m long: which is better?" As it stands, this is not yet a scientific question. One has to fix the walking direction (the width across the direction of walking matters most; in one experiment the length made little difference between 2 and 4 m, and only an opening a few centimetres deep let noticeably more people through; Liddle et al. 2009, 2022), the geometry, and what "better" means: higher flow, shorter evacuation time or lower density in front of the bottleneck. Only then does an intuitive question become a testable hypothesis. As with Braess, one changes the geometry and asks what happens to the flow.
 
 ### How much confidence a result deserves
 
@@ -362,6 +362,7 @@ Science means developing explanations, finding their errors and replacing them w
 - Kuligowski, E. (2013): Predicting Human Behavior During Fires. *Fire Technology* 49(1), 101–120.
 - Le Bon, G. (1895): *Psychologie des foules*. English: *The Crowd: A Study of the Popular Mind* (1896).
 - Liddle, J., Seyfried, A., Klingsch, W., Rupprecht, T., Schadschneider, A., Winkens, A. (2009): An Experimental Study of Pedestrian Congestions: Influence of Bottleneck Width and Length. arXiv:0911.4350.
+- Liddle, J., Seyfried, A., Steffen, B., Klingsch, W., Rupprecht, T., Winkens, A., Boltes, M. (2022): Microscopic insights into pedestrian motion through a bottleneck, resolving spatial and temporal variations. *Collective Dynamics* 7, A139, 1–23. doi:10.17815/CD.2022.139.
 - National Academies of Sciences, Engineering, and Medicine (2019): *Reproducibility and Replicability in Science*. Washington, DC: The National Academies Press. doi:10.17226/25303.
 - Oreskes, N. (2019): *Why Trust Science?* Princeton: Princeton University Press.
 - Pfungst, O. (1907): *Das Pferd des Herrn von Osten (Der Kluge Hans)*. Leipzig: Barth.
@@ -380,5 +381,7 @@ Science means developing explanations, finding their errors and replacing them w
 - Wardrop, J. G. (1952): Some Theoretical Aspects of Road Traffic Research. *Proceedings of the Institution of Civil Engineers* Part II 1(3).
 
 [^wardrop]: Traffic research uses the related **Wardrop equilibrium** (Wardrop 1952): the travel times on all used routes are equal, and no unused route is faster. It is usually stated for so many drivers that a single one does not change the travel times. With 15 drivers, one driver changes a narrow road by a whole minute, so in a Nash equilibrium the used routes can differ by one minute, here 24 and 25.
+
+*Disclosure:* Armin Seyfried co-authored experiments whose data RiMEA uses in its tests, and the authors' group develops JuPedSim, simulation software to which such tests apply.
 
 {{< icon "pencil-alt" >}} By: [Mohcine Chraibi]({{< relref "/authors#MohcineChraibi" >}}) and [Armin Seyfried]({{< relref "/authors#ArminSeyfried" >}})
