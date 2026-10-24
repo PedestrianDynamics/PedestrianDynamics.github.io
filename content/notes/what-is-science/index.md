@@ -1,7 +1,7 @@
 ---
-title: "What is science?"
+title: "What makes an explanation good? Lessons from a road paradox"
 date: 2026-10-21
-summary: We know more today than 300 years ago because we build explanations, test them and replace them with better ones. A small road network shows how, from the Braess paradox to models, experiments, simulation and the limits of what a model can tell us.
+summary: A good explanation names a mechanism, is hard to vary and can fail a test. A small road network in which a new road makes everyone slower shows how such explanations are built, tested and improved, and what this means for experiments, crowd simulations and the standards that judge them.
 math: true
 thumbnail: network-shortcut.png
 ---
