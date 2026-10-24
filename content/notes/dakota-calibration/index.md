@@ -1,14 +1,14 @@
 ---
 title: "Calibrating a pedestrian model against real data, part 1: the bottleneck"
 date: 2026-09-05
-summary: We calibrated JuPedSim's Collision Free Speed model with Dakota on an open bottleneck experiment and checked the result on two widths the optimizer never saw. The defaults miss the flow by a factor of two. Calibration brings it mostly within ten percent, though neither calibrated set passes the stated tolerance everywhere, and two optimizer starts give two different parameter sets.
+summary: We calibrated JuPedSim's Collision Free Speed model with Dakota on an open bottleneck experiment and checked the result on two widths the optimizer never saw. The defaults miss the flow by a factor of two. Calibration brings it mostly within ten percent, though neither calibrated set passes the stated tolerance everywhere, and two optimizer starts give two different parameter sets. Run on JuPedSim's other models, the same chain finds one that calibrates as well and three that do not.
 math: true
 aliases: [/blog/dakota-calibration/]
 thumbnail: bottleneck_pair.gif
 ---
 
 {{< callout type="info" icon="none" >}}
-**Abstract.** This is the first of two parts. We calibrated JuPedSim's Collision Free Speed model with Dakota against the Hermes bottleneck experiment, three widths in the fit and two held out, with the same open analysis code on experiment and simulation. The defaults miss the measured flow by a factor of two. After calibration, flow, density and speed in front of the opening are mostly within ten percent, including at the two held-out widths, but not everywhere: both calibrated sets overshoot the flow at 3.0 m and undershoot it at 5.0 m. Two optimizer starts give two parameter sets with near-equal residual norms that differ by factors of two to four. The held-out widths are an interpolation test inside one experiment, not an independent validation. [Part 2]({{< relref "/notes/dakota-validation" >}}) takes the same parameters to a half-metre gate and an unguided entrance, where they fail.
+**Abstract.** This is the first of two parts. We calibrated JuPedSim's Collision Free Speed model with Dakota against the Hermes bottleneck experiment, three widths in the fit and two held out, with the same open analysis code on experiment and simulation. The defaults miss the measured flow by a factor of two. After calibration, flow, density and speed in front of the opening are mostly within ten percent, including at the two held-out widths, but not everywhere: both calibrated sets overshoot the flow at 3.0 m and undershoot it at 5.0 m. Two optimizer starts give two parameter sets with near-equal residual norms that differ by factors of two to four. The held-out widths are an interpolation test inside one experiment, not an independent validation. The same chain run on JuPedSim's other models shows that the result is a property of the chain, not of one model: the Anticipation Velocity model calibrates as well as the Collision Free Speed model, the V3 variant and the WarpDriver model do not, and the Social Force model cannot be run at the measured free speed. [Part 2]({{< relref "/notes/dakota-validation" >}}) takes the same parameters to a half-metre gate and an unguided entrance, where they fail.
 {{< /callout >}}
 
 Pedestrian simulations are used to size exits, plan events and argue about safety, so the question whether a model is right is not academic. The simulation community settled the vocabulary long ago. Verification asks whether the software implements the model correctly. Validation asks whether the model, within the domain it is meant for, reproduces reality with an accuracy that is good enough for its purpose (Sargent 1984, 2008; ISO 16730 as summarised by Ronchi et al. 2013). Sargent adds two points that are easy to forget: a model is never valid in the abstract but only for a purpose, and confidence in a model costs money, so one always stops somewhere short of certainty.
@@ -192,11 +192,35 @@ The seed-to-seed standard deviation is 2 to 4 % for flow and density and 3 to 6 
 
 **The honest summary of Step 5 is: a substantial improvement over the defaults, and a partial transfer to the held-out widths, but not a model validated for the full 2.4 to 5.0 m range by the stated rule.** At the calibration widths 2.4 and 3.6 m both sets meet the tolerance on all three observables, which is a fit, not validation. The held-out evidence is two widths: at 4.4 m set B meets the tolerance on all three observables and set A fails it on speed; at 3.0 m both fail it on flow. And both miss the widest calibration opening in a way the two calibrations move between speed and density but neither removes. Whether that is acceptable depends on the purpose, which is why the purpose has to be stated first.
 
+## Step 6 — the same chain on the other models
+
+Everything above is one model. JuPedSim 1.4.2 ships five more, and since the chain is a driver script and three Dakota input files, running it on them costs computation, not new code: the driver takes a model name, the Dakota descriptors are the model's own parameter names, and screening, calibration and validation are the same files with a different variables block. We ran it on the Collision Free Speed model V3, the Anticipation Velocity model (Xu et al. 2021), the Social Force model (Helbing et al. 2000) and the WarpDriver model (Wolinski et al. 2016), and left out the Generalized Centrifugal Force model. In each case the desired speed was fixed at the measured 1.55 m/s and every remaining parameter was free, over ranges we chose around the defaults without a prior narrowing step, so the calibration boxes are wider than the one the Collision Free Speed model was given after its screening. One optimizer start per model.
+
+Two models never reached the calibration. The Social Force model, at 350 people at three per square metre pressing on the boards, pushes the front row through the wall within two seconds and JuPedSim aborts, at every radius from 0.15 to 0.25 m, at softer and harder body forces, at time steps down to a millisecond, and at 1.4 m/s. It runs at the default 1.2 m/s. So with the desired speed fixed at the measured value every evaluation would land in the failure branch of the driver, and we did not run it. The WarpDriver model ran everywhere, 180 screening evaluations without a single failure, and that is the problem: only the radius and the desired speed have any effect on the observables, the six model parameters that describe the collision prediction all stay below a tenth of the strongest effect, and the optimizer drove the radius to the top of its range and stopped with the flow 26 to 72 % too high, the density 40 % too low and the speed up to two and a half times the measured one. The model has no body contact, so people pack past touching and keep the free speed through the gap. Nothing in the parameter box produces a jam.
+
+{{< figure
+    src="fig10.png"
+    caption="Flow, density and speed against bottleneck width for the calibrated models, six seeds each, with the experiment, its acceptance band and the Collision Free Speed defaults as in the previous figure; set A stands for the Collision Free Speed model. The Anticipation Velocity model runs next to set A everywhere. The V3 model has the flow nearly right at the narrow openings while its density is too high and its speed too low at every width. The WarpDriver model is off the band on all three observables."
+>}}
+
+The two that calibrated tell the more useful story. The Anticipation Velocity model, eight free parameters, converged in 51 evaluations to a residual norm on the six-seed means of 2.5, between the two Collision Free Speed sets at 2.4 and 2.7, and it fails the same two comparisons those sets fail: the held-out 3.0 m flow, by 6 %, and the 5.0 m flow, by 11 %. Its radius came out at 0.137 m and its time gap at 0.65 s, close to set A, and its anticipation time and reaction time both sat on the lower bound of 0.1 s. The fit switched the anticipation off as far as we let it, and a wider box would have to be tried before reading that as a statement about anticipation in a jam; it may only say that this experiment does not exercise it. The Collision Free Speed model V3, which replaces the isotropic neighbor repulsion by an anisotropic perception field and a turning rule, has ten free parameters and converged in 69 evaluations to a norm of 5.4. It gets the flow within 2 % at 2.4 and 3.0 m and then falls short, 18 % at 5.0 m, and it does so with a density 8 to 22 % too high and a speed 15 to 26 % too low at every width: it packs the jam denser and slower than the experiment even where the flow comes out right, which is the FDS+Evac pattern of Liao et al. (2014) in the opposite direction. The screening says its four new parameters are not idle, the perception-field aspect ratio and the body buffer rank right behind radius and time gap, so more freedom bought a worse fit in this box. Deviation from the experiment, mean over six seeds, with the band at 6 % for flow and 10 % for density and speed:
+
+| width [m] | flow AVM / V3 | density AVM / V3 | speed AVM / V3 |
+|---|---|---|---|
+| 2.4 | 0 % / −2 % | −2 % / +19 % | −1 % / −22 % |
+| 3.0 (held out) | +6 % / 0 % | −3 % / +16 % | +8 % / −17 % |
+| 3.6 | 0 % / −6 % | −9 % / +8 % | +4 % / −15 % |
+| 4.4 (held out) | 0 % / −8 % | +1 % / +22 % | −7 % / −24 % |
+| 5.0 | −11 % / −18 % | −9 % / +11 % | −9 % / −26 % |
+
+Two things carry over from the single-model result. The 5.0 m flow is low for every model that produces a jam at all, by 10 to 18 %, so that misfit is not the Collision Free Speed model's alone; either the widest run differs from the others in a way none of the models capture, or the common scenario does, the synthetic lattice start being the obvious suspect. And a calibrated set is still one sample: we ran one optimizer start per model, so the comparison is between one draw each, and the two Collision Free Speed sets already showed how far apart two draws can be. What the comparison adds is a ranking that survives that caveat, because its gaps are large: two models calibrate to the same level and fail the same two comparisons, one calibrates to twice their norm with a systematic upstream error, one cannot be calibrated in this box, and one cannot be run.
+
 ## What part 1 establishes, and what it does not
 
 - **A reproducible calibration.** Every step is a Dakota input file and a driver script in the repository. Anyone can rerun it with another observable, model or experiment from the same archive.
 - **The defaults are not usable for this purpose.** They miss the flow by a factor of two to three, and no single parameter fixes it.
 - **Two parameter sets, not one.** Two optimizer starts give sets with near-equal residual norms that differ by factors of two to four. The data do not identify the parameters; they constrain combinations of them.
+- **The chain, not the model, is the result.** Rerun on four other JuPedSim models with no new code, it ranks them: the Anticipation Velocity model calibrates as well as the Collision Free Speed model and fails the same two comparisons; the V3 variant fits worse with a dense, slow jam; the WarpDriver model has no parameter that makes a jam; the Social Force model cannot be run at the measured free speed.
 - **Partial width transfer.** Held-out widths inside one experiment are an interpolation test. The model passes it in part. This is not evidence for any other geometry, crowd or motivation.
 - **A pipeline audit.** Between the first draft and this one, reviews found participants missing from simulations, unwritten final trajectory frames and a geometry error. Each was corrected and every dependent result recomputed; the Hermes steady-phase observables changed by less than half a percent. The record is the [pipeline corrections section of the repository README](https://github.com/PedestrianDynamics/jupedsim-dakota-calibration/blob/39c31e2/README.md#pipeline-corrections-and-safeguards-2026-09-06), pinned to the commit this note was built from.
 
@@ -204,6 +228,7 @@ The natural next question is what the two sets do outside this experiment. [Part
 
 ## References
 
+- Helbing, D., Farkas, I., Vicsek, T. (2000). Simulating dynamical features of escape panic. Nature 407, 487–490. [doi:10.1038/35035023](https://doi.org/10.1038/35035023).
 - Jones, D. R., Schonlau, M., Welch, W. J. (1998). Efficient global optimization of expensive black-box functions. Journal of Global Optimization 13, 455–492. [doi:10.1023/A:1008306431147](https://doi.org/10.1023/A:1008306431147).
 - Kretz, T., Eckes, L., Knappik, L., Diz, J., Lipp, D., Müller, S. (2026). Using empirical travel time distributions for calibration of a model of pedestrian dynamics. EURO Journal on Transportation and Logistics 15, 100179. [doi:10.1016/j.ejtl.2026.100179](https://doi.org/10.1016/j.ejtl.2026.100179).
 - Kurtc, V., Chraibi, M., Tordeux, A. (2018). Automated quality assessment of space-continuous models for pedestrian dynamics. [arXiv:1809.01862](https://arxiv.org/abs/1809.01862).
@@ -215,6 +240,8 @@ The natural next question is what the two sets do outside this experiment. [Part
 - Seyfried, A., Schadschneider, A. (2008). Fundamental diagram and validation of crowd models. ACRI 2008, LNCS 5191, 563–566.
 - Seyfried, A., Passon, O., Steffen, B., Boltes, M., Rupprecht, T., Klingsch, W. (2009). New insights into pedestrian flow through bottlenecks. Transportation Science 43, 395–406.
 - Tordeux, A., Chraibi, M., Seyfried, A. (2016). Collision-free speed model for pedestrian dynamics. Traffic and Granular Flow '15, 225–232.
+- Wolinski, D., Lin, M. C., Pettré, J. (2016). WarpDriver: context-aware probabilistic motion prediction for crowd simulation. ACM Transactions on Graphics 35(6), 164. [doi:10.1145/2980179.2982442](https://doi.org/10.1145/2980179.2982442).
+- Xu, Q., Chraibi, M., Seyfried, A. (2021). Anticipation in a velocity-based model for pedestrian dynamics. Transportation Research Part C 133, 103464. [doi:10.1016/j.trc.2021.103464](https://doi.org/10.1016/j.trc.2021.103464).
 - Experiment data: Hermes bottleneck experiment, Düsseldorf 2009, [doi:10.34735/ped.2009.6](https://doi.org/10.34735/ped.2009.6). Dakota: Adams et al., Sandia National Laboratories, version 6.24.
 
 ## Code
@@ -228,3 +255,5 @@ Software used in this study:
 - [PedPy](https://pedpy.readthedocs.io) 1.4.0
 
 {{< icon "pencil-alt" >}} By: [Mohcine Chraibi]({{< relref "/authors#MohcineChraibi" >}})
+
+Drafted with an AI assistant; analysis, code and editing by the author.
