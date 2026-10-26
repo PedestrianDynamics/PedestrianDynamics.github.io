@@ -1,34 +1,18 @@
 ---
 title: "What makes an explanation good? Lessons from a road paradox"
 date: 2026-10-21
-summary: A good explanation names a mechanism, is hard to vary and can fail a test. A small road network in which a new road makes everyone slower shows how such explanations are built, tested and improved, and what this means for experiments, crowd simulations and the standards that judge them.
+summary: A good explanation makes specific consequences follow from explicit assumptions, and tests show how far those consequences can be trusted. A small road network in which a new road makes everyone slower shows both, and what they mean for crowd simulations and the standards that judge them.
 math: true
 thumbnail: network-shortcut.png
 ---
 
 {{< callout type="info" icon="none" >}}
-**How do we gain scientific knowledge, and how do we recognise a good explanation?** This essay follows one example, a road network in which a new road makes everyone slower, from the problem (sections 1–2) to explanations (3–4), their tests (5–9) and their application (10). It was inspired by Armin Seyfried's first lecture of *Scientific Working* at the University of Wuppertal in October 2026.
+**What makes an explanation good, and how far can we trust it?** This essay follows one example, a road network in which a new road makes everyone slower. It was inspired by Armin Seyfried's first lecture of *Scientific Working* at the University of Wuppertal in October 2026.
 {{< /callout >}}
 
-We know things today that nobody knew 300 years ago. The obvious reasons are experiments, better instruments, more data, better technology. More observations alone are not enough, though. We need explanations that we can test critically and improve. The idea goes back to Karl Popper (*Conjectures and Refutations*, 1963); David Deutsch (*The Beginning of Infinity*, 2011, ch. 1) adds the criterion that good explanations are hard to vary.
+In 1968 the mathematician Dietrich Braess showed, in a model, that a new road can make every driver slower. He found the paradox before the often-cited reports from real road networks. A good explanation of such a result makes specific consequences follow from explicit assumptions. Tests then show how far those consequences hold when the explanation is applied outside the model. The road network shows both steps.
 
-A second question is how we can understand things that nobody has observed yet. The example at the centre of this essay answers it. Dietrich Braess found the paradox named after him in 1968 in a model, before it was documented on a road.
-
-## 1. Why do we need explanations?
-
-Take earthquakes. The same observation has had very different explanations. An old story, told in many variants, has the earth resting on a bull. A miniature of 1595 for al-Qazwīnī's cosmography shows an angel carrying the earth; the angel stands on a rock, the rock on a bull, the bull on a fish. In other versions the bull carries the earth on its horns, and the earth quakes when it shifts it from one horn to the other.
-
-{{< figure src="weltstier_qazwini.jpg" width="300" caption="Miniature for al-Qazwīnī's cosmography (1595): an angel carries the earth, below it a rock, a bull and a fish. Public domain (Wikimedia Commons)." >}}
-
-Modern geology explains earthquakes by the movement of tectonic plates. Plates of the earth's crust move; at their boundaries stresses build up and are released abruptly.
-
-{{< figure src="platten_usgs.png" width="480" caption="The tectonic plates. Map: USGS, public domain (Wikimedia Commons)." >}}
-
-We accept plate tectonics and not the bull because the theory made predictions that could have failed. If new ocean floor forms at the mid-ocean ridges and spreads apart, the rock on both sides should record the reversals of the earth's magnetic field as stripes that are symmetric about the ridge, and the floor should get older with distance from it. Vine and Matthews (1963) proposed this reading of the stripes; both predictions were confirmed later in the 1960s. Today GPS measures the plate movements directly, at a few centimetres per year.
-
-Deutsch adds a second criterion: a good explanation is *hard to vary* without losing its explanatory power. Replace the bull with an elephant or a dragon, and the story explains the quake just as well. It fixes almost nothing that could be tested. Plate tectonics cannot be changed at will; it depends on measurable movements, rocks and mechanisms.
-
-## 2. A paradox: can a new road make traffic worse?
+## 1. A road that makes everyone slower
 
 Take a small road network with four nodes: Start, A, B and Goal. Two routes lead from Start to Goal, an upper one via A and a lower one via B. Each route has one narrow road, where the travel time is \(n\) minutes if \(n\) drivers use it, and one wide road without congestion, where the travel time is a fixed \(C\) minutes. The travel time of a route is the sum of its roads. Every driver wants to reach the goal as fast as possible.
 
@@ -47,7 +31,7 @@ Each driver who moves over also gains, though less each time, as long as both na
 {{< figure src="result.png" width="640" caption="The two equilibria for 15 drivers and C = 17: 24 to 25 minutes without the shortcut, 30 minutes with it." >}}
 
 {{< details title="The general case" closed="true" >}}
-With \(o\) drivers on the upper route, \(u\) on the lower one and \(a\) on the shortcut, the travel times are
+This box uses the continuous-flow approximation of the footnote: so many drivers that one alone does not change the travel times. With \(o\) drivers on the upper route, \(u\) on the lower one and \(a\) on the shortcut, the travel times are
 
 $$
 \begin{aligned}
@@ -57,42 +41,44 @@ t_\text{shortcut} &= (o + a) + (u + a).
 \end{aligned}
 $$
 
-With \(N\) drivers and no shortcut, the equilibrium travel time is about \(N/2 + C\). With the shortcut it is \(2N\) if \(N \le C\) and \(2C\) if \(C \le N \le 2C\); for \(N \ge 2C\) the shortcut stays empty and the time stays \(N/2 + C\). The paradox therefore occurs when \(N/2 < C < 3N/2\). Here \(N = 15\) and \(C = 17\). With \(C = 20\), the paradox disappears for fewer than about 14 drivers, and again for 40 or more.
+With \(N\) drivers and no shortcut, the equilibrium travel time is \(N/2 + C\). With the shortcut it is \(2N\) if \(N \le C\) and \(2C\) if \(C \le N \le 2C\); for \(N \ge 2C\) the shortcut stays empty and the time stays \(N/2 + C\). The paradox therefore occurs when \(N/2 < C < 3N/2\). Here \(N = 15\) and \(C = 17\). With \(C = 20\), the paradox disappears for fewer than about 14 drivers, and again for 40 or more.
 {{< /details >}}
 
 Try it yourself. The game keeps \(C = N + 2\), so \(C\) changes with the number of drivers. Move the drivers between the routes, switch the shortcut on, and watch where the travel times settle. The box below the bars tells you whether anyone can still gain by switching.
 
 {{< braess-game >}}
 
-### The paradox has a name
+This network has the structure of Braess' paper, published in German in 1968 in *Unternehmensforschung* under the title "Über ein Paradoxon aus der Verkehrsplanung" and in English translation in 2005 (Braess et al. 2005). It builds on Wardrop's equilibrium principle of 1952. In the terms of Karl Popper (*Conjectures and Refutations*, 1963), the explanation started as a conjecture. Today it is an argument in traffic planning: more roads do not automatically help.
 
-This network has exactly the structure of the paper by Dietrich Braess, a mathematician at the University of Münster, published in German in 1968 in *Unternehmensforschung* under the title "Über ein Paradoxon aus der Verkehrsplanung". Braess did not observe the paradox in traffic; he found it in a model. It was theoretical work motivated by traffic planning, basic research. In Popper's terms, the explanation started as a conjecture; observations in cities came only later.
-
-Wardrop stated the equilibrium principle in 1952: in equilibrium, all used routes are equally fast. Braess found the surprising consequence in 1968. An English translation made the paper widely accessible in 2005. Today it is an argument in traffic planning: more roads do not automatically help.
-
-### What we know now
-
-Each driver chooses the fastest route, and the result is worse for all. That is what the model predicts. But the model assumes that travel time grows with the number of vehicles, that everyone chooses the fastest route and that the new road takes no time.
-
-Three levels have to be kept apart. The mathematical result is knowledge, but knowledge about the model. Whether real traffic behaves like this is an empirical question. When people play this game, their result is an observation; the numbers above are the theoretical equilibrium. If the two differ, that is already the first lesson.
-
-## 3. What makes an explanation good?
+## 2. What explains the result?
 
 Here are two explanations for the paradox.
 
 {{< figure src="explanations.png" caption="Explanation A blames selfish drivers. Explanation B says which route is cheapest for each driver and how its load grows." >}}
 
-Explanation A sounds plausible but names no mechanism. "Selfish" could explain the opposite result as well, and A does not say under which conditions the paradox occurs. A is the bull of this story: you could put any other word in place of "selfish". Explanation B says which roads fill up and why. B connects assumptions to consequences. We can change an assumption, for example the travel time of the shortcut, but then the model fixes what follows, so B cannot be adjusted to fit any outcome. That is why B makes predictions.
+Explanation A sounds plausible but names no mechanism. "Selfish" could explain the opposite result as well, and A does not say under which conditions the paradox occurs. Explanation B says which roads fill up and why. B connects assumptions to consequences. We can change an assumption, for example the travel time of the shortcut, but then the model fixes what follows, so B cannot be adjusted to fit any outcome. That is why B makes predictions.
 
-A test: what happens if the shortcut takes 5 minutes instead of none? B predicts that the paradox remains but becomes weaker. With the same 15 drivers, the drivers need 27 to 29 minutes, depending on the split, instead of 30, compared with 24 to 25 without the shortcut. Once the shortcut takes 9 minutes or more (about \(C - N/2\) for \(N\) drivers in general), nobody uses it any more, and everything is as before. Explanation A cannot even address this question.
+B also shows how the road acts. The road does not change the travel time directly; it changes behaviour, and behaviour changes the travel time. The drivers also react to each other: my route choice changes your travel time, your travel time changes your route choice, and that changes mine again.
+
+{{< figure src="interaction.png" width="560" caption="The feedback loop in the route game: my route changes your travel time, your travel time changes your route, and your route changes my travel time." >}}
+
+In this model the new road changes the outcome through the drivers' responses to each other. The road is a cause, and it acts through this feedback. Such feedback is the rule in traffic and pedestrian dynamics.
+
+A test: what happens if the shortcut takes 5 minutes instead of none? B predicts that the paradox remains but becomes weaker. With the same 15 drivers, the drivers need 27 to 29 minutes, depending on the split, instead of 30, compared with 24 to 25 without the shortcut. Once the shortcut takes 10 minutes or more (more than \(C - N/2\) in the continuous approximation), nobody uses it any more, and everything is as before. Explanation A cannot even address this question.
 
 {{< callout type="info" >}}
 A good explanation cannot be changed at will without ceasing to explain anything. (After David Deutsch, *The Beginning of Infinity*, 2011, ch. 1.)
 {{< /callout >}}
 
+The contrast is old. A story told in many variants has the earth resting on a bull, and the earth quakes when the bull shifts it from one horn to the other. Replace the bull with an elephant or a dragon, and the story explains the quake just as well; it fixes almost nothing that could be tested. Explanation A is the bull of the road network: any other word could replace "selfish". Modern geology explains earthquakes by the movement of tectonic plates: plates of the earth's crust move, and at their boundaries stresses build up and are released abruptly. This explanation made predictions that could have failed. If new ocean floor forms at the mid-ocean ridges and spreads apart, the rock on both sides should record the reversals of the earth's magnetic field as stripes that are symmetric about the ridge, and the floor should get older with distance from it. Vine and Matthews (1963) proposed this reading of the stripes; both predictions were confirmed later in the 1960s, and today GPS measures the plate movements directly, at a few centimetres per year.
+
+{{< figure src="weltstier_qazwini.jpg" width="300" caption="Miniature for al-Qazwīnī's cosmography (1595): an angel carries the earth, below it a rock, a bull and a fish. Public domain (Wikimedia Commons)." >}}
+
 A good explanation also often reaches beyond the case it was made for. Analogous effects appear in mechanical and electrical networks (Cohen & Horowitz 1991) and have been shown in a laboratory AC power grid (Schäfer et al. 2022). Whether they occur in a given real system has to be checked case by case.
 
-## 4. Models, theories and hypotheses
+## 3. What the model claims
+
+Each driver chooses the fastest route, and the result is worse for all. That is what the model predicts. But the model assumes that travel time grows with the number of vehicles, that everyone chooses the fastest route and that the new road takes no time.
 
 The road network is a **model**: a simplified image of reality. A lot has been left out of it.
 
@@ -100,20 +86,23 @@ The road network is a **model**: a simplified image of reality. A lot has been l
 - **Traffic:** traffic lights, junctions, queues.
 - **Roads:** lengths, widths, capacities.
 - **Travel time:** where the rule of \(n\) minutes comes from; behind it lies the fundamental diagram.
-- **Time:** drivers who decide at different times; in the model everyone decides at once.
+- **Time:** how route choices change from day to day, and whether traffic settles into the equilibrium at all; the model only states the equilibrium.
 - **Information:** how drivers learn the travel times; in the model everyone knows them.
 
 A model does not have to contain every detail of reality. It has to capture the mechanisms that matter for the question, here the link between route choice, traffic load and travel time. With four nodes and five edges it explains something surprising.
 
-A model should be as simple as possible, but complex enough for the question. **Ockham's razor** covers the first half: if two models explain an observation equally well, the simpler one is preferable. A good model captures the relevant mechanisms and gives useful explanations and predictions for its purpose, however few details it contains. Box (1976) wrote: "Since all models are wrong the scientist must be alert to what is importantly wrong." In the road network, the colour of the cars does not matter; the assumptions about route choice and congestion are the mechanism itself. Whether we left out the right things is a question for validation (section 7).
+A model should be as simple as possible, but complex enough for the question. **Ockham's razor** covers the first half: if two models explain an observation equally well, the simpler one is preferable. A good model captures the relevant mechanisms and gives useful explanations and predictions for its purpose, however few details it contains. Box (1976) wrote: "Since all models are wrong the scientist must be alert to what is importantly wrong." In the road network, the colour of the cars does not matter; the assumptions about route choice and congestion are the mechanism itself. Whether we left out the right things is a question for validation (section 5).
 
-Three terms are often mixed up:
+Four terms are often mixed up:
 
 - **Assumption:** "Drivers choose the route that is fastest for them." This is an assumption about behaviour. It is assumed within the model; whether people behave this way is a separate, testable question. It is not a theory. The model consists of the network plus this assumption.
 - **Theory:** a coherent set of statements built on such assumptions, from which consequences can be derived. Here it is the equilibrium theory of route choice after Wardrop (1952). Its first principle: in equilibrium the travel times on all used routes are equal, and no unused route is faster.
-- **Hypothesis:** a concrete prediction that follows from the theory and can fail against data. For example: "If road Y in network X is closed, the mean travel time decreases."
+- **Hypothesis:** a proposed explanation that can be tested. For example: drivers respond to their own travel times in a way that concentrates traffic on the two narrow roads.
+- **Prediction:** an observable consequence of the hypothesis under stated conditions, which can fail against data. For example: "If the shortcut in this network is closed, the mean travel time decreases."
 
-Following Popper, a hypothesis has to say which observation would refute it. If you cannot name one, it is not yet a hypothesis.
+Following Popper, ask which observation would refute a prediction. If you cannot name one, the claim is not yet empirically testable.
+
+An example of how a question becomes testable: "A bottleneck 3 m wide and 1 m long, or 1 m wide and 3 m long: which is better?" As it stands, this is not yet a scientific question. One has to fix the walking direction,[^bottleneck] the geometry, and what "better" means: higher flow, shorter evacuation time or lower density in front of the bottleneck. Only then does an intuitive question become a testable prediction.
 
 ### Verify or falsify?
 
@@ -121,11 +110,13 @@ Karl Popper (*Logik der Forschung*, 1934; *Conjectures and Refutations*, 1963, c
 
 In practice a refutation is rarely this clean. A prediction always rests on auxiliary assumptions about instruments, data and conditions. When a prediction fails, something in this group of assumptions is wrong, but the failure does not say which part (Duhem 1954, part II, ch. 6); it may be an auxiliary assumption instead of the theory. This is known as the Duhem–Quine problem, and it is one reason why a single surprising observation rarely settles a dispute.
 
-Popper asks: can the statement fail? Deutsch adds: does it explain why it must be so?
+Popper asks: can the statement fail? Deutsch adds: does it explain why the result follows from the stated assumptions?
 
-One warning about words: in simulation, "verification" means something else, namely checking the program (section 7).
+One warning about words: in simulation, "verification" means something else, namely checking the program (section 5).
 
-## 5. How do we test explanations?
+Three levels have to be kept apart: the model, people playing the route game, and real traffic. The mathematical result is knowledge about the model. When people play the game, their result is an observation about these players under these rules. Whether real traffic behaves like either is a further empirical question. If players and model differ, the next step is to find out which assumption the players did not meet.
+
+## 4. Testing competing explanations
 
 ### Observations from cities
 
@@ -147,17 +138,15 @@ A clean comparison has two trials. In trial A everyone chooses between two route
 An experiment deliberately changes one condition and studies its effect.
 {{< /callout >}}
 
-Such a game tests the effect of the shortcut within the model. It is not yet evidence about real road networks.
+Rapoport and colleagues (2009) ran this game in the laboratory with groups of 18 students, paid according to their travel costs, for 40 rounds without and 40 rounds with the shortcut. Reversing the order made no difference. In a network with the same structure as ours, the groups moved to the shortcut route, and their payoff per round fell from about 95 to about 40 points. In a larger network with five routes, choices moved the same way, but after 80 rounds some players still used the old routes. Such a comparison shows the effect of adding the shortcut under these conditions. It is not yet evidence about real road networks. Whether the players reached the result through the feedback of section 2 is a separate question; it would need data on whether each player switched in response to their own previous travel times.
 
-Rapoport and colleagues (2009) ran this game in the laboratory with groups of 18 students, paid according to their travel costs, for 40 rounds without and 40 rounds with the shortcut. Reversing the order made no difference. In a network with the same structure as ours, the groups moved to the shortcut route, and their payoff per round fell from about 95 to about 40 points. In a larger network with five routes, choices moved the same way, but after 80 rounds some players still used the old routes.
-
-## 6. When explanations fail: Clever Hans
+### When an experiment misses something: Clever Hans
 
 Even careful experiments can miss something decisive. Around 1900 a horse, "Clever Hans", answered arithmetic questions by tapping its hoof, in front of large audiences and mostly correctly. Many experts were convinced, and a commission found no trick in 1904.
 
 {{< figure src="clever_hans.jpg" caption="Clever Hans at a public demonstration, 1904. From K. Krall, *Denkende Tiere* (1912), plate 2. Public domain (Wikimedia Commons)." >}}
 
-His owner, Wilhelm von Osten, a mathematics teacher and follower of phrenology, was convinced that animals can think. The psychologist Oskar Pfungst was not satisfied with this explanation. He worked carefully with Hans and von Osten and changed one factor at a time: whether the questioner knew the answer, whether Hans could see the questioner (using blinkers), how far away the questioner stood (Pfungst 1907).
+His owner, Wilhelm von Osten, a mathematics teacher, was convinced that animals can think. The psychologist Oskar Pfungst was not satisfied with this explanation. He worked carefully with Hans and von Osten and changed one factor at a time: whether the questioner knew the answer, whether Hans could see the questioner (using blinkers), how far away the questioner stood (Pfungst 1907).
 
 | Condition | Result |
 |---|---|
@@ -165,11 +154,9 @@ His owner, Wilhelm von Osten, a mathematics teacher and follower of phrenology, 
 | The questioner does not know it | many more errors |
 | Hans cannot see the questioner | many more errors |
 
-Hans read tiny body signals of the questioner, who relaxed without noticing as soon as the right number was reached. Two explanations competed: "Hans can do arithmetic" and "Hans reads unconscious signals". Both fit the correct answers. Only the second predicts that Hans fails when nobody he can see knows the answer. Pfungst's conditions tested this prediction, and Hans failed as it predicted. Von Osten never accepted the result.
+Hans read tiny body signals of the questioner, who relaxed without noticing as soon as the right number was reached. Two explanations competed: "Hans can do arithmetic" and "Hans reads unconscious signals". Both fit the correct answers. Only the second predicts that Hans fails when nobody he can see knows the answer. Pfungst's conditions tested this prediction, and Hans failed as it predicted. Von Osten never accepted the result. The correct answers were real, but the commission had overlooked the influence that produced them.
 
-The correct answers were real, but the commission had overlooked the influence that produced them. That many experts were convinced did not count as evidence.
-
-The episode gave its name to the **Clever Hans effect**: the expectations of observers unconsciously influence the behaviour of those observed. Related are the experimenter effect (Rosenthal 1966) and the interviewer effect in surveys. Today's countermeasures are blinding and control conditions.
+The episode gave its name to the **Clever Hans effect**: the expectations of observers unconsciously influence the behaviour of those observed. Today's countermeasures are blinding and control conditions.
 
 ### Criticism as a shared practice
 
@@ -177,13 +164,15 @@ Pfungst found the error because he could work with the horse, change the conditi
 
 An expert's reputation does not make a claim correct. That does not put every opinion on the same level either. The useful questions are what evidence supports a claim and how well it has held up under informed, independent checks. Oreskes (2019) argues that trust in science rests on this collective, critical scrutiny within diverse expert communities.
 
-## 7. Simulation, verification and validation
+## 5. From a model to a simulation
 
-The network above has four nodes; you can work it out in your head. A city network has tens of thousands of links, travel times depend nonlinearly on load, and people decide differently. Then you need numerical methods and software, for example SUMO, MATSim, Vissim or, for pedestrians, JuPedSim.
+Sections 1 to 3 explained the paradox inside a model, and section 4 tested it with players in a laboratory. Applying the explanation to a real road network or a real crowd needs a different kind of evidence: something has to establish that it holds outside the model.
+
+The network above has four nodes; you can work it out in your head. A city network has tens of thousands of links, travel times depend nonlinearly on load, and people decide differently. Then you need numerical methods and software, for example MATSim or, for pedestrians, JuPedSim.
 
 Suppose the fundamental diagram, the relation between density and flow, is well known from experiments. We derive travel times from it, build a network model with route choice and simulate it. Even then the simulation does not necessarily predict the Braess paradox reliably.
 
-If the software reproduces the analytical equilibrium for the Braess network exactly, that shows only that it computes correctly. An important verification test has been passed, but that is not validation. And even with correct software and a well-supported fundamental diagram the predictions can be wrong: people may choose routes differently than assumed, and queues, differences in information or effects over time may be missing.
+If the software reproduces the analytical equilibrium for the Braess network exactly, that shows that it computes correctly for this test case. A verification test has been passed, but that is not validation. And even with correct software and a well-supported fundamental diagram the predictions can be wrong: people may choose routes differently than assumed, and queues, differences in information or effects over time may be missing.
 
 The tempting conclusion is: "The input models are validated and the software passes all tests, so the simulation is realistic." Two questions have to be asked separately: did we implement the model correctly, and did we choose the right model?
 
@@ -194,11 +183,7 @@ The tempting conclusion is: "The input models are validated and the software pas
 
 Roache (1998), following Boehm and Blottner, put it briefly: verification means solving the equations right, validation means solving the right equations.
 
-{{< details title="A note on standards" closed="true" >}}
-For pedestrian simulations the German guideline RiMEA (Richtlinie für Mikroskopische Entfluchtungsanalysen, version 4.1.1, 2025) lists test cases 1 to 16 in its Annex 1. RiMEA uses verification and validation interchangeably; its four forms of verification follow ISO/TR 13387-8:1999 (Annex 1, A 1). What it calls "quantitative verification", the comparison with data from evacuation drills, is validation in the AIAA sense (AIAA G-077-1998), and RiMEA itself regards the data as insufficient for it (A 5). The NIST report on evacuation models makes the same correction for the IMO guidelines (Ronchi et al. 2013).
-{{< /details >}}
-
-## 8. Models, experiments and observations of crowds
+## 6. How far does a successful model travel?
 
 In pedestrian dynamics these questions are part of our daily work. We build models, run experiments with hundreds of participants and observe people at stations, stadiums and events. Each method draws criticism. Models simplify behaviour. Participants in an experiment know that they are in an experiment. Observations in public spaces are limited by privacy, and their conditions cannot be controlled. Simulations are still used to plan buildings and events, and decisions about evacuation have to be made with the evidence available.
 
@@ -212,79 +197,56 @@ The criticism is often general: "models are just models", "people don't behave l
 | "Field observations are too messy." | What can be measured reliably, and which influences can be told apart? |
 | "We ran thousands of simulations." | Which uncertainty did the runs reduce, and which assumptions stayed untested? |
 
-Being able to run a simulation thousands of times does not make it more trustworthy than an experiment. Repeated runs of a stochastic model are useful. They show when the mean evacuation time, its spread and the shape of the evacuation curve stop changing (Ronchi et al. 2014). If a model assumes that everyone knows all exits and takes the fastest route, a million runs with different random seeds will never produce a person who does not know the way. Models have to make such assumptions about behaviour, often without data to support them (Kuligowski 2013). Convergence shows how precisely we know the model's answer; only data show whether that answer describes these people (section 7).
+A useful criticism names an omission and says why it matters. For example: "The model does not include groups who wait for each other. This matters here, because the predicted benefit of the second exit depends on people spreading out independently." Such a criticism can be checked, and it may be strong enough to rule out one particular use of the model.
+
+Being able to run a simulation thousands of times does not make it more trustworthy than an experiment. Repeated runs of a stochastic model are useful. They show when the mean evacuation time, its spread and the shape of the evacuation curve stop changing (Ronchi et al. 2014). If a model assumes that everyone knows all exits and takes the fastest route, a million runs with different random seeds will never produce a person who does not know the way. Models have to make such assumptions about behaviour, often without data to support them (Kuligowski 2013). Convergence shows how precisely we know the model's answer; only data show whether that answer describes these people (section 5).
 
 {{< figure src="convergence.png" caption="Illustration with synthetic data: the running mean of a stochastic model settles on the model's own value as the runs accumulate, while a measured drill value stays where it is. ([Script](convergence.py))" >}}
 
 An experiment observes real people, but in a particular situation. A bottleneck experiment with instructed participants supports conclusions about movement under those instructions, densities and geometries. Whether they hold for another population, a different motivation or an emergency is a separate question. Field observations have the opposite problem: they are closer to the target situation, but many factors vary at once, and being natural does not make them valid (Haghani 2023).
 
-The methods overlap, but each is better at checking some parts of an explanation than others: experiments at isolating a mechanism, observations at checking whether it transfers, simulations at working out the consequences under conditions that cannot be tested directly. These methods help each other because their weaknesses differ; several sources that share a weakness would not.
+The methods overlap, but each is better at checking some parts of an explanation than others: experiments at isolating a mechanism, observations at checking whether it transfers, simulations at working out the consequences under conditions that cannot be tested directly. These methods help each other because their weaknesses differ; sources that share a weakness can still add evidence, but they cannot resolve that weakness.
 
-Claims about a model of human behaviour have to be specific to be tested. "Our model reproduces human behaviour" is too broad to test. "Our model estimates the flow through this exit, for this population and these conditions, with this uncertainty" can be tested. Estimating the flow through a given exit is also a different task from predicting which exit people choose. The second rests on assumptions about behaviour that movement data do not test.
+Claims about a model of human behaviour have to be specific to be tested. "Our model reproduces human behaviour" is too broad to test. "Our model estimates the flow through this exit, for this population and these conditions, with this uncertainty" can be tested. Estimating the flow through a given exit is also a different task from predicting which exit people choose. The second rests on assumptions about behaviour that bottleneck flow measurements do not test.
 
-We ran into this in our own work. In a [calibration study]({{< relref "/notes/dakota-calibration" >}}) we fitted JuPedSim's Collision Free Speed model to a bottleneck experiment. The calibrated model matched flow, density and speed in front of the opening mostly within ten percent, also at two widths left out of the fit. Two optimizer starts gave two parameter sets that fit almost equally well but differ by factors of two to four, so a good fit did not pin down the parameters. Hydrologists call this equifinality: different parameter sets, and even different models, can fit the same data acceptably well (Beven 2006). These data cannot tell them apart; the difference can show when the model is used somewhere else. In the [second part]({{< relref "/notes/dakota-validation" >}}) the same parameters went, without refitting, to a half-metre gate and an entrance without guiding barriers. At the gate one set stalls and the other is 20 to 40 % too fast; at the entrance every set empties the crowd two to three times faster than the people did. A model calibrated for one situation was not valid for the next.
+A good fit in one situation also does not show that a model transfers to the next. We ran into this in our own work. In a [calibration study]({{< relref "/notes/dakota-calibration" >}}) we fitted JuPedSim's Collision Free Speed model to a bottleneck experiment. The calibrated model matched flow, density and speed in front of the opening mostly within ten percent, also at two widths left out of the fit. Two optimizer starts gave two parameter sets that fit almost equally well but differ by factors of two to four, so a good fit did not pin down the parameters. Hydrologists call this equifinality: different parameter sets, and even different models, can fit the same data acceptably well (Beven 2006). These data cannot tell them apart; the difference can show when the model is used somewhere else.
+
+In the [second part]({{< relref "/notes/dakota-validation" >}}) the same parameters went, without refitting, to a half-metre gate and an entrance without guiding barriers. At the gate one set stalls and the other is 20 to 40 % too fast; at the entrance every set empties the crowd two to three times faster than the people did. A model calibrated for one situation was not valid for the next.
+
+## 7. What passing a standard establishes
 
 Guidelines such as RiMEA list test cases for simulation software. Such tests catch errors and make results easier to compare. Their results can also be used for claims they cannot support. "The software passes the RiMEA tests" can become "the software is validated", then "the results of this project are reliable" and finally "this design is safe". Each step is a new claim and needs its own evidence. RiMEA does not set pass limits for most of its tests (RiMEA 2025, Annex 1, A 2). The first test checks, by design, only that a person with a given walking speed crosses a corridor in the expected time. Whether that speed fits the people in the building, or whether they find the exits, is outside its scope.
 
 RiMEA warns against this itself. Its preamble calls a simulation "an idealized case" in which people move as the user specifies, and it states that there are not enough reliable data from evacuation drills for a thorough quantitative comparison. Until such data exist, it regards its other tests as sufficient (Annex 1, A 5). This sentence is a translation from the IMO guidelines for passenger ships (IMO 2002), and it has stayed unchanged since then, in later IMO versions (IMO 2016) as in RiMEA, while laboratory data have appeared that RiMEA itself now uses.
 
-IMO, RiMEA, the NIST report (Ronchi et al. 2013) and ISO 20414 share many of their tests, and most of these come from the same IMO list. In my view their agreement therefore counts only once.
+IMO, RiMEA, the NIST report (Ronchi et al. 2013) and ISO 20414 share many of their tests, and most of these come from the same IMO list. Passing the same inherited test under several standards is therefore one piece of evidence, not several.
 
 RiMEA's later tests compare models with laboratory data, mostly for trends or the spread of the data, and the user may vary the parameters. Once software is tuned to pass a test, passing it says less about anything outside the test (Goodhart 1984; Strathern 1997). ISO 20414 (2020) asks for more: the field of application must be stated, validation against one data set does not necessarily carry over to other scenarios, and validation runs must also use default or generally representative settings, not only settings tuned to the data.
 
 The tests themselves should be tested. We need to know which errors that would change a safety conclusion they can reveal, and which wrong predictions still pass them. The same applies to our own software. Passing a standard is one part of the argument for trusting a simulation. The rest has to come from evidence about the people, the building and the purpose.
 
-A useful criticism names an omission and says why it matters. For example: "The model does not include groups who wait for each other. This matters here, because the predicted benefit of the second exit depends on people spreading out independently." Such a criticism can be checked, and it may be strong enough to rule out one particular use of the model.
+{{< details title="A note on standards" closed="true" >}}
+For pedestrian simulations the German guideline RiMEA (Richtlinie für Mikroskopische Entfluchtungsanalysen, version 4.1.1, 2025) lists test cases 1 to 16 in its Annex 1. RiMEA uses verification and validation interchangeably; its four forms of verification follow ISO/TR 13387-8:1999 (Annex 1, A 1). What it calls "quantitative verification", the comparison with data from evacuation drills, is validation in the AIAA sense (AIAA G-077-1998), and RiMEA itself regards the data as insufficient for it (A 5). The NIST report on evacuation models makes the same correction for the IMO guidelines (Ronchi et al. 2013).
+{{< /details >}}
+
+## 8. Using an explanation to make a decision
 
 For practical projects the question becomes: what evidence is enough for this model to support this decision? A claim that a layout is safer needs a safety criterion, for example that everyone is out before conditions become untenable (ASET > RSET); a layout can be faster on average and worse for the last people out. Sometimes the answer is that the evidence does not support the proposed safety claim.
 
-## 9. Causes and feedback
-
-### Causality
-
-A causal claim says that changing A changes B. In the route game the chain is clear. The road does not change the travel time directly; it changes behaviour, and behaviour changes the travel time. This can be shown because the game compares with and without the road while everything else stays the same.
-
-### Interaction
-
-The causal chain has a catch: drivers also react to each other. In the route game my route choice changes your travel time, your travel time changes your route choice, and that changes mine again.
-
-{{< figure src="interaction.png" width="560" caption="The feedback loop in the route game: my route changes your travel time, your travel time changes your route, and your route changes my travel time." >}}
-
-In this model the new road changes the outcome through the drivers' responses to each other. The road is a cause, and it acts through this feedback. Such feedback is the rule in traffic and pedestrian dynamics.
-
-## 10. What science can and cannot tell us
-
-### Predictions and decisions
-
 Suppose a well-tested model predicts that closing a road reduces the mean travel time. The prediction alone does not decide whether the road should be closed. Some travellers gain and others lose, and access to particular places, costs and safety count as well. Weighing them requires stating what we want to achieve. Science can say what is likely to happen under each option; which outcome to prefer is a decision about goals. Values also enter the science itself, for example when deciding how much evidence is enough to accept a claim, given the consequences of being wrong (Douglas 2009, ch. 5).
 
-### How to evaluate a claim
+## What makes an explanation good
 
-The questions used throughout this essay work for any claim, in a newspaper, a report or one's own thesis:
+A good explanation names a mechanism that turns explicit assumptions into specific consequences. It cannot be adjusted to fit any outcome, so a test can show it wrong. Explanation B does this; "selfish drivers" does not. How far to trust such an explanation is a separate question, and each kind of test answers part of it: the arithmetic holds within the model, the laboratory game shows the effect for its players, a simulation's validation covers its stated purpose, and the city cases are too weak to show the paradox in real networks. Scientific knowledge can be revised, and its parts are uncertain to very different degrees. What counts is how well an explanation has survived attempts to find its weaknesses, what evidence supports it and where its limits lie.
+
+The same questions work for any claim, in a newspaper, a report or one's own thesis:
 
 1. What exactly is explained, and what is the mechanism?
 2. Could the explanation be changed at will and still "explain" the same thing?
 3. Which observation would refute it?
-4. What evidence separates the explanation from plausible alternatives: a controlled comparison, independent observations that agree, or only a sequence in time?
+4. What evidence separates the explanation from plausible alternatives: a controlled comparison, independent observations that test predictions the alternatives get wrong, or only a sequence in time?
 5. Was a model checked against reality, and for which purpose is it valid?
 
-Controlled experiments are one way to answer question 4. Where they are impossible, as for earthquakes, independent observations can do this, when they test predictions that the alternatives get wrong.
-
-An example of how a question becomes testable: "A bottleneck 3 m wide and 1 m long, or 1 m wide and 3 m long: which is better?" As it stands, this is not yet a scientific question. One has to fix the walking direction,[^bottleneck] the geometry, and what "better" means: higher flow, shorter evacuation time or lower density in front of the bottleneck. Only then does an intuitive question become a testable hypothesis.
-
-### How much confidence a result deserves
-
-Scientific knowledge can be revised, and its parts are uncertain to very different degrees. A new conjecture and an explanation that has passed many independent tests do not have the same standing. The question to ask is how well an explanation has survived attempts to find its weaknesses, what evidence supports it and where its limits lie.
-
-### Summary
-
-1. Problem: we meet something surprising that we want to understand.
-2. Explanation: we look for a mechanism that is hard to vary.
-3. Testing: we check whether the explanation holds.
-4. Improvement: we replace it when a better one survives the tests.
-5. Application: we use it, within the limits the tests have shown.
-
-We know more today than 300 years ago because we form explanations, criticise them and improve them, instead of only collecting observations.
 
 ## Further reading
 
@@ -332,7 +294,6 @@ We know more today than 300 years ago because we form explanations, criticise th
 - Roache, P. J. (1998): Verification of codes and calculations. *AIAA Journal* 36(5), 696–702.
 - Ronchi, E., Kuligowski, E. D., Reneke, P. A., Peacock, R. D., Nilsson, D. (2013): *The Process of Verification and Validation of Building Fire Evacuation Models*. NIST Technical Note 1822.
 - Ronchi, E., Reneke, P. A., Peacock, R. D. (2014): A method for the analysis of behavioural uncertainty in evacuation modelling. *Fire Technology* 50(6), 1545–1571.
-- Rosenthal, R. (1966): *Experimenter Effects in Behavioral Research*. New York: Appleton-Century-Crofts.
 - Schäfer, B. et al. (2022): Understanding Braess' Paradox in power grids. *Nature Communications* 13, 5396.
 - Strathern, M. (1997): 'Improving ratings': audit in the British University system. *European Review* 5(3), 305–321.
 - Vine, F. J., Matthews, D. H. (1963): Magnetic anomalies over oceanic ridges. *Nature* 199, 947–949.
