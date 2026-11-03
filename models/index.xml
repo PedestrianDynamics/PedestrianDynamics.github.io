@@ -38,7 +38,7 @@ $\vec{e}_i^{~0}$ and $\vec{e}_j$ are aligned and is maximum when they are anti-a
 means that agents influence each other&amp;rsquo;s direction strongly in bidirectional scenarios.&lt;/p>
 &lt;p>Here, $\alpha_{i,j}$ means agents have a high tendency to follow the agents who move in the same direction. When this strategy is used, the probability of further conflicts is reduced.&lt;/p>
 &lt;p>The direction of the impact from agent $j$ on $i$&amp;rsquo;s direction of the movement is defined as&lt;/p>
-$$\vec{n}_{i,j}(t) =-\text{sgn} \bigg(\vec{e}^{~\text{a}}(t+t^\text{a}) \cdot \vec{e}_i^{~0\bot}(t) \bigg)$$&lt;p>where&lt;/p>
+$$\vec{n}_{i,j}(t) =-\text{sgn} \bigg(\vec{e}^{~\text{a}}(t+t^\text{a}) \cdot \vec{e}_i^{~0\bot}(t) \bigg)\,\vec{e}_i^{~0\bot}(t)$$&lt;p>where&lt;/p>
 &lt;p>$\vec{e}^{~\text{a}}(t+t^\text{a})= \vec{x}^\text{a}_j(t+t^\text{a})- \vec{x}_i(t)$.&lt;/p>
 &lt;p>The direction of $\vec{n}_{i,j}$ depends on the predicted position of agent $j$ after a period of time $t^\text{a}$.&lt;/p>
 &lt;p>Note that when this predicted position is aligned with the desired direction of $i$, the direction of $\vec{n}_{i,j}(t)$ is chosen randomly as $\vec{e}_i^{~0\bot}$ or $-\vec{e}_i^{~0\bot}$. This rule prevents agents from moving in the opposite direction to the desired direction.&lt;/p>
@@ -48,7 +48,7 @@ alt="The direction of the impact of agent j on agent i">&lt;figcaption>
 &lt;/figcaption>
 &lt;/figure>
 &lt;p>Finally, the optimal direction of agent $i$, $\vec{e_i}^{~\text{d}}(t)$ is obtained as&lt;/p>
-$$u \bigg(\vec{e_i}^{~0}(t)+ \sum_{j\in N_i(t)} R_{j,i}(t)\cdot \vec{n}_{j,i}(t)\bigg),$$&lt;p>where $u$ is a normalization constant such that $\lVert\vec{e}_i^{~\text{d}}\rVert=1$.
+$$\vec{e_i}^{~\text{d}}(t)=u \bigg(\vec{e_i}^{~0}(t)+ \sum_{j\in N_i(t)} R_{i,j}(t)\cdot \vec{n}_{i,j}(t)\bigg),$$&lt;p>where $u$ is a normalization constant such that $\lVert\vec{e}_i^{~\text{d}}\rVert=1$.
 Then, the direction of movement of agent $i$ is updated as&lt;/p>
 $$\frac{d\vec{e_i}(t)}{dt} = \frac{ \vec{e_i}^{~\text{d}}(t)-\vec{e}_{i}(t)}{\tau},$$&lt;p>where $\tau$ is a relaxation parameter adjusting the rate of the turning process from the current direction $\vec{e}_i$ to the optimal direction $\vec{e}_i^{~d}$.&lt;/p>
 &lt;h3>Speed function&lt;span class="hx-absolute -hx-mt-20" id="speed-function">&lt;/span>
@@ -349,7 +349,7 @@ $$b=b_{\max }-\left(b_{\max }-b_{\min }\right) \frac{v_i}{v_i^0},$$&lt;p>where $
 causing them to deviate from a straight path. Drawing parallels to Newtonian
 mechanics, such deviations or accelerations are attributed to a force. Hence,
 the equation of motion can be written as:&lt;/p>
-$$\vec{\ddot x}_i=\overrightarrow{F_i^{\mathrm{drv}}}+\sum_{j \in \mathcal{N}_{i}} \overrightarrow{F_{i j}^{\mathrm{rep}}}+\sum_{w \in \mathcal{W}_{i}} \overrightarrow{F_{i w}^{\mathrm{rep}}}.$$&lt;h4>Driving force&lt;span class="hx-absolute -hx-mt-20" id="driving-force">&lt;/span>
+$$m_i\vec{\ddot x}_i=\overrightarrow{F_i^{\mathrm{drv}}}+\sum_{j \in \mathcal{N}_{i}} \overrightarrow{F_{i j}^{\mathrm{rep}}}+\sum_{w \in \mathcal{W}_{i}} \overrightarrow{F_{i w}^{\mathrm{rep}}}.$$&lt;h4>Driving force&lt;span class="hx-absolute -hx-mt-20" id="driving-force">&lt;/span>
 &lt;a href="#driving-force" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>&lt;p>The driving force in the Generalized Centrifugal Force Model is defined as the
 force that propels pedestrians towards their intended destinations:&lt;/p>
 $$\vec{F}_i^{\mathrm{drv}}=m_i \frac{\overrightarrow{v_i^0}-\overrightarrow{v_i}}{\tau}.$$&lt;h4>Pedestrian-pedestrian repulsive force&lt;span class="hx-absolute -hx-mt-20" id="pedestrian-pedestrian-repulsive-force">&lt;/span>
@@ -426,7 +426,7 @@ alt="Modeling steps with OSM.">&lt;figcaption>
 $$
 P_l(x) = P_t(x,s) + \sum_{j=1}^m P_{o,j}(x) + \sum_{i=1,i\neq l}^n P_{p,i}(x),
 $$&lt;p>where $P_t(x,s)$ is the attraction potential of the target, $s$ is the vector of the current agent positions, $P_{o,j}(x)$ is the repulsive potential induced by obstacle $j$, $m$ is the number of obstacles, $P_{p,i}$ is the repulsive potential of other agents, $n$ is the number of agents. The implementation of the attraction potential $P_t(x)$ is the so-called floor field. If the attraction potential does not depend on the agents&amp;rsquo; current positions, means $P_t(x,s)=P_t(x)$, the floor field is static. Otherwise, it is dynamic.
-If we consider the floor field to be static, the value of the potential function at position $x$ equals the negative geodesic distance between $x$ and the target.&lt;/p>
+If we consider the floor field to be static, the value of the potential function at position $x$ equals the geodesic distance between $x$ and the target.&lt;/p>
 &lt;p>The obstacle potential $P_{o,j}(x)$ is defined as&lt;/p>
 $$
 P_{o,j}(x) =
@@ -578,8 +578,8 @@ alt="Direction of the pushing and frictional forces acting on colliding agents."
 &lt;h2>Obstacle force&lt;span class="hx-absolute -hx-mt-20" id="obstacle-force">&lt;/span>
 &lt;a href="#obstacle-force" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Obstacles exert a force on the agent similar to a static agent.
 Each line segment of an obstacle exerts force on the agent.
-The repulsive force increases exponentially with decreasing distance. When the agent collides with the segment, the repulsive force increases further. When colliding, a frictional force also occurs, which acts orthogonally to the repulsive force in the direction to the velocity of the agent&lt;/p>
-$$ \overrightarrow{F_i^{\mathrm{obst}}} = \sum_{o} \overrightarrow{f_{io}\text{.}}$$$$\overrightarrow{f_{io}} = [A_i \exp[(r_{i} - d_{io})/B_i] + kg(r_{i} - d_{io})] \overrightarrow{n_{io}} + \kappa g(r_{i} - d_{io}) (\overrightarrow{v_{i}}\cdot\overrightarrow{t_{io}}) \overrightarrow{t_{io}} \text{.}$$$$\phantom{.........}\fbox{\phantom{..................} pushing \phantom{.................}} \fbox{\phantom{..........} sliding \phantom{..........}}$$&lt;ul>
+The repulsive force increases exponentially with decreasing distance. When the agent collides with the segment, the repulsive force increases further. When colliding, a frictional force also occurs, which acts orthogonally to the repulsive force, against the velocity of the agent&lt;/p>
+$$ \overrightarrow{F_i^{\mathrm{obst}}} = \sum_{o} \overrightarrow{f_{io}\text{.}}$$$$\overrightarrow{f_{io}} = [A_i \exp[(r_{i} - d_{io})/B_i] + kg(r_{i} - d_{io})] \overrightarrow{n_{io}} - \kappa g(r_{i} - d_{io}) (\overrightarrow{v_{i}}\cdot\overrightarrow{t_{io}}) \overrightarrow{t_{io}} \text{.}$$$$\phantom{.........}\fbox{\phantom{..................} pushing \phantom{.................}} \fbox{\phantom{..........} sliding \phantom{..........}}$$&lt;ul>
 &lt;li>$o$ is a segment of the obstacle&lt;/li>
 &lt;li>$r_i$ is the radius agent $i$&lt;/li>
 &lt;li>$d_{io}$ is distance from closest point on the segment to $i$&lt;/li>
@@ -604,7 +604,7 @@ alt="Direction of the pushing and frictional forces acting on agents colliding w
 &lt;p>Direction of the pushing and frictional forces acting on agents colliding with an obstacle segment.&lt;/p>
 &lt;/figcaption>
 &lt;/figure>
-&lt;p>When the minimum distance between an agent and a wall segment falls below the agent&amp;rsquo;s radius, an additional frictional force comes into effect. This frictional force acts orthogonally to the repulsive force in the direction of the velocity of the agent.&lt;/p>
+&lt;p>When the minimum distance between an agent and a wall segment falls below the agent&amp;rsquo;s radius, an additional frictional force comes into effect. This frictional force acts orthogonally to the repulsive force, against the velocity of the agent.&lt;/p>
 &lt;h2>Calculating new velocity and new position from forces&lt;span class="hx-absolute -hx-mt-20" id="calculating-new-velocity-and-new-position-from-forces">&lt;/span>
 &lt;a href="#calculating-new-velocity-and-new-position-from-forces" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>With the definition of the forces affecting an individual, it is possible to calculate its new speed&lt;/p>
 $$ \overrightarrow{v_{\mathrm{new}}} = \overrightarrow{v_i} + [\overrightarrow{F_i^{\mathrm{drv}}} + \frac{\overrightarrow{F_i^{\mathrm{rep}}} + \overrightarrow{F_i^{\mathrm{obst}}}}{m_i}] \cdot \delta T$$$$ \overrightarrow{\mathrm{pos}_{\mathrm{new}}} = \overrightarrow{\mathrm{pos}_i} + \overrightarrow{v_{\mathrm{new}}} \cdot \delta T \text{.}$$&lt;p>Here $m_i$ denotes the mass of $i$ and $\delta T$ the length of one simulation iteration.&lt;/p>
