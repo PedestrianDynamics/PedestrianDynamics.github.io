@@ -185,7 +185,7 @@ alt="Calculation of the movement direction">&lt;figcaption>
 &lt;p>Calculation of the movement direction&lt;/p>
 &lt;/figcaption>
 &lt;/figure>
-$$\mathbf e_i(\mathbf x_i,\mathbf x_j,\ldots)=\frac{1}{N}\left(\mathbf e_0+\sum_j R(s_{i,j})\right)$$&lt;p>with $\mathbf e_0$ the desired direction, $N$ a normalization constant such
+$$\mathbf e_i(\mathbf x_i,\mathbf x_j,\ldots)=\frac{1}{N}\left(\mathbf e_0+\sum_j R(s_{ij})\,\mathbf e_{ij}\right)$$&lt;p>with $\mathbf e_0$ the desired direction, $s_{ij}$ the distance between $i$ and $j$, $\mathbf e_{ij}=(\mathbf x_i-\mathbf x_j)/s_{ij}$ the unit vector pointing from $j$ to $i$, $N$ a normalization constant such
 that $|\mathbf e_i|=1$ and $R(s)=a,\exp\big((l-s)/D\big)$ the repulsion
 function calibrated by the coefficient $a&amp;gt;0$ and distance $D&amp;gt;0$.&lt;/p>
 &lt;figure>&lt;img src="https://pedestriandynamics.org/models/collision_free_speed_model/figure2.png"
@@ -198,8 +198,7 @@ alt="Repulsive influence in the direction">&lt;figcaption>
 and a direction function $\textbf{e}_i$.&lt;/p>
 &lt;p>Inspired from car-following models, the speed function only depends on the distance to the nearest pedestrian or obstacle in front through an Optimal Velocity (OV) function.&lt;/p>
 &lt;p>The set $J_i$ of pedestrians and obstacles in front is given by&lt;/p>
-$$J_i=\big\{j,\;\mathbf e_i\cdot \mathbf e_{ij}\le 0\;\text{and}\;|\mathbf e_i^\perp\cdot\mathbf e_{ij}|\le l/s_{ij}\big\}.$$&lt;p>Here $s_{ij}$ is the distance between $i$ and $j$, and $\mathbf e_{ij}=(\mathbf x_i-\mathbf x_j)/s_{ij}$ is the unit vector pointing from $j$ to $i$.&lt;/p>
-$$s_i=\min_{j\in J_i}s_{ij}.$$$$V(s)=\min\big\{v_0,\max\{0,(s-l)/T\}\big\},$$&lt;p>satisfies&lt;/p>
+$$J_i=\big\{j,\;\mathbf e_i\cdot \mathbf e_{ij}\le 0\;\text{and}\;|\mathbf e_i^\perp\cdot\mathbf e_{ij}|\le l/s_{ij}\big\}.$$$$s_i=\min_{j\in J_i}s_{ij}.$$$$V(s)=\min\big\{v_0,\max\{0,(s-l)/T\}\big\},$$&lt;p>satisfies&lt;/p>
 $$\begin{align*}V(s)&amp;\gt0\quad\forall s\gt l\\\\ V(s)&amp;=0\quad\forall s\le\ell\end{align*}$$&lt;figure>&lt;img src="https://pedestriandynamics.org/models/collision_free_speed_model/figure3.png"
 alt="OV speed function vs fundamental diagram">&lt;figcaption>
 &lt;p>OV speed function vs fundamental diagram&lt;/p>
