@@ -137,7 +137,7 @@ An experiment observes real people, but in one particular situation. A bottlenec
 
 So each method is better at checking some parts of an explanation than others. Experiments are good at isolating a mechanism, observations at checking whether it transfers, and simulations at working out the consequences under conditions that we cannot test directly. They help each other because their weaknesses differ. Two sources with the same weakness can both add evidence, but neither can fix that weakness.
 
-In discussions we often hear criticism of models, experiments and field observations that stays general: "models are just models", "people don't behave like that", "experiments are not reality". Each of these points to a real problem, but none says which conclusion is affected. With the terms of this essay we can turn them into questions that can be checked:
+In discussions we often hear criticism of models, experiments and field observations that stays general: "models are just models", "people don't behave like that", "experiments are not reality". Each of these objections points to a real problem, but none says which conclusion it affects. With the terms of this essay we can turn them into questions that can be checked:
 
 | Objection | Question to ask |
 |---|---|
