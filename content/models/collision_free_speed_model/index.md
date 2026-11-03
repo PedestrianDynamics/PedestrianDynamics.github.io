@@ -65,13 +65,13 @@ Inspired from car-following models, the speed function only depends on the dista
 
 The set $J_i$ of pedestrians and obstacles in front is given by
 
-$$J_i=\big\\{j,\\;\mathbf e_i\cdot \mathbf e_{ij}\le 0\\;\text{and}\\;|\mathbf e_i^\perp\cdot\mathbf e_{ij}|\le l/s_{ij}\big\\}.$$
+$$J_i=\big\{j,\;\mathbf e_i\cdot \mathbf e_{ij}\le 0\;\text{and}\;|\mathbf e_i^\perp\cdot\mathbf e_{ij}|\le l/s_{ij}\big\}.$$
 
 The distance to the nearest pedestrian or obstacle in front is then the minimum
 $$s_i=\min_{j\in J_i}s_{ij}.$$
 
 In the following, the OV function is the piecewise linear
-$$V(s)=\min\big\\{v_0,\max\\{0,(s-l)/T\\}\big\\},$$
+$$V(s)=\min\big\{v_0,\max\{0,(s-l)/T\}\big\},$$
 
 satisfies
 
@@ -142,7 +142,7 @@ discretisation, however, can introduce collisions. When solving the ordinary
 differential equation with an Euler scheme, the time step must be small
 enough. The model is collision-free in discrete time if
 
-$$\delta t \le \min\left\\{\frac T2,\frac{l(\sqrt2-1)}{v_0\sqrt2}\right\\}$$
+$$\delta t \le \min\left\{\frac T2,\frac{l(\sqrt2-1)}{v_0\sqrt2}\right\}$$
 
 The condition for collision-free dynamics is determined solely by the
 parameters of the speed model. For example, if we use parameter values of $T=1$
