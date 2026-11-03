@@ -68,7 +68,7 @@ $$\phantom{.........}\fbox{\phantom{..................} pushing \phantom{.......
 
 * $o$ is a segment of the obstacle
 * $r_i$ is the radius agent $i$
-* $d_{io}$ is distance from closest point on the segement to $i$
+* $d_{io}$ is distance from closest point on the segment to $i$
 * $\overrightarrow{n_{io}} = (n\_{io}^1, n\_{io}^2) = (\overrightarrow{\mathrm{pos}\_i} - \overrightarrow{\mathrm{pos}\_o})/d\_{io}$ the direction from $\overrightarrow{\mathrm{pos}\_o}$ the closest point on the segment to $i$
 * $ \overrightarrow{t_{io}} = (- n\_{io}^2, n\_{io}^1)$ is the tangent of $\overrightarrow{n_{io}}$ which is perpendicular to it, rotated counterclockwise
 * $v\_i$ is the velocity of $i$

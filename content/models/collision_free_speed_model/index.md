@@ -146,7 +146,7 @@ $$\delta t \le \min\left\{\frac T2,\frac{l(\sqrt2-1)}{v_0\sqrt2}\right\}$$
 
 The condition for collision-free dynamics is determined solely by the
 parameters of the speed model. For example, if we use parameter values of $T=1$
-s, $v_0=1.2$ m/s and $l$, with a smallness condition on the time step
+s, $v_0=1.2$ m/s and $l=0.3$ m, with a smallness condition on the time step
 approximate to $\delta t \le0.072$ s for explicit Euler schemes and circular
 pedestrian shape.
 

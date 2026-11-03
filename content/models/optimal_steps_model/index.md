@@ -33,25 +33,15 @@ If we consider the floor field to be static, the value of the potential function
 
 The obstacle potential $P_{o,j}(x)$ is defined as 
 
-<!-- $$ -->
-<!-- \begin{eqnarray} -->
-<!-- P_{o,j}(x) = \left\{ -->
-<!-- \begin{array}{ll} -->
-<!-- \delta_1(x) + \delta_2(x) & d_{o,j}(x) < r_l \\\ -->
-<!-- \delta_1(x)  & r_l \leq d_{o,j}(x) < w_o \\\ -->
-<!-- 0 & \, \textrm{otherwise,} \\\ -->
-<!-- \end{array} -->
-<!-- \right. -->
-<!-- \end{eqnarray} -->
-<!-- $$ -->
-
 $$
 P_{o,j}(x) =
+\left\{
 \begin{array}{ll}
 \delta_1(x) + \delta_2(x) & d_{o,j}(x) < r_l \\\
 \delta_1(x)  & r_l \leq d_{o,j}(x) < w_o \\\
 0 &  \textrm{otherwise,} \\\
 \end{array}
+\right.
 $$
 where $d_{o,j}(x)$ is the Euclidean distance to the closest point of the obstacle from position $x$, $w_o$ defines the width of the obstacle repulsion, $r_l$ is the torso radius of agent $l$. The functions $\delta_i$ are defined as
 $$
@@ -64,24 +54,28 @@ The repulsion between two agents is achieved by the distance-dependent potential
 
 $$
 P_{p,i}(x) = 
+\left\{
 \begin{array}{ll}
 \phi_1(d_{l,i}(x)) + \phi_2(d_{l,i}(x)) + \phi_3(d_{l,i}(x)) & d_{l,i}(x) <r_i + r_l, \\\
 \phi_1(d_{l,i}(x)) + \phi_2(d_{l,i}(x)) & r_i + r_l \leq d_{l,i}(x) < w_{int}  +r_i+r_l, \\\
 \phi_1(d_{l,i}(x))  & w_{int} + r_i + r_l \leq  d_{l,i}(x) < w+r_i+r_l\\\
 0, & \textrm{otherwise,} \\\
 \end{array}
+\right.
 $$
 
 where $d_{l,i}(x)$ is the Euclidean distance between agent $l$  and agent $i$. $r_i, r_l$ are the respective torso radii of agent $i,l$. $w_{int}$ and  $w$ are the intimate and the personal space width according to Hall. The functions $\phi_i$ are defined as
 $$
 \begin{align}
-\phi_1({d_{i,j}}) &= \mu \exp{\left[ 4 \left( \left(  \frac{d_{i,j}} {w +r_i +r_l} \right)^{2} - 1\right)^{-1} \right]} \\\
-\phi_2({d_{i,j}}) &= \frac{ \mu } {a_p} \exp{\left[ 4 \left( \left(  \frac{d_{i,j}} {w_{int} +r_i +r_l} \right)^{2} - 1\right)^{-1} \right]} \\\
+\phi_1({d_{i,j}}) &= h \exp{\left[ 4 \left( \left(  \frac{d_{i,j}} {w +r_i +r_l} \right)^{2} - 1\right)^{-1} \right]} \\\
+\phi_2({d_{i,j}}) &= \frac{ h } {a_p} \exp{\left[ 4 \left( \left(  \frac{d_{i,j}} {w_{int} +r_i +r_l} \right)^{2} - 1\right)^{-1} \right]} \\\
 \phi_3({d_{i,j}}) &= 10^3 \exp{\left[ \left( \left(  \frac{d_{i,j}} {r_i +r_l} \right)^{2} - 1\right)^{-1} \right]}
 \end{align}
 $$
 
-The potential function is based on Hall's theory of interpersonal distances which describes four distance zones around a person [[4]](#Hall1966). Accordingly, the potential function is defined piece-wise on rings around each agent: a circular core for collision avoidance, a first ring that represents the intimate space, and a second ring that represents personal space. Agents outside the personal zone do not affect other agents' path choice. This is mathematically modeled by setting the  the potential function to zero.
+with the potential height $h$ and the intimate space factor $a_p$.
+
+The potential function is based on Hall's theory of interpersonal distances which describes four distance zones around a person [[4]](#Hall1966). Accordingly, the potential function is defined piece-wise on rings around each agent: a circular core for collision avoidance, a first ring that represents the intimate space, and a second ring that represents personal space. Agents outside the personal zone do not affect other agents' path choice. This is mathematically modeled by setting the potential function to zero.
 
 
 {{< figure src="figure3.png" caption="Agent's potential versus distance for different parameter values. [[5]](#Mayr2021)" >}}
@@ -117,7 +111,7 @@ Vadere is implemented in Java programming language. Thus, it is available for GN
 ### Challenges and limitations
 Using the OSM involves solving many optimization problems. For each step of each agent, a non-trivial optimization problem has to be solved. This optimization is computationally expensive and requires most of the overall computation time. Introducing more complex potential functions complicates the evaluation of the potential function which contributes directly to the computation time of the optimization. Evaluating the potential function at specific points only instead of using an optimization technique such as Nelder Mead can accelerate the simulation. Note that when you cut down the number of evaluation points to 8, this will mimic a cellular automaton.
 
-{{< figure src="figure6.png" caption="Grid discrimination." >}}
+{{< figure src="figure6.png" caption="Grid discretization." >}}
 
 
 
@@ -131,7 +125,7 @@ The shape of the potential function is controlled through several parameters. Th
 
 The parameter potential height $h$ controls the strength of repulsion. If $h$ is increased, we expect agents to increase their distance to others. 
 
-The parameter personal space width $w$ controls how far the repulsion reaches: the larger $w$ the bigger the influence area of an agent. By adusting the personal space width $w$  [[5]](#Mayr2021) social distancing can be achieved. Nevertheless, the personal space is related to but not equal to a desired social distance $d$ the user wants to model. When there is ample space, it might suffice to set $w = d$ to keep agents at least the desired social distance apart. Since the true distance between agents is an emergent value, the distance is larger [[5]](#Mayr2021). 
+The parameter personal space width $w$ controls how far the repulsion reaches: the larger $w$ the bigger the influence area of an agent. By adjusting the personal space width $w$  [[5]](#Mayr2021) social distancing can be achieved. Nevertheless, the personal space is related to but not equal to a desired social distance $d$ the user wants to model. When there is ample space, it might suffice to set $w = d$ to keep agents at least the desired social distance apart. Since the true distance between agents is an emergent value, the distance is larger [[5]](#Mayr2021). 
 
 
 
@@ -150,7 +144,5 @@ The parameter personal space width $w$ controls how far the repulsion reaches: t
 - <a name="Mayr2021"></a>[5] Christina M. Mayr and Gerta Köster. Social distancing with the Optimal Steps Model. Collective Dynamics, 2021.
   <br/>https://doi.org/10.17815/CD.2021.116
 
-- <a name="Xu2021"></a>[5] Xu, Q., Chraibi, M., Seyfried, A. (2021).
-  Anticipation in a velocity-based model for pedestrian dynamics.
-  Transportation Research Part C: Emerging Technologies, Volume 133.
+
 

@@ -45,7 +45,7 @@ $${s}^{\text{a}}_{i,j}(t+t^{\text{a}}) =\max\Big\{2r, \Big(\vec{x}^\text{a}_j  (
  
 where $\vec{x}^\text{a}_i(t+t^\text{a})=\vec{x}_i(t)+\vec{v}_i(t)\cdot t^\text{a}$.
 
-{{< figure src="figure2.png" caption="The agents who are located in the gray area have an impact" >}}
+{{< figure src="figure2.png" caption="The predicted distance between agents i and j" >}}
 
 
 c. Selection of a strategy leading to an action: 
@@ -73,11 +73,11 @@ where
 
 $\vec{e}^{~\text{a}}(t+t^\text{a})= \vec{x}^\text{a}_j(t+t^\text{a})- \vec{x}_i(t)$. 
 
-The direction of $\vec{n}_{i,j}$ depends on the predicted position of agent $j$ after as period of time  $t^\text{a}$.
+The direction of $\vec{n}_{i,j}$ depends on the predicted position of agent $j$ after a period of time  $t^\text{a}$.
 
 Note that when this predicted position is aligned with the desired direction of $i$, the direction of $\vec{n}_{i,j}(t)$ is chosen randomly as $\vec{e}_i^{~0\bot}$ or $-\vec{e}_i^{~0\bot}$. This rule prevents agents from moving in the opposite direction to the desired direction.
 
-{{< figure src="figure3.png" caption="The agents who are located in the gray area have an impact" >}}
+{{< figure src="figure3.png" caption="The direction of the impact of agent j on agent i" >}}
 
 Finally, the optimal direction of agent $i$,  $\vec{e_i}^{~\text{d}}(t)$ is obtained as
 

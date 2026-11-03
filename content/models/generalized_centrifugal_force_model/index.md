@@ -80,7 +80,7 @@ individuals at a distance from each other:
 
 $${\overrightarrow{F_{i,j}}}_{\text {rep }}=-m_i k_{i j} \frac{\left(\eta\left\|\overrightarrow{v_i^0}\right\|+v_{i j}\right)^2}{d_{i j}} \overrightarrow{e_{i j}},$$
 
-with the relative speed
+where $d_{ij}$ is the distance between the borders of the two ellipses along the line connecting their centres and $\overrightarrow{e_{ij}}$ is the unit vector pointing from $i$ to $j$, with the relative speed
 
 $$v_{i j}=\frac{1}{2}\left[\left(\overrightarrow{v_i}-\overrightarrow{v_j}\right) \cdot \overrightarrow{e_{i j}}+\left|\left(\overrightarrow{v_i}-\overrightarrow{v_j}\right) \cdot \overrightarrow{e_{i j}}\right|\right],$$
 
@@ -100,7 +100,7 @@ repulsion when the trajectory is nearly aligned with the wall.
 For this reason, we characterize in this model walls by three-point masses
 acting on pedestrians within a certain interaction range.
 
-{{< figure src="figure2.png" caption="Each wall is modeled as three static point masses acting on pedestrians." >}}
+{{< figure src="figure3.png" caption="Each wall is modeled as three static point masses acting on pedestrians." >}}
 
 ## Limitations of the GCFM
 
@@ -111,7 +111,7 @@ It is possible to reduce the amount of overlapping among agents, by increasing
 the strength of the repulsive forces. However, this leads inevitably to an
 increase of oscillations in the movements of agents, which in turn can only be
 mitigated by decreasing the strength of the repulsive forces.  See
-[[2]](#Chraibi203) for a more in-depth analysis of this issue.
+[[2]](#Chraibi2013) for a more in-depth analysis of this issue.
 
 ## Challenges in Implementing GCFM
 
