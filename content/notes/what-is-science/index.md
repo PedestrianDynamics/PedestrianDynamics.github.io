@@ -171,17 +171,19 @@ For practical projects the question becomes: what evidence is enough for this mo
 
 ## When can we trust a crowd simulation?
 
-A good explanation names a mechanism that turns explicit assumptions into specific consequences. It cannot be adjusted to fit any outcome, so a test can show it wrong. In the road network this is easy to check, because every assumption is visible. A crowd simulation makes the same kind of claim with many more assumptions, and the evidence for it comes in parts.
+Let's go back to the road network. There, a good explanation was easy to recognise: it names a mechanism that turns explicit assumptions into specific consequences, and it cannot be adjusted to fit any outcome, so a test can show it wrong. With four nodes, every assumption is visible. A crowd simulation makes the same kind of claim, but with many more assumptions, and the evidence for it comes in parts.
 
-Our calibrated model reproduced a bottleneck experiment mostly within ten percent, including two widths left out of the fit. That supports predictions of flow, density and speed under the tested conditions. Using it elsewhere needs an argument about which changes matter: two parameter sets that fit equally well behaved differently at a half-metre gate, and every set let people through an unguided entrance at more than twice the measured rate. The RiMEA tests give evidence about the quantities and behaviours they examine, under their test conditions and often without pass limits; they do not establish that a model suits a particular building or population. Trusting a simulation for a decision means stating the claim it is used for and checking that the evidence covers that claim.
+Our own calibrated model is a good example. It reproduced a bottleneck experiment mostly within ten percent, even at two widths we had left out of the fit. That supports its predictions of flow, density and speed under the tested conditions, and not much more. Two parameter sets that fit equally well behaved differently at a half-metre gate, and every set let people through an unguided entrance at more than twice the measured rate. The RiMEA tests are similar. They give evidence about the quantities and behaviours they examine, under their test conditions and often without pass limits. They do not tell us whether a model suits a particular building or population.
 
-The same questions apply to any scientific explanation or model-based claim, in a newspaper, a report or one's own thesis:
+So when can we trust a crowd simulation? When we state clearly what claim it is used for, and the evidence covers that claim.
+
+The same questions apply to any scientific explanation or model-based claim, whether in a newspaper, a report or one's own thesis:
 
 1. What exactly is explained, and what is the mechanism?
 2. Could the explanation be changed at will and still "explain" the same thing?
 3. Which observation would refute it?
-4. What evidence separates the explanation from plausible alternatives: a controlled comparison, independent observations that test predictions the alternatives get wrong, or only a sequence in time?
-5. Was a model checked against reality, and for which purpose is it valid?
+4. What evidence separates it from plausible alternatives: a controlled comparison, independent observations that the alternatives get wrong, or only one event following another?
+5. Was the model checked against reality, and for which purpose is it valid?
 
 
 ## Further reading
