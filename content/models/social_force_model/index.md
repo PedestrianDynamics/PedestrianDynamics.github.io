@@ -31,9 +31,9 @@ The driving force of the agent results from the difference between the desired v
 ## Repulsive force
 Agents exert a repulsive force on each other that grows exponentially as they get closer. When agents collide, the pushing force increases further and a frictional force arises in addition. The frictional force acts perpendicularly to the repulsive force, in the direction of the velocity difference
 
-$$ \overrightarrow{F\_i^{\mathrm{rep}}} = \sum_{j} \overrightarrow{f_{ij}}\text{.}$$
+$$ \overrightarrow{F_i^{\mathrm{rep}}} = \sum_{j} \overrightarrow{f_{ij}}\text{.}$$
 
-$$\overrightarrow{f_{ij}} = [A_i \exp[(r_{ij} - d_{ij})/B_i] + kg(r_{ij} - d_{ij})] \overrightarrow{n_{ij}} + \kappa g(r_{ij} - d_{ij}) \Delta v\_{ji}^t \overrightarrow{t_{ij}} \text{.}$$
+$$\overrightarrow{f_{ij}} = [A_i \exp[(r_{ij} - d_{ij})/B_i] + kg(r_{ij} - d_{ij})] \overrightarrow{n_{ij}} + \kappa g(r_{ij} - d_{ij}) \Delta v_{ji}^t \overrightarrow{t_{ij}} \text{.}$$
 
 $$\phantom{......}\fbox{\phantom{.................} pushing \phantom{.................}} \fbox{\phantom{......} sliding \phantom{......}}$$
 
@@ -60,9 +60,9 @@ Obstacles exert a force on the agent similar to a static agent.
 Each line segment of an obstacle exerts force on the agent.
 The repulsive force increases exponentially with decreasing distance. When the agent collides with the segment, the repulsive force increases further. When colliding, a frictional force also occurs, which acts orthogonally to the repulsive force in the direction to the velocity of the agent
 
-$$ \overrightarrow{F\_i^{\mathrm{obst}}} = \sum_{o} \overrightarrow{f_{io}\text{.}}$$
+$$ \overrightarrow{F_i^{\mathrm{obst}}} = \sum_{o} \overrightarrow{f_{io}\text{.}}$$
 
-$$\overrightarrow{f_{io}} = [A_i \exp[(r_{i} - d_{io})/B_i] + kg(r_{i} - d_{io})] \overrightarrow{n_{io}} + \kappa g(r_{i} - d_{io}) (\overrightarrow{v\_{i}}\cdot\overrightarrow{t_{io}}) \overrightarrow{t_{io}} \text{.}$$
+$$\overrightarrow{f_{io}} = [A_i \exp[(r_{i} - d_{io})/B_i] + kg(r_{i} - d_{io})] \overrightarrow{n_{io}} + \kappa g(r_{i} - d_{io}) (\overrightarrow{v_{i}}\cdot\overrightarrow{t_{io}}) \overrightarrow{t_{io}} \text{.}$$
 
 $$\phantom{.........}\fbox{\phantom{..................} pushing \phantom{.................}} \fbox{\phantom{..........} sliding \phantom{..........}}$$
 
@@ -91,9 +91,9 @@ When the minimum distance between an agent and a wall segment falls below the ag
 ## Calculating new velocity and new position from forces
 With the definition of the forces affecting an individual, it is possible to calculate its new speed 
 
-$$ \overrightarrow{v\_{\mathrm{new}}} = \overrightarrow{v\_i} + [\overrightarrow{F\_i^{\mathrm{drv}}} + \frac{\overrightarrow{F\_i^{\mathrm{rep}}} + \overrightarrow{F\_i^{\mathrm{obst}}}}{m\_i}] \cdot \delta T$$
+$$ \overrightarrow{v_{\mathrm{new}}} = \overrightarrow{v_i} + [\overrightarrow{F_i^{\mathrm{drv}}} + \frac{\overrightarrow{F_i^{\mathrm{rep}}} + \overrightarrow{F_i^{\mathrm{obst}}}}{m_i}] \cdot \delta T$$
 and position
-$$ \overrightarrow{\mathrm{pos}\_{\mathrm{new}}} = \overrightarrow{\mathrm{pos}\_i} +  \overrightarrow{v\_{\mathrm{new}}} \cdot \delta T \text{.}$$
+$$ \overrightarrow{\mathrm{pos}_{\mathrm{new}}} = \overrightarrow{\mathrm{pos}_i} +  \overrightarrow{v_{\mathrm{new}}} \cdot \delta T \text{.}$$
 
 Here $m\_i$ denotes the mass of $i$ and $\delta T$ the length of one simulation iteration.
 

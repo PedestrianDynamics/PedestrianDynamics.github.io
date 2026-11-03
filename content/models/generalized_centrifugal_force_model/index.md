@@ -63,7 +63,7 @@ causing them to deviate from a straight path. Drawing parallels to Newtonian
 mechanics, such deviations or accelerations are attributed to a force. Hence,
 the equation of motion can be written as:
 
-$$\vec{\ddot x}\_i=\overrightarrow{F\_i^{\mathrm{drv}}}+\sum\_{j \in \mathcal{N}\_{i}} \overrightarrow{F\_{i j}^{\mathrm{rep}}}+\sum\_{w \in \mathcal{W}\_{i}} \overrightarrow{F\_{i w}^{\mathrm{rep}}}.$$
+$$\vec{\ddot x}_i=\overrightarrow{F_i^{\mathrm{drv}}}+\sum_{j \in \mathcal{N}_{i}} \overrightarrow{F_{i j}^{\mathrm{rep}}}+\sum_{w \in \mathcal{W}_{i}} \overrightarrow{F_{i w}^{\mathrm{rep}}}.$$
 
 
 #### Driving force
@@ -78,7 +78,7 @@ $$\vec{F}_i^{\mathrm{drv}}=m_i \frac{\overrightarrow{v_i^0}-\overrightarrow{v_i}
 The repulsive force between pedestrians prevents collisions and keeps
 individuals at a distance from each other:
 
-$${\overrightarrow{F\_{i,j}}}\_{\text {rep }}=-m_i k\_{i j} \frac{\left(\eta\left\|\overrightarrow{v\_i^0}\right\|+v\_{i j}\right)^2}{d\_{i j}} \overrightarrow{e\_{i j}},$$
+$${\overrightarrow{F_{i,j}}}_{\text {rep }}=-m_i k_{i j} \frac{\left(\eta\left\|\overrightarrow{v_i^0}\right\|+v_{i j}\right)^2}{d_{i j}} \overrightarrow{e_{i j}},$$
 
 with the relative speed
 
