@@ -167,9 +167,7 @@ For pedestrian simulations the German guideline RiMEA (Richtlinie für Mikroskop
 
 ## 9. Using an explanation to make a decision
 
-For practical projects the question becomes: what evidence is enough for this model to support this decision? A claim that a layout is safer needs a safety criterion, for example that everyone is out before conditions become untenable (ASET > RSET); a layout can be faster on average and worse for the last people out. Sometimes the answer is that the evidence does not support the proposed safety claim.
-
-Suppose a well-tested model predicts that a second exit reduces the mean evacuation time of a hall. The prediction alone does not decide whether to build it. The exit may help most people and do little for the last ones out, and space, costs and everyday use count as well. Weighing them requires stating what we want to achieve. Science can say what is likely to happen under each option; which outcome to prefer is a decision about goals. Values also enter the science itself, for example when deciding how much evidence is enough to accept a claim, given the consequences of being wrong (Douglas 2009, ch. 5).
+For practical projects the question becomes: what evidence is enough for this model to support this decision? A claim that a layout is safer needs a safety criterion, for example that everyone is out before conditions become untenable (ASET > RSET), and sometimes the evidence does not support the claim at all. Suppose a well-tested model predicts that a second exit reduces the mean evacuation time of a hall. That alone does not decide whether to build it. The mean can drop while the last person still gets out no sooner, for example if the new exit only serves people who were already close to a door. For safety, the last person out is what counts. Besides safety, the exit takes space, costs money and changes how the hall is used every day. Which of these matter most depends on what we want to achieve.
 
 ## When can we trust a crowd simulation?
 
@@ -206,7 +204,6 @@ The same questions apply to any scientific explanation or model-based claim, in 
 - Braess, D., Nagurney, A., Wakolbinger, T. (2005): On a Paradox of Traffic Planning. *Transportation Science* 39(4), 446–450.
 - Chung, J.-H., Hwang, K. Y., Bae, Y. K. (2012): The loss of road capacity and self-compliance: Lessons from the Cheonggyecheon stream restoration. *Transport Policy* 21, 165–178.
 - Deutsch, D. (2011): *The Beginning of Infinity: Explanations That Transform the World*. London: Allen Lane.
-- Douglas, H. E. (2009): *Science, Policy, and the Value-Free Ideal*. Pittsburgh: University of Pittsburgh Press.
 - Duhem, P. (1954): *The Aim and Structure of Physical Theory*. Translated by P. P. Wiener. Princeton: Princeton University Press.
 - Goodhart, C. A. E. (1984): Problems of monetary management: the U.K. experience. In: *Monetary Theory and Practice: The UK Experience*. London: Macmillan, 91–121. doi:10.1007/978-1-349-17295-5_4.
 - Haghani, M. (2023): The notion of validity in experimental crowd dynamics. *International Journal of Disaster Risk Reduction* 93, 103750.
