@@ -192,7 +192,6 @@ The same questions apply to any scientific explanation or model-based claim, in 
 ## Further material
 
 - [Slides of the lecture](/teaching/scientific-working-2026/) ([PDF](/teaching/scientific-working-2026/What_is_science_slides.pdf))
-- [Companion text of the lecture](/teaching/scientific-working-2026/What_is_science_companion.pdf) (PDF)
 
 ## References
 
