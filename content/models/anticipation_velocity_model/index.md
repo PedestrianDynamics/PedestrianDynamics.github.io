@@ -40,7 +40,7 @@ b. Prediction of a future situation:
 To consider the prediction, it is assumed that the strength of $j$'s impact on $i$ is a function of the predicted distance between these two agents at a particular time point. Given a time constant $t^\text{a}$, which can be interpreted as the prediction time, the predicted distance is defined as 
 
 
-$${s}^{\text{a}}_{i,j}(t+t^{\text{a}}) =\max\Big\\{2r, \Big(\vec{x}^\text{a}_j  (t+t^\text{a})-\vec{x}^\text{a}_i(t+t^\text{a})\Big)\vec{e}\_{ij\}(t)\Big\\},$$
+$$s^{\text{a}}_{i,j}(t+t^{\text{a}}) = \max\bigg\{2r,\ \big(\vec{x}^{\text{a}}_j(t+t^{\text{a}})-\vec{x}^{\text{a}}_i(t+t^{\text{a}})\big)\,\vec{e}_{ij}(t)\bigg\},$$
  
  
 where $\vec{x}^\text{a}_i(t+t^\text{a})=\vec{x}_i(t)+\vec{v}_i(t)\cdot t^\text{a}$.
@@ -51,8 +51,7 @@ where $\vec{x}^\text{a}_i(t+t^\text{a})=\vec{x}_i(t)+\vec{v}_i(t)\cdot t^\text{a
 c. Selection of a strategy leading to an action: 
 After the introduction of the predicted distance, the strength of the impact from agent $j$ on the direction of movement of agent $i$ is defined as
 
-$$ R_{i,j}(t)= \alpha_{i,j}(t) \cdot \exp 
-    \bigg( \frac{2 r-s^\text{a}_{i,j}(t+t^\text{a})}{D} \bigg),$$
+$$R_{i,j}(t) = \alpha_{i,j}(t) \cdot \exp\bigg( \frac{2r - s^{\text{a}}_{i,j}(t+t^{\text{a}})}{D} \bigg),$$
 
 where $D>0$ is a constant parameter used to calibrate the range of the impact from neighbors and $\alpha_{i,j}$ is a directional dependency used to vary the strength of impact from different neighbors.
 
