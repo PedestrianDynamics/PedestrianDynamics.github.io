@@ -1,5 +1,5 @@
 ---
-title: Why do roaming crowds drift counterclockwise — and where?
+title: Why do roaming crowds drift counterclockwise, and where?
 date: 2026-06-29
 summary: A Nature Communications paper reports that freely roaming crowds drift counterclockwise. We rebuilt the experiment in simulation to test whether a slight individual left-turn bias explains it.
 math: true
@@ -13,7 +13,7 @@ thumbnail: fig1.mp4
 
 {{< figure src="fig0.png" >}}
 
-Recently a [paper in Nature Communications](https://www.nature.com/articles/s41467-026-73713-w) (Echeverría-Huart et al.) reports something simple and odd. If you put people in a circular arena and let them walk around freely, the crowd slowly drifts counterclockwise. The authors saw it in experiments in Spain and Japan, so it is not a fluke of one room or one group. Their explanation is that the drift does not come from people avoiding each other. It comes from each person, on their own, having a slight tendency to turn left. (The paper even made it into The New York Times.)
+Recently a [paper in Nature Communications](https://www.nature.com/articles/s41467-026-73713-w) (Echeverría-Huarte et al.) reports something simple and odd. If you put people in a circular arena and let them walk around freely, the crowd slowly drifts counterclockwise. The authors saw it in experiments in Spain and Japan, so it is not a fluke of one room or one group. Their explanation is that the drift does not come from people avoiding each other. It comes from each person, on their own, having a slight tendency to turn left. (The paper even made it into The New York Times.)
 
 This sounds intriguing, so we explored it a bit further.
 
@@ -96,20 +96,20 @@ Neither matches the experiment, and they fail in different ways. The wall-turn m
     caption="The same three as spatial maps (blue counterclockwise, red clockwise). The experiment is mostly blue across the disk; the wall-turn model is a blue ring; the intrinsic veer is a red band."
 >}}
 
-We read this as support for the paper. It seems that matching one number with a single knob is easy. The spatial pattern of the real rotation does not fall out of either simple rule, so more work needs to be done on the model.
+This supports the paper's main point, that the rotation needs an individual bias, but neither of our simple versions of that bias is good enough. Matching one number with a single knob is easy. The spatial pattern of the real rotation does not fall out of either simple rule, so the model needs more work.
 
 ## What we learned, and what's open
 
 We set out to test the mechanism behind a real effect, and we learned a few concrete things. Symmetric collision avoidance produces no preferred rotation. A turn-left-at-wall rule recovers counterclockwise motion at roughly the reported strength. And looking at where the rotation lives shows that matching the average is the easy part, while matching the spatial structure is far from being a trivial task.
 
-There is more to do. The experiment also reports counterclockwise motion with no walls at all, and for people walking alone, which neither of our simple models covers. Reproducing the full spatial field will need a richer individual model than one knob. That leaves the real open question: with no wall to turn at and no crowd to follow, what makes a single person drift counterclockwise? The authors checked the obvious candidates — handedness, footedness, eye dominance — and ruled them all out, calling the cause an individual bias that is "most likely biologically rooted" and leaving the origin open. So this is a known open problem, worth further research.
+There is more to do. The experiment also reports counterclockwise motion with no walls at all, and for people walking alone, which neither of our simple models covers. Reproducing the full spatial field will need a richer individual model than one knob. That leaves the real open question: with no wall to turn at and no crowd to follow, what makes a single person drift counterclockwise? The authors checked the obvious candidates (handedness, footedness, eye dominance) and ruled them all out, calling the cause an individual bias that is "most likely biologically rooted" and leaving the origin open. So this is a known open problem, worth further research.
 
-A last thought about the tool. None of this is a simulator telling us the right answer, or even ruling out the wrong ones. It does not work that way, and no simulator does. But what it gave us was a cheap way to ask: what if avoidance is symmetric, what if a third of people turn left, what if the bias is at the wall instead of everywhere. Each one is a few lines in the `roam()` rule, run, and looked at. We did not find the mechanism here, but we did sharpen the question and make a couple of stories look more or less likely — and that is most of what a simulation is good for.
+A last thought about the tool. None of this is a simulator telling us the right answer, or even ruling out the wrong ones. It does not work that way, and no simulator does. But what it gave us was a cheap way to ask: what if avoidance is symmetric, what if a third of people turn left, what if the bias is at the wall instead of everywhere. Each one is a few lines in the `roam()` rule, run, and looked at. We did not find the mechanism here, but we did sharpen the question and make a couple of stories look more or less likely. That is most of what a simulation is good for.
 
 ## Code and credits
 
 Code, full-quality videos, and data: [github.com/PedestrianDynamics/clockwise](https://github.com/PedestrianDynamics/clockwise)
 
-Credit for the phenomenon and the experiments goes to Iñaki Echeverría Huarte, Claudio Feliciani, Iker Zuriguel Ballaz and colleagues. There was a charming talk at TGF26 by Iker Zuriguel Ballaz — here is the [abstract](https://bpb-eu-w2.wpmucdn.com/blogs.bristol.ac.uk/dist/1/1202/files/2026/05/TGF26_abstract_11.pdf).
+Credit for the phenomenon and the experiments goes to Iñaki Echeverría Huarte, Claudio Feliciani, Iker Zuriguel Ballaz and colleagues. There was a charming talk at TGF26 by Iker Zuriguel Ballaz; here is the [abstract](https://bpb-eu-w2.wpmucdn.com/blogs.bristol.ac.uk/dist/1/1202/files/2026/05/TGF26_abstract_11.pdf).
 
 {{< icon "pencil-alt" >}} By: [Mohcine Chraibi]({{< relref "/authors#MohcineChraibi" >}})

@@ -11,7 +11,7 @@ thumbnail: fig1.mp4
 **Abstract.** We rebuilt the classic airplane boarding studies in JuPedSim: a 180-seat single-aisle cabin, six boarding strategies, twenty runs each. With uniform, compliant passengers the ranking from the literature holds. Steffen's interleaved method is fastest, back-to-front is barely better than random, and front-to-back is worst. Lowering the share of passengers who board in their assigned slot, as in Dong et al. (2025), moves the optimized methods toward random boarding, in agreement with their cellular automaton on a different aircraft. Mixed passenger profiles and travel groups boarding together make Steffen's exact order the most fragile method, while a coarser Steffen-style variant stays robust and overtakes it. The benefit of an optimized order depends on passengers following it.
 {{< /callout >}}
 
-In 2008, astrophysicist Jason Steffen worked out the mathematically optimal way to board an airplane. It boards passengers in a precise interleaved order — window seats first, every other row — so that many people stow their luggage at the same time and nobody ever has to climb over a seated neighbor. In ideal conditions it's dramatically faster than how airlines actually do it. A counter-intuitive part of the result is that boarding back-to-front, which many airlines use, is no better than boarding everyone at random, and front-to-back is worse than random.
+In 2008, astrophysicist Jason Steffen worked out the mathematically optimal way to board an airplane. It boards passengers in a precise interleaved order, window seats first and every other row, so that many people stow their luggage at the same time and nobody ever has to climb over a seated neighbor. In ideal conditions it's much faster than how airlines actually do it. A counter-intuitive part of the result is that boarding back-to-front, which many airlines use, is no better than boarding everyone at random, and front-to-back is worse than random.
 
 No airline uses Steffen's method. We rebuilt the classic studies in simulation to look at why.
 
@@ -37,7 +37,7 @@ This reproduces established results. The next question is the one that matters i
 
 Steffen's method assumes 180 strangers will form one perfect single-file queue and board in a strict choreographed order. Real passengers don't. Families board together. People show up late. Not everyone follows the plan.
 
-A very recent paper — Dong, Yanagisawa & Nishinari (2025), Physica A, on boarding the future blended-wing-body aircraft — quantified one of these effects: a compliance rate, the share of passengers who board in their assigned slot. We reproduced their compliance sweep on our single-aisle cabin.
+A very recent paper by Dong, Yanagisawa & Nishinari (2025) in Physica A, on boarding the future blended-wing-body aircraft, quantified one of these effects: a compliance rate, the share of passengers who board in their assigned slot. We reproduced their compliance sweep on our single-aisle cabin.
 
 {{< video
     src="fig3.mp4"
@@ -51,7 +51,7 @@ The result matches their paper: as compliance drops, the optimized methods lose 
     caption="Mean boarding time as compliance falls from 100% (left) to 0% (right), one line per method. As fewer passengers board in their assigned slot, the optimized methods move toward random boarding; Random stays roughly flat and Front-to-Back improves."
 >}}
 
-Two completely different models — their discrete cellular automaton on a wide multi-aisle aircraft, our continuous pedestrian simulation on a narrow-body — agree on the trend.
+Two very different models agree on the trend: their discrete cellular automaton on a wide multi-aisle aircraft and our continuous pedestrian simulation on a narrow-body.
 
 ## Step 3 — the optimum is the fragile one
 
