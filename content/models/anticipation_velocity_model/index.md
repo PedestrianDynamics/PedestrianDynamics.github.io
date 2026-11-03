@@ -29,7 +29,7 @@ Then the process of operational navigation to avoid collisions and obstructions 
 a. Perception of the actual situation: 
 To consider restrictions using visual perception, it is assumed that only agents located in the union of two half-planes, where $i$ is moving or intends to move, affect its direction. The set containing all agents who have an impact on $i$'s direction of movement is
 
-$$N_i(t)=\bigg\{j,~\vec{e}_i(t) \cdot \vec{e}_{i,j}(t)>0\ \text{ oder }\ \vec{e}_i^{\ 0}(t) \cdot \vec{e}_{i,j}(t)>0\bigg\},$$
+$$N_i(t)=\bigg\{j,~\vec{e}_i(t) \cdot \vec{e}_{i,j}(t)>0\ \text{ or }\ \vec{e}_i^{\ 0}(t) \cdot \vec{e}_{i,j}(t)>0\bigg\},$$
 
 where $\vec{e}_{i,j}$ denotes the unit vector from $i$ to $j$.
 
