@@ -127,16 +127,17 @@ A better statement would be, however, "our model estimates the flow through this
 
 ## 7. What each method can show
 
-Being able to run a simulation thousands of times does not make it more trustworthy than an experiment or a field observation for that matter, even if repeated runs of a stochastic model are useful. 
-They show when the mean evacuation time, its spread and the shape of the evacuation curve stop changing (Ronchi et al. 2014). If a model assumes that everyone knows all exits and takes the fastest route, a million runs with different random seeds will never produce a person who does not know the way. Models have to make such assumptions about behaviour, often without data to support them (Kuligowski 2013). Convergence, however, shows how precisely we know the model's answer; only data show whether that answer describes these people (section 5).
+So far we have drawn on four kinds of evidence: a model, laboratory experiments, reports from real cities and simulations. Each of them can show some things and not others.
+
+Let's start with simulations. Being able to run a simulation thousands of times does not make it more trustworthy than an experiment, or a field observation for that matter. Repeated runs of a stochastic model are still useful. They show when the mean evacuation time, its spread and the shape of the evacuation curve stop changing (Ronchi et al. 2014). However, they cannot show more than the model contains. If a model assumes that everyone knows all exits and takes the fastest route, a million runs with different random seeds will never produce a person who does not know the way. Models have to make such assumptions about behaviour, often without data to support them (Kuligowski 2013). Convergence tells us how precisely we know the model's answer. Only data tell us whether that answer describes these people (section 5).
 
 {{< figure src="convergence.png" caption="Illustration with synthetic data: the running mean of a stochastic model settles on the model's own value as the runs accumulate, while a measured drill value stays where it is. ([Script](convergence.py))" >}}
 
-An experiment observes real people, but in a particular situation. A bottleneck experiment with instructed participants supports conclusions about movement under those instructions, densities and geometries. Whether they hold for another population, a different motivation or an emergency is a separate question. Field observations have the opposite problem: they are closer to the target situation, but many factors vary at once, and being natural does not make them valid (Haghani 2023).
+An experiment observes real people, but in one particular situation. A bottleneck experiment with instructed participants supports conclusions about movement under those instructions, densities and geometries. Whether they hold for another population, a different motivation or an emergency is another matter. Field observations have the opposite problem. They are closer to the real situation, but many factors vary at once, and being natural does not make them valid (Haghani 2023).
 
-The methods overlap, but each is better at checking some parts of an explanation than others: experiments at isolating a mechanism, observations at checking whether it transfers, simulations at working out the consequences under conditions that cannot be tested directly. These methods help each other because their weaknesses differ; sources that share a weakness can still add evidence, but they cannot resolve that weakness.
+So each method is better at checking some parts of an explanation than others. Experiments are good at isolating a mechanism, observations at checking whether it transfers, and simulations at working out the consequences under conditions that we cannot test directly. They help each other because their weaknesses differ. Two sources with the same weakness can both add evidence, but neither can fix that weakness.
 
-Criticism of models, experiments and field observations is often general: "models are just models", "people don't behave like that", "experiments are not reality". Each points to a real problem, but none says which conclusion is affected. The terms of this essay turn them into questions that can be checked:
+In discussions we often hear criticism of models, experiments and field observations that stays general: "models are just models", "people don't behave like that", "experiments are not reality". Each of these points to a real problem, but none says which conclusion is affected. With the terms of this essay we can turn them into questions that can be checked:
 
 | Objection | Question to ask |
 |---|---|
@@ -146,7 +147,7 @@ Criticism of models, experiments and field observations is often general: "model
 | "Field observations are too messy." | What can be measured reliably, and which influences can be told apart? |
 | "We ran thousands of simulations." | Which uncertainty did the runs reduce, and which assumptions stayed untested? |
 
-A useful criticism names an omission and says why it matters. For example: "The model does not include groups who wait for each other. This matters here, because the predicted benefit of the second exit depends on people spreading out independently." Such a criticism can be checked, and it may be strong enough to rule out one particular use of the model.
+A useful criticism names what is missing and says why it matters. For example: "The model does not include groups who wait for each other. This matters here, because the predicted benefit of the second exit depends on people spreading out independently." Such a criticism can be checked, and it may be strong enough to rule out one particular use of the model.
 
 ## 8. What passing a standard establishes
 
