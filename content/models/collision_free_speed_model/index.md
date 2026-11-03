@@ -67,6 +67,8 @@ The set $J_i$ of pedestrians and obstacles in front is given by
 
 $$J_i=\big\{j,\;\mathbf e_i\cdot \mathbf e_{ij}\le 0\;\text{and}\;|\mathbf e_i^\perp\cdot\mathbf e_{ij}|\le l/s_{ij}\big\}.$$
 
+Here $s_{ij}$ is the distance between $i$ and $j$, and $\mathbf e_{ij}=(\mathbf x_i-\mathbf x_j)/s_{ij}$ is the unit vector pointing from $j$ to $i$.
+
 The distance to the nearest pedestrian or obstacle in front is then the minimum
 $$s_i=\min_{j\in J_i}s_{ij}.$$
 
