@@ -29,7 +29,7 @@ P_l(x) = P_t(x,s) + \sum_{j=1}^m P_{o,j}(x) + \sum_{i=1,i\neq l}^n P_{p,i}(x),
 $$
 
 where $P_t(x,s)$ is the attraction potential of the target, $s$ is the vector of the current agent positions, $P_{o,j}(x)$ is the repulsive potential induced by obstacle $j$, $m$ is the number of obstacles, $P_{p,i}$ is the repulsive potential of other agents, $n$ is the number of agents. The implementation of the attraction potential $P_t(x)$ is the so-called floor field. If the attraction potential does not depend on the agents' current positions, means $P_t(x,s)=P_t(x)$, the floor field is static. Otherwise, it is dynamic.
-If we consider the floor field to be static, the value of the potential function at position $x$ equals the negative geodesic distance between $x$ and the target.
+If we consider the floor field to be static, the value of the potential function at position $x$ equals the geodesic distance between $x$ and the target.
 
 The obstacle potential $P_{o,j}(x)$ is defined as 
 

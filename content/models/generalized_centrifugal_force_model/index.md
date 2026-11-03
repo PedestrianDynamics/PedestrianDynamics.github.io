@@ -63,7 +63,7 @@ causing them to deviate from a straight path. Drawing parallels to Newtonian
 mechanics, such deviations or accelerations are attributed to a force. Hence,
 the equation of motion can be written as:
 
-$$\vec{\ddot x}_i=\overrightarrow{F_i^{\mathrm{drv}}}+\sum_{j \in \mathcal{N}_{i}} \overrightarrow{F_{i j}^{\mathrm{rep}}}+\sum_{w \in \mathcal{W}_{i}} \overrightarrow{F_{i w}^{\mathrm{rep}}}.$$
+$$m_i\vec{\ddot x}_i=\overrightarrow{F_i^{\mathrm{drv}}}+\sum_{j \in \mathcal{N}_{i}} \overrightarrow{F_{i j}^{\mathrm{rep}}}+\sum_{w \in \mathcal{W}_{i}} \overrightarrow{F_{i w}^{\mathrm{rep}}}.$$
 
 
 #### Driving force

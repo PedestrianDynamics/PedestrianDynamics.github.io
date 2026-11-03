@@ -58,11 +58,11 @@ If the distance between two agents is smaller than their combined radius, the ag
 ## Obstacle force
 Obstacles exert a force on the agent similar to a static agent.
 Each line segment of an obstacle exerts force on the agent.
-The repulsive force increases exponentially with decreasing distance. When the agent collides with the segment, the repulsive force increases further. When colliding, a frictional force also occurs, which acts orthogonally to the repulsive force in the direction to the velocity of the agent
+The repulsive force increases exponentially with decreasing distance. When the agent collides with the segment, the repulsive force increases further. When colliding, a frictional force also occurs, which acts orthogonally to the repulsive force, against the velocity of the agent
 
 $$ \overrightarrow{F_i^{\mathrm{obst}}} = \sum_{o} \overrightarrow{f_{io}\text{.}}$$
 
-$$\overrightarrow{f_{io}} = [A_i \exp[(r_{i} - d_{io})/B_i] + kg(r_{i} - d_{io})] \overrightarrow{n_{io}} + \kappa g(r_{i} - d_{io}) (\overrightarrow{v_{i}}\cdot\overrightarrow{t_{io}}) \overrightarrow{t_{io}} \text{.}$$
+$$\overrightarrow{f_{io}} = [A_i \exp[(r_{i} - d_{io})/B_i] + kg(r_{i} - d_{io})] \overrightarrow{n_{io}} - \kappa g(r_{i} - d_{io}) (\overrightarrow{v_{i}}\cdot\overrightarrow{t_{io}}) \overrightarrow{t_{io}} \text{.}$$
 
 $$\phantom{.........}\fbox{\phantom{..................} pushing \phantom{.................}} \fbox{\phantom{..........} sliding \phantom{..........}}$$
 
@@ -86,7 +86,7 @@ The repulsive force originating from a segment of an obstacle acts from the poin
 
 {{< figure src="Sliding_Obstacle_Force.png" caption="Direction of the pushing and frictional forces acting on agents colliding with an obstacle segment."  width="800">}}
 
-When the minimum distance between an agent and a wall segment falls below the agent's radius, an additional frictional force comes into effect. This frictional force acts orthogonally to the repulsive force in the direction of the velocity of the agent.
+When the minimum distance between an agent and a wall segment falls below the agent's radius, an additional frictional force comes into effect. This frictional force acts orthogonally to the repulsive force, against the velocity of the agent.
 
 ## Calculating new velocity and new position from forces
 With the definition of the forces affecting an individual, it is possible to calculate its new speed 

@@ -66,7 +66,7 @@ Here, $\alpha_{i,j}$ means agents have a high tendency to follow the agents who 
 
 The direction of the impact from agent $j$ on $i$'s direction of the movement is defined as
 
-$$\vec{n}_{i,j}(t) =-\text{sgn} \bigg(\vec{e}^{~\text{a}}(t+t^\text{a})  \cdot \vec{e}_i^{~0\bot}(t) \bigg)$$
+$$\vec{n}_{i,j}(t) =-\text{sgn} \bigg(\vec{e}^{~\text{a}}(t+t^\text{a})  \cdot \vec{e}_i^{~0\bot}(t) \bigg)\,\vec{e}_i^{~0\bot}(t)$$
 
 
 where 
@@ -82,7 +82,7 @@ Note that when this predicted position is aligned with the desired direction of 
 Finally, the optimal direction of agent $i$,  $\vec{e_i}^{~\text{d}}(t)$ is obtained as
 
 
-$$u \bigg(\vec{e_i}^{~0}(t)+ \sum_{j\in N_i(t)} R_{j,i}(t)\cdot \vec{n}_{j,i}(t)\bigg),$$
+$$\vec{e_i}^{~\text{d}}(t)=u \bigg(\vec{e_i}^{~0}(t)+ \sum_{j\in N_i(t)} R_{i,j}(t)\cdot \vec{n}_{i,j}(t)\bigg),$$
 
 
 where $u$ is a normalization constant such that $\lVert\vec{e}_i^{~\text{d}}\rVert=1$. 
