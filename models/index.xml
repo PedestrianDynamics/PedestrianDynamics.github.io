@@ -23,7 +23,7 @@ alt="The agents who are located in the gray area have an impact">&lt;figcaption>
 &lt;/figure>
 &lt;p>b. Prediction of a future situation:
 To consider the prediction, it is assumed that the strength of $j$&amp;rsquo;s impact on $i$ is a function of the predicted distance between these two agents at a particular time point. Given a time constant $t^\text{a}$, which can be interpreted as the prediction time, the predicted distance is defined as&lt;/p>
-$${s}^{\text{a}}_{i,j}(t+t^{\text{a}}) =\max\Big\\{2r, \Big(\vec{x}^\text{a}_j (t+t^\text{a})-\vec{x}^\text{a}_i(t+t^\text{a})\Big)\vec{e}\_{ij\}(t)\Big\\},$$&lt;p>where $\vec{x}^\text{a}_i(t+t^\text{a})=\vec{x}_i(t)+\vec{v}_i(t)\cdot t^\text{a}$.&lt;/p>
+$${s}^{\text{a}}_{i,j}(t+t^{\text{a}}) =\max\Big\{2r, \Big(\vec{x}^\text{a}_j (t+t^\text{a})-\vec{x}^\text{a}_i(t+t^\text{a})\Big)\cdot\vec{e}_{ij}(t)\Big\},$$&lt;p>where $\vec{x}^\text{a}_i(t+t^\text{a})=\vec{x}_i(t)+\vec{v}_i(t)\cdot t^\text{a}$.&lt;/p>
 &lt;figure>&lt;img src="https://pedestriandynamics.org/models/anticipation_velocity_model/figure2.png"
 alt="The agents who are located in the gray area have an impact">&lt;figcaption>
 &lt;p>The agents who are located in the gray area have an impact&lt;/p>
@@ -33,7 +33,7 @@ alt="The agents who are located in the gray area have an impact">&lt;figcaption>
 After the introduction of the predicted distance, the strength of the impact from agent $j$ on the direction of movement of agent $i$ is defined as&lt;/p>
 $$ R_{i,j}(t)= \alpha_{i,j}(t) \cdot \exp
 \bigg( \frac{2 r-s^\text{a}_{i,j}(t+t^\text{a})}{D} \bigg),$$&lt;p>where $D&amp;gt;0$ is a constant parameter used to calibrate the range of the impact from neighbors and $\alpha_{i,j}$ is a directional dependency used to vary the strength of impact from different neighbors.&lt;/p>
-$$\alpha_{i,j}(t)=k \Big(1+ \frac{1- \vec{e}_i^{~0}(t) \cdot \vec{e}_j(t)}{2}\Big),\\; k>0 ,$$&lt;p>where $\alpha_{i,j}$ is minimal when both vectors
+$$\alpha_{i,j}(t)=k \Big(1+ \frac{1- \vec{e}_i^{~0}(t) \cdot \vec{e}_j(t)}{2}\Big),\; k>0 ,$$&lt;p>where $\alpha_{i,j}$ is minimal when both vectors
 $\vec{e}_i^{~0}$ and $\vec{e}_j$ are aligned and is maximum when they are anti-aligned, which
 means that agents influence each other&amp;rsquo;s direction strongly in bidirectional scenarios.&lt;/p>
 &lt;p>Here, $\alpha_{i,j}$ means agents have a high tendency to follow the agents who move in the same direction. When this strategy is used, the probability of further conflicts is reduced.&lt;/p>
@@ -53,14 +53,14 @@ Then, the direction of movement of agent $i$ is updated as&lt;/p>
 $$\frac{d\vec{e_i}(t)}{dt} = \frac{ \vec{e_i}^{~\text{d}}(t)-\vec{e}_{i}(t)}{\tau},$$&lt;p>where $\tau$ is a relaxation parameter adjusting the rate of the turning process from the current direction $\vec{e}_i$ to the optimal direction $\vec{e}_i^{~d}$.&lt;/p>
 &lt;h3>Speed function&lt;span class="hx-absolute -hx-mt-20" id="speed-function">&lt;/span>
 &lt;a href="#speed-function" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>After obtaining the new direction of the movement, the set of neighbors that are imminently colliding with $i$ is defined as&lt;/p>
-$$J_i= \Big( j,\\;\vec{e_i} \cdot \vec{e_{i,j}} \ge 0\ \text{and}\ \left| \vec{e_i}^{~\bot} \cdot \vec{e_{i,j}} \right| \leq \frac{2 r}{s_{i,j}} \Big) ,$$&lt;p>where $s_{i,j}$ is the current distance between $i$ and $j$. Therefore, the maximum distance that agent $i$ can move in the direction without overlapping other agents is&lt;/p>
+$$J_i= \Big\{ j,\;\vec{e_i} \cdot \vec{e_{i,j}} \ge 0\ \text{and}\ \left| \vec{e_i}^{~\bot} \cdot \vec{e_{i,j}} \right| \leq \frac{2 r}{s_{i,j}} \Big\} ,$$&lt;p>where $s_{i,j}$ is the current distance between $i$ and $j$. Therefore, the maximum distance that agent $i$ can move in the direction without overlapping other agents is&lt;/p>
 $$s_i=\min_{j\in J_i}s_{i,j}-2r.$$&lt;figure>&lt;img src="https://pedestriandynamics.org/models/anticipation_velocity_model/figure4.png"
 alt="Calculation of the speed in the direction of movement">&lt;figcaption>
 &lt;p>Calculation of the speed in the direction of movement&lt;/p>
 &lt;/figcaption>
 &lt;/figure>
 &lt;p>Finally, the speed of agent $i$ in the new direction is&lt;/p>
-$$v_i=\min\Big\\{v_i^0,~\max\big\\{0,\frac{s_{i}}{T}\big\\}\Big\\},$$&lt;p>where $v_i^0$ is the free speed of agent $i$, and $T&amp;gt;0$ is the slope of the speed-headway relationship.&lt;/p>
+$$v_i=\min\Big\{v_i^0,~\max\big\{0,\frac{s_{i}}{T}\big\}\Big\},$$&lt;p>where $v_i^0$ is the free speed of agent $i$, and $T&amp;gt;0$ is the slope of the speed-headway relationship.&lt;/p>
 &lt;h3>Parameters&lt;span class="hx-absolute -hx-mt-20" id="parameters">&lt;/span>
 &lt;a href="#parameters" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>The anticipation velocity model depends on seven parameters:&lt;/p>
 &lt;ul>
@@ -198,7 +198,7 @@ alt="Repulsive influence in the direction">&lt;figcaption>
 and a direction function $\textbf{e}_i$.&lt;/p>
 &lt;p>Inspired from car-following models, the speed function only depends on the distance to the nearest pedestrian or obstacle in front through an Optimal Velocity (OV) function.&lt;/p>
 &lt;p>The set $J_i$ of pedestrians and obstacles in front is given by&lt;/p>
-$$J_i=\big\\{j,\\;\mathbf e_i\cdot \mathbf e_{ij}\le 0\\;\text{and}\\;|\mathbf e_i^\perp\cdot\mathbf e_{ij}|\le l/s_{ij}\big\\}.$$$$s_i=\min_{j\in J_i}s_{ij}.$$$$V(s)=\min\big\\{v_0,\max\\{0,(s-l)/T\\}\big\\},$$&lt;p>satisfies&lt;/p>
+$$J_i=\big\{j,\;\mathbf e_i\cdot \mathbf e_{ij}\le 0\;\text{and}\;|\mathbf e_i^\perp\cdot\mathbf e_{ij}|\le l/s_{ij}\big\}.$$$$s_i=\min_{j\in J_i}s_{ij}.$$$$V(s)=\min\big\{v_0,\max\{0,(s-l)/T\}\big\},$$&lt;p>satisfies&lt;/p>
 $$\begin{align*}V(s)&amp;\gt0\quad\forall s\gt l\\\\ V(s)&amp;=0\quad\forall s\le\ell\end{align*}$$&lt;figure>&lt;img src="https://pedestriandynamics.org/models/collision_free_speed_model/figure3.png"
 alt="OV speed function vs fundamental diagram">&lt;figcaption>
 &lt;p>OV speed function vs fundamental diagram&lt;/p>
@@ -261,7 +261,7 @@ influenced by agents from behind them.&lt;/p>
 discretisation, however, can introduce collisions. When solving the ordinary
 differential equation with an Euler scheme, the time step must be small
 enough. The model is collision-free in discrete time if&lt;/p>
-$$\delta t \le \min\left\\{\frac T2,\frac{l(\sqrt2-1)}{v_0\sqrt2}\right\\}$$&lt;p>The condition for collision-free dynamics is determined solely by the
+$$\delta t \le \min\left\{\frac T2,\frac{l(\sqrt2-1)}{v_0\sqrt2}\right\}$$&lt;p>The condition for collision-free dynamics is determined solely by the
 parameters of the speed model. For example, if we use parameter values of $T=1$
 s, $v_0=1.2$ m/s and $l$, with a smallness condition on the time step
 approximate to $\delta t \le0.072$ s for explicit Euler schemes and circular
