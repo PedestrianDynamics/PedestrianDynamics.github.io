@@ -1,0 +1,1 @@
+import{wt as e}from"./index-BXterYCg.js";var t=e.lang===`en`,n=(e,n)=>t?n:e;export{n,t};

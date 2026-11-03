@@ -1,4 +1,376 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pedestrian Dynamics – Notes</title><link>https://pedestriandynamics.org/notes/</link><description>Recent content in Notes on Pedestrian Dynamics</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://pedestriandynamics.org/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>Can a model move like museum visitors and still take the wrong paths?</title><link>https://pedestriandynamics.org/notes/guggenheim-atrium/</link><pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/notes/guggenheim-atrium/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pedestrian Dynamics – Notes</title><link>https://pedestriandynamics.org/notes/</link><description>Recent content in Notes on Pedestrian Dynamics</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://pedestriandynamics.org/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>When can we trust a crowd simulation? Lessons from a road paradox</title><link>https://pedestriandynamics.org/notes/what-is-science/</link><pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/notes/what-is-science/</guid><description>
+&lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;/div>
+&lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
+&lt;strong>What makes an explanation good, and when can we trust a crowd simulation?&lt;/strong> This essay was inspired by Armin Seyfried&amp;rsquo;s first lecture of &lt;em>Scientific Working&lt;/em> at the University of Wuppertal in October 2026.
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;p>Crowd simulations are used to plan stations, stadiums and evacuations. A simulation can reproduce measured flows and pass the test cases that guidelines prescribe. Each such success supports a particular claim. Using the model for another geometry, another population or a decision about safety needs further evidence, and it is often unclear how much. In our own work, a model that matched a bottleneck experiment mostly within ten percent emptied the crowd at an unguided entrance two to three times faster than the people did (section 6).&lt;/p>
+&lt;p>To see what a model explains and what it leaves open, it helps to start with one simple enough to inspect completely. In 1968 the mathematician Dietrich Braess showed, in a small road model, that a new road can make every driver slower (Braess 1968; English translation Braess et al. 2005). A good explanation of such a result makes specific consequences follow from explicit assumptions. Tests then show how far those consequences hold outside the model.&lt;/p>
+&lt;h2>1. A road that makes everyone slower&lt;span class="hx-absolute -hx-mt-20" id="1-a-road-that-makes-everyone-slower">&lt;/span>
+&lt;a href="#1-a-road-that-makes-everyone-slower" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Take a small road network with four nodes: Start, A, B and Goal. Two routes lead from Start to Goal, an upper one via A and a lower one via B. Each route has one narrow road, where the travel time is \(n\) minutes if \(n\) drivers use it, and one wide road without congestion, where the travel time is a fixed \(C\) minutes. The travel time of a route is the sum of its roads. Every driver wants to reach the goal as fast as possible.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/what-is-science/network.png"
+alt="The network. On the narrow roads the travel time grows with the number of drivers n; on the wide roads it is a constant C." width="560">&lt;figcaption>
+&lt;p>The network. On the narrow roads the travel time grows with the number of drivers &lt;em>n&lt;/em>; on the wide roads it is a constant &lt;em>C&lt;/em>.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>Take 15 drivers and \(C = 17\). The model specifies an equilibrium: a split of the drivers in which nobody can arrive sooner by switching route alone. With 7 drivers on the upper route and 8 on the lower one, the upper route takes 24 minutes and the lower one 25. A driver who switches from the lower to the upper route would then also need 25 minutes. This state is a &lt;strong>Nash equilibrium&lt;/strong>.&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>&lt;/p>
+&lt;p>Now the city builds a shortcut from A to B with a travel time of zero. There are three routes: upper, lower, and Start → A → B → Goal.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/what-is-science/network-shortcut.png"
+alt="The same network with a shortcut from A to B that takes no time at all." width="560">&lt;figcaption>
+&lt;p>The same network with a shortcut from A to B that takes no time at all.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>Start from the old split, 7 drivers on the upper route and 8 on the lower one. One driver from the upper route tries the shortcut. The first narrow road still carries 7 drivers, the second now carries 9. This driver needs \(7 + 0 + 9 = 16\) minutes instead of 24, because the 17-minute wide road is replaced by a narrow road that takes 9 minutes. The driver gains 8 minutes, and everyone on the second narrow road loses one.&lt;/p>
+&lt;p>The model does not say how drivers get to the new equilibrium. If they switch one at a time whenever switching shortens their own trip, they keep moving to the shortcut as long as both narrow roads together cost less than one narrow and one wide road. So the drivers move over, and the narrow roads fill up. In the end all 15 use the shortcut, and each needs \(15 + 0 + 15 = 30\) minutes. A driver who goes back to the upper route alone needs \(15 + 17 = 32\) minutes, more than 30. So nobody leaves the shortcut, although without it everyone would arrive sooner. This is again a Nash equilibrium, but a worse one. The old split of 7 and 8 would be better for everyone, but with the shortcut it is no longer an equilibrium.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/what-is-science/result.png"
+alt="The two equilibria for 15 drivers and C = 17: 24 to 25 minutes without the shortcut, 30 minutes with it." width="640">&lt;figcaption>
+&lt;p>The two equilibria for 15 drivers and C = 17: 24 to 25 minutes without the shortcut, 30 minutes with it.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>Try it yourself. The game keeps \(C = N + 2\), so \(C\) changes with the number of drivers. Move the drivers between the routes, switch the shortcut on, and watch where the travel times settle. The box below the bars tells you whether anyone can still gain by switching.&lt;/p>
+&lt;div class="braess-game">
+&lt;svg viewBox="0 0 400 300" class="bg-net" role="img" aria-label="Braess network with live travel times">
+&lt;defs>
+&lt;marker id="bg-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="3.5" markerHeight="3.5" orient="auto">&lt;path d="M0,0 L10,5 L0,10 z" class="bg-arrhead" />&lt;/marker>
+&lt;marker id="bg-arracc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="3.5" markerHeight="3.5" orient="auto">&lt;path d="M0,0 L10,5 L0,10 z" class="bg-arrhead acc" />&lt;/marker>
+&lt;/defs>
+&lt;g class="bg-edges">&lt;/g>
+&lt;g class="bg-nodes">&lt;/g>
+&lt;/svg>
+&lt;div class="bg-ctl">
+&lt;div class="bg-row bg-top">
+&lt;label>Drivers N &lt;input type="number" class="bg-n" min="2" max="40" value="15">&lt;/label>
+&lt;span class="bg-small bg-c">&lt;/span>
+&lt;label class="bg-sw">&lt;input type="checkbox" class="bg-short"> Shortcut A → B&lt;/label>
+&lt;/div>
+&lt;div class="bg-row">&lt;span class="bg-lab">upper: &lt;b class="bg-up-v">&lt;/b>&lt;/span>&lt;input type="range" class="bg-up" min="0">&lt;/div>
+&lt;div class="bg-row bg-ab-row">&lt;span class="bg-lab acc">shortcut: &lt;b class="bg-ab-v">&lt;/b>&lt;/span>&lt;input type="range" class="bg-ab acc" min="0">&lt;/div>
+&lt;div class="bg-row">&lt;span class="bg-lab">lower: &lt;b class="bg-low-v">&lt;/b>&lt;/span>&lt;span class="bg-small">(the rest)&lt;/span>&lt;/div>
+&lt;div class="bg-bars">&lt;/div>
+&lt;p class="bg-small">Average over all drivers: &lt;b class="bg-avg">&lt;/b>&lt;/p>
+&lt;div class="bg-status">&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;style>
+.braess-game { --bg-blue: #023d6b; --bg-acc: #e4661b; --bg-grey: #5a6b7d; --bg-light: #eef2f6; --bg-node: #fff;
+display: grid; grid-template-columns: 1.05fr 1fr; gap: 1.4rem; align-items: start; margin: 1.5rem 0; }
+html.dark .braess-game { --bg-blue: #8fb8e0; --bg-grey: #9aa8b6; --bg-light: #1f2a36; --bg-node: #111; }
+@media (max-width: 640px) { .braess-game { grid-template-columns: 1fr; } }
+.braess-game .bg-net { width: 100%; }
+.braess-game .bg-arrhead { fill: var(--bg-grey); }
+.braess-game .bg-arrhead.acc { fill: var(--bg-acc); }
+.braess-game .bg-elab { font: 700 15px sans-serif; fill: var(--bg-blue); }
+.braess-game .bg-elab.acc { fill: var(--bg-acc); }
+.braess-game .bg-node { fill: var(--bg-node); stroke: var(--bg-blue); stroke-width: 2.5; }
+.braess-game .bg-node.end { fill: var(--bg-blue); }
+.braess-game .bg-nlab { font: 700 15px sans-serif; fill: var(--bg-blue); }
+.braess-game .bg-nlab.end { fill: var(--bg-node); font-size: 13px; }
+.braess-game .bg-row { display: flex; align-items: center; gap: 0.7rem; margin: 0.35rem 0; font-size: 0.9rem; }
+.braess-game .bg-top { flex-wrap: wrap; margin-bottom: 0.7rem; }
+.braess-game input[type=range] { flex: 1; accent-color: var(--bg-blue); }
+.braess-game input[type=range].acc { accent-color: var(--bg-acc); }
+.braess-game input[type=number] { width: 3.4rem; border: 1px solid var(--bg-grey); padding: 0 0.3rem; background: transparent; }
+.braess-game .bg-lab { width: 7.5rem; color: var(--bg-blue); }
+.braess-game .bg-lab.acc, .braess-game .bg-sw { color: var(--bg-acc); }
+.braess-game .bg-sw { font-weight: 700; }
+.braess-game .bg-small { font-size: 0.8rem; color: var(--bg-grey); }
+.braess-game .bg-bars { margin-top: 0.8rem; }
+.braess-game .bg-bar { display: grid; grid-template-columns: 5.5rem 1fr; align-items: center; margin: 0.3rem 0; font-size: 0.85rem; }
+.braess-game .bg-bl { color: var(--bg-blue); font-weight: 700; }
+.braess-game .bg-track { background: var(--bg-light); }
+.braess-game .bg-fill { background: var(--bg-blue); color: var(--bg-node); padding: 0.15rem 0.4rem; white-space: nowrap; transition: width 0.25s; font-weight: 700; }
+.braess-game .bg-fill.acc { background: var(--bg-acc); color: #fff; }
+.braess-game .bg-fill.empty { opacity: 0.35; }
+.braess-game .bg-status { margin-top: 0.6rem; padding: 0.5rem 0.7rem; border-left: 4px solid var(--bg-acc); background: var(--bg-light); font-size: 0.9rem; }
+.braess-game .bg-status.ok { border-left-color: var(--bg-blue); color: var(--bg-blue); font-weight: 700; }
+&lt;/style>
+&lt;script>
+(() => {
+const root = document.currentScript.previousElementSibling.previousElementSibling
+const $ = s => root.querySelector(s)
+const NS = 'http://www.w3.org/2000/svg'
+const P = { S: [50, 150], A: [200, 40], B: [200, 260], Z: [350, 150] }
+const R = { S: 34, A: 22, B: 22, Z: 34 }
+const names = { up: 'upper', low: 'lower', ab: 'shortcut' }
+const el = (tag, attrs, text) => {
+const e = document.createElementNS(NS, tag)
+for (const k in attrs) e.setAttribute(k, attrs[k])
+if (text !== undefined) e.textContent = text
+return e
+}
+function edge(a, b) {
+const [xa, ya] = P[a], [xb, yb] = P[b]
+const d = Math.hypot(xb - xa, yb - ya), ux = (xb - xa) / d, uy = (yb - ya) / d
+return { x1: xa + ux * R[a], y1: ya + uy * R[a], x2: xb - ux * (R[b] + 4), y2: yb - uy * (R[b] + 4) }
+}
+for (const [k, xy] of Object.entries(P)) {
+const end = k === 'S' || k === 'Z'
+$('.bg-nodes').append(el('circle', { cx: xy[0], cy: xy[1], r: R[k], class: 'bg-node' + (end ? ' end' : '') }))
+$('.bg-nodes').append(el('text', { x: xy[0], y: xy[1] + 5, 'text-anchor': 'middle', class: 'bg-nlab' + (end ? ' end' : '') },
+{ S: 'Start', A: 'A', B: 'B', Z: 'Goal' }[k]))
+}
+const st = { n: 15, up: 7, ab: 0, short: false }
+function times(o, u, a, c) { return { up: o + a + c, low: c + u + a, ab: o + a + u + a } }
+function render() {
+const n = st.n, c = n + 2, low = n - st.up - st.ab
+const routes = st.short ? ['up', 'low', 'ab'] : ['up', 'low']
+const cnt = { up: st.up, low, ab: st.ab }
+const t = times(st.up, low, st.ab, c)
+$('.bg-c').textContent = `C = N + 2 = ${c}`
+$('.bg-up').max = n; $('.bg-up').value = st.up; $('.bg-ab').max = n; $('.bg-ab').value = st.ab
+$('.bg-up-v').textContent = st.up; $('.bg-ab-v').textContent = st.ab; $('.bg-low-v').textContent = low
+$('.bg-ab-row').style.display = st.short ? '' : 'none'
+const w = x => 2 + 5 * x / Math.max(n, 1)
+const E = [
+['S', 'A', 105, 82, st.up + st.ab, `${st.up + st.ab} min`], ['A', 'Z', 295, 82, st.up, `${c} min`],
+['S', 'B', 105, 228, low, `${c} min`], ['B', 'Z', 295, 228, low + st.ab, `${low + st.ab} min`],
+]
+const g = $('.bg-edges'); g.replaceChildren()
+for (const [a, b, lx, ly, load, lab] of E) {
+g.append(el('line', { ...edge(a, b), stroke: 'var(--bg-grey)', 'stroke-width': w(load), 'marker-end': 'url(#bg-arr)' }))
+g.append(el('text', { x: lx, y: ly, 'text-anchor': 'middle', class: 'bg-elab' }, lab))
+}
+if (st.short) {
+g.append(el('line', { ...edge('A', 'B'), stroke: 'var(--bg-acc)', 'stroke-width': w(st.ab), 'marker-end': 'url(#bg-arracc)' }))
+g.append(el('text', { x: 210, y: 155, class: 'bg-elab acc' }, '0 min'))
+}
+const maxT = Math.max(...routes.map(r => t[r]), 1)
+$('.bg-bars').innerHTML = routes.map(r => `&lt;div class="bg-bar">&lt;span class="bg-bl">${names[r]}&lt;/span>&lt;div class="bg-track">` +
+`&lt;div class="bg-fill${r === 'ab' ? ' acc' : ''}${cnt[r] ? '' : ' empty'}" style="width:${100 * t[r] / maxT}%">${t[r]} min&lt;/div>&lt;/div>&lt;/div>`).join('')
+const tot = routes.reduce((s, r) => s + cnt[r] * t[r], 0)
+$('.bg-avg').textContent = `${(tot / n).toFixed(1)} min`
+let best = null
+for (const r of routes) {
+if (!cnt[r]) continue
+for (const r2 of routes) {
+if (r2 === r) continue
+const k = { ...cnt }; k[r]--; k[r2]++
+const gain = t[r] - times(k.up, k.low, k.ab, c)[r2]
+if (gain > 0 &amp;&amp; (!best || gain > best.gain)) best = { r, r2, gain }
+}
+}
+const s = $('.bg-status')
+s.className = 'bg-status' + (best ? '' : ' ok')
+s.textContent = best
+? `A driver on the ${names[best.r]} route saves ${best.gain} min by switching to the ${names[best.r2]} route.`
+: 'Equilibrium: nobody can improve by switching alone.'
+}
+const clamp = () => {
+st.up = Math.min(st.up, st.n)
+st.ab = Math.min(st.ab, st.n - st.up)
+}
+$('.bg-n').addEventListener('input', e => { const v = parseInt(e.target.value, 10); if (v >= 2 &amp;&amp; v &lt;= 40) { st.n = v; clamp(); render() } })
+$('.bg-short').addEventListener('change', e => { st.short = e.target.checked; if (!st.short) st.ab = 0; render() })
+$('.bg-up').addEventListener('input', e => { st.up = +e.target.value; if (st.up + st.ab > st.n) st.ab = st.n - st.up; render() })
+$('.bg-ab').addEventListener('input', e => { st.ab = +e.target.value; if (st.up + st.ab > st.n) st.up = st.n - st.ab; render() })
+render()
+})()
+&lt;/script>
+&lt;h2>2. What explains the result?&lt;span class="hx-absolute -hx-mt-20" id="2-what-explains-the-result">&lt;/span>
+&lt;a href="#2-what-explains-the-result" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Here are two explanations for the paradox.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/what-is-science/explanations.png"
+alt="Explanation A blames selfish drivers. Explanation B says which route is cheapest for each driver and how its load grows.">&lt;figcaption>
+&lt;p>Explanation A blames selfish drivers. Explanation B says which route is cheapest for each driver and how its load grows.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>Explanation A sounds plausible but names no mechanism. &amp;ldquo;Selfish&amp;rdquo; could explain the opposite result as well, and A does not say under which conditions the paradox occurs. Explanation B says which roads fill up and why. B connects assumptions to consequences. We can change an assumption, for example the travel time of the shortcut, but then the model fixes what follows, so B cannot be adjusted to fit any outcome. That is why B makes predictions. These are consequences calculated from the model; whether people behave this way is a question for section 4.&lt;/p>
+&lt;p>B also shows how the road acts. The shortcut adds a route, and the longer travel times arise because traffic redistributes onto the two narrow roads. The drivers react to each other: my route choice changes your travel time, your travel time changes your route choice, and that changes mine again. Such feedback is the rule in traffic and pedestrian dynamics.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/what-is-science/interaction.png"
+alt="The feedback loop in the route game: my route changes your travel time, your travel time changes your route, and your route changes my travel time." width="560">&lt;figcaption>
+&lt;p>The feedback loop in the route game: my route changes your travel time, your travel time changes your route, and your route changes my travel time.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">
+&lt;svg height=1.2em class="hx-inline-block hx-align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">&lt;path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>&lt;/svg>&lt;/div>
+&lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
+A good explanation cannot be changed at will without ceasing to explain anything. (After David Deutsch, &lt;em>The Beginning of Infinity&lt;/em>, 2011, ch. 1.)
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;h2>3. What the model claims&lt;span class="hx-absolute -hx-mt-20" id="3-what-the-model-claims">&lt;/span>
+&lt;a href="#3-what-the-model-claims" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Each driver chooses the fastest route, and the result is worse for all. That is what the model predicts. But the model assumes that travel time grows with the number of vehicles, that everyone chooses the fastest route and that the new road takes no time.&lt;/p>
+&lt;p>The road network is a &lt;strong>model&lt;/strong>: a simplified image of reality. A lot has been left out of it.&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>People:&lt;/strong> drivers who do not choose the fastest route.&lt;/li>
+&lt;li>&lt;strong>Traffic:&lt;/strong> traffic lights, junctions, queues.&lt;/li>
+&lt;li>&lt;strong>Roads:&lt;/strong> lengths, widths, capacities.&lt;/li>
+&lt;li>&lt;strong>Travel time:&lt;/strong> where the rule of \(n\) minutes comes from; behind it lies the fundamental diagram.&lt;/li>
+&lt;li>&lt;strong>Time:&lt;/strong> how route choices change from day to day, and whether traffic settles into the equilibrium at all; the model only states the equilibrium.&lt;/li>
+&lt;li>&lt;strong>Information:&lt;/strong> how drivers learn the travel times; in the model everyone knows them.&lt;/li>
+&lt;/ul>
+&lt;p>A model does not have to contain every detail of reality. It has to capture the mechanisms that matter for the question, here the link between route choice, traffic load and travel time; the colour of the cars does not matter. With four nodes and five edges it explains something surprising. A model should be as simple as possible, but complex enough for the question. &lt;strong>Ockham&amp;rsquo;s razor&lt;/strong> covers the first half: if two models explain an observation equally well, the simpler one is preferable. Box (1976) wrote: &amp;ldquo;Since all models are wrong the scientist must be alert to what is importantly wrong.&amp;rdquo; Whether we left out the right things is a question for validation (section 5).&lt;/p>
+&lt;p>Four terms are often mixed up:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Assumption:&lt;/strong> &amp;ldquo;Drivers choose the route that is fastest for them.&amp;rdquo; This is an assumption about behaviour. It is assumed within the model; whether people behave this way is a separate, testable question. It is not a theory. The model consists of this assumption together with the network, the number of drivers and the travel-time rules of the roads.&lt;/li>
+&lt;li>&lt;strong>Theory:&lt;/strong> a coherent set of statements built on such assumptions, from which consequences can be derived. Here it is the equilibrium theory of route choice after Wardrop (1952). Its first principle: in equilibrium the travel times on all used routes are equal, and no unused route is faster.&lt;/li>
+&lt;li>&lt;strong>Hypothesis:&lt;/strong> a proposed explanation that can be tested. For example: drivers respond to their own travel times in a way that concentrates traffic on the two narrow roads.&lt;/li>
+&lt;li>&lt;strong>Prediction:&lt;/strong> an observable consequence of the hypothesis under stated conditions, which can fail against data. For example: &amp;ldquo;If the shortcut in this network is closed, the mean travel time decreases.&amp;rdquo;&lt;/li>
+&lt;/ul>
+&lt;p>Following Popper, ask which observation would refute a prediction. If you cannot name one, the claim is not yet empirically testable.&lt;/p>
+&lt;p>An example of how a question becomes testable: &amp;ldquo;A bottleneck 3 m wide and 1 m long, or 1 m wide and 3 m long: which is better?&amp;rdquo; As it stands, the question is too vague to answer. One has to fix the walking direction,&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup> the geometry, and what &amp;ldquo;better&amp;rdquo; means: higher flow, shorter evacuation time or lower density in front of the bottleneck. Only then does the question become testable. A prediction would add the expected answer, for example that the wider bottleneck gives the higher flow.&lt;/p>
+&lt;h3>Verify or falsify?&lt;span class="hx-absolute -hx-mt-20" id="verify-or-falsify">&lt;/span>
+&lt;a href="#verify-or-falsify" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>Karl Popper (&lt;em>Logik der Forschung&lt;/em>, 1934; &lt;em>Conjectures and Refutations&lt;/em>, 1963, ch. 1) pointed out that general statements can never be proven conclusively, because nobody has seen all cases. A hundred cities in which a new road helped do not prove that new roads always help. One Braess case is enough to refute it, but only because the statement is universal (&amp;ldquo;always&amp;rdquo;). A single counterexample does not refute &amp;ldquo;mostly&amp;rdquo;.&lt;/p>
+&lt;p>In practice a refutation is rarely this clean. A prediction always rests on auxiliary assumptions about instruments, data and conditions. When a prediction fails, something in this group of assumptions is wrong, but the failure does not say which part (Duhem 1954, part II, ch. 6); it may be an auxiliary assumption instead of the theory. This is known as the Duhem–Quine problem, and it is one reason why a single surprising observation rarely settles a dispute.&lt;/p>
+&lt;p>Popper asks: can the statement fail? Deutsch adds: does it explain why the result follows from the stated assumptions?&lt;/p>
+&lt;p>One warning about words: in simulation, &amp;ldquo;verification&amp;rdquo; means something else, namely checking the program (section 5).&lt;/p>
+&lt;p>Three levels have to be kept apart: the model, people playing the route game, and real traffic. The mathematical result is knowledge about the model. When people play the game, their result is an observation about these players under these rules. Whether real traffic behaves like either is a further empirical question. If players and model differ, the next step is to find out which modelling assumptions or experimental conditions account for the difference, or whether the game had not yet settled.&lt;/p>
+&lt;h2>4. Testing competing explanations&lt;span class="hx-absolute -hx-mt-20" id="4-testing-competing-explanations">&lt;/span>
+&lt;a href="#4-testing-competing-explanations" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Reports from Stuttgart in 1969 (Knödel 1969), New York in 1990 (Kolata 1990) and Seoul in 2003 to 2005 (Chung et al. 2012) are often cited for the paradox. They are observations after an intervention, not controlled experiments; Rapoport et al. (2009, p. 539) call them &amp;ldquo;sketchy and mostly anecdotal&amp;rdquo;. In a city many things change at once, and the observations alone do not show what caused the change.&lt;/p>
+&lt;p>A laboratory game can isolate the shortcut. Playing one version first can change behaviour in the second, so a clean design gives groups the two-route and the three-route game in both orders, keeps the number of people, the travel-time rules and the information the same, and runs each game for several rounds. Rapoport and colleagues (2009) ran this game with groups of 18 students, paid according to their travel costs, for 40 rounds without and 40 rounds with the shortcut. Reversing the order made no difference. In a network with the same structure as ours, the groups moved to the shortcut route, and their payoff per round fell from about 95 to about 40 points. This shows the effect of adding the shortcut for these players under these conditions. It is not yet evidence about real road networks. Whether the players reached the result through the feedback of section 2 is a separate question; it would need data on how route choices respond to travel-time information, for example the players&amp;rsquo; own previous travel times.&lt;/p>
+&lt;p>A matching result can still have the wrong explanation. Around 1900 a horse, &amp;ldquo;Clever Hans&amp;rdquo;, tapped out correct answers to arithmetic questions in front of large audiences, and a commission found no trick in 1904. Two explanations fit the correct answers: Hans can do arithmetic, or Hans reads unconscious signals from the questioner. The psychologist Oskar Pfungst (1907) separated them by changing one condition at a time. When the questioner did not know the answer, or Hans could not see the questioner, the errors increased sharply. Pedestrian experiments can face the same kind of question. Instructions, demonstrations or other cues may shape what participants do, and a pattern that fits a proposed mechanism may also fit such conditions; a comparison that changes them can tell the two apart. Such checks depend on published methods and data, so that others can repeat the measurements and test alternative explanations (National Academies 2019).&lt;/p>
+&lt;h2>5. From a model to a simulation&lt;span class="hx-absolute -hx-mt-20" id="5-from-a-model-to-a-simulation">&lt;/span>
+&lt;a href="#5-from-a-model-to-a-simulation" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Sections 1 to 3 explained the paradox inside a model, and section 4 tested it with players in a laboratory. Applying the explanation to a real road network or a real crowd needs a different kind of evidence: something has to establish that it holds outside the model.&lt;/p>
+&lt;p>The network above has four nodes; you can work it out in your head. A city network has tens of thousands of links, travel times depend nonlinearly on load, and people decide differently. Then you need numerical methods and software, for example MATSim or, for pedestrians, JuPedSim.&lt;/p>
+&lt;p>Suppose the fundamental diagram, the relation between density and flow, is well known from experiments. We derive travel times from it, build a network model with route choice and simulate it. Even then the simulation does not necessarily predict the Braess paradox reliably.&lt;/p>
+&lt;p>If the software reproduces the analytical equilibrium for the Braess network exactly, that shows that it computes correctly for this test case. A verification test has been passed, but that is not validation. And even with correct software and a well-supported fundamental diagram the predictions can be wrong: people may choose routes differently than assumed, and queues, differences in information or effects over time may be missing.&lt;/p>
+&lt;p>The tempting conclusion is: &amp;ldquo;The input models are validated and the software passes all tests, so the simulation is realistic.&amp;rdquo; Two questions have to be asked separately: did we implement the model correctly, and did we choose the right model?&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/what-is-science/vv.png"
+alt="Verification compares the program with the model; validation compares the model with reality.">&lt;figcaption>
+&lt;p>Verification compares the program with the model; validation compares the model with reality.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;ul>
+&lt;li>&lt;strong>Verification:&lt;/strong> does the program compute what the model says? Has the model been implemented correctly and solved numerically? This is checked with tests and comparisons with exact solutions, looking for errors in code and numerics.&lt;/li>
+&lt;li>&lt;strong>Validation:&lt;/strong> does the model describe reality well enough for its intended purpose? This is checked against measured data. A model is always valid for a purpose, never absolutely.&lt;/li>
+&lt;/ul>
+&lt;p>Roache (1998), following Boehm and Blottner, put it briefly: verification means solving the equations right, validation means solving the right equations.&lt;/p>
+&lt;h2>6. How far does a successful model travel?&lt;span class="hx-absolute -hx-mt-20" id="6-how-far-does-a-successful-model-travel">&lt;/span>
+&lt;a href="#6-how-far-does-a-successful-model-travel" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>A good fit in one situation does not show that a model transfers to the next. We ran into this in our own work. In a &lt;a href="https://pedestriandynamics.org/notes/dakota-calibration/" >calibration study&lt;/a> we fitted JuPedSim&amp;rsquo;s Collision Free Speed model to a bottleneck experiment. The calibrated model matched flow, density and speed in front of the opening mostly within ten percent, also at two widths left out of the fit. Two optimizer starts gave two parameter sets that fit almost equally well but differ by factors of two to four in the time gap and in the strength and range of repulsion, so a good fit did not pin down the parameters. Hydrologists call this equifinality: different parameter sets, and even different models, can fit the same data acceptably well (Beven 2006). These data cannot tell them apart; the difference can show when the model is used somewhere else.&lt;/p>
+&lt;p>In the &lt;a href="https://pedestriandynamics.org/notes/dakota-validation/" >second part&lt;/a> the same parameters went, without refitting, to a half-metre gate and an entrance without guiding barriers. At the gate one set stalls and the other lets 20 to 40 % more people through the gate per second than were measured; at the entrance every set empties the crowd two to three times faster than the people did. A model calibrated for one situation was not valid for the next.&lt;/p>
+&lt;p>Claims about a model of human behaviour have to be specific to be tested. &amp;ldquo;Our model reproduces human behaviour&amp;rdquo; is too broad to test. &amp;ldquo;Our model estimates the flow through this exit, for this population and these conditions, with this uncertainty&amp;rdquo; can be tested. Estimating the flow through a given exit is also a different task from predicting which exit people choose. The second rests on assumptions about behaviour that bottleneck flow measurements do not test.&lt;/p>
+&lt;p>Being able to run a simulation thousands of times does not make it more trustworthy than an experiment. Repeated runs of a stochastic model are useful. They show when the mean evacuation time, its spread and the shape of the evacuation curve stop changing (Ronchi et al. 2014). If a model assumes that everyone knows all exits and takes the fastest route, a million runs with different random seeds will never produce a person who does not know the way. Models have to make such assumptions about behaviour, often without data to support them (Kuligowski 2013). Convergence shows how precisely we know the model&amp;rsquo;s answer; only data show whether that answer describes these people (section 5).&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/what-is-science/convergence.png"
+alt="Illustration with synthetic data: the running mean of a stochastic model settles on the model&amp;rsquo;s own value as the runs accumulate, while a measured drill value stays where it is. (Script)">&lt;figcaption>
+&lt;p>Illustration with synthetic data: the running mean of a stochastic model settles on the model&amp;rsquo;s own value as the runs accumulate, while a measured drill value stays where it is. (&lt;a href="convergence.py" >Script&lt;/a>)&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>An experiment observes real people, but in a particular situation. A bottleneck experiment with instructed participants supports conclusions about movement under those instructions, densities and geometries. Whether they hold for another population, a different motivation or an emergency is a separate question. Field observations have the opposite problem: they are closer to the target situation, but many factors vary at once, and being natural does not make them valid (Haghani 2023).&lt;/p>
+&lt;p>The methods overlap, but each is better at checking some parts of an explanation than others: experiments at isolating a mechanism, observations at checking whether it transfers, simulations at working out the consequences under conditions that cannot be tested directly. These methods help each other because their weaknesses differ; sources that share a weakness can still add evidence, but they cannot resolve that weakness.&lt;/p>
+&lt;p>Criticism of models, experiments and field observations is often general: &amp;ldquo;models are just models&amp;rdquo;, &amp;ldquo;people don&amp;rsquo;t behave like that&amp;rdquo;, &amp;ldquo;experiments are not reality&amp;rdquo;. Each points to a real problem, but none says which conclusion is affected. The terms of this essay turn them into questions that can be checked:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Objection&lt;/th>
+&lt;th>Question to ask&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&amp;ldquo;Models are just models.&amp;rdquo;&lt;/td>
+&lt;td>Which simplification could change the result we are using?&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&amp;ldquo;People don&amp;rsquo;t behave like that.&amp;rdquo;&lt;/td>
+&lt;td>Which behaviour is missing, for which people and situation, and which prediction does it affect?&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&amp;ldquo;Experiments are not reality.&amp;rdquo;&lt;/td>
+&lt;td>Which findings carry over to the target situation, and which depend on the experimental setting?&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&amp;ldquo;Field observations are too messy.&amp;rdquo;&lt;/td>
+&lt;td>What can be measured reliably, and which influences can be told apart?&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&amp;ldquo;We ran thousands of simulations.&amp;rdquo;&lt;/td>
+&lt;td>Which uncertainty did the runs reduce, and which assumptions stayed untested?&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>A useful criticism names an omission and says why it matters. For example: &amp;ldquo;The model does not include groups who wait for each other. This matters here, because the predicted benefit of the second exit depends on people spreading out independently.&amp;rdquo; Such a criticism can be checked, and it may be strong enough to rule out one particular use of the model.&lt;/p>
+&lt;h2>7. What passing a standard establishes&lt;span class="hx-absolute -hx-mt-20" id="7-what-passing-a-standard-establishes">&lt;/span>
+&lt;a href="#7-what-passing-a-standard-establishes" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Guidelines such as RiMEA, the German guideline for microscopic evacuation analyses, list test cases for simulation software. Such tests catch errors and make results easier to compare. Their results can also be used for claims they cannot support. &amp;ldquo;The software passes the RiMEA tests&amp;rdquo; can become &amp;ldquo;the software is validated&amp;rdquo;, then &amp;ldquo;the results of this project are reliable&amp;rdquo; and finally &amp;ldquo;this design is safe&amp;rdquo;. Each step is a new claim and needs its own evidence. RiMEA does not set pass limits for most of its tests (RiMEA 2025, Annex 1, A 2). The first test checks, by design, only that a person with a given walking speed crosses a corridor in the expected time. Whether that speed fits the people in the building, or whether they find the exits, is outside its scope.&lt;/p>
+&lt;p>RiMEA warns against this itself. Its preamble calls a simulation &amp;ldquo;an idealized case&amp;rdquo; in which people move as the user specifies, and it states that there are not enough reliable data from evacuation drills for a thorough quantitative comparison. Until such data exist, it regards its other tests as sufficient (Annex 1, A 5). This sentence is a translation from the IMO guidelines for passenger ships (IMO 2002), and it has stayed unchanged since then, in later IMO versions (IMO 2016) as in RiMEA, while laboratory data have appeared that RiMEA itself now uses.&lt;/p>
+&lt;p>IMO, RiMEA, the NIST report (Ronchi et al. 2013) and ISO 20414 share many of their tests, and most of these come from the same IMO list. Passing the same inherited test under several standards is therefore one piece of evidence, not several.&lt;/p>
+&lt;p>RiMEA&amp;rsquo;s later tests compare models with laboratory data, mostly for trends or the spread of the data, and the user may vary the parameters. Once software is tuned to pass a test, passing it says less about anything outside the test (Goodhart 1984; Strathern 1997). ISO 20414 (2020) asks for more: the field of application must be stated, validation against one data set does not necessarily carry over to other scenarios, and validation runs must also use default or generally representative settings, not only settings tuned to the data.&lt;/p>
+&lt;p>The tests themselves should be tested. We need to know which errors that would change a safety conclusion they can reveal, and which wrong predictions still pass them. The same applies to our own software. Passing a standard is one part of the argument for trusting a simulation. The rest has to come from evidence about the people, the building and the purpose.&lt;/p>
+&lt;details class="last-of-type:hx-mb-0 hx-rounded-lg hx-bg-neutral-50 dark:hx-bg-neutral-800 hx-p-2 hx-mt-4 hx-group" >
+&lt;summary class="hx-flex hx-items-center hx-cursor-pointer hx-select-none hx-list-none hx-p-1 hx-rounded hx-transition-colors hover:hx-bg-gray-100 dark:hover:hx-bg-neutral-800 before:hx-mr-1 before:hx-inline-block before:hx-transition-transform before:hx-content-[''] dark:before:hx-invert rtl:before:hx-rotate-180 group-open:before:hx-rotate-90">
+&lt;strong class="hx-text-lg">A note on standards&lt;/strong>
+&lt;/summary>
+&lt;div class="hx-p-2 hx-overflow-hidden">
+For pedestrian simulations the German guideline RiMEA (Richtlinie für Mikroskopische Entfluchtungsanalysen, version 4.1.1, 2025) lists test cases 1 to 16 in its Annex 1. RiMEA uses verification and validation interchangeably; its four forms of verification follow ISO/TR 13387-8:1999 (Annex 1, A 1). What it calls &amp;ldquo;quantitative verification&amp;rdquo;, the comparison with data from evacuation drills, is validation in the AIAA sense (AIAA G-077-1998), and RiMEA itself regards the data as insufficient for it (A 5). The NIST report on evacuation models makes the same correction for the IMO guidelines (Ronchi et al. 2013).
+&lt;/div>
+&lt;/details>
+&lt;h2>8. Using an explanation to make a decision&lt;span class="hx-absolute -hx-mt-20" id="8-using-an-explanation-to-make-a-decision">&lt;/span>
+&lt;a href="#8-using-an-explanation-to-make-a-decision" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>For practical projects the question becomes: what evidence is enough for this model to support this decision? A claim that a layout is safer needs a safety criterion, for example that everyone is out before conditions become untenable (ASET &amp;gt; RSET); a layout can be faster on average and worse for the last people out. Sometimes the answer is that the evidence does not support the proposed safety claim.&lt;/p>
+&lt;p>Suppose a well-tested model predicts that closing a road reduces the mean travel time. The prediction alone does not decide whether the road should be closed. Some travellers gain and others lose, and access to particular places, costs and safety count as well. Weighing them requires stating what we want to achieve. Science can say what is likely to happen under each option; which outcome to prefer is a decision about goals. Values also enter the science itself, for example when deciding how much evidence is enough to accept a claim, given the consequences of being wrong (Douglas 2009, ch. 5).&lt;/p>
+&lt;h2>What makes an explanation good&lt;span class="hx-absolute -hx-mt-20" id="what-makes-an-explanation-good">&lt;/span>
+&lt;a href="#what-makes-an-explanation-good" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>A good explanation names a mechanism that turns explicit assumptions into specific consequences. It cannot be adjusted to fit any outcome, so a test can show it wrong. In the road network this is easy to check, because every assumption is visible. A crowd simulation makes the same kind of claim with many more assumptions, and the evidence for it comes in parts.&lt;/p>
+&lt;p>Our calibrated model reproduced a bottleneck experiment mostly within ten percent, including two widths left out of the fit. That supports its use for similar bottlenecks. Two parameter sets that fit equally well behaved differently at a half-metre gate, and every set emptied an unguided entrance two to three times too fast, so the fit did not carry over to these situations. Passing the RiMEA tests shows that software computes what its model says for those cases; it leaves open whether the model&amp;rsquo;s assumptions about people hold in a given building. Trusting a simulation for a decision means stating the claim it is used for and checking that the evidence covers that claim.&lt;/p>
+&lt;p>The same questions apply to any scientific explanation or model-based claim, in a newspaper, a report or one&amp;rsquo;s own thesis:&lt;/p>
+&lt;ol>
+&lt;li>What exactly is explained, and what is the mechanism?&lt;/li>
+&lt;li>Could the explanation be changed at will and still &amp;ldquo;explain&amp;rdquo; the same thing?&lt;/li>
+&lt;li>Which observation would refute it?&lt;/li>
+&lt;li>What evidence separates the explanation from plausible alternatives: a controlled comparison, independent observations that test predictions the alternatives get wrong, or only a sequence in time?&lt;/li>
+&lt;li>Was a model checked against reality, and for which purpose is it valid?&lt;/li>
+&lt;/ol>
+&lt;h2>Further reading&lt;span class="hx-absolute -hx-mt-20" id="further-reading">&lt;/span>
+&lt;a href="#further-reading" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;ul>
+&lt;li>David Deutsch, &lt;em>The Beginning of Infinity&lt;/em> (2011), chapter 1, &amp;ldquo;The Reach of Explanations&amp;rdquo;. A shorter text by him: &lt;a href="https://nautil.us/why-its-good-to-be-wrong-234374/" target="_blank" rel="noopener">&amp;ldquo;Why It&amp;rsquo;s Good To Be Wrong&amp;rdquo;&lt;/a>, &lt;em>Nautilus&lt;/em>, 23 May 2013.&lt;/li>
+&lt;li>Karl Popper, &lt;em>Conjectures and Refutations&lt;/em> (1963), chapter 1, &amp;ldquo;Science: Conjectures and Refutations&amp;rdquo;.&lt;/li>
+&lt;li>Naomi Oreskes, &lt;em>Why Trust Science?&lt;/em> (2019).&lt;/li>
+&lt;li>Peter Godfrey-Smith, &lt;em>Theory and Reality: An Introduction to the Philosophy of Science&lt;/em> (2nd edition, University of Chicago Press, 2021), an introduction to the philosophy of science that compares several views.&lt;/li>
+&lt;/ul>
+&lt;h2>Further material&lt;span class="hx-absolute -hx-mt-20" id="further-material">&lt;/span>
+&lt;a href="#further-material" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;ul>
+&lt;li>&lt;a href="https://pedestriandynamics.org/teaching/scientific-working-2026/" >Slides of the lecture&lt;/a> (&lt;a href="https://pedestriandynamics.org/teaching/scientific-working-2026/What_is_science_slides.pdf" >PDF&lt;/a>)&lt;/li>
+&lt;li>&lt;a href="https://pedestriandynamics.org/teaching/scientific-working-2026/What_is_science_companion.pdf" >Companion text of the lecture&lt;/a> (PDF)&lt;/li>
+&lt;/ul>
+&lt;h2>References&lt;span class="hx-absolute -hx-mt-20" id="references">&lt;/span>
+&lt;a href="#references" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;ul>
+&lt;li>AIAA (1998): &lt;em>Guide for the Verification and Validation of Computational Fluid Dynamics Simulations&lt;/em>. AIAA G-077-1998.&lt;/li>
+&lt;li>Beven, K. (2006): A manifesto for the equifinality thesis. &lt;em>Journal of Hydrology&lt;/em> 320(1–2), 18–36. doi:10.1016/j.jhydrol.2005.07.007.&lt;/li>
+&lt;li>Box, G. E. P. (1976): Science and Statistics. &lt;em>Journal of the American Statistical Association&lt;/em> 71(356), 791–799. doi:10.1080/01621459.1976.10480949.&lt;/li>
+&lt;li>Braess, D. (1968): Über ein Paradoxon aus der Verkehrsplanung. &lt;em>Unternehmensforschung&lt;/em> 12, 258–268.&lt;/li>
+&lt;li>Braess, D., Nagurney, A., Wakolbinger, T. (2005): On a Paradox of Traffic Planning. &lt;em>Transportation Science&lt;/em> 39(4), 446–450.&lt;/li>
+&lt;li>Chung, J.-H., Hwang, K. Y., Bae, Y. K. (2012): The loss of road capacity and self-compliance: Lessons from the Cheonggyecheon stream restoration. &lt;em>Transport Policy&lt;/em> 21, 165–178.&lt;/li>
+&lt;li>Deutsch, D. (2011): &lt;em>The Beginning of Infinity: Explanations That Transform the World&lt;/em>. London: Allen Lane.&lt;/li>
+&lt;li>Douglas, H. E. (2009): &lt;em>Science, Policy, and the Value-Free Ideal&lt;/em>. Pittsburgh: University of Pittsburgh Press.&lt;/li>
+&lt;li>Duhem, P. (1954): &lt;em>The Aim and Structure of Physical Theory&lt;/em>. Translated by P. P. Wiener. Princeton: Princeton University Press.&lt;/li>
+&lt;li>Goodhart, C. A. E. (1984): Problems of monetary management: the U.K. experience. In: &lt;em>Monetary Theory and Practice: The UK Experience&lt;/em>. London: Macmillan, 91–121. doi:10.1007/978-1-349-17295-5_4.&lt;/li>
+&lt;li>Haghani, M. (2023): The notion of validity in experimental crowd dynamics. &lt;em>International Journal of Disaster Risk Reduction&lt;/em> 93, 103750.&lt;/li>
+&lt;li>IMO (2002): &lt;em>Interim Guidelines for Evacuation Analyses for New and Existing Passenger Ships&lt;/em>. MSC/Circ.1033. London: International Maritime Organization.&lt;/li>
+&lt;li>IMO (2016): &lt;em>Revised Guidelines on Evacuation Analysis for New and Existing Passenger Ships&lt;/em>. MSC.1/Circ.1533. London: International Maritime Organization.&lt;/li>
+&lt;li>ISO/TR 13387-8 (1999): &lt;em>Fire safety engineering — Part 8: Life safety — Occupant behaviour, location and condition&lt;/em>. Geneva: ISO (withdrawn).&lt;/li>
+&lt;li>ISO 20414 (2020): &lt;em>Fire safety engineering — Verification and validation protocol for building fire evacuation models&lt;/em>. Geneva: ISO.&lt;/li>
+&lt;li>Knödel, W. (1969): &lt;em>Graphentheoretische Methoden und ihre Anwendungen&lt;/em>. Berlin: Springer.&lt;/li>
+&lt;li>Kolata, G. (1990): What if They Closed 42d Street and Nobody Noticed? &lt;em>New York Times&lt;/em>, 25 December 1990. Free summary: &lt;a href="https://blogs.cornell.edu/info2040/2016/09/14/42nd-street-braess-paradox/" target="_blank" rel="noopener">&amp;ldquo;42nd Street: Braess&amp;rsquo;s Paradox&amp;rdquo;&lt;/a>, Cornell course blog &lt;em>Networks&lt;/em>, 2016.&lt;/li>
+&lt;li>Kuligowski, E. (2013): Predicting Human Behavior During Fires. &lt;em>Fire Technology&lt;/em> 49(1), 101–120.&lt;/li>
+&lt;li>Liddle, J., Seyfried, A., Klingsch, W., Rupprecht, T., Schadschneider, A., Winkens, A. (2009): An Experimental Study of Pedestrian Congestions: Influence of Bottleneck Width and Length. arXiv:0911.4350.&lt;/li>
+&lt;li>Liddle, J., Seyfried, A., Steffen, B., Klingsch, W., Rupprecht, T., Winkens, A., Boltes, M. (2022): Microscopic insights into pedestrian motion through a bottleneck, resolving spatial and temporal variations. &lt;em>Collective Dynamics&lt;/em> 7, A139, 1–23. doi:10.17815/CD.2022.139.&lt;/li>
+&lt;li>National Academies of Sciences, Engineering, and Medicine (2019): &lt;em>Reproducibility and Replicability in Science&lt;/em>. Washington, DC: The National Academies Press. doi:10.17226/25303.&lt;/li>
+&lt;li>Pfungst, O. (1907): &lt;em>Das Pferd des Herrn von Osten (Der Kluge Hans)&lt;/em>. Leipzig: Barth.&lt;/li>
+&lt;li>Popper, K. (1934): &lt;em>Logik der Forschung&lt;/em>. Wien: Springer.&lt;/li>
+&lt;li>Popper, K. (1963): &lt;em>Conjectures and Refutations: The Growth of Scientific Knowledge&lt;/em>. London: Routledge &amp;amp; Kegan Paul.&lt;/li>
+&lt;li>Rapoport, A., Kugler, T., Dugar, S., Gisches, E. J. (2009): Choice of routes in congested traffic networks: Experimental tests of the Braess Paradox. &lt;em>Games and Economic Behavior&lt;/em> 65(2), 538–571.&lt;/li>
+&lt;li>RiMEA (2025): Richtlinie für Mikroskopische Entfluchtungsanalysen, version 4.1.1.&lt;/li>
+&lt;li>Roache, P. J. (1998): Verification of codes and calculations. &lt;em>AIAA Journal&lt;/em> 36(5), 696–702.&lt;/li>
+&lt;li>Ronchi, E., Kuligowski, E. D., Reneke, P. A., Peacock, R. D., Nilsson, D. (2013): &lt;em>The Process of Verification and Validation of Building Fire Evacuation Models&lt;/em>. NIST Technical Note 1822.&lt;/li>
+&lt;li>Ronchi, E., Reneke, P. A., Peacock, R. D. (2014): A method for the analysis of behavioural uncertainty in evacuation modelling. &lt;em>Fire Technology&lt;/em> 50(6), 1545–1571.&lt;/li>
+&lt;li>Strathern, M. (1997): &amp;lsquo;Improving ratings&amp;rsquo;: audit in the British University system. &lt;em>European Review&lt;/em> 5(3), 305–321.&lt;/li>
+&lt;li>Wardrop, J. G. (1952): Some Theoretical Aspects of Road Traffic Research. &lt;em>Proceedings of the Institution of Civil Engineers&lt;/em> Part II 1(3).&lt;/li>
+&lt;/ul>
+&lt;p>&lt;em>Disclosure:&lt;/em> The author&amp;rsquo;s group develops JuPedSim, simulation software to which such tests apply. Some of the laboratory data that RiMEA uses in its tests, and the bottleneck studies cited above (Liddle et al. 2009, 2022), come from Armin Seyfried and colleagues at Forschungszentrum Jülich, where the author works.&lt;/p>
+&lt;p>&lt;span class="hx-inline-block hx-align-text-bottom icon">&lt;svg height=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">&lt;path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>&lt;/svg>&lt;/span>
+By: &lt;a href="https://pedestriandynamics.org/authors/#MohcineChraibi" >Mohcine Chraibi&lt;/a>&lt;/p>
+&lt;div class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1">
+&lt;p>Traffic research uses the related &lt;strong>Wardrop equilibrium&lt;/strong> (Wardrop 1952): the travel times on all used routes are equal, and no unused route is faster. It is usually stated for so many drivers that a single one does not change the travel times. With 15 drivers, one driver changes a narrow road by a whole minute, so in a Nash equilibrium the used routes can differ by one minute, here 24 and 25.&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:2">
+&lt;p>The width across the direction of walking matters most. In one experiment the length made little difference between 2 and 4 m, and only an opening a few centimetres deep let noticeably more people through (Liddle et al. 2009, 2022).&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div></description></item><item><title>Can a model move like museum visitors and still take the wrong paths?</title><link>https://pedestriandynamics.org/notes/guggenheim-atrium/</link><pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/notes/guggenheim-atrium/</guid><description>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
 &lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
