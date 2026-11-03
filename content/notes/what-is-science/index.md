@@ -125,7 +125,9 @@ Claims about a model of human behaviour have to be specific to be tested.
 Often we read "our model reproduces human behaviour", but such statements are simply too broad to be tested. 
 A better statement would be, however, "our model estimates the flow through this exit, for this population and these conditions, with this uncertainty", because such statement can be tested. Estimating the flow through a given exit is also a different task from predicting which exit people choose. The second rests on assumptions about behaviour that bottleneck flow measurements do not test.
 
-Also, being able to run a simulation thousands of times does not make it more trustworthy than an experiment or a field observation for that matter, even if repeated runs of a stochastic model are useful. 
+## 7. What each method can show
+
+Being able to run a simulation thousands of times does not make it more trustworthy than an experiment or a field observation for that matter, even if repeated runs of a stochastic model are useful. 
 They show when the mean evacuation time, its spread and the shape of the evacuation curve stop changing (Ronchi et al. 2014). If a model assumes that everyone knows all exits and takes the fastest route, a million runs with different random seeds will never produce a person who does not know the way. Models have to make such assumptions about behaviour, often without data to support them (Kuligowski 2013). Convergence, however, shows how precisely we know the model's answer; only data show whether that answer describes these people (section 5).
 
 {{< figure src="convergence.png" caption="Illustration with synthetic data: the running mean of a stochastic model settles on the model's own value as the runs accumulate, while a measured drill value stays where it is. ([Script](convergence.py))" >}}
@@ -146,7 +148,7 @@ Criticism of models, experiments and field observations is often general: "model
 
 A useful criticism names an omission and says why it matters. For example: "The model does not include groups who wait for each other. This matters here, because the predicted benefit of the second exit depends on people spreading out independently." Such a criticism can be checked, and it may be strong enough to rule out one particular use of the model.
 
-## 7. What passing a standard establishes
+## 8. What passing a standard establishes
 
 Guidelines such as RiMEA, the German guideline for microscopic evacuation analyses, list test cases for simulation software. We use them ourselves, and they are useful: they catch errors and make results easier to compare. However, we often see their results stretched. "The software passes the RiMEA tests" becomes "the software is validated", then "the results of this project are reliable" and finally "this design is safe". Each step is a new claim and needs its own evidence. For most of its tests RiMEA does not even set pass limits (RiMEA 2025, Annex 1, A 2). The first test, for example, only checks that a person with a given walking speed crosses a corridor in the expected time. Whether that speed fits the people in the building, or whether they find the exits, the test does not say, and it was never meant to.
 
@@ -162,7 +164,7 @@ We think the tests themselves should be tested. We need to know which errors tha
 For pedestrian simulations the German guideline RiMEA (Richtlinie für Mikroskopische Entfluchtungsanalysen, version 4.1.1, 2025) lists test cases 1 to 16 in its Annex 1. RiMEA uses verification and validation interchangeably; its four forms of verification follow ISO/TR 13387-8:1999 (Annex 1, A 1). What it calls "quantitative verification", the comparison with data from evacuation drills, is validation in the AIAA sense (AIAA G-077-1998), and RiMEA itself regards the data as insufficient for it (A 5). The NIST report on evacuation models makes the same correction for the IMO guidelines (Ronchi et al. 2013).
 {{< /details >}}
 
-## 8. Using an explanation to make a decision
+## 9. Using an explanation to make a decision
 
 For practical projects the question becomes: what evidence is enough for this model to support this decision? A claim that a layout is safer needs a safety criterion, for example that everyone is out before conditions become untenable (ASET > RSET); a layout can be faster on average and worse for the last people out. Sometimes the answer is that the evidence does not support the proposed safety claim.
 
