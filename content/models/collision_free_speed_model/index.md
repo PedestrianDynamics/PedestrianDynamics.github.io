@@ -48,9 +48,9 @@ distance.
 
 {{< figure src="figure1.png" caption="Calculation of the movement direction" >}}
 
-$$\mathbf e_i(\mathbf x_i,\mathbf x_j,\ldots)=\frac{1}{N}\left(\mathbf e_0+\sum_j R(s_{i,j})\right)$$
+$$\mathbf e_i(\mathbf x_i,\mathbf x_j,\ldots)=\frac{1}{N}\left(\mathbf e_0+\sum_j R(s_{ij})\,\mathbf e_{ij}\right)$$
 
-with $\mathbf e_0$ the desired direction, $N$ a normalization constant such
+with $\mathbf e_0$ the desired direction, $s_{ij}$ the distance between $i$ and $j$, $\mathbf e_{ij}=(\mathbf x_i-\mathbf x_j)/s_{ij}$ the unit vector pointing from $j$ to $i$, $N$ a normalization constant such
 that $\|\mathbf e_i\|=1$ and $R(s)=a\,\exp\big((l-s)/D\big)$ the repulsion
 function calibrated by the coefficient $a>0$ and distance $D>0$.
 
@@ -66,8 +66,6 @@ Inspired from car-following models, the speed function only depends on the dista
 The set $J_i$ of pedestrians and obstacles in front is given by
 
 $$J_i=\big\{j,\;\mathbf e_i\cdot \mathbf e_{ij}\le 0\;\text{and}\;|\mathbf e_i^\perp\cdot\mathbf e_{ij}|\le l/s_{ij}\big\}.$$
-
-Here $s_{ij}$ is the distance between $i$ and $j$, and $\mathbf e_{ij}=(\mathbf x_i-\mathbf x_j)/s_{ij}$ is the unit vector pointing from $j$ to $i$.
 
 The distance to the nearest pedestrian or obstacle in front is then the minimum
 $$s_i=\min_{j\in J_i}s_{ij}.$$
