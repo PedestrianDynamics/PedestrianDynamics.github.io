@@ -88,7 +88,7 @@ Without luggage, the column made no difference at any of these flows. With lugga
 
 {{< figure src="fig9.png" caption="Time until all 40 people are through, without luggage (left) and with half of them carrying luggage (right). Solid red with the column, dashed without; points are the median of 10 simulation runs, bars the middle half." >}}
 
-## What this does not show
+## Limitations
 
 - **The geometry is a reconstruction.** All dimensions come from photos. I varied stair width, column size and position, and where the right glass ends. The column made things worse in every combination; only the numbers changed.
 - **The route is mine.** I made the simulated people take the way I walked. People coming from behind the column or along the gallery on the left are affected less.
