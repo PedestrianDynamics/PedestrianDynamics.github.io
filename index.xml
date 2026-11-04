@@ -1,4 +1,85 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pedestrian Dynamics – Pedestrian Dynamics</title><link>https://pedestriandynamics.org/</link><description>Recent content on Pedestrian Dynamics</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://pedestriandynamics.org/index.xml" rel="self" type="application/rss+xml"/><item><title>When can we trust a crowd simulation? Lessons from a road paradox</title><link>https://pedestriandynamics.org/notes/what-is-science/</link><pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/notes/what-is-science/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pedestrian Dynamics – Pedestrian Dynamics</title><link>https://pedestriandynamics.org/</link><description>Recent content on Pedestrian Dynamics</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://pedestriandynamics.org/index.xml" rel="self" type="application/rss+xml"/><item><title>A column at the top of a stair</title><link>https://pedestriandynamics.org/notes/copenhagen-stair/</link><pubDate>Wed, 04 Nov 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/notes/copenhagen-stair/</guid><description>
+&lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;/div>
+&lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
+&lt;strong>Abstract.&lt;/strong> On the way to the train at Copenhagen Airport, we nearly walked into a glass balustrade at the top of a stair. The reason seemed to be a column standing exactly where you turn onto the first step. We rebuilt the spot in JuPedSim, with dimensions estimated from photos. In the simulations, the column leaves too little room to straighten up before the stair. People pass the end of the glass closely and step onto the stair at an angle, and both get worse when they hurry. In a crowd, the column becomes a bottleneck. These are simulation results for a reconstructed geometry, not observations of real people at this stair.
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;p>On our way to the train at Copenhagen Airport we nearly bumped into the glass. The stair is an open wooden one near the SAS area, and at its top, right where you turn onto the first step, stands a column. It blocks the view of the stair, and it seemed to get in the way of everyone walking past it. A column like that is probably there for a good structural reason. From a pedestrian dynamics point of view, though, it is in an unfortunate place. It almost felt as if the stair had been fitted around the column as an afterthought. We have no drawings, so that remains a guess.&lt;/p>
+&lt;p>So we asked a simpler question we can actually test: does a column in that position make the turn onto the stair harder?&lt;/p>
+&lt;h2>The stair&lt;span class="hx-absolute -hx-mt-20" id="the-stair">&lt;/span>
+&lt;a href="#the-stair" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/copenhagen-stair/fig1.png"
+alt="Left: the stair seen from below. Right: the plan used in the simulations, with the way we walked in red. People come in from the right, turn around the end of the right glass, pass the column and turn again onto the stair.">&lt;figcaption>
+&lt;p>Left: the stair seen from below. Right: the plan used in the simulations, with the way we walked in red. People come in from the right, turn around the end of the right glass, pass the column and turn again onto the stair.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>All dimensions are estimates from our photos, using the step depth as a scale. The stair is about 2 m wide between the glass walls. The column is about 0.5 m across and stands about 1 m back from the top step. Between the column and the right-hand glass there are only about 65 cm, so people go round the wide side, as we did.&lt;/p>
+&lt;p>We compared the stair as built with the same stair without the column. For each simulated person we measured two things near the top step:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>the gap&lt;/strong>: the closest distance between the person&amp;rsquo;s body and any glass pane;&lt;/li>
+&lt;li>&lt;strong>the angle&lt;/strong>: how far their walking direction is off the stair direction when they step onto it.&lt;/li>
+&lt;/ul>
+&lt;h2>One person in a hurry&lt;span class="hx-absolute -hx-mt-20" id="one-person-in-a-hurry">&lt;/span>
+&lt;a href="#one-person-in-a-hurry" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>We started with people walking alone, using JuPedSim&amp;rsquo;s social force model. In this model people have inertia: they need some time and space to change direction, as real people do.&lt;/p>
+&lt;figure>
+&lt;video autoplay loop muted playsinline preload="auto" style="max-width: 100%">
+&lt;source src="https://pedestriandynamics.org/notes/copenhagen-stair/fig2.mp4" type="video/mp4">
+&lt;/video>
+&lt;figcaption>The same stair at a normal walking speed (left) and in a hurry (right). A person turns red when they come closer than 10 cm to the glass.&lt;/figcaption>
+&lt;/figure>
+&lt;p>At a normal pace, people pass the end of the left glass about 15 cm away. Without the column, the gap is about 65 cm. When people hurry, the gap with the column shrinks to about 10 cm, while without the column it stays the same.&lt;/p>
+&lt;p>The angle tells the same story. With the column, people reach the first step still turning, at about 35° to the stair. Without it, they walk onto the stair almost straight. That is the moment we felt at the airport: you are still finishing the turn while your foot goes onto the step.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/copenhagen-stair/fig3.png"
+alt="Gap to the glass (left) and angle onto the stair (right) against walking speed, for four layouts and, dashed grey, for a model without inertia. Moving the column 2 m back does not help; putting it against the right glass helps. Each point is the median over 160 simulated people.">&lt;figcaption>
+&lt;p>Gap to the glass (left) and angle onto the stair (right) against walking speed, for four layouts and, dashed grey, for a model without inertia. Moving the column 2 m back does not help; putting it against the right glass helps. Each point is the median over 160 simulated people.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;h2>Does it depend on the model?&lt;span class="hx-absolute -hx-mt-20" id="does-it-depend-on-the-model">&lt;/span>
+&lt;a href="#does-it-depend-on-the-model" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Pedestrian models disagree in exactly this kind of detail, so we ran the same stair with two other JuPedSim models.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/copenhagen-stair/fig4.png"
+alt="Top: people in a hurry with each model, stair as built. Bottom: gap and angle against walking speed for each model; solid lines with the column, dashed without. In the model without inertia, people without the column cut the corner and pass close to the right-hand glass instead, which explains its low dashed line on the left.">&lt;figcaption>
+&lt;p>Top: people in a hurry with each model, stair as built. Bottom: gap and angle against walking speed for each model; solid lines with the column, dashed without. In the model without inertia, people without the column cut the corner and pass close to the right-hand glass instead, which explains its low dashed line on the left.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>WarpDriver, a model in which people anticipate collisions a few seconds ahead, also brings people closer to the glass and onto the stair at an angle. In this model, though, hurrying makes no difference: people plan the turn early, so they never overshoot it. The collision-free speed model, in which people turn instantly, shows almost no effect at all. That fits the explanation: the problem is overshooting a turn, and only a model with inertia can do that.&lt;/p>
+&lt;h2>When a plane unloads&lt;span class="hx-absolute -hx-mt-20" id="when-a-plane-unloads">&lt;/span>
+&lt;a href="#when-a-plane-unloads" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Walking alone, the problem is the turn. In a crowd, nobody walks fast any more, and something else happens: the column narrows the top of the stair.&lt;/p>
+&lt;figure>
+&lt;video autoplay loop muted playsinline preload="auto" style="max-width: 100%">
+&lt;source src="https://pedestriandynamics.org/notes/copenhagen-stair/fig6.mp4" type="video/mp4">
+&lt;/video>
+&lt;figcaption>80 people arriving at 1.5 per second, shown at twice the speed. With the column (left), a queue forms around it.&lt;/figcaption>
+&lt;/figure>
+&lt;p>We let 120 people arrive from the right, as when a plane unloads. When they arrive slowly, one per second, the stair copes either way. When they arrive at two per second, all three models agree that the column slows things down. In the social force model, the last person reaches the bottom of the stair after about 100 s with the column and about 80 s without it. The models disagree on how much slower, but not on the direction.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/copenhagen-stair/fig5.png"
+alt="Crowd results for the three models: the time until all 120 people are down, the flow onto the stair, and the median time each person needs from arrival to the bottom of the stair. Solid lines with the column, dashed without; five simulation runs per point.">&lt;figcaption>
+&lt;p>Crowd results for the three models: the time until all 120 people are down, the flow onto the stair, and the median time each person needs from arrival to the bottom of the stair. Solid lines with the column, dashed without; five simulation runs per point.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;h2>When someone comes up&lt;span class="hx-absolute -hx-mt-20" id="when-someone-comes-up">&lt;/span>
+&lt;a href="#when-someone-comes-up" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>People coming up the stair and keeping to the right walk straight into the 65 cm gap between the column and the glass. We kept this test small: ten people, a quarter or half of them coming up. Without the column, nobody got stuck in any simulation run of the social force model or WarpDriver. With the column, people coming up got stuck in 8 of 10 runs, and in all 10 when half of them came up.&lt;/p>
+&lt;figure>
+&lt;video autoplay loop muted playsinline preload="auto" style="max-width: 100%">
+&lt;source src="https://pedestriandynamics.org/notes/copenhagen-stair/fig7.mp4" type="video/mp4">
+&lt;/video>
+&lt;figcaption>Ten people, some coming up (amber), in WarpDriver. With the column, one person coming up stays stuck at the narrow gap; without it, everyone gets through.&lt;/figcaption>
+&lt;/figure>
+&lt;p>&amp;ldquo;Stuck&amp;rdquo; needs a careful reading. The simulated bodies are 50 cm wide and cannot squeeze through; real people would turn sideways or wait. So this does not mean that people get stuck at this stair. It means the gap is too narrow to pass comfortably.&lt;/p>
+&lt;h2>What this does not show&lt;span class="hx-absolute -hx-mt-20" id="what-this-does-not-show">&lt;/span>
+&lt;a href="#what-this-does-not-show" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;ul>
+&lt;li>&lt;strong>The geometry is a reconstruction.&lt;/strong> All dimensions come from photos. We varied stair width, column size and position, and where the right glass ends. The column made things worse in every combination; only the numbers changed.&lt;/li>
+&lt;li>&lt;strong>The route is ours.&lt;/strong> We made the simulated people take the way we walked. People coming from behind the column or along the gallery on the left are affected less.&lt;/li>
+&lt;li>&lt;strong>Visibility is not in the models.&lt;/strong> The column also blocks the view of the stair. None of the models includes that, so that part of the irritation remains untested.&lt;/li>
+&lt;li>&lt;strong>Counterflow is fragile.&lt;/strong> The collision-free speed model jams head-on even without the column, so we did not use it for that test.&lt;/li>
+&lt;li>&lt;strong>No real people were measured.&lt;/strong> This is a simulation study of one stair, not an observation of how people actually use it.&lt;/li>
+&lt;/ul>
+&lt;p>Within these limits, the result is consistent. A column standing exactly where people turn onto a stair takes away the room they need to straighten up before the first step. The faster they walk, the more that matters, and in a crowd it costs flow. Small changes could help without touching the structure, for example a floor marking that leads people round earlier, or a handrail that starts before the turn. We have not tested those yet.&lt;/p>
+&lt;h2>Code and data&lt;span class="hx-absolute -hx-mt-20" id="code-and-data">&lt;/span>
+&lt;a href="#code-and-data" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Code, simulation results and all assumptions: &lt;a href="https://github.com/PedestrianDynamics/copenhagen-stair" target="_blank" rel="noopener">github.com/PedestrianDynamics/copenhagen-stair&lt;/a>&lt;/p>
+&lt;p>&lt;span class="hx-inline-block hx-align-text-bottom icon">&lt;svg height=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">&lt;path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>&lt;/svg>&lt;/span>
+By: &lt;a href="https://pedestriandynamics.org/authors/#MohcineChraibi" >Mohcine Chraibi&lt;/a>&lt;/p></description></item><item><title>When can we trust a crowd simulation? Lessons from a road paradox</title><link>https://pedestriandynamics.org/notes/what-is-science/</link><pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/notes/what-is-science/</guid><description>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
 &lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
