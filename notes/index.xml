@@ -83,8 +83,8 @@ alt="Time until all 40 people are through, without luggage (left) and with half 
 &lt;p>Time until all 40 people are through, without luggage (left) and with half of them carrying luggage (right). Solid red with the column, dashed without; points are the median of 10 simulation runs, bars the middle half.&lt;/p>
 &lt;/figcaption>
 &lt;/figure>
-&lt;h2>What this does not show&lt;span class="hx-absolute -hx-mt-20" id="what-this-does-not-show">&lt;/span>
-&lt;a href="#what-this-does-not-show" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;ul>
+&lt;h2>Limitations&lt;span class="hx-absolute -hx-mt-20" id="limitations">&lt;/span>
+&lt;a href="#limitations" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;ul>
 &lt;li>&lt;strong>The geometry is a reconstruction.&lt;/strong> All dimensions come from photos. I varied stair width, column size and position, and where the right glass ends. The column made things worse in every combination; only the numbers changed.&lt;/li>
 &lt;li>&lt;strong>The route is mine.&lt;/strong> I made the simulated people take the way I walked. People coming from behind the column or along the gallery on the left are affected less.&lt;/li>
 &lt;li>&lt;strong>Visibility is not in the models.&lt;/strong> The column also blocks the view of the stair. None of the models includes that, so that part of the irritation remains untested.&lt;/li>
