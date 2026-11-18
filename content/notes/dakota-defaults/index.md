@@ -129,7 +129,7 @@ First, the calibration fixed the desired speed at 1.55 m/s, the free speed measu
 
 ## Code
 
-Driver scripts, Dakota input files and results: [github.com/PedestrianDynamics/jupedsim-dakota-calibration](https://github.com/PedestrianDynamics/jupedsim-dakota-calibration), branch `jupedsim-2.0` [commit?].
+Driver scripts, Dakota input files and results: [github.com/PedestrianDynamics/jupedsim-dakota-calibration](https://github.com/PedestrianDynamics/jupedsim-dakota-calibration/tree/1d7fc4e/joint2), branch `jupedsim-2.0`, commit 1d7fc4e, folder `joint2`.
 
 Software used in this part:
 
