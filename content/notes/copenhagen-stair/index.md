@@ -16,7 +16,7 @@ On my way back from HBiF, I took some more photos and decided to rebuild the spo
 
 {{< figure src="fig1.png" caption="Top: the column at the top of the stair. Walking up to it (left), it hides the way down until you are next to it; from below (right) it stands right behind the top step. Bottom: the plan used in the simulations, with the way I walked in red. People come in from the right, turn around the end of the right glass, pass the column and turn again onto the stair." >}}
 
-All dimensions are estimates from my photos, using the step depth as a scale. The stair is about 2 m wide between the glass walls. The column is about 0.5 m across and stands about 1 m back from the top step. Between the column and the right-hand glass there are only about 65 cm, so people go round the wide side, as I did.
+The stair is an open wooden one near the SAS area. All dimensions are estimates from my photos, using the step depth as a scale. The stair is about 2 m wide between the glass walls. The column is about 0.5 m across and stands about 1 m back from the top step. Between the column and the right-hand glass there are only about 65 cm, so people go round the wide side, as I did.
 
 I compared the stair as built with the same stair without the column. For each simulated person I measured two things near the top step:
 
