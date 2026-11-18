@@ -123,7 +123,7 @@ First, the calibration fixed the desired speed at 1.55 m/s, the free speed measu
 ## References
 
 - Chraibi, M., Seyfried, A., Schadschneider, A. (2010). Generalized centrifugal-force model for pedestrian dynamics. Physical Review E 82, 046111. [doi:10.1103/PhysRevE.82.046111](https://doi.org/10.1103/PhysRevE.82.046111).
-- Tordeux, A., Chraibi, M., Seyfried, A. (2016). Collision-free speed model for pedestrian dynamics. In: Traffic and Granular Flow '15, Springer, [pages?] [doi?].
+- Tordeux, A., Chraibi, M., Seyfried, A. (2016). Collision-free speed model for pedestrian dynamics. In: Traffic and Granular Flow '15, Springer, 225–232. [doi:10.1007/978-3-319-33482-0_29](https://doi.org/10.1007/978-3-319-33482-0_29).
 - Xu, Q., Chraibi, M., Tordeux, A., Zhang, J. (2019). Generalized collision-free velocity model for pedestrian dynamics. Physica A 535, 122521. [doi:10.1016/j.physa.2019.122521](https://doi.org/10.1016/j.physa.2019.122521).
 - Experiment data and the references of part 1 and part 2 as listed there.
 
