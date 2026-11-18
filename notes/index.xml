@@ -1,4 +1,180 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pedestrian Dynamics – Notes</title><link>https://pedestriandynamics.org/notes/</link><description>Recent content in Notes on Pedestrian Dynamics</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://pedestriandynamics.org/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>A column at the top of a stair</title><link>https://pedestriandynamics.org/notes/copenhagen-stair/</link><pubDate>Wed, 04 Nov 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/notes/copenhagen-stair/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pedestrian Dynamics – Notes</title><link>https://pedestriandynamics.org/notes/</link><description>Recent content in Notes on Pedestrian Dynamics</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://pedestriandynamics.org/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>Calibrating a pedestrian model against real data, part 3: default values for JuPedSim 2.0</title><link>https://pedestriandynamics.org/notes/dakota-defaults/</link><pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/notes/dakota-defaults/</guid><description>
+&lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
+&lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;/div>
+&lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
+&lt;div class="hx-mt-6 hx-leading-7 first:hx-mt-0">
+&lt;strong>Abstract.&lt;/strong> &lt;a href="https://pedestriandynamics.org/notes/dakota-calibration/" >Part 1&lt;/a> and &lt;a href="https://pedestriandynamics.org/notes/dakota-validation/" >part 2&lt;/a> showed that a calibration holds for the regime it was fitted to. A default parameter set has no regime: it is what a user gets without asking. In this part, we recalibrate JuPedSim&amp;rsquo;s Collision Free Speed model for version 2.0 on the Hermes bottleneck and the CrowdQueue gate together, and test it on two widths and one experiment it was not fitted to. We add one parameter, a vision factor taken from the Generalized Centrifugal Force Model, and penalise clogging explicitly. Without the vision factor, the best set stalls in 13 of 50 runs. With a half-weighted vision factor, the selected set stalls in none, fits the calibration data slightly better than the old joint set, and removes the deadlocks in a narrow bottleneck. However, it underestimates the flow in wide bottlenecks by about 20 %, and the speed at the gate is still too high.
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;h2>Why new defaults&lt;span class="hx-absolute -hx-mt-20" id="why-new-defaults">&lt;/span>
+&lt;a href="#why-new-defaults" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The current release of JuPedSim is 1.4.2. Version 2.0 is developed on the main branch of the repository and is not released yet. Parts 1 and 2 used 1.4.2. This part uses the main branch, i.e. the development version of 2.0 (see the end of the note for the commit). JuPedSim 2.0 renames its operational models (&lt;a href="https://github.com/PedestrianDynamics/jupedsim/issues/1723" target="_blank" rel="noopener">issue #1723&lt;/a>). Models that reproduce a paper are frozen under the paper&amp;rsquo;s name. &lt;code>CollisionFreeSpeedModel&lt;/code> is the one model that keeps improving, and it is the default. It is the model called &lt;code>CollisionFreeSpeedModelV2&lt;/code> in 1.4.2. Its default parameters, the same in both versions, were chosen by hand years ago (time gap 1 s, radius 0.2 m, neighbor repulsion strength 8 and range 0.1 m). Part 2 showed what such values are worth in another regime. Therefore, we asked which values a user should get when they choose nothing.&lt;/p>
+&lt;p>There was a second reason. A reader of Xu et al. (2019) asked why the model clogs in a 1.0 m bottleneck while the experiment does not. We reproduced Fig. 11 of that paper with the Collision Free Speed model in JuPedSim 1.4.2. With the time gap fitted to the flow, the model matches the experiment with an RMSE of 0.21 1/s. However, 4 of 10 runs at 1.0 m deadlock at the gap entrance, and on JuPedSim 2.0 the same parameters deadlock in 8 of 10 runs.&lt;/p>
+&lt;h2>The mechanism, and one parameter against it&lt;span class="hx-absolute -hx-mt-20" id="the-mechanism-and-one-parameter-against-it">&lt;/span>
+&lt;a href="#the-mechanism-and-one-parameter-against-it" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>In every deadlocked run, the agents in the front row have zero spacing in their direction of motion. The crowd behind pushes them sideways against the wall next to the opening. Their direction is the sum of the desired direction and the repulsion from all neighbors within range, and the repulsion from behind dominates. The agents turn towards the wall, see a neighbor or a wall in their path, and stop. Since the speed of the model is a function of the spacing only, nothing restarts them.&lt;/p>
+&lt;p>The Generalized Centrifugal Force Model (Chraibi et al. 2010) weights a neighbor&amp;rsquo;s force by the cosine of its angle to the desired direction, and ignores neighbors behind. We added this vision factor to the direction rule of the Collision Free Speed model. With $\mathbf{e}&lt;em>0$ the desired direction and $\mathbf{e}&lt;/em>{ij}$ the unit vector from agent $i$ to neighbor $j$, the repulsion of $j$ is multiplied by&lt;/p>
+$$
+w_{ij} = 1 - \lambda + \lambda \max(0,\, \mathbf{e}_0 \cdot \mathbf{e}_{ij}).
+$$&lt;p>$\lambda = 0$ is the isotropic model, and $\lambda = 1$ is the full vision factor. The parameter is called &lt;code>neighbor_repulsion_anisotropy&lt;/code>. Its default was kept at 0 until the calibration decided on a value.&lt;/p>
+&lt;p>We tried a second remedy: tolerating a small overlap in the spacing. It turned deadlocks into clogs of up to 43 s, which is not better for a user, and we dropped it.&lt;/p>
+&lt;h2>Moving to JuPedSim 2.0&lt;span class="hx-absolute -hx-mt-20" id="moving-to-jupedsim-20">&lt;/span>
+&lt;a href="#moving-to-jupedsim-20" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>We ported the drivers of part 1 and part 2 to the 2.0 interface. In 2.0, the walkable area is built as regions, the agents carry their parameters as a model state, and trajectories are written to HDF5. With the same parameters (set B of part 1, Hermes 2.4 m, one seed), the main branch gives a flow of 6.33 1/s and a density of 5.80 1/m², against 6.56 1/s and 5.60 1/m² on 1.4.2. The difference is within 4 %. Therefore, the new routing does not change this scenario noticeably.&lt;/p>
+&lt;p>However, two problems of 2.0 affected the work. First, one Hermes run takes 73 s on 2.0 and 5 s on 1.4.2. A profile attributes 99 % of the model time to the wall query, which uses exact geometric predicates and handles an exception on every lookup. Second, about 5 % of all runs aborted with the error &lt;code>path hit a wall&lt;/code>, i.e. a step that would cross a wall. We counted these runs as failures. Both problems belong to the engine, not to the model, and are reported separately.&lt;/p>
+&lt;h2>The objective&lt;span class="hx-absolute -hx-mt-20" id="the-objective">&lt;/span>
+&lt;a href="#the-objective" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>We kept the observables, weights and tolerances of part 1 and part 2. The residuals are flow, density and speed at Hermes 2.4, 3.6 and 5.0 m and at seven CrowdQueue runs with baseline motivation, each divided by 6 % (flow) or 10 % (density, speed) of the measured value. These are 30 residuals. The desired speed is fixed at the measured 1.55 m/s.&lt;/p>
+&lt;p>Part 2 showed that a stalled run can report observables that look fine. Therefore, we added a 31st residual: 5 for every run that stalls or fails. One stalled run costs 25 in the sum of squares, as much as one observable off by five tolerances. A run counts as stalled when nobody passes for 20 s. Each evaluation averages two seeds per scenario, i.e. 20 simulations, and takes 2.5 to 8 minutes on 12 cores.&lt;/p>
+&lt;p>We ran Dakota&amp;rsquo;s efficient global optimizer twice for each of $\lambda = 0$ and $\lambda = 1$, with six free parameters. Each study converged after 31 to 45 evaluations.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>study&lt;/th>
+&lt;th>best sum of squares&lt;/th>
+&lt;th>Hermes&lt;/th>
+&lt;th>CrowdQueue&lt;/th>
+&lt;th>stalled runs&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>$\lambda = 0$, start 1 (set A)&lt;/td>
+&lt;td>218&lt;/td>
+&lt;td>16&lt;/td>
+&lt;td>177&lt;/td>
+&lt;td>1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>$\lambda = 0$, start 2 (set B)&lt;/td>
+&lt;td>250&lt;/td>
+&lt;td>110&lt;/td>
+&lt;td>140&lt;/td>
+&lt;td>0&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>$\lambda = 1$, start 1&lt;/td>
+&lt;td>735&lt;/td>
+&lt;td>208&lt;/td>
+&lt;td>527&lt;/td>
+&lt;td>0&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>$\lambda = 1$, start 2&lt;/td>
+&lt;td>448&lt;/td>
+&lt;td>121&lt;/td>
+&lt;td>301&lt;/td>
+&lt;td>1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>joint set of part 2, JuPedSim 1.4.2&lt;/td>
+&lt;td>241&lt;/td>
+&lt;td>38&lt;/td>
+&lt;td>203&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>The isotropic model fits best, and the full vision factor fits CrowdQueue about twice as badly. As in part 1 and part 2, two starts on the same data end at different parameters.&lt;/p>
+&lt;h2>Two seeds are a sample&lt;span class="hx-absolute -hx-mt-20" id="two-seeds-are-a-sample">&lt;/span>
+&lt;a href="#two-seeds-are-a-sample" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>We re-evaluated the best sets with five seeds, i.e. 50 simulations per set, see Fig. 1 (b). &lt;strong>Set A, the best isotropic set, stalls in 13 of 50 runs&lt;/strong>, twelve of them at the CrowdQueue gate. Its sum of squares rises from 218 to 4569. The optimizer had chosen it on two lucky seeds. Set B stalls in 4 of 50.&lt;/p>
+&lt;p>The same sets with $\lambda = 0.5$ stall in 0 and 1 of 50 runs, at a sum of squares of 318 and 328. With $\lambda = 1$, they stall in 0 and 1 of 50 runs, but CrowdQueue fits worse (677 and 764). Therefore, we ran two more studies with $\lambda = 0.5$ fixed and three seeds per evaluation. Their best sets, C and D, reach 250 and 261. With five seeds, &lt;strong>set C has a sum of squares of 226 and no stalled run in 50&lt;/strong>. It is the only set in our tests that is below the joint set of part 2 (241) and does not stall.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/dakota-defaults/calibration_results.png"
+alt="Fig. 1. (a) Flow in the bottleneck of Xu et al. (2019), not used in the calibration, 10 seeds per width. (b) Calibration objective of all candidate sets, re-evaluated with 5 seeds; red is the stall penalty, the bar of set A with $\lambda = 0$ is cut at 900. (c) Hermes flow; open markers are widths not used in the calibration. (d) Relative error of flow, density and speed at the seven CrowdQueue runs.">&lt;figcaption>
+&lt;p>Fig. 1. (a) Flow in the bottleneck of Xu et al. (2019), not used in the calibration, 10 seeds per width. (b) Calibration objective of all candidate sets, re-evaluated with 5 seeds; red is the stall penalty, the bar of set A with $\lambda = 0$ is cut at 900. (c) Hermes flow; open markers are widths not used in the calibration. (d) Relative error of flow, density and speed at the seven CrowdQueue runs.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;h2>The selected set&lt;span class="hx-absolute -hx-mt-20" id="the-selected-set">&lt;/span>
+&lt;a href="#the-selected-set" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>parameter&lt;/th>
+&lt;th>current default&lt;/th>
+&lt;th>proposed (set C)&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>radius [m]&lt;/td>
+&lt;td>0.20&lt;/td>
+&lt;td>0.155&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>time gap [s]&lt;/td>
+&lt;td>1.0&lt;/td>
+&lt;td>0.956&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>neighbor repulsion strength&lt;/td>
+&lt;td>8.0&lt;/td>
+&lt;td>2.83&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>neighbor repulsion range [m]&lt;/td>
+&lt;td>0.10&lt;/td>
+&lt;td>0.150&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>wall repulsion strength&lt;/td>
+&lt;td>5.0&lt;/td>
+&lt;td>5.95&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>wall repulsion range [m]&lt;/td>
+&lt;td>0.02&lt;/td>
+&lt;td>0.021&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>neighbor repulsion anisotropy $\lambda$&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>0.5 (fixed in the search)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Set C is a compromise, and Fig. 1 shows where it pays. At the CrowdQueue gate, the flow is within 15 % in six of seven runs, see Fig. 1 (d). However, the speed in front of the gate is 27 to 53 % too high in six of seven runs. At the Hermes widths used in the fit, the flow is 20 to 29 % too low, see Fig. 1 (c). Set A with $\lambda = 0.5$ fits Hermes better, but overestimates the gate flow by 14 to 49 %. We preferred the set that is closer at the narrow gate, since clogging and gate flow are where a wrong default misleads a user most.&lt;/p>
+&lt;h2>Tests on data not used in the fit&lt;span class="hx-absolute -hx-mt-20" id="tests-on-data-not-used-in-the-fit">&lt;/span>
+&lt;a href="#tests-on-data-not-used-in-the-fit" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>&lt;strong>Hermes 3.0 and 4.4 m.&lt;/strong> With five seeds, set C underestimates the flow by 3.3 and 3.2 tolerances, i.e. about 20 %, and the density by 1.7 and 2.1 tolerances. Set A with $\lambda = 0.5$ overestimates the flow by 4.2 and 3.4 tolerances. Neither set meets the 6 % tolerance at the widths it was not fitted to. In 3 of 20 runs, one agent of 350 remained in a corner of the waiting area. We did not count this as clogging.&lt;/p>
+&lt;p>&lt;strong>Xu et al. (2019), 1.0 to 2.5 m.&lt;/strong> With the desired speeds of that paper (normal, mean 1.34 m/s, standard deviation 0.26 m/s), set C does not deadlock in any of 90 runs, see Fig. 1 (a). The largest gap between two passages is 2.0 s. However, the flow is 18 to 29 % below the experiment from 1.4 m on. This agrees with the underestimation at Hermes, and the lower desired speed adds to it.&lt;/p>
+&lt;h2>Current and proposed defaults&lt;span class="hx-absolute -hx-mt-20" id="current-and-proposed-defaults">&lt;/span>
+&lt;a href="#current-and-proposed-defaults" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>In this section, we compare what a user gets without setting any parameter. Both sets run in the bottleneck of Xu et al. (2019) with every agent at the default desired speed of 1.2 m/s, 10 seeds per width, see Fig. 2.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/dakota-defaults/defaults_comparison.png"
+alt="Fig. 2. The current and the proposed defaults in the bottleneck of Xu et al. (2019), all agents with a desired speed of 1.2 m/s. (a) Flow of the runs that emptied the room, 10 seeds per width. (b) Agents in the room over time at w = 1.0 m for one seed; the run with the current defaults was stopped at 200 s. Right: snapshots of the same two runs.">&lt;figcaption>
+&lt;p>Fig. 2. The current and the proposed defaults in the bottleneck of Xu et al. (2019), all agents with a desired speed of 1.2 m/s. (a) Flow of the runs that emptied the room, 10 seeds per width. (b) Agents in the room over time at w = 1.0 m for one seed; the run with the current defaults was stopped at 200 s. Right: snapshots of the same two runs.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>With the current defaults, the flow is 39 to 56 % below the experiment, and in 2 of 10 runs at 1.0 m nobody passes for 60 s. With the proposed defaults, this happens in no run, and the flow is 4 to 26 % below the experiment. In Fig. 2 (b), the proposed defaults empty the room after 126 s. The current defaults have 18 agents left after 200 s, i.e. this run is slow, not stuck.&lt;/p>
+&lt;p>However, the comparison is not fair to the experiment, since the participants did not all walk at 1.2 m/s. The flow is higher than with set C and the desired speeds of Xu et al. (2019) in Fig. 1 (a), probably since the slowest agents of that distribution limit the flow through the gap.&lt;/p>
+&lt;p>The proposed defaults change two things: the parameters of set C, and the vision factor $\lambda = 0.5$. In order to separate them, we ran the same 1.0 m case (one seed, 1.2 m/s) with each change alone, see Fig. 3. The vision factor alone does not change the current defaults: 18 and 19 agents are left after 200 s. With the large radius and the strong repulsion of the current defaults, the agents in front of the gap stay apart and slow, and there is no jam for the vision factor to dissolve. The recalibrated parameters alone deadlock after about 34 s, and 144 agents remain until the end. The snapshot at 40 s shows the mechanism of the second section: a dense arch closes over the entrance, and the gap is empty. Only the combination empties the room, after 126 s. In other words, the recalibrated parameters make the crowd denser and faster, and the vision factor is what keeps such a crowd from blocking the gap. This agrees with the five-seed results above, where set A without the vision factor stalled in 13 of 50 runs. However, Fig. 3 shows one seed at one width.&lt;/p>
+&lt;figure>&lt;img src="https://pedestriandynamics.org/notes/dakota-defaults/variants_w1.0_s0.png"
+alt="Fig. 3. The two changes separately, w = 1.0 m, one seed, all agents at 1.2 m/s. Top: agents in the room over time; the dotted line marks the snapshots. Bottom: the region around the gap at t = 40 s, colored by speed, with velocity arrows. The proposed curve ends at the last written frame, just before the last agent leaves.">&lt;figcaption>
+&lt;p>Fig. 3. The two changes separately, w = 1.0 m, one seed, all agents at 1.2 m/s. Top: agents in the room over time; the dotted line marks the snapshots. Bottom: the region around the gap at t = 40 s, colored by speed, with velocity arrows. The proposed curve ends at the last written frame, just before the last agent leaves.&lt;/p>
+&lt;/figcaption>
+&lt;/figure>
+&lt;h2>A note on the time step&lt;span class="hx-absolute -hx-mt-20" id="a-note-on-the-time-step">&lt;/span>
+&lt;a href="#a-note-on-the-time-step" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>A fundamental diagram needs a periodic corridor, which JuPedSim does not have. We used a ring instead and a time step of 0.05 s in order to save time. A single agent in a 0.6 m wide ring then walks at 0.89 m/s instead of its desired 1.34 m/s, since the walls on both sides turn its direction back and forth. With 0.01 s, it walks at 1.34 m/s. The first fundamental diagrams were therefore wrong, including negative speeds at high density, and we discarded them. A time step that is fine in a straight corridor is not necessarily fine in a curved one. Check a single free agent before simulating a crowd.&lt;/p>
+&lt;h2>Lessons&lt;span class="hx-absolute -hx-mt-20" id="lessons">&lt;/span>
+&lt;a href="#lessons" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;ul>
+&lt;li>&lt;strong>Penalise the failure you care about.&lt;/strong> Without the stall term, the optimizer had no reason to prefer a set that does not clog. With it, the stall count became the main criterion between sets with similar fits.&lt;/li>
+&lt;li>&lt;strong>Re-evaluate the winner with more seeds.&lt;/strong> Two seeds selected a set that stalls in a quarter of its runs. An optimizer that sees stochastic results prefers the lucky draws.&lt;/li>
+&lt;li>&lt;strong>Test a remedy for the failure where the failure happens.&lt;/strong> The vision factor removes the deadlocks in the narrow bottleneck. In the wide Hermes bottleneck there is nothing to remove, and the full vision factor only costs accuracy. A half-weighted factor was the compromise in our data.&lt;/li>
+&lt;li>&lt;strong>A default is a compromise.&lt;/strong> No set we found meets the tolerances at both experiments. The proposed set is the most reliable one we found, not an accurate one.&lt;/li>
+&lt;/ul>
+&lt;h2>Limitations&lt;span class="hx-absolute -hx-mt-20" id="limitations">&lt;/span>
+&lt;a href="#limitations" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>First, the calibration fixed the desired speed at 1.55 m/s, the free speed measured on the Hermes participants. The default stays at 1.2 m/s, the literature value for normal walking. Fig. 2 shows that the proposed set works at 1.2 m/s in one geometry. A calibration at 1.2 m/s would let the time gap and the repulsion absorb the faster walking of the Hermes participants, and we did not run it. Second, $\lambda$ was not optimized; we compared the values 0, 0.5 and 1. Third, the fundamental diagrams with the 0.01 s time step have not been computed yet. Fourth, the engine errors removed about 5 % of all runs from the comparison. Despite these limitations, the proposed set is the first default of this model that is documented by a calibration and by tests on data not used for it. The defaults should be revisited when the engine errors are fixed and the fundamental diagrams are available.&lt;/p>
+&lt;h2>References&lt;span class="hx-absolute -hx-mt-20" id="references">&lt;/span>
+&lt;a href="#references" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;ul>
+&lt;li>Chraibi, M., Seyfried, A., Schadschneider, A. (2010). Generalized centrifugal-force model for pedestrian dynamics. Physical Review E 82, 046111. &lt;a href="https://doi.org/10.1103/PhysRevE.82.046111" target="_blank" rel="noopener">doi:10.1103/PhysRevE.82.046111&lt;/a>.&lt;/li>
+&lt;li>Tordeux, A., Chraibi, M., Seyfried, A. (2016). Collision-free speed model for pedestrian dynamics. In: Traffic and Granular Flow &amp;lsquo;15, Springer, 225–232. &lt;a href="https://doi.org/10.1007/978-3-319-33482-0_29" target="_blank" rel="noopener">doi:10.1007/978-3-319-33482-0_29&lt;/a>.&lt;/li>
+&lt;li>Xu, Q., Chraibi, M., Tordeux, A., Zhang, J. (2019). Generalized collision-free velocity model for pedestrian dynamics. Physica A 535, 122521. &lt;a href="https://doi.org/10.1016/j.physa.2019.122521" target="_blank" rel="noopener">doi:10.1016/j.physa.2019.122521&lt;/a>.&lt;/li>
+&lt;li>Experiment data and the references of part 1 and part 2 as listed there.&lt;/li>
+&lt;/ul>
+&lt;h2>Code&lt;span class="hx-absolute -hx-mt-20" id="code">&lt;/span>
+&lt;a href="#code" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Driver scripts, Dakota input files and results: &lt;a href="https://github.com/PedestrianDynamics/jupedsim-dakota-calibration/tree/1d7fc4e/joint2" target="_blank" rel="noopener">github.com/PedestrianDynamics/jupedsim-dakota-calibration&lt;/a>, branch &lt;code>jupedsim-2.0&lt;/code>, commit 1d7fc4e, folder &lt;code>joint2&lt;/code>.&lt;/p>
+&lt;p>Software used in this part:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://dakota.sandia.gov" target="_blank" rel="noopener">Dakota&lt;/a> 6.24&lt;/li>
+&lt;li>&lt;a href="https://jupedsim.org" target="_blank" rel="noopener">JuPedSim&lt;/a> main branch, development version of 2.0, commit 11258f0f0 (parts 1 and 2: release 1.4.2)&lt;/li>
+&lt;li>&lt;a href="https://pedpy.readthedocs.io" target="_blank" rel="noopener">PedPy&lt;/a> 1.5.1&lt;/li>
+&lt;/ul>
+&lt;p>&lt;span class="hx-inline-block hx-align-text-bottom icon">&lt;svg height=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">&lt;path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>&lt;/svg>&lt;/span>
+By: &lt;a href="https://pedestriandynamics.org/authors/#MohcineChraibi" >Mohcine Chraibi&lt;/a>&lt;/p></description></item><item><title>A column at the top of a stair</title><link>https://pedestriandynamics.org/notes/copenhagen-stair/</link><pubDate>Wed, 04 Nov 2026 00:00:00 +0000</pubDate><guid>https://pedestriandynamics.org/notes/copenhagen-stair/</guid><description>
 &lt;div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-rounded-lg hx-border hx-py-2 ltr:hx-pr-4 rtl:hx-pl-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
 &lt;div class="ltr:hx-pl-3 ltr:hx-pr-2 rtl:hx-pr-3 rtl:hx-pl-2">&lt;/div>
 &lt;div class="hx-w-full hx-min-w-0 hx-leading-7">
