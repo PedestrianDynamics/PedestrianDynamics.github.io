@@ -6,12 +6,15 @@ thumbnail: fig2.mp4
 ---
 
 {{< callout type="info" icon="none" >}}
-**Abstract.** On the way to the train at Copenhagen Airport, I nearly walked into a glass balustrade at the top of a stair. The reason seemed to be a column standing exactly where you turn onto the first step. I rebuilt the spot in JuPedSim, with dimensions estimated from photos. In the simulations, the column leaves too little room to straighten up before the stair. People pass the end of the glass closely and step onto the stair at an angle, and both get worse when they hurry. In a crowd arriving from one side, the column becomes a bottleneck. When people keep right on the stair, people coming up get past it without trouble, unless they carry luggage and have to go round the column across the people coming down. These are simulation results for a reconstructed geometry, not observations of real people at this stair.
+**Abstract.** 
+On my way to the train at Copenhagen Airport, I nearly bumped into the glass at the top of the stairs. A column stands right where you turn onto the first step. It blocks the view and, at least for me, made the turn awkward.
+The column probably has a good structural reason to be there. Still, looking at the layout, I wondered whether someone had fitted the stairs around it as an afterthought. Or maybe I was just absent-minded.
+On my way back from HBiF, I took some more photos and decided to rebuild the spot in JuPedSim. Would the simulations show anything resembling my awkward turn?
 {{< /callout >}}
 
-On my way to the train at Copenhagen Airport I nearly bumped into the glass. The stair is an open wooden one near the SAS area, and at its top, right where you turn onto the first step, stands a column. It blocks the view of the stair, and it seemed to get in the way of everyone walking past it. A column like that is probably there for a good structural reason. From a pedestrian dynamics point of view, though, it is in an unfortunate place. It almost felt as if the stair had been fitted around the column as an afterthought. I have no drawings, so that remains a guess.
+The main character of this study is a column near the SAS area in the Copenhagen airport. It blocks the view of the stair, and it seemed to get in the way of everyone walking past it. A column like that is there for a good structural reason, no doubt about that. From a pedestrian dynamics point of view, though, it is in an unfortunate place. Or maybe not?
 
-So I asked a simpler question I can actually test: does a column in that position make the turn onto the stair harder?
+I'm not really sure. On my way back from the HBiF, I thought maybe I should take some more fotos and try to find out wether the column in that position makes the turn onto the stair harder?
 
 ## The stair
 
@@ -35,7 +38,7 @@ I started with people walking alone, using JuPedSim's social force model. In thi
 
 At a normal pace, people pass the end of the left glass about 15 cm away. Without the column, the gap is about 65 cm. When people hurry, the gap with the column shrinks to about 10 cm, while without the column it stays the same.
 
-The angle tells the same story. With the column, people reach the first step still turning, at about 35° to the stair. Without it, they walk onto the stair almost straight. That is the moment I felt at the airport: you are still finishing the turn while your foot goes onto the step.
+With the column, people reach the first step still turning, at about 35° to the stair. Without it, they walk onto the stair almost straight. That is the moment I felt at the airport: you are still finishing the turn while your foot goes onto the step.
 
 {{< figure src="fig3.png" caption="Gap to the glass (left) and angle onto the stair (right) against walking speed, for four layouts and, dashed grey, for a model without inertia. Moving the column 2 m back does not help; putting it against the right glass helps. Each point is the median over 160 simulated people." >}}
 
@@ -45,11 +48,12 @@ Pedestrian models disagree in exactly this kind of detail, so I ran the same sta
 
 {{< figure src="fig4.png" caption="Top: people in a hurry with each model, stair as built. Bottom: gap and angle against walking speed for each model; solid lines with the column, dashed without. In the model without inertia, people without the column cut the corner and pass close to the right-hand glass instead, which explains its low dashed line on the left." >}}
 
-WarpDriver, a model in which people anticipate collisions a few seconds ahead, also brings people closer to the glass and onto the stair at an angle. In this model, though, hurrying makes no difference: people plan the turn early, so they never overshoot it. The collision-free speed model, in which people turn instantly, shows almost no effect at all. That fits the explanation: the problem is overshooting a turn, and only a model with inertia can do that.
+WarpDriver, a model in which people anticipate collisions a few seconds ahead, also brings people closer to the glass and onto the stair at an angle. In this model, though, hurrying makes no difference: people plan the turn early, so they never overshoot it. The collision-free speed model, in which people turn instantly, shows almost no effect at all.
+The models differ in both the turn itself and how it changes with speed. So the effect depends partly on how the model handles changes in walking direction.
 
 ## When a plane unloads
 
-Walking alone, the problem is the turn. In a crowd, nobody walks fast any more, and something else happens: the column narrows the top of the stair.
+Walking alone, the problem is the turn. When more people arrive, there is less room to move, and the column also becomes a bottleneck.
 
 {{< video
     src="fig6.mp4"
@@ -62,7 +66,8 @@ I let 120 people arrive from the right, as when a plane unloads. When they arriv
 
 ## When someone comes up
 
-People on a stair do not take the shortest path: they keep to the right, going down as well as coming up. So for this test I gave everyone checkpoints along their right-hand side of the stair and around the end of the glass. People coming up then walk straight into the 65 cm gap between the column and the glass. I used the collision-free speed model and 20 people, a quarter or half of them coming up.
+For this test, I assumed that people would keep right, both going up and coming down.
+So for this test I assigned agents checkpoints along their right-hand side of the stair and around the end of the glass. Agents coming up then walk straight into the narrow gap between the column and the glass. I used the collision-free speed model and 20 agents, a quarter or half of them coming up.
 
 {{< video
     src="fig7.mp4"
@@ -71,13 +76,15 @@ People on a stair do not take the shortest path: they keep to the right, going d
 
 Nobody got stuck, with or without the column, and the column did not cost any time. With everyone keeping right, the column even works as a divider between the two directions. The gap is narrow for a 50 cm wide body, but the model lets people pass it without slowing down.
 
-My first try did not use lanes, and the social force model and WarpDriver got stuck at the gap in most runs. That was the models, not the stair: their simulated bodies cannot squeeze through, while real people turn sideways or wait.
+My first try did not use lanes, and the social force model and WarpDriver got stuck at the gap in most runs. 
+I would not interpret these jams as evidence that people would get stuck there. The models cannot represent someone turning sideways to pass.
 
 ## With luggage
 
-This is an airport, though, and many people carry a bag or pull a suitcase. Someone with luggage will not aim for a 65 cm gap. They go round the column on its wide side, right across the people coming down.
+This is an airport, though, and many people carry a bag or pull a suitcase. 
+For this test, I assumed that people with luggage would avoid the narrow gap and go round the column on its wide side, right across the people coming down.
 
-A pedestrian model has no suitcases, so I made people with luggage wider (60 cm instead of 50 cm) and a bit slower (80 % of the normal speed). Half of the people carried luggage. People coming up with luggage kept right on the stair and then crossed over to pass the column on its left. Everybody else used the same lanes as before. I ran 40 people, half of them coming up, at up to two arrivals per second.
+The model I used does not explicitly represent suitcases, so I made agents with luggage wider (60 cm instead of 50 cm) and a bit slower (80 % of the normal speed). Agents coming up with luggage kept right on the stair and then crossed over to pass the column on its left. Everybody else used the same lanes as before. I ran 40 people, half of them coming up, at up to two arrivals per second.
 
 {{< video
     src="fig8.mp4"
@@ -90,14 +97,16 @@ Without luggage, the column made no difference at any of these flows. With lugga
 
 ## Limitations
 
-- **The geometry is a reconstruction.** All dimensions come from photos. I varied stair width, column size and position, and where the right glass ends. The column made things worse in every combination; only the numbers changed.
-- **The route is mine.** I made the simulated people take the way I walked. People coming from behind the column or along the gallery on the left are affected less.
-- **Visibility is not in the models.** The column also blocks the view of the stair. None of the models includes that, so that part of the irritation remains untested.
-- **Counterflow depends on the model.** Without lanes, the collision-free speed model jams head-on even without the column. With keep-right lanes it shows no problem, while the social force model and WarpDriver still jam at the 65 cm gap.
-- **Luggage is a wider circle.** A pulled suitcase makes a person longer, not wider, and that shape is not in the model. That people with luggage avoid the gap is my assumption, not something the model decides.
-- **No real people were measured.** This is a simulation study of one stair, not an observation of how people actually use it.
+I reconstructed the stairs from my photos, so all the dimensions are estimates. I varied the width of the stairs, the size and position of the column, and where the glass panel on the right ends. For the route I walked, the column made the turn more awkward in every layout I tested, although the size of the effect varied. The approach matters, too. In the simulations, the column had less effect on people coming from behind it or along the gallery on the left. What bothered me at the airport was also how the column blocked my view of the stairs. None of the models accounts for that.
 
-Within these limits, the result is consistent. A column standing exactly where people turn onto a stair takes away the room they need to straighten up before the first step. The faster they walk, the more that matters, and in a crowd it costs flow. For people coming up, the column did not get in the way once everyone keeps right, until they carry luggage: then it pushes them across the people coming down. Small changes could help without touching the structure, for example a floor marking that leads people round earlier, or a handrail that starts before the turn. I have not tested those yet.
+When people walked in both directions, the result depended on the model and on whether agents were to keep right. Without lanes, people in the collision-free speed model got stuck facing each other even when I removed the column. When I gave them routes that kept them on the right, they passed through the 65 cm gap without difficulty. With the same routes, people in the social force model and WarpDriver still got stuck at the gap.
+
+For the luggage runs, I represented a traveller with a suitcase as a wider circle. A suitcase pulled behind you takes up space mostly behind you. I also chose the route around the column for people coming up with luggage, so their decision to avoid the gap was part of the setup. I took no measurements of how travellers actually use these stairs. I’d be curious to see which way someone pulling a suitcase goes when they reach that gap.
+
+The simulations give me some reason to think the column's placement is awckward. How much it matters depends on the model and on the routes I gave agents in the simulation. I would still like to see how travellers actually use this spot, especially with luggage.
+
+Could a floor marking or an earlier handrail help people start the turn sooner? 
+
 
 ## Code and data
 
