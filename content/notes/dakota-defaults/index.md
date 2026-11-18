@@ -20,13 +20,13 @@ There was a second reason. A reader of Xu et al. (2019) asked why the model clog
 
 In every deadlocked run, the agents in the front row have zero spacing in their direction of motion. The crowd behind pushes them sideways against the wall next to the opening. Their direction is the sum of the desired direction and the repulsion from all neighbors within range, and the repulsion from behind dominates. The agents turn towards the wall, see a neighbor or a wall in their path, and stop. Since the speed of the model is a function of the spacing only, nothing restarts them.
 
-The Generalized Centrifugal Force Model (Chraibi et al. 2010) weights a neighbor's force by the cosine of its angle to the desired direction, and ignores neighbors behind. We added this vision factor to the direction rule of the Collision Free Speed model. With $\mathbf{e}_0$ the desired direction and $\mathbf{e}_{ij}$ the unit vector from agent $i$ to neighbor $j$, the repulsion of $j$ is multiplied by
+The Generalized Centrifugal Force Model (Chraibi et al. 2010) weights a neighbor's force by the cosine of its angle to the desired direction, and ignores neighbors behind. We added this vision factor to the direction rule of the Collision Free Speed model. With \(\mathbf{e}_0\) the desired direction and \(\mathbf{e}_{ij}\) the unit vector from agent \(i\) to neighbor \(j\), the repulsion of \(j\) is multiplied by
 
 $$
 w_{ij} = 1 - \lambda + \lambda \max(0,\, \mathbf{e}_0 \cdot \mathbf{e}_{ij}).
 $$
 
-$\lambda = 0$ is the isotropic model, and $\lambda = 1$ is the full vision factor. The parameter is called `neighbor_repulsion_anisotropy`. Its default was kept at 0 until the calibration decided on a value.
+\(\lambda = 0\) is the isotropic model, and \(\lambda = 1\) is the full vision factor. The parameter is called `neighbor_repulsion_anisotropy`. Its default was kept at 0 until the calibration decided on a value.
 
 We tried a second remedy: tolerating a small overlap in the spacing. It turned deadlocks into clogs of up to 43 s, which is not better for a user, and we dropped it.
 
@@ -42,14 +42,14 @@ We kept the observables, weights and tolerances of part 1 and part 2. The residu
 
 Part 2 showed that a stalled run can report observables that look fine. Therefore, we added a 31st residual: 5 for every run that stalls or fails. One stalled run costs 25 in the sum of squares, as much as one observable off by five tolerances. A run counts as stalled when nobody passes for 20 s. Each evaluation averages two seeds per scenario, i.e. 20 simulations, and takes 2.5 to 8 minutes on 12 cores.
 
-We ran Dakota's efficient global optimizer twice for each of $\lambda = 0$ and $\lambda = 1$, with six free parameters. Each study converged after 31 to 45 evaluations.
+We ran Dakota's efficient global optimizer twice for each of \(\lambda = 0\) and \(\lambda = 1\), with six free parameters. Each study converged after 31 to 45 evaluations.
 
 | study | best sum of squares | Hermes | CrowdQueue | stalled runs |
 |---|---|---|---|---|
-| $\lambda = 0$, start 1 (set A) | 218 | 16 | 177 | 1 |
-| $\lambda = 0$, start 2 (set B) | 250 | 110 | 140 | 0 |
-| $\lambda = 1$, start 1 | 735 | 208 | 527 | 0 |
-| $\lambda = 1$, start 2 | 448 | 121 | 301 | 1 |
+| \(\lambda = 0\), start 1 (set A) | 218 | 16 | 177 | 1 |
+| \(\lambda = 0\), start 2 (set B) | 250 | 110 | 140 | 0 |
+| \(\lambda = 1\), start 1 | 735 | 208 | 527 | 0 |
+| \(\lambda = 1\), start 2 | 448 | 121 | 301 | 1 |
 | joint set of part 2, JuPedSim 1.4.2 | 241 | 38 | 203 | |
 
 The isotropic model fits best, and the full vision factor fits CrowdQueue about twice as badly. As in part 1 and part 2, two starts on the same data end at different parameters.
@@ -58,11 +58,11 @@ The isotropic model fits best, and the full vision factor fits CrowdQueue about 
 
 We re-evaluated the best sets with five seeds, i.e. 50 simulations per set, see Fig. 1 (b). **Set A, the best isotropic set, stalls in 13 of 50 runs**, twelve of them at the CrowdQueue gate. Its sum of squares rises from 218 to 4569. The optimizer had chosen it on two lucky seeds. Set B stalls in 4 of 50.
 
-The same sets with $\lambda = 0.5$ stall in 0 and 1 of 50 runs, at a sum of squares of 318 and 328. With $\lambda = 1$, they stall in 0 and 1 of 50 runs, but CrowdQueue fits worse (677 and 764). Therefore, we ran two more studies with $\lambda = 0.5$ fixed and three seeds per evaluation. Their best sets, C and D, reach 250 and 261. With five seeds, **set C has a sum of squares of 226 and no stalled run in 50**. It is the only set in our tests that is below the joint set of part 2 (241) and does not stall.
+The same sets with \(\lambda = 0.5\) stall in 0 and 1 of 50 runs, at a sum of squares of 318 and 328. With \(\lambda = 1\), they stall in 0 and 1 of 50 runs, but CrowdQueue fits worse (677 and 764). Therefore, we ran two more studies with \(\lambda = 0.5\) fixed and three seeds per evaluation. Their best sets, C and D, reach 250 and 261. With five seeds, **set C has a sum of squares of 226 and no stalled run in 50**. It is the only set in our tests that is below the joint set of part 2 (241) and does not stall.
 
 {{< figure
     src="calibration_results.png"
-    caption="Fig. 1. (a) Flow in the bottleneck of Xu et al. (2019), not used in the calibration, 10 seeds per width. (b) Calibration objective of all candidate sets, re-evaluated with 5 seeds; red is the stall penalty, the bar of set A with $\lambda = 0$ is cut at 900. (c) Hermes flow; open markers are widths not used in the calibration. (d) Relative error of flow, density and speed at the seven CrowdQueue runs."
+    caption="Fig. 1. (a) Flow in the bottleneck of Xu et al. (2019), not used in the calibration, 10 seeds per width. (b) Calibration objective of all candidate sets, re-evaluated with 5 seeds; red is the stall penalty, the bar of set A with \(\lambda = 0\) is cut at 900. (c) Hermes flow; open markers are widths not used in the calibration. (d) Relative error of flow, density and speed at the seven CrowdQueue runs."
 >}}
 
 ## The selected set
@@ -75,13 +75,13 @@ The same sets with $\lambda = 0.5$ stall in 0 and 1 of 50 runs, at a sum of squa
 | neighbor repulsion range [m] | 0.10 | 0.150 |
 | wall repulsion strength | 5.0 | 5.95 |
 | wall repulsion range [m] | 0.02 | 0.021 |
-| neighbor repulsion anisotropy $\lambda$ | 0 | 0.5 (fixed in the search) |
+| neighbor repulsion anisotropy \(\lambda\) | 0 | 0.5 (fixed in the search) |
 
-Set C is a compromise, and Fig. 1 shows where it pays. At the CrowdQueue gate, the flow is within 15 % in six of seven runs, see Fig. 1 (d). However, the speed in front of the gate is 27 to 53 % too high in six of seven runs. At the Hermes widths used in the fit, the flow is 20 to 29 % too low, see Fig. 1 (c). Set A with $\lambda = 0.5$ fits Hermes better, but overestimates the gate flow by 14 to 49 %. We preferred the set that is closer at the narrow gate, since clogging and gate flow are where a wrong default misleads a user most.
+Set C is a compromise, and Fig. 1 shows where it pays. At the CrowdQueue gate, the flow is within 15 % in six of seven runs, see Fig. 1 (d). However, the speed in front of the gate is 27 to 53 % too high in six of seven runs. At the Hermes widths used in the fit, the flow is 20 to 29 % too low, see Fig. 1 (c). Set A with \(\lambda = 0.5\) fits Hermes better, but overestimates the gate flow by 14 to 49 %. We preferred the set that is closer at the narrow gate, since clogging and gate flow are where a wrong default misleads a user most.
 
 ## Tests on data not used in the fit
 
-**Hermes 3.0 and 4.4 m.** With five seeds, set C underestimates the flow by 3.3 and 3.2 tolerances, i.e. about 20 %, and the density by 1.7 and 2.1 tolerances. Set A with $\lambda = 0.5$ overestimates the flow by 4.2 and 3.4 tolerances. Neither set meets the 6 % tolerance at the widths it was not fitted to. In 3 of 20 runs, one agent of 350 remained in a corner of the waiting area. We did not count this as clogging.
+**Hermes 3.0 and 4.4 m.** With five seeds, set C underestimates the flow by 3.3 and 3.2 tolerances, i.e. about 20 %, and the density by 1.7 and 2.1 tolerances. Set A with \(\lambda = 0.5\) overestimates the flow by 4.2 and 3.4 tolerances. Neither set meets the 6 % tolerance at the widths it was not fitted to. In 3 of 20 runs, one agent of 350 remained in a corner of the waiting area. We did not count this as clogging.
 
 **Xu et al. (2019), 1.0 to 2.5 m.** With the desired speeds of that paper (normal, mean 1.34 m/s, standard deviation 0.26 m/s), set C does not deadlock in any of 90 runs, see Fig. 1 (a). The largest gap between two passages is 2.0 s. However, the flow is 18 to 29 % below the experiment from 1.4 m on. This agrees with the underestimation at Hermes, and the lower desired speed adds to it.
 
@@ -98,7 +98,7 @@ With the current defaults, the flow is 39 to 56 % below the experiment, and in 2
 
 However, the comparison is not fair to the experiment, since the participants did not all walk at 1.2 m/s. The flow is higher than with set C and the desired speeds of Xu et al. (2019) in Fig. 1 (a), probably since the slowest agents of that distribution limit the flow through the gap.
 
-The proposed defaults change two things: the parameters of set C, and the vision factor $\lambda = 0.5$. In order to separate them, we ran the same 1.0 m case (one seed, 1.2 m/s) with each change alone, see Fig. 3. The vision factor alone does not change the current defaults: 18 and 19 agents are left after 200 s. With the large radius and the strong repulsion of the current defaults, the agents in front of the gap stay apart and slow, and there is no jam for the vision factor to dissolve. The recalibrated parameters alone deadlock after about 34 s, and 144 agents remain until the end. The snapshot at 40 s shows the mechanism of the second section: a dense arch closes over the entrance, and the gap is empty. Only the combination empties the room, after 126 s. In other words, the recalibrated parameters make the crowd denser and faster, and the vision factor is what keeps such a crowd from blocking the gap. This agrees with the five-seed results above, where set A without the vision factor stalled in 13 of 50 runs. However, Fig. 3 shows one seed at one width.
+The proposed defaults change two things: the parameters of set C, and the vision factor \(\lambda = 0.5\). In order to separate them, we ran the same 1.0 m case (one seed, 1.2 m/s) with each change alone, see Fig. 3. The vision factor alone does not change the current defaults: 18 and 19 agents are left after 200 s. With the large radius and the strong repulsion of the current defaults, the agents in front of the gap stay apart and slow, and there is no jam for the vision factor to dissolve. The recalibrated parameters alone deadlock after about 34 s, and 144 agents remain until the end. The snapshot at 40 s shows the mechanism of the second section: a dense arch closes over the entrance, and the gap is empty. Only the combination empties the room, after 126 s. In other words, the recalibrated parameters make the crowd denser and faster, and the vision factor is what keeps such a crowd from blocking the gap. This agrees with the five-seed results above, where set A without the vision factor stalled in 13 of 50 runs. However, Fig. 3 shows one seed at one width.
 
 {{< figure
     src="variants_w1.0_s0.png"
@@ -118,7 +118,7 @@ A fundamental diagram needs a periodic corridor, which JuPedSim does not have. W
 
 ## Limitations
 
-First, the calibration fixed the desired speed at 1.55 m/s, the free speed measured on the Hermes participants. The default stays at 1.2 m/s, the literature value for normal walking. Fig. 2 shows that the proposed set works at 1.2 m/s in one geometry. A calibration at 1.2 m/s would let the time gap and the repulsion absorb the faster walking of the Hermes participants, and we did not run it. Second, $\lambda$ was not optimized; we compared the values 0, 0.5 and 1. Third, the fundamental diagrams with the 0.01 s time step have not been computed yet. Fourth, the engine errors removed about 5 % of all runs from the comparison. Despite these limitations, the proposed set is the first default of this model that is documented by a calibration and by tests on data not used for it. The defaults should be revisited when the engine errors are fixed and the fundamental diagrams are available.
+First, the calibration fixed the desired speed at 1.55 m/s, the free speed measured on the Hermes participants. The default stays at 1.2 m/s, the literature value for normal walking. Fig. 2 shows that the proposed set works at 1.2 m/s in one geometry. A calibration at 1.2 m/s would let the time gap and the repulsion absorb the faster walking of the Hermes participants, and we did not run it. Second, \(\lambda\) was not optimized; we compared the values 0, 0.5 and 1. Third, the fundamental diagrams with the 0.01 s time step have not been computed yet. Fourth, the engine errors removed about 5 % of all runs from the comparison. Despite these limitations, the proposed set is the first default of this model that is documented by a calibration and by tests on data not used for it. The defaults should be revisited when the engine errors are fixed and the fundamental diagrams are available.
 
 ## References
 
