@@ -14,7 +14,7 @@ On my way back from HBiF, I took some more photos and decided to rebuild the spo
 
 The main character of this study is a column near the SAS area in the Copenhagen airport. It blocks the view of the stair, and it seemed to get in the way of everyone walking past it. A column like that is there for a good structural reason, no doubt about that. From a pedestrian dynamics point of view, though, it is in an unfortunate place. Or maybe not?
 
-I'm not really sure. On my way back from the HBiF, I thought maybe I should take some more fotos and try to find out wether the column in that position makes the turn onto the stair harder?
+I'm not really sure. On my way back from the HBiF, I thought maybe I should take some more photos and try to find out whether the column in that position makes the turn onto the stair harder.
 
 ## The stair
 
@@ -103,7 +103,7 @@ When people walked in both directions, the result depended on the model and on w
 
 For the luggage runs, I represented a traveller with a suitcase as a wider circle. A suitcase pulled behind you takes up space mostly behind you. I also chose the route around the column for people coming up with luggage, so their decision to avoid the gap was part of the setup. I took no measurements of how travellers actually use these stairs. I’d be curious to see which way someone pulling a suitcase goes when they reach that gap.
 
-The simulations give me some reason to think the column's placement is awckward. How much it matters depends on the model and on the routes I gave agents in the simulation. I would still like to see how travellers actually use this spot, especially with luggage.
+The simulations give me some reason to think the column's placement is awkward. How much it matters depends on the model and on the routes I gave agents in the simulation. I would still like to see how travellers actually use this spot, especially with luggage.
 
 Could a floor marking or an earlier handrail help people start the turn sooner? 
 
